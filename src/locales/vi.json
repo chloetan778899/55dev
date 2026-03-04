@@ -1,0 +1,800 @@
+{
+  "nav": {
+    "signin": "Đăng nhập",
+    "signup": "Tạo tài khoản"
+  },
+  "dashboard": {
+    "currency_format": "${số tiền}",
+    "meta_title": "Bảng điều khiển",
+    "nav": {
+      "logo_alt": "Logo",
+      "overview": "Cài đặt tài khoản",
+      "assignments": "Nhiệm vụ đang hoạt động",
+      "payouts": "Quản lý rút tiền",
+      "rewards": "Phần thưởng hiệu suất",
+      "referrals": "Chương trình giới thiệu",
+      "faq": "Câu hỏi thường gặp",
+      "terms": "Điều khoản dịch vụ",
+      "privacy": "Chính sách bảo mật",
+      "cookies": "Chính sách cookie",
+      "legal": "Pháp lý & Đăng ký",
+      "logout": "Đăng xuất",
+      "logout_confirm": "Bạn có chắc chắn muốn đăng xuất khỏi tài khoản của mình không?"
+    },
+    "modal": {
+      "verification_failed_title": "Xác minh thất bại",
+      "success": "Thành công",
+      "error": "Lỗi",
+      "warning": "Cảnh báo",
+      "notice": "Thông báo",
+      "missing_fields": "Thiếu thông tin",
+      "action_denied": "Hành động bị từ chối",
+      "payout_requested": "Yêu cầu rút tiền",
+      "funds_received": "Đã nhận tiền 🎉",
+      "funds_received_msg": "Bạn đã nhận được {amount}, vui lòng kiểm tra số dư sổ cái.",
+      "network_error": "Lỗi kết nối mạng.",
+      "general_error": "Đã xảy ra lỗi. Vui lòng thử lại sau.",
+      "verification_failed": "Xác minh thất bại."
+    },
+    "coach_account": "Đây là tài khoản huấn luyện viên dùng cho mục đích đào tạo.",
+    "coach_account_short": "Tài khoản huấn luyện viên",
+    "overview": {
+      "welcome": "Chào mừng, {name}",
+      "subtitle": "Quản lý hồ sơ cá nhân, tùy chọn bảo mật và cấu hình rút tiền.",
+      "profile_title": "Hồ sơ công khai",
+      "upload_btn": "Tải ảnh lên",
+      "upload_hint": "JPG hoặc PNG.",
+      "avatar_success": "Ảnh đại diện đã được cập nhật.",
+      "upload_fail": "Tải ảnh thất bại.",
+      "auth_title": "Cập nhật mật khẩu",
+      "current_pass": "Mật khẩu hiện tại",
+      "new_pass": "Mật khẩu mới",
+      "confirm_pass": "Xác nhận mật khẩu mới",
+      "save_pass": "Lưu mật khẩu",
+      "pass_update_success": "Mật khẩu đã được cập nhật thành công.",
+      "pass_update_fail": "Cập nhật mật khẩu thất bại.",
+      "pass_incorrect": "Mật khẩu hiện tại không đúng.",
+      "passphrase_title": "Cụm mật khẩu rút tiền",
+      "first_time_setup": "Cần thiết lập lần đầu",
+      "passphrase_desc": "Cụm mật khẩu này đóng vai trò là khóa tài chính riêng tư, được yêu cầu để ủy quyền rút tiền trong phần Quản lý rút tiền. Để thiết lập lần đầu, bạn cần cung cấp email tài khoản đã đăng ký.",
+      "passphrase_update_desc": "Cập nhật khóa tài chính riêng tư. Khóa này được yêu cầu bảo mật để ủy quyền tất cả các yêu cầu rút tiền thông thường.",
+      "account_region": "Khu vực tài khoản",
+      "verify_email": "Email tài khoản",
+      "new_passphrase": "Cụm mật khẩu mới",
+      "confirm_passphrase": "Xác nhận cụm mật khẩu",
+      "verify_btn": "Xác minh & Thiết lập khóa",
+      "current_passphrase": "Cụm mật khẩu hiện tại",
+      "update_btn": "Cập nhật khóa",
+      "passphrase_length": "Cụm mật khẩu phải có ít nhất 6 ký tự.",
+      "passphrase_match": "Hai cụm mật khẩu không khớp.",
+      "setup_success": "Cụm mật khẩu đã được thiết lập bảo mật.",
+      "email_mismatch": "Email không khớp với hồ sơ của chúng tôi.",
+      "update_success": "Cụm mật khẩu đã được cập nhật thành công.",
+      "passphrase_incorrect": "Cụm mật khẩu hiện tại không đúng.",
+      "loading": "Đang tải..."
+    },
+    "referrals": {
+      "copy": "Sao chép",
+      "title": "Chương trình giới thiệu",
+      "optional": "Tùy chọn",
+      "subtitle": "Chương trình giới thiệu hoàn toàn là tùy chọn. Các nhiệm vụ hàng ngày, điểm danh và khoản thanh toán chính của bạn sẽ không bị ảnh hưởng dù bạn tham gia hay không.",
+      "your_id": "Mã giới thiệu của bạn",
+      "id_desc": "Sao chép mã giới thiệu độc đáo bên dưới. Chia sẻ với người có thể hưởng lợi từ công ty chúng tôi và bắt đầu nhận thưởng trọn đời dựa trên thu nhập họ tạo ra.",
+      "overview_title": "Tổng quan chương trình",
+      "overview_p1": "Thay vì quảng cáo truyền thống, chúng tôi chọn tái đầu tư ngân sách trực tiếp vào cộng đồng. Khi người dùng đủ điều kiện (\"Người giới thiệu\") giới thiệu thành công người dùng mới (\"Người được giới thiệu\"), Người giới thiệu sẽ nhận <strong>thưởng trọn đời 20%</strong> dựa trên lợi nhuận do Người được giới thiệu tạo ra.",
+      "overview_l1": "Khoản thưởng 20% này được công ty chi trả hoàn toàn.",
+      "overview_l2": "Người được giới thiệu giữ nguyên 100% thu nhập gốc của họ.",
+      "overview_l3": "Tất cả thưởng giới thiệu được ghi trực tiếp vào số dư sổ cái của Người giới thiệu.",
+      "mlm_title": "Chỉ giới thiệu trực tiếp (Không phải MLM)",
+      "mlm_desc": "Cấu trúc giới thiệu của chúng tôi chỉ giới hạn ở một cấp (1-đối-1). Chúng tôi không hỗ trợ tiếp thị đa cấp (MLM) hoặc cấu trúc hoa hồng nhiều tầng. Người giới thiệu chỉ nhận thưởng từ chính người được giới thiệu trực tiếp mà họ giới thiệu thành công. Nếu người được giới thiệu tiếp tục giới thiệu người thứ ba, người giới thiệu gốc sẽ không nhận hoa hồng từ người thứ ba đó.",
+      "paused_title": "Nhiệm vụ đang chờ & Thưởng tạm dừng",
+      "paused_desc": "Thưởng giới thiệu chỉ hoạt động khi tài khoản của Người được giới thiệu ở trạng thái tốt. Nếu Người được giới thiệu để nhiệm vụ ở trạng thái \"đang chờ\", thưởng 20% của bạn từ tài khoản đó sẽ tạm dừng. Bất kỳ thưởng nào phát sinh trong thời gian tạm dừng sẽ bị hủy và không được hoàn lại sau. Khi Người được giới thiệu hoàn thành nhiệm vụ đang chờ, thưởng 20% của bạn sẽ tiếp tục ngay lập tức cho tất cả các lần hoàn thành sau này.",
+      "eligibility_title": "Điều kiện & Giới hạn",
+      "eligibility_l1": "<strong>Yêu cầu điểm danh:</strong> Để bảo vệ tính toàn vẹn của công ty, Người giới thiệu phải tích lũy tổng cộng 14 ngày điểm danh kể từ khi tạo tài khoản trước khi được phép tạo hoặc chia sẻ mã giới thiệu.",
+      "eligibility_l2": "<strong>Thời gian chờ:</strong> Để đảm bảo chất lượng giới thiệu cao, mỗi liên kết chỉ được chia sẻ với một người tại một thời điểm. Sau khi liên kết thành công Người được giới thiệu mới, Người giới thiệu sẽ vào thời gian chờ 14 ngày trước khi được phép giới thiệu người khác.",
+      "eligibility_l3": "<strong>Gian lận & Cấm tài khoản:</strong> Lạm dụng chương trình, bao gồm tạo nhiều tài khoản để tự giới thiệu hoặc sử dụng phương pháp gian lận, bị nghiêm cấm. Vi phạm sẽ dẫn đến mất toàn bộ thưởng và cấm vĩnh viễn tất cả tài khoản liên quan."
+    },
+    "rewards": {
+      "welcome_bonus": "Thưởng chào mừng",
+      "welcome_desc": "Là thành viên mới, khoản <span class=\"font-semibold text-black dark:text-white\">thưởng chào mừng $20.00</span> đã được tự động ghi vào số dư khả dụng ngay khi đăng ký. Khoản thưởng này giúp bạn khởi đầu nhanh và được cộng trực tiếp vào số dư thông thường.",
+      "salary_title": "Theo dõi mốc điểm danh",
+      "salary_desc": "Hoàn thành nhiệm vụ hàng ngày để đạt mốc thanh toán sắp tới.",
+      "days": "Ngày",
+      "milestones": "Lịch thanh toán",
+      "perfect_attendance": "Chỉ số điểm danh đầy đủ",
+      "perfect_desc": "Sự kiên trì mang lại lợi ích. Hoàn thành tất cả {days} nhiệm vụ hàng ngày trong tháng hiện tại để đạt Chỉ số điểm danh đầy đủ. Điều này sẽ tự động áp dụng <span class=\"font-semibold text-black dark:text-white\">hệ số nhân cơ bản +15%</span> cho thu nhập của bạn trong chu kỳ. <br><br><strong class=\"text-[#444] dark:text-[#ccc] font-medium\">Cách hoạt động:</strong> Hệ số chỉ áp dụng cho tổng thanh toán cơ bản đã tích lũy. Ví dụ: nếu tổng thanh toán cơ bản là $1.200, hệ số +15% sẽ cộng thêm $180, đưa tổng thanh toán cơ bản cuối cùng lên $1.380. (Lưu ý: Các khoản thu nhập khác được tính riêng và không bị ảnh hưởng bởi hệ số này).",
+      "promotions": "Sự kiện thưởng thời hạn giới hạn",
+      "promo_desc": "Sự kiện thưởng là cơ hội đặc biệt, tạm thời thỉnh thoảng diễn ra. Khi hoạt động, chúng sẽ xuất hiện ở đây trong thời gian giới hạn để bạn có cơ hội nhận phần thưởng độc quyền. Hãy kiểm tra định kỳ trước khi chúng hết hạn!",
+      "fetching_promos": "Đang lấy sự kiện đang hoạt động...",
+      "no_promos": "Hiện không có sự kiện nào.",
+      "full_attendance_kpi": "Chỉ số điểm danh đầy đủ",
+      "milestone_day": "Mốc: Ngày {day}",
+      "next_upcoming": "Khoản thanh toán sắp tới",
+      "credited": "Đã ghi vào số dư",
+      "scheduled": "Đã lên lịch",
+      "base_multiplier": "+15% hệ số cơ bản"
+    },
+    "assignments": {
+      "title": "Phân bổ lược đồ đang hoạt động",
+      "product_visual": "Hình ảnh sản phẩm",
+      "subtitle": "Xử lý dữ liệu tự động & Sổ cái tài chính",
+      "ledger_balance": "Tổng số dư sổ cái",
+      "ledger_desc": "Quỹ hoạt động cốt lõi, bao gồm lợi nhuận.",
+      "outstanding": "Số dư còn lại",
+      "outstanding_desc": "Khoản thiếu hụt cần thiết để hoàn tất nhiệm vụ đang chờ.",
+      "current_balance": "Số dư hiện tại",
+      "current_balance_desc": "Tổng số dư sổ cái dự kiến với nhiệm vụ đang hoạt động.",
+      "cycle_profit": "Lợi nhuận chu kỳ hiện tại",
+      "cycle_profit_desc": "Tính toán này cập nhật vào đầu mỗi chu kỳ mới. Tất cả lợi nhuận sau đó được cộng vào tổng số dư sổ cái.",
+      "yield_rate": "Tỷ lệ lợi suất",
+      "schema_sync": "Đồng bộ lược đồ",
+      "quota_remaining": "Hạn mức: {current} / {max} còn lại",
+      "sync_desc": "Thiết lập kết nối bảo mật với kho phân bổ để đồng bộ và kiểm tra tập dữ liệu có cấu trúc tiếp theo trước khi thực hiện sổ cái.",
+      "syncing": "Đang đồng bộ dữ liệu...",
+      "sync_btn": "Đồng bộ lược đồ tiếp theo",
+      "timestamp_id": "ID thời gian",
+      "reference": "Tham chiếu",
+      "asset_value": "Giá trị tài sản",
+      "yield": "Lợi suất",
+      "verifying": "Đang xác minh sổ cái...",
+      "proceed_btn": "Tiếp tục tải lên",
+      "idle": "Chế độ xem dữ liệu đang nghỉ. Vui lòng đồng bộ một lược đồ có cấu trúc.",
+      "recent_activity": "Hoạt động gần đây",
+      "no_activity": "Không có hoạt động gần đây.",
+      "asset": "Tài sản",
+      "collapse": "Thu gọn",
+      "view_all": "Xem tất cả hoạt động",
+      "pending_schema_error": "Vui lòng tải lên lược đồ đang chờ trước khi tiếp tục.",
+      "sync_error": "Đồng bộ lược đồ tiếp theo thất bại.",
+      "sync_network_error": "Lỗi mạng khi đồng bộ.",
+      "upload_outstanding_error": "Không thể tải lên.",
+      "corrupted_file": "Tệp bị hỏng.",
+      "upload_error": "Tải lên lược đồ thất bại.",
+      "upload_network_error": "Lỗi mạng khi tải lên.",
+      "status_success": "Thành công",
+      "status_pending": "Đang chờ",
+      "status_corrupted": "Bị hỏng"
+    },
+    "payouts": {
+      "default_desc": "Rút tiền",
+      "title": "Quản lý rút tiền",
+      "ledger_balance": "Số dư sổ cái",
+      "bank_country": "Ngân hàng Quốc gia / Khu vực",
+      "available_methods": "Phương thức rút tiền khả dụng",
+      "unavailable": "Hiện không khả dụng",
+      "tokenized": "Tài sản mã hóa",
+      "manual_config": "Cấu hình mạng thủ công",
+      "token": "Token",
+      "token_placeholder": "ví dụ: ETH",
+      "network": "Mạng",
+      "network_placeholder": "ví dụ: ERC-20",
+      "wallet_address": "Địa chỉ ví",
+      "amount": "Số tiền",
+      "passphrase": "Cụm mật khẩu rút tiền",
+      "processing": "Đang xử lý...",
+      "withdraw_btn": "Yêu cầu rút tiền",
+      "history_title": "Giao dịch gần đây",
+      "th_date": "ID thời gian",
+      "th_method": "Mô tả",
+      "th_amount": "Số tiền",
+      "th_status": "Trạng thái",
+      "status_success": "Thành công",
+      "status_pending": "Đang chờ",
+      "status_declined": "Bị từ chối",
+      "welcome_bonus_desc": "Thưởng chào mừng",
+      "fill_required": "Vui lòng điền đầy đủ tất cả các trường bắt buộc để yêu cầu rút tiền.",
+      "action_denied_quota": "Bạn phải hoàn thành tất cả nhiệm vụ đang hoạt động (Hạn mức: {current} / {max} còn lại) trước khi yêu cầu rút tiền.",
+      "exceeds_balance": "Số tiền yêu cầu vượt quá số dư sổ cái khả dụng.",
+      "request_success": "Yêu cầu rút tiền {amount} đã được gửi thành công. Hiện đang chờ phê duyệt.",
+      "passphrase_error": "Cụm mật khẩu rút tiền không đúng.",
+      "request_error": "Yêu cầu rút tiền thất bại.",
+      "network_error": "Lỗi mạng khi yêu cầu rút tiền."
+    },
+    "regions": {
+      "us": "Hoa Kỳ",
+      "uk": "Vương quốc Anh",
+      "ca": "Canada",
+      "eu": "Châu Âu (Khu vực Euro)",
+      "es": "Tây Ban Nha",
+      "hk": "Hồng Kông",
+      "jp": "Nhật Bản",
+      "kr": "Hàn Quốc",
+      "sg": "Singapore",
+      "th": "Thái Lan",
+      "wire_us": "Chuyển khoản dây / ACH",
+      "wire_uk": "BACS / Chuyển khoản dây",
+      "wire_ca": "Interac / Chuyển khoản dây",
+      "wire_eu": "Chuyển khoản SEPA",
+      "bank_name": "Tên ngân hàng",
+      "bank_name_jp": "Tên ngân hàng (銀行名)",
+      "bank_code": "Mã ngân hàng",
+      "branch_code": "Mã chi nhánh",
+      "branch_code_jp": "Mã chi nhánh (支店コード)",
+      "account_num": "Số tài khoản",
+      "account_num_jp": "Số tài khoản (口座番号)",
+      "account_type_jp": "Loại tài khoản (口座種別)",
+      "placeholder_hsbc": "ví dụ: HSBC, Hang Seng",
+      "placeholder_3digit": "Mã 3 chữ số",
+      "placeholder_4digit": "Mã 4 chữ số",
+      "placeholder_account": "Nhập số tài khoản",
+      "placeholder_mufg": "ví dụ: Mitsubishi UFJ",
+      "placeholder_futsu": "ví dụ: Futsu (Thường)",
+      "placeholder_7digit": "Số 7 chữ số",
+      "placeholder_nodash": "Nhập không dấu gạch ngang",
+      "placeholder_dbs": "ví dụ: DBS, UOB, OCBC",
+      "placeholder_kasikorn": "ví dụ: Kasikorn, SCB, Bangkok Bank"
+    }
+  },
+  "contact": {
+    "title": "Liên hệ với chúng tôi",
+    "subtitle": "Chúng tôi rất mong được nghe từ bạn.",
+    "name": "Họ tên",
+    "email": "Email",
+    "message": "Tin nhắn",
+    "submit": "Gửi",
+    "success": "Tin nhắn đã được gửi thành công.",
+    "modal_title": "Tin nhắn đã gửi",
+    "modal_msg": "Cảm ơn bạn đã liên hệ. Chúng tôi đã nhận được tin nhắn của bạn.",
+    "btn_close": "Đóng",
+    "error_title": "Gửi thất bại",
+    "error_send": "Chúng tôi không thể gửi tin nhắn của bạn. Vui lòng thử lại sau."
+  },
+  "home": {
+    "hero": {
+      "title": "Không cần cấu hình<br>cho dữ liệu có cấu trúc. Ánh xạ lược đồ của bạn ngay lập tức.",
+      "subtitle": "Trung tâm điều khiển cho dữ liệu ngữ nghĩa với xác thực lược đồ thời gian thực và thông tin thực thể."
+    },
+    "meta": {
+      "title": "Công ty Dữ liệu Có Cấu trúc | Nền tảng cơ sở hạ tầng lược đồ",
+      "description": "Nền tảng thống nhất cho dữ liệu có cấu trúc và quản lý lược đồ – mang lại sự rõ ràng và ý nghĩa ngữ nghĩa cho giao diện của bạn."
+    },
+    "partners": {
+      "trusted_prefix": "Được tin dùng bởi các",
+      "trusted_suffix": "đội ngũ hàng đầu.",
+      "typewriter": {
+        "web_apps": "đồ thị tri thức",
+        "ecommerce": "dữ liệu liên kết",
+        "marketing": "SEO ngữ nghĩa",
+        "education": "danh mục dữ liệu",
+        "security": "lược đồ nhận dạng",
+        "finance": "bản thể tài chính",
+        "healthcare": "dữ liệu lâm sàng",
+        "software": "lược đồ API",
+        "ai": "dữ liệu huấn luyện LLM"
+      }
+    },
+    "workflow": {
+      "origin": "Nguồn gốc",
+      "tracking": {
+        "eyebrow": "Xác thực",
+        "title": "Tính toàn vẹn lược đồ",
+        "desc": "Trực quan hóa xác thực dữ liệu thời gian thực và sức khỏe lược đồ qua giao diện rõ ràng, trực quan. Phát hiện sai lệch nhanh chóng và luôn được cập nhật với thông tin cấu trúc trực tiếp."
+      },
+      "processing": {
+        "eyebrow": "Tích hợp",
+        "title": "Ánh xạ ngữ nghĩa",
+        "desc": "Giữ lược đồ dữ liệu đồng bộ thời gian thực trên tất cả các phiên bản toàn cầu. Đảm bảo loại nhất quán, tích hợp mượt mà và phân phối dữ liệu tự tin ở mọi nơi."
+      },
+      "unifying": {
+        "eyebrow": "Đăng ký",
+        "title": "Đăng ký lược đồ",
+        "desc": "Tập trung lược đồ, các đoạn JSON-LD và mô hình dữ liệu trong một bảng điều khiển thống nhất. Giảm phân mảnh và quản lý mọi thực thể quan trọng từ một nơi duy nhất."
+      }
+    },
+    "security": {
+      "main_title": "Bảo mật dữ liệu tích hợp. Có sẵn cho mọi người.",
+      "main_subtitle": "Tường lửa ngữ nghĩa của chúng tôi cung cấp bảo vệ toàn hệ thống, bảo vệ cấu trúc dữ liệu theo mặc định.",
+      "firewall": {
+        "title": "Tường lửa dữ liệu",
+        "subtitle": "Bảo vệ bền vững tại biên",
+        "desc": "Mạng biên toàn cầu của chúng tôi hấp thụ các cuộc tấn công khối lượng ngay lập tức, đảm bảo nguồn gốc dữ liệu của bạn vẫn vô hình và không bị ảnh hưởng bởi lưu lượng độc hại."
+      },
+      "waf": {
+        "title": "Bảo vệ ngữ nghĩa",
+        "subtitle": "Bảo vệ lưu lượng dữ liệu khỏi mối đe dọa",
+        "desc": "Lọc thông minh phân tích gói tin đến thời gian thực, chặn tiêm và thực thể bị lỗi trước khi chúng đến kho dữ liệu."
+      },
+      "workspace": {
+        "title": "Kiểm soát truy cập",
+        "subtitle": "Truy cập lược đồ đáng tin cậy cho đội ngũ",
+        "desc": "Kiến trúc zero-trust đảm bảo chỉ người dùng đã xác thực và thiết bị tuân thủ mới có thể sửa đổi công cụ nội bộ và tài nguyên dữ liệu."
+      }
+    },
+    "code": {
+      "title": "Đơn giản luôn là ưu tiên.",
+      "desc": "Bảng điều khiển trực quan, công cụ xây dựng lược đồ hình ảnh và hướng dẫn toàn diện để phù hợp ngay với quy trình làm việc hiện tại mà không cần viết một dòng mã nào."
+    },
+    "stats": {
+      "lines_code": "Thực thể dữ liệu được ánh xạ mỗi ngày",
+      "languages": "Loại lược đồ và từ vựng ngữ nghĩa được hỗ trợ",
+      "downloads": "Tải xuống gói lược đồ"
+    },
+    "fluid": {
+      "title": "Hoạt động lược đồ tự sửa chữa.",
+      "desc": "Tự động hóa siêu dữ liệu. Trí tuệ hỗ trợ AI chủ động gợi ý và áp dụng đúng loại lược đồ, nhãn thuộc tính và ánh xạ quan hệ.",
+      "ai_detection": "Phát hiện thực thể",
+      "assign": {
+        "header": "Loại đã phát hiện",
+        "sub": "Đang phân tích thuộc tính...",
+        "action": "Gợi ý: Schema.org/Person (98%)"
+      },
+      "label": {
+        "header": "Phân tích ngữ cảnh",
+        "sub": "Đang quét từ vựng...",
+        "action": "Đã áp dụng: [Ngữ nghĩa] [Bắt buộc]"
+      },
+      "route": {
+        "header": "Yêu cầu ánh xạ",
+        "sub": "Đang khớp bản thể...",
+        "action": "Đã gửi đến: Kỹ sư dữ liệu"
+      }
+    },
+    "cta": "Xây dựng điều gì đó có ý nghĩa.",
+    "footer": {
+      "about_title": "Về chúng tôi",
+      "sf_title": "Vương quốc Anh",
+      "sf_address": "C/O Chalk Hill Barn Office 1 Upstairs<br>Yew Tree Farm, Stone Street, Stanford, Kent<br>England, TN25 6DH",
+      "london_title": "",
+      "london_address": "",
+      "mission": "Chúng tôi cung cấp cơ sở hạ tầng ngữ nghĩa để định nghĩa, mở rộng và bảo vệ một web có cấu trúc, giúp dữ liệu trở nên dễ hiểu cho mọi người.",
+      "copyright": "&copy; 2026 Công ty TNHH Dữ liệu Có Cấu trúc. Đã đăng ký bản quyền.",
+      "status": "Tất cả hệ thống hoạt động bình thường.",
+      "links": {
+        "terms": "Điều khoản dịch vụ",
+        "privacy": "Chính sách bảo mật",
+        "cookies": "Chính sách cookie",
+        "legal": "Pháp lý và Đăng ký"
+      }
+    }
+  },
+  "terms": {
+    "sidebar": {
+      "title": "Trung tâm pháp lý",
+      "tos": "Điều khoản dịch vụ",
+      "privacy": "Chính sách bảo mật",
+      "cookies": "Chính sách cookie",
+      "registration": "Pháp lý & Đăng ký"
+    },
+    "title": "Pháp lý",
+    "tos": {
+      "title": "Điều khoản dịch vụ",
+      "last_updated": "Cập nhật lần cuối ngày 2 tháng 5 năm 2024",
+      "content": "VUI LÒNG ĐỌC KỸ CÁC ĐIỀU KHOẢN DỊCH VỤ CỦA CỔNG THÔNG TIN TRƯỚC KHI THAM GIA CÔNG TY HOẶC SỬ DỤNG DỊCH VỤ CỦA CÔNG TY. CÁC ĐIỀU KHOẢN DỊCH VỤ NÀY TẠO THÀNH MỘT THỎA THUẬN PHÁP LÝ GIỮA BẠN VÀ CÔNG TY VÀ LÀ PHẦN BỔ SUNG CHO CÁC ĐIỀU KHOẢN CỦA THỎA THUẬN (ĐÃ ĐỊNH NGHĨA DƯỚI ĐÂY). NẾU BẠN KHÔNG HOẶC KHÔNG THỂ CHẤP NHẬN CÁC ĐIỀU KHOẢN DỊCH VỤ NÀY, BẠN KHÔNG ĐƯỢC PHÉP THAM GIA CÔNG TY. NẾU BẠN TRUY CẬP BẢN BỔ SUNG NÀY ĐIỆN TỬ, HÃY XÁC NHẬN SỰ ĐỒNG Ý BỊ RÀNG BUỘC BỞI CÁC ĐIỀU KHOẢN CỦA BẢN BỔ SUNG BẰNG CÁCH NHẤP NÚT \"TẠO TÀI KHOẢN\". NẾU BẠN KHÔNG ĐỒNG Ý VỚI CÁC ĐIỀU KHOẢN DỊCH VỤ NÀY, ĐỪNG TẠO TÀI KHOẢN.<br><br>Các Điều khoản Dịch vụ này (\"Điều khoản\") điều chỉnh việc truy cập và sử dụng trang web cũng như ứng dụng di động của chúng tôi (gọi chung là \"Cổng thông tin\"), và nội dung, tính năng, phần mềm và ứng dụng liên quan trong Cổng thông tin (gọi chung là \"Dịch vụ\"). Cổng thông tin và Dịch vụ được quản lý và duy trì bởi Công ty Dữ liệu Có Cấu trúc. Các từ \"chúng tôi\", \"chúng tôi\", \"của chúng tôi\" và \"Công ty\" cũng chỉ Công ty Dữ liệu Có Cấu trúc. Từ \"bạn\" chỉ người truy cập Cổng thông tin.<br><br>Vui lòng đọc kỹ các Điều khoản này. Chúng chứa thông tin quan trọng về quyền pháp lý của bạn, bao gồm giới hạn trách nhiệm của Công ty và một số bên thứ ba, từ chối bảo hành và chấp nhận thẩm quyền tài phán. Mỗi lần bạn truy cập Dịch vụ bằng bất kỳ phương tiện nào (ví dụ: qua Internet hoặc thiết bị di động), bạn đồng ý không thể hủy bỏ việc tuân thủ phiên bản Điều khoản được đăng trên Cổng thông tin tại thời điểm truy cập. Bạn không được sử dụng Cổng thông tin hoặc Dịch vụ nếu bạn không đồng ý với các Điều khoản này. Bằng cách truy cập hoặc sử dụng dịch vụ, bạn đồng ý bị ràng buộc bởi các điều khoản này.<br><br><strong>ĐIỀU KIỆN SỬ DỤNG</strong><br>Để đủ điều kiện sử dụng bất kỳ Dịch vụ nào của Công ty, bạn phải ít nhất 23 tuổi và cư trú tại Vương quốc Anh, Hoa Kỳ, Canada, Châu Âu, Nhật Bản, Hàn Quốc, Singapore, Tây Ban Nha, Hồng Kông hoặc Thái Lan. Một số tính năng có thể có hoặc không khả dụng tùy theo vị trí và các tiêu chí đủ điều kiện khác của bạn. Bạn không được sử dụng bất kỳ phần mềm hoặc kỹ thuật mạng nào, bao gồm sử dụng Mạng riêng ảo (VPN) để thay đổi địa chỉ giao thức internet hoặc cố gắng vượt qua lệnh cấm này.<br><br><strong>THAY ĐỔI</strong><br>Chúng tôi có thể sửa đổi các điều khoản dịch vụ, chính sách bảo mật và chính sách cookie của mình theo thời gian. Nếu chúng tôi thực hiện thay đổi quan trọng, chúng tôi sẽ thông báo qua dịch vụ hoặc bằng cách khác để bạn có cơ hội xem xét thay đổi trước khi chúng có hiệu lực. Chúng tôi đồng ý rằng thay đổi không thể hồi tố. Nếu bạn phản đối bất kỳ thay đổi nào, bạn có thể đóng tài khoản. Việc bạn tiếp tục sử dụng dịch vụ sau khi chúng tôi công bố hoặc gửi thông báo về thay đổi có nghĩa là bạn đồng ý với các điều khoản đã cập nhật kể từ ngày hiệu lực.<br><br><strong>KHẢ NĂNG SỬ DỤNG, LỖI VÀ THÔNG TIN KHÔNG CHÍNH XÁC</strong><br>Truy cập Dịch vụ có thể bị giảm hoặc không khả dụng trong thời gian biến động hoặc lượng lớn. Điều này có thể dẫn đến hạn chế truy cập Tài khoản hoặc Dịch vụ, bao gồm không thể bắt đầu hoặc hoàn tất giao dịch và cũng có thể dẫn đến chậm trễ thời gian hỗ trợ.<br><br>a. Chúng tôi không đảm bảo rằng Trang web hoặc Dịch vụ khác sẽ luôn khả dụng mà không gián đoạn và chúng tôi không đảm bảo bất kỳ lệnh nào sẽ được thực hiện, chấp nhận, ghi nhận hoặc vẫn mở hoặc Tài khoản của bạn sẽ khả dụng; và<br><br>b. Xin lưu ý rằng thời gian phản hồi hỗ trợ của chúng tôi có thể bị chậm, đặc biệt trong thời gian biến động hoặc lượng lớn, đặc biệt đối với các vấn đề không liên quan đến tin cậy và an toàn.<br>Mặc dù chúng tôi cố gắng cung cấp thông tin chính xác và kịp thời trên Trang web, Trang web (bao gồm, không giới hạn, Nội dung (như đã định nghĩa dưới đây)) có thể không phải lúc nào cũng hoàn toàn chính xác, đầy đủ hoặc cập nhật và cũng có thể chứa lỗi kỹ thuật hoặc lỗi đánh máy. Để tiếp tục cung cấp thông tin hoàn chỉnh và chính xác nhất có thể, thông tin có thể, trong phạm vi pháp luật cho phép, được thay đổi hoặc cập nhật theo thời gian mà không cần thông báo, bao gồm thông tin về chính sách, sản phẩm và dịch vụ của chúng tôi. Do đó, bạn nên xác minh tất cả thông tin trước khi dựa vào đó, và tất cả quyết định dựa trên thông tin trên Trang web là trách nhiệm duy nhất của bạn và chúng tôi sẽ không chịu trách nhiệm cho các quyết định đó.<br><br>Chúng tôi liên tục cập nhật các sản phẩm và dịch vụ trên dịch vụ. Các sản phẩm hoặc dịch vụ có sẵn trên dịch vụ của chúng tôi có thể bị định giá sai, mô tả không chính xác hoặc không khả dụng, và chúng tôi có thể gặp chậm trễ trong việc cập nhật thông tin trên dịch vụ và trong quảng cáo của chúng tôi trên các trang web khác. Chúng tôi không thể và không đảm bảo tính chính xác hoặc đầy đủ của bất kỳ thông tin nào, bao gồm hình ảnh sản phẩm, thông số kỹ thuật, tính khả dụng và dịch vụ. Chúng tôi bảo lưu quyền thay đổi hoặc cập nhật thông tin và sửa lỗi, sai sót hoặc thiếu sót bất kỳ lúc nào mà không cần thông báo trước. Trong trường hợp sự kiện bất ngờ, Công ty có quyền tạm dừng dịch vụ để bảo trì hoặc sửa chữa nếu điều này cần thiết để đảm bảo hoạt động đúng của dịch vụ.<br><br><strong>TÀI KHOẢN</strong><br>Bạn cần có tài khoản với Chúng tôi (\"Tài khoản\") để sử dụng một số phần của Dịch vụ. Khi tạo Tài khoản, bạn cam kết và đảm bảo rằng bạn đủ tuổi pháp lý theo khu vực của mình, bạn có khả năng ký kết và thực hiện các hợp đồng ràng buộc pháp lý theo luật áp dụng, và tất cả thông tin bạn cung cấp là chính xác, cập nhật, trung thực và đầy đủ. Bạn hoàn toàn chịu trách nhiệm cho tất cả hoạt động dưới Tài khoản của mình. Chúng tôi sẽ không chịu trách nhiệm dưới bất kỳ hình thức nào nếu mật khẩu và/hoặc Tài khoản của bạn bị lạm dụng hoặc sử dụng bởi bên thứ ba. Do đó bạn đồng ý giữ mật khẩu an toàn và giữ thông tin tài khoản luôn cập nhật mọi lúc.<br><br>Trừ khi được Chúng tôi cho phép rõ ràng và tuân thủ Điều khoản cũng như bất kỳ điều khoản bổ sung nào mà Công ty quyết định độc quyền và tuyệt đối, bạn không được thiết lập nhiều Tài khoản. Bạn không được cho vay, chuyển nhượng hoặc bán Tài khoản hoặc thông tin Tài khoản cho bên khác và không được sử dụng Tài khoản của người dùng khác mà không có sự cho phép bằng văn bản của họ.<br><br>Chúng tôi thỉnh thoảng có thể liên hệ với bạn qua địa chỉ email được cung cấp khi đăng ký Tài khoản. Bạn sẽ không thể từ chối các thông báo này, và bạn chịu trách nhiệm đảm bảo địa chỉ email của mình luôn cập nhật. Nếu bạn bỏ lỡ bất kỳ thông báo nào do địa chỉ email không chính xác, lỗi thời hoặc không đầy đủ, Chúng tôi sẽ không chịu trách nhiệm cho bất kỳ tổn thất hoặc thiệt hại nào do bạn bỏ lỡ thông báo.<br><br>Bạn không được đóng hoặc xóa tài khoản khi còn bất kỳ hoạt động đang chờ nào. Công ty bảo lưu quyền vô hiệu hóa tài khoản người dùng trong trường hợp có hoạt động gian lận mà người dùng thực hiện trong thời gian tồn tại của Công ty.<br><br>Các hành động có thể được coi là hoạt động gian lận:<br>a. Tạo nhiều tài khoản dưới cùng một danh tính;<br>b. Tạo nhiều tài khoản để sử dụng nhiều lần các ưu đãi thưởng của Công ty;<br>c. Gian lận từ thẻ tín dụng bị đánh cắp hoặc gian lận từ các phương thức thanh toán khác;<br>d. Bất kỳ hành vi nào có dấu hiệu gian lận và rủi ro cho dịch vụ.<br><br><strong>HOẠT ĐỘNG BỊ CẤM</strong><br>Bạn đồng ý rằng bạn sẽ không:<br><br>a. Sao chép, sửa đổi hoặc tạo tác phẩm phái sinh của Dịch vụ hoặc bất kỳ Nội dung nào;<br><br>b. Sao chép, thao tác hoặc tổng hợp bất kỳ Nội dung nào (bao gồm dữ liệu) nhằm mục đích cung cấp cho bên thứ ba;<br><br>c. Giao dịch, bán, cho thuê, cho vay, cho thuê hoặc cấp phép bất kỳ Nội dung hoặc quyền truy cập vào Dịch vụ, dù thương mại hay miễn phí;<br><br>d. Sử dụng hoặc giới thiệu vào Dịch vụ bất kỳ phương pháp khai thác dữ liệu, thu thập, \"cào\", robot hoặc phương pháp tự động hoặc thu thập/trích xuất dữ liệu tương tự, hoặc truy cập, lấy, giám sát hoặc sao chép thủ công bất kỳ phần nào của Dịch vụ, hoặc tải xuống hoặc lưu trữ Nội dung (trừ khi được Chúng tôi cho phép rõ ràng);<br><br>e. Thực hiện yêu cầu thông tin quá mức hoặc thực hiện bất kỳ hành động nào gây cản trở, gián đoạn hoặc đặt gánh nặng không hợp lý lên Dịch vụ hoặc bất kỳ máy chủ hoặc mạng nào kết nối với Dịch vụ hoặc ảnh hưởng tiêu cực đến chất lượng hoặc tính khả dụng của bất kỳ Nội dung nào, hoặc tốc độ hoặc chức năng của Dịch vụ;<br><br>f. Giới thiệu virus, ngựa Trojan, sâu, bom thời gian hoặc phần mềm độc hại khác vào Dịch vụ hoặc Nền tảng, hoặc sử dụng bất kỳ thiết bị, phần mềm hoặc quy trình nào để vượt qua bất kỳ phần mềm hoặc phần cứng nào cấm yêu cầu thông tin khối lượng;<br><br>g. Vi phạm, vượt qua hoặc né tránh bất kỳ biện pháp bảo mật nào nhằm giới hạn hoặc ngăn chặn truy cập vào Nền tảng, Nội dung hoặc Dịch vụ; hoặc<br><br>h. Cố gắng giành quyền truy cập trái phép vào Dịch vụ, bất kỳ Nội dung nào hoặc vào bất kỳ hệ thống máy tính hoặc mạng nào kết nối với Dịch vụ hoặc bất kỳ máy chủ nào của Công ty, dù qua hack, khai thác mật khẩu, sử dụng trái phép mật khẩu/ thông tin đăng nhập của người khác hoặc bất kỳ phương tiện nào khác;<br><br>i. Hạn chế, cản trở hoặc can thiệp vào việc sử dụng Dịch vụ của bất kỳ người dùng nào khác (bao gồm hack hoặc làm biến dạng Cổng thông tin);<br><br>j. Giới thiệu hoặc phân phối qua Cổng thông tin bất kỳ chương trình máy tính nào gây hư hỏng, can thiệp, chặn, thu thập, phát hành hoặc tiết lộ bất kỳ hệ thống, dữ liệu hoặc thông tin cá nhân nào của chúng tôi hoặc bên thứ ba;<br><br>k. Sử dụng bất kỳ thương hiệu, nhãn hiệu dịch vụ, tên thương mại hoặc biểu tượng của chúng tôi hoặc của bên thứ ba nào được hiển thị trên Nền tảng;<br><br>l. Sửa đổi hoặc xóa bất kỳ thông báo bản quyền hoặc thông báo sở hữu nào khác trong Nội dung;<br><br>m. Sử dụng Trang web, Nội dung hoặc Dịch vụ cho hoặc liên quan đến bất kỳ hoạt động nào (i) vi phạm bất kỳ luật, quy định, pháp lệnh hoặc quy tắc áp dụng nào, bao gồm không giới hạn Văn phòng Kiểm soát Tài sản Nước ngoài của Bộ Tài chính Hoa Kỳ (OFAC), hoặc (ii) liên quan đến tiền thu được từ bất kỳ hoạt động bất hợp pháp hoặc trái pháp luật nào.<br><br>Ngoài ra, bạn thừa nhận và đồng ý rằng bạn (và không phải Chúng tôi) hoàn toàn chịu trách nhiệm lấy và duy trì tất cả viễn thông, băng thông rộng, phần cứng máy tính, thiết bị, phần mềm và dịch vụ cần thiết để bạn truy cập và sử dụng Dịch vụ, và thanh toán tất cả các khoản phí liên quan.<br><br><strong>GIỚI HẠN TRÁCH NHIỆM</strong><br>Dịch vụ, Cổng thông tin và Trang web được cung cấp trên cơ sở \"như hiện tại\" và \"như khả dụng\", mà không có thêm cam kết nào từ chúng tôi về tính khả dụng của Dịch vụ. Cụ thể, chúng tôi không đưa ra bất kỳ bảo hành ngầm định nào về quyền sở hữu, khả năng bán được, phù hợp cho mục đích cụ thể và/hoặc không vi phạm. Chúng tôi không cam kết rằng việc truy cập Trang web, bất kỳ Dịch vụ nào hoặc bất kỳ tài liệu nào chứa trong đó sẽ liên tục, không gián đoạn, kịp thời hoặc không lỗi.<br><br>Nếu bạn có tranh chấp với một hoặc nhiều người dùng của Công ty, bạn đồng ý rằng chúng tôi cũng như các công ty liên kết hoặc nhà cung cấp dịch vụ của chúng tôi, hoặc bất kỳ giám đốc, nhân viên, đại lý, đối tác, nhân viên hoặc đại diện nào của chúng tôi, sẽ không chịu trách nhiệm cho bất kỳ khiếu nại, yêu cầu và thiệt hại (thực tế và hậu quả, trực tiếp hoặc gián tiếp) nào phát sinh từ hoặc liên quan đến tranh chấp đó.<br><br>Chúng tôi không chịu trách nhiệm cho bất kỳ vi phạm Thỏa thuận nào, bao gồm chậm trễ, thất bại thực hiện hoặc gián đoạn dịch vụ, khi chúng phát sinh trực tiếp hoặc gián tiếp từ hoàn cảnh bất thường và không thể dự đoán được nằm ngoài tầm kiểm soát của chúng tôi, hậu quả của chúng không thể tránh khỏi dù đã nỗ lực hết sức, cũng như chúng tôi không chịu trách nhiệm khi vi phạm do áp dụng các quy tắc pháp lý bắt buộc.<br><br><strong>TỪ CHỐI BẢO HÀNH</strong><br>Công ty và các công ty liên kết không đưa ra bất kỳ tuyên bố hoặc bảo hành nào về dịch vụ, bao gồm bất kỳ tuyên bố nào rằng dịch vụ sẽ không bị gián đoạn hoặc không lỗi, và cung cấp dịch vụ (bao gồm nội dung và thông tin) trên cơ sở \"như hiện tại\" và \"như khả dụng\". Trong phạm vi tối đa pháp luật cho phép, Công ty và các công ty liên kết từ chối bất kỳ bảo hành ngầm định hoặc theo luật định nào, bao gồm bất kỳ bảo hành ngầm định nào về quyền sở hữu, độ chính xác của dữ liệu, không vi phạm hoặc khả năng bán được phù hợp cho mục đích cụ thể.<br><br>TRONG PHẠM VI TỐI ĐA PHÁP LUẬT CHO PHÉP, CÔNG TY KHÔNG CHỊU TRÁCH NHIỆM HOẶC TRÁCH NHIỆM CHO BẤT KỲ (I) LỖI, SAI SÓT HOẶC THÔNG TIN KHÔNG CHÍNH XÁC CỦA BẤT KỲ NỘI DUNG NÀO; (II) THIỆT HẠI TÀI SẢN, BẤT KỂ TÍNH CHẤT NÀO, DO VIỆC TRUY CẬP HOẶC SỬ DỤNG DỊCH VỤ CỦA BẠN; (III) BẤT KỲ TRUY CẬP TRÁI PHÉP NÀO VÀO HOẶC SỬ DỤNG MÁY CHỦ CỦA CHÚNG TÔI VÀ/HOẶC BẤT KỲ VÀ TẤT CẢ THÔNG TIN NÀO ĐƯỢC LƯU TRỮ TRONG ĐÓ; (IV) BẤT KỲ GIÁN ĐOẠN HOẶC NGỪNG TRUYỀN NÀO ĐẾN HOẶC TỪ DỊCH VỤ; (V) BẤT KỲ LỖI HOẶC VIRUS, TROJAN HORSE, HOẶC TƯƠNG TỰ NÀO CÓ THỂ ĐƯỢC TRUYỀN ĐẾN HOẶC QUA DỊCH VỤ BỞI BÊN THỨ BA; (VI) BẤT KỲ LỖI HOẶC THIẾU SÓT NÀO TRONG BẤT KỲ NỘI DUNG NÀO HOẶC BẤT KỲ TỔN THẤT HOẶC THIỆT HẠI NÀO PHÁT SINH DO SỬ DỤNG BẤT KỲ NỘI DUNG NÀO ĐƯỢC ĐĂNG, TRUYỀN HOẶC LÀM KHẢ DỤNG QUA DỊCH VỤ; VÀ/HOẶC (VII) HÀNH VI VU KHỐNG, XÚC PHẠM HOẶC BẤT HỢP PHÁP CỦA BẤT KỲ BÊN THỨ BA NÀO.<br><br><strong>THAM GIA VÀ TUÂN THỦ</strong><br>Để đánh giá sự hiểu biết và tham gia của người dùng với sản phẩm và dịch vụ của chúng tôi, cũng như đánh giá sự sẵn sàng cho các đổi mới trong tương lai, người dùng được yêu cầu hoàn thành tất cả chu kỳ sản phẩm trước khi bắt đầu yêu cầu rút tiền. Rút tiền không thể được xử lý giữa chu kỳ, và bất kỳ tương tác sản phẩm nào cũng không thể bị hủy, bỏ qua hoặc đảo ngược do thỏa thuận ràng buộc với đối tác thương nhân của chúng tôi. Hệ thống của chúng tôi thường xuyên cập nhật, với sản phẩm được thêm và xóa mỗi phút, và việc giữ sản phẩm quá lâu có thể ảnh hưởng tiêu cực đến tiến độ của thương nhân. Người dùng được khuyến khích hoàn thành chu kỳ sản phẩm và gửi yêu cầu rút tiền trong khung thời gian 24 đến 48 giờ. Trong trường hợp giữ sản phẩm quá 48 giờ, các điều khoản dịch vụ của chúng tôi cho phép điều chỉnh lịch thanh toán tiêu chuẩn dựa trên thỏa thuận lẫn nhau giữa người dùng và công ty. Nếu có điều chỉnh, có thể áp dụng phí danh nghĩa để bù đắp chi phí hành chính liên quan đến những thay đổi này và đảm bảo cung cấp dịch vụ liên tục. Chi tiết về các khoản phí này được bao gồm trong phần điều chỉnh thanh toán của thỏa thuận người dùng, thúc đẩy tính minh bạch và hỗ trợ hiểu biết. Cách tiếp cận này cho phép chúng tôi phản ứng linh hoạt với tình hình tài chính khác nhau của người dùng đồng thời bảo vệ hiệu quả và tiến độ của đối tác thương nhân. Ngoài ra, Công ty có thể yêu cầu tài liệu bổ sung để xác minh tính xác thực của quỹ liên quan. Người dùng cũng có thể được yêu cầu chứng minh nguồn gốc của quỹ này. Nếu có bất kỳ lo ngại nào về tính hợp pháp của quỹ, Công ty bảo lưu quyền kiểm toán tài khoản của người dùng. Cách tiếp cận toàn diện này giúp đảm bảo tất cả các tương tác tài chính trong nền tảng của chúng tôi tuân thủ các tiêu chuẩn bảo mật và tuân thủ cao nhất. Để duy trì tuân thủ và đảm bảo rõ ràng trong dòng giao dịch, mỗi tài khoản sẽ hoạt động với thông tin người trả tiền riêng biệt, trừ trường hợp tài khoản huấn luyện viên.<br><br><strong>TẠM DỪNG, CHẤM DỨT VÀ HỦY</strong><br>Chúng tôi có thể: (a) tạm dừng, hạn chế hoặc chấm dứt quyền truy cập của bạn vào bất kỳ hoặc tất cả Dịch vụ của Công ty, và/hoặc (c) vô hiệu hóa hoặc hủy Tài khoản của bạn ngay lập tức vì lý do chính đáng, bao gồm nhưng không giới hạn ở nơi:<br><br>a. Chúng tôi được cơ quan chính phủ yêu cầu làm như vậy;<br>b. Bạn không hoặc có vẻ không thể đáp ứng nghĩa vụ của mình liên quan đến một hoặc nhiều nhiệm vụ;<br>c. Bạn đang gặp sự kiện mất khả năng thanh toán thuộc bất kỳ loại nào (theo quyết định tuyệt đối của chúng tôi);<br>d. Bất kỳ cuộc điều tra, khiếu nại, hành động hoặc thủ tục nào thuộc bất kỳ tính chất nào được bắt đầu chống lại bạn (bao gồm không giới hạn điều tra về nghi ngờ lạm dụng thị trường, thao túng hoặc hành vi hình sự khác), bạn đã vi phạm Luật Áp dụng hoặc bất kỳ người nào thực hiện bước để thực thi quyền lợi bảo đảm chống lại bạn;<br>e. Bạn vi phạm Thỏa thuận này; hoặc<br>f. Chúng tôi cảm thấy cần thiết để bảo vệ chúng tôi hoặc Công ty.<br>Nếu chúng tôi tạm dừng, hạn chế hoặc đóng Tài khoản của bạn và/hoặc chấm dứt việc sử dụng Dịch vụ của bạn, chúng tôi sẽ (trừ khi việc đó là bất hợp pháp) cung cấp cho bạn thông báo về hành động của chúng tôi và lý do từ chối, tạm dừng hoặc đóng, và khi phù hợp, thủ tục sửa chữa bất kỳ lỗi thực tế nào dẫn đến việc từ chối, tạm dừng hoặc đóng Tài khoản của bạn.<br>Chúng tôi có thể chấm dứt hoặc tạm dừng hoặc hủy tài khoản của bạn ngay lập tức, mà không cần thông báo trước hoặc trách nhiệm, vì bất kỳ lý do nào, bao gồm nhưng không giới hạn nếu bạn vi phạm Điều khoản. Sau khi chấm dứt, quyền sử dụng dịch vụ của bạn sẽ chấm dứt ngay lập tức.<br><br><strong>SỞ HỮU VÀ SỞ HỮU TRÍ TUỆ</strong><br>a. Tuân thủ các Điều khoản này, bạn có thể xem, in và sao chép Nội dung cho mục đích sử dụng cá nhân của riêng bạn. Bạn không được sao chép, sao chép, tải xuống, \"cào màn hình\", lưu trữ, truyền, phát sóng, công bố, sửa đổi, tạo tác phẩm phái sinh từ, hiển thị, biểu diễn, phân phối, tái phân phối, bán, cấp phép, cho thuê hoặc sử dụng, chuyển nhượng (dù in, điện tử hoặc định dạng khác) hoặc khai thác bất kỳ Nội dung nào, toàn bộ hoặc một phần, theo bất kỳ cách nào không tuân thủ các Điều khoản này.<br><br>b. Giữa Công ty và bạn, tất cả Nội dung đều thuộc sở hữu hoặc kiểm soát của Công ty. Công ty, biểu tượng của nó và, trừ khi ghi chú dưới đây, tất cả các tên sản phẩm hoặc dịch vụ hoặc khẩu hiệu khác được hiển thị trên Dịch vụ là thương hiệu đã đăng ký và/hoặc thương hiệu thông luật của Công ty hoặc nhà cung cấp hoặc bên cấp phép của nó và không được sao chép, bắt chước hoặc sử dụng, toàn bộ hoặc một phần, mà không có sự cho phép bằng văn bản trước của Công ty hoặc chủ sở hữu thương hiệu áp dụng. Ngoài ra, giao diện của Dịch vụ, bao gồm tất cả tiêu đề trang, đồ họa tùy chỉnh, biểu tượng nút và kịch bản, là nhãn hiệu dịch vụ, thương hiệu và/hoặc trang phục thương mại của Công ty và không được sao chép, bắt chước hoặc sử dụng, toàn bộ hoặc một phần, mà không có sự cho phép bằng văn bản trước của Công ty. Tất cả các thương hiệu, thương hiệu đã đăng ký, tên sản phẩm và tên công ty hoặc biểu tượng khác được đề cập trong Dịch vụ là tài sản của chủ sở hữu tương ứng. Tham chiếu đến bất kỳ sản phẩm, dịch vụ, quy trình hoặc thông tin khác bằng tên thương mại, thương hiệu, nhà sản xuất, nhà cung cấp hoặc cách khác không cấu thành hoặc ngụ ý sự chứng thực, tài trợ hoặc khuyến nghị của Công ty.<br><br>c. Không có gì trong các Điều khoản này cấp cho bạn bất kỳ lợi ích nào trong bất kỳ tài sản trí tuệ nào của Công ty hoặc bên thứ ba.<br><br>d. Tất cả các biểu tượng, thương hiệu, nhãn hiệu dịch vụ và tên thương mại liên quan đều là tài sản duy nhất của Công ty. Việc thiếu tên, biểu tượng hoặc dấu hiệu nào khác ở đây không cấu thành từ bỏ bất kỳ và tất cả quyền sở hữu trí tuệ mà Công ty đã thiết lập. Các thương hiệu, tên hoặc biểu tượng khác được sử dụng trên Trang web là tài sản của chủ sở hữu tương ứng. Bạn không được phép sử dụng bất kỳ cái nào trong số đó.<br><br>e. Bạn thừa nhận rằng Công ty và/hoặc các nhà cung cấp của nó sở hữu bản quyền trong và đối với tất cả Nội dung theo luật áp dụng (bao gồm luật bản quyền và các luật sở hữu trí tuệ khác), và đã bảo lưu tất cả quyền trong và đối với Nội dung đó.<br><br><strong>LIÊN KẾT ĐẾN CÁC TRANG WEB KHÁC</strong><br>Dịch vụ của chúng tôi có thể chứa liên kết đến các trang web hoặc dịch vụ của bên thứ ba không thuộc sở hữu hoặc kiểm soát của Công ty. Công ty không kiểm soát và không chịu trách nhiệm cho nội dung, chính sách bảo mật hoặc thực hành của bất kỳ trang web hoặc dịch vụ bên thứ ba nào. Bạn thừa nhận và đồng ý thêm rằng Công ty sẽ không chịu trách nhiệm hoặc trách nhiệm, trực tiếp hoặc gián tiếp, cho bất kỳ thiệt hại hoặc tổn thất nào gây ra hoặc được cho là gây ra bởi hoặc liên quan đến việc sử dụng hoặc dựa vào bất kỳ nội dung, hàng hóa hoặc dịch vụ nào có sẵn trên hoặc qua bất kỳ trang web hoặc dịch vụ nào như vậy. Chúng tôi khuyên bạn nên đọc kỹ điều khoản và điều kiện cũng như chính sách bảo mật của bất kỳ trang web hoặc dịch vụ bên thứ ba nào bạn truy cập.<br><br>BẠN ĐỒNG Ý RẰNG CÔNG TY SẼ KHÔNG, DƯỚI BẤT KỲ HOÀN CẢNH NÀO, CHỊU TRÁCH NHIỆM HOẶC TRÁCH NHIỆM, TRỰC TIẾP HOẶC GIÁN TIẾP, CHO BẤT KỲ HÀNG HÓA, DỊCH VỤ, THÔNG TIN, TÀI NGUYÊN VÀ/HOẶC NỘI DUNG NÀO CÓ SẴN TRÊN HOẶC QUA BẤT KỲ TRANG WEB HOẶC DỊCH VỤ BÊN THỨ BA NÀO, CHO BẤT KỲ GIAO DỊCH HOẶC TRAO ĐỔI NÀO BẠN CÓ THỂ CÓ VỚI BÊN THỨ BA, HOẶC CHO BẤT KỲ THIỆT HẠI, TỔN THẤT HOẶC MẤT MÁT NÀO GÂY RA HOẶC ĐƯỢC CHO LÀ GÂY RA BỞI HOẶC LIÊN QUAN ĐẾN BẤT KỲ ĐIỀU NÀO TRÊN HOẶC VIỆC SỬ DỤNG HOẶC DỰA VÀO TÀI LIỆU HOẶC NỘI DUNG HOẶC THỰC HÀNH KINH DOANH CỦA BẤT KỲ BÊN THỨ BA NÀO.<br><br><strong>CHÍNH SÁCH VỀ HÀNH VI KHÔNG TRUNG THỰC</strong><br>Để phát hiện, ngăn chặn và chống lại hành vi không trung thực, Công ty tuân theo các nguyên tắc sau:<br><br>a. Phân bổ nguồn lực thực thi pháp luật, tình báo tài chính và giám sát trên cơ sở nhạy cảm với rủi ro;<br>b. Duy trì phối hợp và hợp tác chính sách và hoạt động chặt chẽ giữa Chính phủ;<br>c. Áp dụng cách tiếp cận phòng ngừa kết hợp cấp phép nghiêm ngặt và yêu cầu báo cáo toàn diện, quy định chống hành vi không trung thực nghiêm ngặt và giám sát dựa trên rủi ro của các lĩnh vực tài chính và phi tài chính liên quan;<br>d. Nâng cao sự hiểu biết của các bên liên quan khu vực tư nhân về rủi ro hành vi không trung thực và thúc đẩy văn hóa tuân thủ;<br>e. Thực hiện hành động thực thi pháp luật quyết liệt và răn đe chống lại hoạt động không trung thực, bao gồm hoạt động liên quan đến tội phạm nước ngoài;<br>f. Cung cấp hỗ trợ cho các khu vực tài phán khác qua kênh chính thức và không chính thức, tự động và theo yêu cầu.<br><br><strong>CHÍNH SÁCH BÍ MẬT VỚI ĐỐI TÁC THƯƠNG NHÂN</strong><br>A. Thông tin bí mật và độc quyền<br>Trong quá trình làm việc, nhân viên sẽ tiếp xúc với thông tin bí mật và độc quyền của người sử dụng lao động. Thông tin bí mật và độc quyền có nghĩa là bất kỳ dữ liệu hoặc thông tin nào là tài liệu nhạy cảm cạnh tranh và không được công chúng biết đến, bao gồm nhưng không giới hạn thông tin liên quan đến phát triển và kế hoạch, chiến lược tiếp thị, tài chính, hoạt động, hệ thống, khái niệm độc quyền, tài liệu, báo cáo, dữ liệu, thông số kỹ thuật, phần mềm máy tính, mã nguồn, mã đối tượng, sơ đồ luồng, dữ liệu, cơ sở dữ liệu, sáng chế, bí quyết, bí mật thương mại, danh sách khách hàng, mối quan hệ khách hàng, hồ sơ khách hàng, danh sách nhà cung cấp, mối quan hệ nhà cung cấp, hồ sơ nhà cung cấp, giá cả, ước tính bán hàng, kế hoạch kinh doanh và kết quả hiệu suất nội bộ liên quan đến hoạt động kinh doanh quá khứ, hiện tại hoặc tương lai, thông tin kỹ thuật, thiết kế, quy trình, thủ tục, công thức hoặc cải tiến, mà Người sử dụng lao động coi là bí mật và độc quyền. Nhân viên thừa nhận và đồng ý rằng thông tin bí mật và độc quyền là tài sản quý giá của người sử dụng lao động, được phát triển trong thời gian dài với chi phí đáng kể, và xứng đáng được bảo vệ.<br><br>B. Nghĩa vụ bảo mật<br>Trừ khi được cho phép rõ ràng khác trong Thỏa thuận này, Nhân viên không được tiết lộ hoặc sử dụng dưới bất kỳ hình thức nào, trực tiếp hoặc gián tiếp, bất kỳ thông tin bí mật và độc quyền nào hoặc trong hoặc sau thời hạn của Thỏa thuận này, trừ khi cần thiết để thực hiện nhiệm vụ và trách nhiệm của họ hoặc với sự đồng ý bằng văn bản trước của người sử dụng lao động.<br><br>C. Quyền đối với Thông tin bí mật và độc quyền<br>Tất cả ý tưởng, khái niệm, sản phẩm công việc, thông tin, tài liệu viết hoặc thông tin bí mật và độc quyền khác được người sử dụng lao động tiết lộ cho nhân viên (i) là và sẽ vẫn là tài sản duy nhất và độc quyền của người sử dụng lao động, và (ii) được tiết lộ hoặc cho phép nhân viên tiếp cận chỉ dựa trên thỏa thuận của nhân viên giữ chúng bí mật và không sử dụng hoặc tiết lộ chúng cho bất kỳ người nào khác trừ khi phục vụ cho hoạt động kinh doanh của người sử dụng lao động. Trừ khi được quy định rõ ràng ở đây, thỏa thuận này không cấp bất kỳ quyền, giấy phép, quyền sở hữu hoặc lợi ích hoặc quyền sở hữu nào khác trong, đối với hoặc dưới thông tin bí mật và độc quyền cho nhân viên.<br><br>D. Thiệt hại không thể khắc phục<br>Nhân viên thừa nhận rằng việc sử dụng hoặc tiết lộ bất kỳ thông tin bí mật và độc quyền nào theo cách không phù hợp với thỏa thuận này sẽ gây ra thiệt hại không thể khắc phục mà thiệt hại không phải là biện pháp khắc phục đầy đủ. Do đó, ngoài bất kỳ biện pháp khắc phục pháp lý nào khác có thể có theo luật hoặc công bằng, người sử dụng lao động sẽ được quyền cứu trợ công bằng hoặc lệnh cấm chống lại việc sử dụng hoặc tiết lộ trái phép thông tin bí mật và độc quyền. Người sử dụng lao động sẽ được quyền theo đuổi bất kỳ biện pháp khắc phục hợp pháp nào khác có sẵn do vi phạm đó, bao gồm nhưng không giới hạn thiệt hại, cả trực tiếp và hậu quả. Trong bất kỳ hành động nào do người sử dụng lao động khởi kiện theo phần này, người sử dụng lao động sẽ được quyền thu hồi phí luật sư và chi phí từ nhân viên."
+    },
+    "privacy": {
+      "title": "Chính sách bảo mật",
+      "last_updated": "Cập nhật lần cuối ngày 11 tháng 1 năm 2024",
+      "content": "Tại Công ty Dữ liệu Có Cấu trúc, chúng tôi cam kết mạnh mẽ bảo vệ và tôn trọng quyền riêng tư của bạn. Chính sách Bảo mật này (“Chính sách Bảo mật”) bao gồm việc truy cập và sử dụng trang web này (\"Trang web\"), cũng như nội dung, phần mềm và ứng dụng di động liên quan (gọi chung là \"Dịch vụ\"). Chính sách Bảo mật này giải thích khi nào, tại sao và cách chúng tôi thu thập và sử dụng thông tin cá nhân về những người truy cập Trang web hoặc sử dụng Dịch vụ của chúng tôi, các điều kiện mà chúng tôi có thể tiết lộ thông tin cá nhân của bạn cho người khác, và cách chúng tôi giữ thông tin cá nhân của bạn an toàn. Chúng tôi có thể thay đổi Chính sách Bảo mật này theo thời gian. Bằng cách sử dụng Trang web hoặc Dịch vụ của chúng tôi, bạn đồng ý bị ràng buộc bởi Chính sách Bảo mật này. Vui lòng đọc kỹ Chính sách này. Chúng tôi cam kết bảo vệ quyền riêng tư của bạn thông qua việc tuân thủ các điều khoản của Chính sách này.<br><br><strong>THAY ĐỔI</strong><br>Công ty (\"chúng tôi\" hoặc \"chúng tôi\") có thể sửa đổi chính sách bảo mật này, và nếu chúng tôi thực hiện thay đổi quan trọng, chúng tôi sẽ thông báo qua dịch vụ của chúng tôi hoặc bằng cách khác để bạn có cơ hội xem xét thay đổi trước khi chúng có hiệu lực. Nếu bạn phản đối bất kỳ thay đổi nào, bạn có thể đóng tài khoản. Bạn thừa nhận rằng việc bạn tiếp tục sử dụng dịch vụ của chúng tôi sau khi chúng tôi công bố hoặc gửi thông báo về thay đổi đối với chính sách bảo mật này có nghĩa là việc thu thập, sử dụng và chia sẻ dữ liệu cá nhân của bạn tuân theo chính sách bảo mật đã cập nhật kể từ ngày hiệu lực.<br><br><strong>TẠO TÀI KHOẢN</strong><br>Để tạo tài khoản, bạn cần cung cấp dữ liệu, bao gồm địa chỉ email và/hoặc số điện thoại di động, và mật khẩu tự thiết lập. Khi thu thập thông tin cá nhân, chúng tôi thu thập trong giới hạn cần thiết, và việc thu thập sẽ được thực hiện với ưu tiên đảm bảo tính hợp pháp và công bằng. Chúng tôi có thể thu thập thông tin cá nhân của bạn trực tiếp từ bạn hoặc từ các thực thể khác mà chúng tôi làm việc, chẳng hạn như thương nhân, người dùng, cơ quan chính phủ, cơ quan công cộng hoặc chính phủ, hoặc Thông tin Cá nhân của Công ty chúng tôi thu thập, sử dụng và tiết lộ bao gồm:<br><br>a. Thông tin liên hệ, chẳng hạn như họ tên, địa chỉ email và số liên lạc của bạn;<br><br>b. Thông tin nhận dạng chẳng hạn như quốc tịch của bạn;<br><br>c. Thông tin được yêu cầu theo luật và quy định áp dụng, nghĩa vụ chuyên môn, chính sách nội bộ và thủ tục quản lý rủi ro, chẳng hạn như nghĩa vụ lưu giữ hồ sơ, ngăn chặn gian lận, mục đích kiểm toán, sàng lọc tuân thủ và thẩm định, chế độ trừng phạt và lệnh tòa, dù ở bất kỳ Khu vực đủ điều kiện nào hoặc nơi khác;<br><br>d. Thông tin liên quan đến hệ thống và quy trình công nghệ thông tin - truyền thông, thiết bị văn phòng và cơ sở vật chất; và<br><br>e. Ảnh và thông tin âm thanh - hình ảnh khác.<br>Nếu bạn gửi thông tin cá nhân của cá nhân khác cho chúng tôi, bạn xác nhận rằng thông tin đó là đúng và chính xác, rằng tất cả sự đồng ý cần thiết đã được lấy, hoặc bạn được phép cung cấp thông tin cá nhân như vậy cho chúng tôi.<br><br><strong>BẢO VỆ THÔNG TIN CÁ NHÂN CỦA BẠN</strong><br>Chúng tôi sử dụng các biện pháp bảo mật kỹ thuật, tổ chức và hành chính phù hợp để bảo vệ thông tin cá nhân của bạn khỏi mất mát, lạm dụng hoặc truy cập, tiết lộ, thay đổi hoặc phá hủy trái phép. Chúng tôi cũng giới hạn quyền truy cập vào thông tin cá nhân của bạn cho những người có nhu cầu kinh doanh thực sự để biết. Thông tin cá nhân đang được đặt dưới sự quản lý phù hợp với các biện pháp bảo vệ hợp lý cần thiết để chống lại việc truy cập không công bằng, mất mát, giả mạo, rò rỉ, v.v. từ góc độ công nghệ thông tin và quản lý đúng đắn. Tuy nhiên, luôn có rủi ro liên quan đến việc cung cấp thông tin cá nhân, vì không có công nghệ nào hoàn toàn không rủi ro hoặc có thể được đảm bảo 100% an toàn. Nếu có bất kỳ sơ suất nào trong quản lý, chẳng hạn như rò rỉ dữ liệu như vậy, chúng tôi sẽ ở vị trí thực hiện các biện pháp đối phó ngay lập tức và hiệu quả trong phạm vi có thể.<br><br><strong>GIỮ THÔNG TIN CÁ NHÂN CỦA BẠN</strong><br>Chúng tôi sẽ không giữ thông tin cá nhân của bạn trong bất kỳ khoảng thời gian nào dài hơn chúng tôi tin là hợp lý cần thiết cho mục đích thu thập, hoặc cho khoảng thời gian dài hơn theo yêu cầu cho mục đích kinh doanh hoặc pháp lý. Khi tiêu hủy thông tin cá nhân của bạn, chúng tôi sẽ thực hiện các biện pháp thương mại hợp lý để làm cho thông tin cá nhân của bạn không thể khôi phục hoặc tái tạo theo luật áp dụng.<br><br><strong>CÁCH CHÚNG TÔI SỬ DỤNG THÔNG TIN CÁ NHÂN CỦA BẠN</strong><br>Cách chúng tôi sử dụng thông tin cá nhân của bạn sẽ phụ thuộc vào dịch vụ bạn sử dụng, cách bạn sử dụng những dịch vụ đó và các lựa chọn bạn thực hiện trong cài đặt của mình. Chúng tôi sử dụng thông tin chúng tôi có về bạn để cung cấp và cá nhân hóa dịch vụ của mình, bao gồm với sự trợ giúp của hệ thống tự động và suy luận chúng tôi thực hiện, để dịch vụ của chúng tôi (bao gồm quảng cáo) có thể phù hợp và hữu ích hơn cho bạn và những người khác.<br><br><strong>COOKIE VÀ CÔNG NGHỆ TƯƠNG TỰ</strong><br>Như được mô tả thêm trong Chính sách Cookie của chúng tôi, chúng tôi sử dụng cookie và công nghệ tương tự (ví dụ: pixel và thẻ quảng cáo) để thu thập dữ liệu (ví dụ: ID thiết bị) để nhận diện bạn và thiết bị của bạn trên, ngoài và trên các dịch vụ và thiết bị khác nhau nơi bạn đã tương tác với dịch vụ của chúng tôi. Chúng tôi cũng cho phép một số người khác sử dụng cookie như được mô tả trong Chính sách Cookie của chúng tôi.<br><br><strong>BẢO MẬT</strong><br>Chúng tôi thực hiện các biện pháp bảo vệ được thiết kế để bảo vệ dữ liệu của bạn, chẳng hạn như HTTPS. Chúng tôi thường xuyên giám sát hệ thống của mình để tìm lỗ hổng và tấn công có thể xảy ra. Tuy nhiên, chúng tôi không thể đảm bảo bảo mật cho bất kỳ thông tin nào bạn gửi cho chúng tôi. Không có đảm bảo rằng dữ liệu có thể không bị truy cập, tiết lộ, thay đổi hoặc phá hủy do vi phạm bất kỳ biện pháp bảo vệ vật lý, kỹ thuật hoặc quản lý nào của chúng tôi.<br><br><strong>TÍN HIỆU KHÔNG THEO DÕI</strong><br>Chúng tôi hiện không chia sẻ dữ liệu cá nhân với bên thứ ba cho mục đích tiếp thị trực tiếp của họ mà không có sự cho phép của bạn.<br><br><strong>XEM LẠI CHÍNH SÁCH BẢO MẬT</strong><br>Cổng thông tin này sẽ không được công khai thừa nhận và sẽ được giữ bí mật nghiêm ngặt để ngăn chặn rò rỉ thông tin bí mật của thương nhân."
+    },
+    "cookies": {
+      "title": "Chính sách cookie",
+      "last_updated": "Có hiệu lực từ ngày 19 tháng 11 năm 2015",
+      "content": "Tại Công ty, chúng tôi tin vào việc rõ ràng và minh bạch về cách chúng tôi thu thập và sử dụng dữ liệu liên quan đến bạn. Chính sách cookie này áp dụng cho bất kỳ sản phẩm hoặc dịch vụ nào của Công ty liên kết đến chính sách này hoặc tích hợp nó bằng tham chiếu. Chúng tôi sử dụng cookie và công nghệ tương tự chẳng hạn như pixel, lưu trữ cục bộ và ID quảng cáo di động (gọi chung trong chính sách này là \"cookie\") để thu thập và sử dụng dữ liệu như một phần của dịch vụ của chúng tôi, như được định nghĩa trong Chính sách Bảo mật của chúng tôi (\"Dịch vụ\"), bao gồm các trang web, thông tin liên lạc, ứng dụng di động và dịch vụ ngoài trang web của chúng tôi, chẳng hạn như dịch vụ quảng cáo và plugin hoặc thẻ \"Áp dụng với Công ty\" và \"Chia sẻ với Công ty\". Với tinh thần minh bạch, chính sách này cung cấp thông tin chi tiết về cách và khi nào chúng tôi sử dụng các công nghệ này.<br>Bằng cách tiếp tục truy cập hoặc sử dụng dịch vụ của chúng tôi, bạn đồng ý với việc sử dụng cookie và công nghệ tương tự cho các mục đích được mô tả trong chính sách này.<br><br><strong>CÔNG NGHỆ NÀO ĐƯỢC SỬ DỤNG</strong><br><br><strong>COOKIE</strong><br>Cookie là các tệp văn bản nhỏ chứa chuỗi ký tự có thể được đặt trên máy tính hoặc thiết bị di động của bạn, xác định duy nhất trình duyệt hoặc thiết bị của bạn. Chúng tôi có thể sử dụng các công nghệ như cookie, pixel và lưu trữ cục bộ để cung cấp, bảo mật và hiểu sản phẩm, dịch vụ và quảng cáo. Chúng tôi sử dụng hai loại cookie: cookie liên tục và cookie phiên. Cookie liên tục kéo dài vượt quá phiên hiện tại và được sử dụng cho nhiều mục đích, chẳng hạn như nhận diện bạn là thành viên hiện có, vì vậy dễ dàng hơn khi quay lại Công ty và tương tác với dịch vụ của chúng tôi mà không cần đăng nhập lại. Vì cookie liên tục ở lại trong trình duyệt của bạn, nó sẽ được Công ty đọc khi bạn quay lại một trong các trang web của chúng tôi hoặc truy cập trang web của bên thứ ba sử dụng dịch vụ của chúng tôi. Cookie phiên chỉ kéo dài trong phiên (thường là lần truy cập hiện tại vào trang web hoặc phiên trình duyệt).<br><br><strong>PIXEL</strong><br>Pixel là hình ảnh nhỏ có thể được nhúng trong trang web và email, yêu cầu lệnh gọi (cung cấp thông tin thiết bị và truy cập) đến máy chủ của chúng tôi để pixel được hiển thị trong các trang web và email đó. Chúng tôi sử dụng pixel để tìm hiểu thêm về tương tác của bạn với nội dung email hoặc nội dung web, chẳng hạn như liệu bạn có tương tác với quảng cáo hoặc bài đăng hay không. Pixel cũng có thể cho phép chúng tôi và bên thứ ba đặt cookie trên trình duyệt của bạn.<br><br><strong>LƯU TRỮ CỤC BỘ</strong><br>Lưu trữ cục bộ cho phép trang web hoặc ứng dụng lưu trữ thông tin cục bộ trên thiết bị của bạn. Lưu trữ cục bộ có thể được sử dụng để cải thiện trải nghiệm Công ty, ví dụ bằng cách bật tính năng, ghi nhớ tùy chọn của bạn và tăng tốc chức năng trang web.<br><br><strong>CÔNG NGHỆ NÀY ĐƯỢC SỬ DỤNG ĐỂ XÁC THỰC NHƯ THẾ NÀO</strong><br>Chúng tôi sử dụng cookie và công nghệ tương tự để nhận diện bạn khi bạn truy cập dịch vụ của chúng tôi. Nếu bạn đã đăng nhập vào Công ty, các công nghệ này giúp chúng tôi hiển thị cho bạn thông tin đúng và cá nhân hóa trải nghiệm của bạn phù hợp với cài đặt của bạn. Ví dụ, cookie cho phép Công ty nhận diện bạn và xác minh tài khoản của bạn.<br><br><strong>BẢO MẬT</strong><br>Chúng tôi sử dụng cookie và công nghệ tương tự để làm cho tương tác của bạn với dịch vụ của chúng tôi nhanh hơn và an toàn hơn. Ví dụ, chúng tôi sử dụng cookie để bật và hỗ trợ các tính năng bảo mật của chúng tôi, giữ tài khoản của bạn an toàn và giúp chúng tôi phát hiện hoạt động độc hại và vi phạm Thỏa thuận Người dùng của chúng tôi.<br><br><strong>TÙY CHỌN, TÍNH NĂNG VÀ DỊCH VỤ</strong><br>Chúng tôi sử dụng cookie và công nghệ tương tự để bật chức năng của dịch vụ của chúng tôi, chẳng hạn như giúp bạn điền biểu mẫu trên dịch vụ của chúng tôi dễ dàng hơn và cung cấp cho bạn tính năng, thông tin chi tiết và nội dung tùy chỉnh kết hợp với plugin của chúng tôi. Chúng tôi cũng sử dụng các công nghệ này để ghi nhớ thông tin về trình duyệt và tùy chọn của bạn.<br><br><strong>KIỂM SOÁT TRÌNH DUYỆT</strong><br>Hầu hết trình duyệt cho phép bạn kiểm soát cookie qua cài đặt của chúng, có thể được điều chỉnh để phản ánh sự đồng ý của bạn đối với việc sử dụng cookie. Hơn nữa, hầu hết trình duyệt cũng cho phép bạn xem xét và xóa cookie, bao gồm cookie của Công ty. Để tìm hiểu thêm về kiểm soát trình duyệt, vui lòng tham khảo tài liệu mà nhà sản xuất trình duyệt của bạn cung cấp.<br><br><strong>BẠN CÓ THỂ KIỂM SOÁT COOKIE NHƯ THẾ NÀO?</strong><br>Để tìm hiểu thêm về các lựa chọn mà nhà quảng cáo thường cung cấp cho cá nhân để ảnh hưởng đến cách thông tin về hoạt động trực tuyến của họ theo thời gian và trên các trang web hoặc dịch vụ trực tuyến của bên thứ ba được thu thập và sử dụng, hãy truy cập Mạng Quảng cáo tại http://www.networkadvertising.org/managing/opt_out.asp, Liên minh Quảng cáo Kỹ thuật số tại http://www.aboutads.info/, hoặc Liên minh Quảng cáo Kỹ thuật số Châu Âu tại http://youronlinechoices.eu/. Ngoài ra, trình duyệt hoặc thiết bị của bạn có thể cung cấp cài đặt cho phép bạn chọn xem cookie trình duyệt có được đặt hay không và xóa chúng. Các điều khiển này khác nhau tùy theo trình duyệt và nhà sản xuất có thể thay đổi cả cài đặt họ cung cấp và cách chúng hoạt động bất kỳ lúc nào. Kể từ ngày 23 tháng 6 năm 2021, bạn có thể tìm thêm thông tin về các điều khiển được cung cấp bởi các trình duyệt phổ biến tại các liên kết bên dưới. Một số phần của sản phẩm Công ty có thể không hoạt động đúng nếu bạn đã tắt sử dụng cookie trình duyệt."
+    },
+    "registration": {
+      "certificate": "Chứng nhận",
+      "title": "Thông báo pháp lý và Đăng ký",
+      "content": "<strong>1. Các bên</strong><br>Các bên của Các Điều kiện Sử dụng Chung này là Công ty và bạn với tư cách là người dùng, được hiểu là bất kỳ cá nhân hoặc thực thể pháp nhân nào tự do, tự nguyện và không phải trả phí truy cập Cổng thông tin bất kể bạn có sử dụng các dịch vụ được cung cấp ở đó hay không. Việc chỉ đơn giản truy cập Cổng thông tin có nghĩa là bạn tự nguyện tuân thủ Các Điều kiện Sử dụng Chung này mà không có điều kiện gì.<br><br><strong>2. Dịch vụ</strong><br>Chúng tôi cung cấp Cổng thông tin để phổ biến hoạt động của mình và để người dùng Internet có thông tin cụ thể về các dịch vụ mà nó cung cấp, liên quan đến Công cụ Tìm kiếm hoặc vị trí sản phẩm trên thị trường.<br><br><strong>3. Nghĩa vụ của người dùng</strong><br>Là người dùng, bạn đồng ý:-<br><br>Sử dụng Dịch vụ một cách siêng năng, đúng đắn và hợp pháp, tôn trọng luật hiện hành (đặc biệt là luật liên quan đến bảo vệ dữ liệu và sở hữu trí tuệ và công nghiệp), đạo đức và thuần phong mỹ tục, trật tự công cộng và Các Điều kiện Sử dụng Chung này.<br><br>Định kỳ xem xét Các Điều kiện Sử dụng Chung này hoặc bất kỳ điều kiện áp dụng nào khác, kiểm tra các thay đổi có thể đã được thực hiện đối với bất kỳ điều nào trong số chúng.<br><br>Kiểm tra các thông báo chúng tôi gửi cho bạn, vì chúng có thể chứa thông tin quan trọng.<br><br>Không sử dụng Cổng thông tin cho mục đích thương mại; ví dụ: thu thập thông tin hoặc nội dung để cung cấp dịch vụ khác có thể đại diện cho sự cạnh tranh rõ ràng với Cổng thông tin.<br><br>Không sửa đổi hoặc cố gắng sửa đổi Cổng thông tin theo bất kỳ cách nào, hoặc hành động hoặc sử dụng phương tiện được thiết kế để mô phỏng giao diện hoặc chức năng của Cổng thông tin.<br><br>Không thực hiện bất kỳ hành động nào liên quan đến việc giới thiệu virus máy tính, sâu, Trojan hoặc bất kỳ loại mã độc hại nào khác được thiết kế để gián đoạn, phá hủy hoặc hạn chế chức năng của Cổng thông tin.<br><br>Không sử dụng kỹ thuật kỹ thuật đảo ngược và/hoặc giải mã, dịch ngược hoặc sử dụng bất kỳ hệ thống nào khác được thiết kế để khám phá mã nguồn của Cổng thông tin hoặc bất kỳ yếu tố nào chịu bản quyền hoặc quyền sở hữu trí tuệ cơ bản.<br><br>Không gây hư hỏng, vô hiệu hóa, quá tải hoặc cản trở dịch vụ (hoặc mạng hoặc mạng kết nối với dịch vụ), hoặc can thiệp vào việc hưởng thụ dịch vụ của nó.<br><br>Trong mọi trường hợp, không thực hiện bất kỳ hành động nào có thể vi phạm quyền hoặc lợi ích của Cổng thông tin hoặc bên thứ ba, chẳng hạn như quyền sở hữu trí tuệ hoặc công nghiệp (bằng sáng chế, nhãn hiệu, bản quyền, bí mật thương mại, v.v.).<br><br><strong>4. Sở hữu trí tuệ và công nghiệp</strong><br>Quyền sở hữu trí tuệ đối với Công ty và các yếu tố cấu thành nó, bao gồm lập trình, thiết kế, ứng dụng, đồ họa, mã, văn bản hoặc hình ảnh bên trong, thuộc độc quyền của Công ty, hoặc Công ty có quyền và/hoặc ủy quyền cần thiết để sử dụng chúng. Tên miền, thương hiệu, tên thương mại và nói chung bất kỳ dấu hiệu phân biệt nào trong Công ty cũng là tài sản của Công ty và/hoặc Công ty có giấy phép cần thiết để sử dụng chúng. Do đó, bất kỳ sao chép, phân phối, truyền thông công khai (bao gồm làm cho nó khả dụng), biến đổi hoặc bất kỳ hình thức sử dụng nào khác, ngay cả khi chỉ rõ nguồn, đều bị cấm mà không có sự đồng ý bằng văn bản rõ ràng từ Công ty hoặc chủ sở hữu độc quyền của quyền bị ảnh hưởng. Nếu bạn phát hiện bất kỳ vi phạm nào đối với quyền sở hữu trí tuệ và/hoặc công nghiệp trong Công ty, vui lòng báo cáo càng sớm càng tốt bằng cách liên hệ với bộ phận hỗ trợ.<br><br><strong>5. Liên kết đến các trang bên thứ ba</strong><br>Cổng thông tin có thể bao gồm liên kết đến các trang hoặc trang web của bên thứ ba không liên quan đến Cổng thông tin. Cổng thông tin không chịu bất kỳ trách nhiệm nào cho các liên kết này hoặc nội dung có thể truy cập qua chúng, vì nó không phê duyệt hoặc xem xét chức năng, quảng cáo hoặc nói chung thông tin được bao gồm trong các trang này, và từ chối bất kỳ trách nhiệm nào đối với nội dung và hoạt động đúng của chúng, hoặc bất kỳ hậu quả hoặc thiệt hại nào có thể xảy ra do truy cập chúng. Người dùng truy cập bất kỳ liên kết nào trong số này làm vậy với rủi ro của riêng họ, chấp nhận tính chất bên ngoài của nội dung này và không thể đảm bảo của BRANDVIOUS, INC. rằng không có mối đe dọa, phần mềm độc hại hoặc virus, nội dung bất hợp pháp hoặc các liên kết khác có thể dẫn đến các trang có một hoặc nhiều đặc điểm đã nói.<br><br><strong>6. Loại trừ Trách nhiệm</strong><br>Cổng thông tin nỗ lực đảm bảo rằng dịch vụ và chức năng của Cổng thông tin luôn khả dụng. Tuy nhiên, khi truy cập Cổng thông tin, nó sẽ được hiển thị \"như hiện tại\", theo tính khả dụng và giới hạn hiện có tại bất kỳ thời điểm nào. Mặc dù Công ty liên tục nỗ lực bảo vệ hệ thống và nội dung được bao gồm trong Cổng thông tin, vì mục đích đó sử dụng các tiêu chuẩn bảo mật phổ biến trên Internet, không thể cung cấp bảo đảm đầy đủ về xâm nhập hoặc mất thông tin có thể xảy ra. Tương tự, không có bảo đảm về sự vắng mặt của virus hoặc các yếu tố có hại khác trong Cổng thông tin hoặc trong các trang web bên thứ ba có thể gây thay đổi phần mềm và phần cứng trong hệ thống máy tính của người dùng. Do đó người dùng chấp nhận và hiểu rằng có những tình huống có thể nằm ngoài tầm kiểm soát của Công ty. Công ty không chấp nhận bất kỳ trách nhiệm nào có thể phát sinh từ việc sử dụng sai Cổng thông tin của người dùng, hoặc vi phạm nghĩa vụ hoặc cam kết được giả định theo Các Điều kiện Sử dụng Chung này, hoặc bất kỳ điều kiện nào khác có thể áp dụng. Nói chung, Công ty cũng như các cộng tác viên của nó không thể bị coi là chịu trách nhiệm trong trường hợp mất lợi nhuận hoặc tổn thất thực tế vì bất kỳ lý do nào.<br><br><strong>7. Bồi thường</strong><br>Công ty chịu bất kỳ loại thiệt hại, tổn thất hoặc chi phí nào (bao gồm phí luật sư và đại diện tòa án) do vi phạm của người dùng đối với Các Điều kiện Sử dụng Chung này hoặc bất kỳ điều kiện áp dụng nào khác, người dùng sẽ có nghĩa vụ bồi thường cho Công ty. Trường hợp này cũng sẽ xảy ra nếu do vi phạm của người dùng mà bên thứ ba đưa ra khiếu nại chống lại Công ty, trong trường hợp đó bên thứ ba sẽ giữ Công ty vô hại, và Công ty có thể đòi người dùng bất kỳ chi phí, chi phí hoặc thiệt hại nào phát sinh từ hành động của họ.<br><br><strong>8. Bảo vệ dữ liệu và rủi ro bảo mật</strong><br>Việc thu thập dữ liệu cá nhân qua Công ty và việc xử lý bởi Công ty được quy định bởi Chính sách Bảo mật cụ thể mà các ứng viên có thể truy cập bằng cách xem.<br><br><strong>9. Các vấn đề chung</strong><br>9.1. Bảo vệ và diễn giải<br>Các Điều kiện Sử dụng Chung này tạo thành thỏa thuận giữa bạn với tư cách là người dùng và Cổng thông tin. Nếu cơ quan có thẩm quyền tuyên bố bất kỳ điều khoản nào là bất hợp pháp, không hợp lệ hoặc không thể thực thi, điều khoản này phải được diễn giải theo cách gần nhất với ý định ban đầu của nó. Tuyên bố như vậy đối với một hoặc nhiều điều khoản sẽ không ảnh hưởng đến tính hợp lệ của các điều khoản còn lại. Nếu Công ty không tuân thủ nghiêm ngặt một trong các điều khoản của Các Điều kiện này, điều đó không cấu thành, và trong bất kỳ trường hợp nào cũng không thể được diễn giải là, từ bỏ yêu cầu tuân thủ có thể trong tương lai.<br><br>9.2. Luật pháp và thẩm quyền<br>Mối quan hệ giữa Cổng thông tin và người dùng sẽ được điều chỉnh bởi luật Hoa Kỳ, và trong trường hợp bất đồng về diễn giải hoặc tuân thủ Các Điều kiện Sử dụng Chung này, họ từ bỏ rõ ràng bất kỳ thẩm quyền nào khác có thể tương ứng với họ và tự nguyện chịu sự điều chỉnh của tòa án, trừ khi bất kỳ thẩm quyền nào khác được xác định bởi luật bắt buộc.<br><br><strong>CHỨNG NHẬN</strong><br>Tên thực thể đã đăng ký: Công ty TNHH Dữ liệu Có Cấu trúc<br>Địa chỉ đã đăng ký: C/O Chalk Hill Barn Office 1 Upstairs, Yew Tree Farm, Stone Street, Stanford, Kent, England, TN25 6DH<br>Số công ty: 16095340"
+    },
+    "footer": "&copy; <span id=\"year\">2026</span> Công ty Dữ liệu Có Cấu trúc. Đã đăng ký bản quyền."
+  },
+  "auth": {
+    "footer": {
+      "terms": "Điều khoản dịch vụ",
+      "privacy": "Chính sách bảo mật",
+      "cookies": "Chính sách cookie",
+      "legal": "Pháp lý và Đăng ký"
+    },
+    "form": {
+      "info_banner": "Tên miền có thể được cập nhật không đều đặn để phản ánh thông tin mới nhất.",
+      "btn_try_again": "Thử lại",
+      "title_signin": "Đăng nhập",
+      "title_signup": "Tạo tài khoản",
+      "label_display_name": "Tên hiển thị",
+      "label_email_signin": "Tên hiển thị hoặc Email",
+      "label_email_signup": "Email",
+      "label_referrer": "ID tài khoản người giới thiệu",
+      "hint_referrer": "Nhập ID của người giới thiệu để đảm bảo phân công huấn luyện viên chính xác.",
+      "label_phone": "Số điện thoại",
+      "label_password": "Mật khẩu",
+      "label_confirm_password": "Xác nhận mật khẩu",
+      "label_yob": "Năm sinh",
+      "hint_yob": "Bắt buộc để xác minh độ tuổi.",
+      "alert_captcha": "Vui lòng xác minh bạn không phải là robot.",
+      "agreement": "Bằng cách tạo tài khoản, tôi xác nhận rằng tôi từ 23 tuổi trở lên, tôi đồng ý với Điều khoản dịch vụ, và tôi đã đọc Chính sách bảo mật và Chính sách cookie.",
+      "forgot_password": "Quên mật khẩu? Liên hệ hỗ trợ.",
+      "btn_signin": "Đăng nhập",
+      "btn_signup": "Tạo tài khoản",
+      "btn_continue": "Tiếp tục",
+      "btn_get_started": "Bắt đầu",
+      "toggle": {
+        "no_account": "Chưa có tài khoản?",
+        "create": "Tạo tài khoản",
+        "has_account": "Đã có tài khoản?",
+        "signin": "Đăng nhập"
+      },
+      "logs": {
+        "autologin_fail": "Đăng ký thành công, nhưng tự động đăng nhập thất bại"
+      },
+      "errors": {
+        "email": "Vui lòng nhập địa chỉ email hợp lệ.",
+        "pass_length": "Sử dụng 6 ký tự hoặc nhiều hơn cho mật khẩu của bạn.",
+        "pass_complex": "Chọn mật khẩu mạnh hơn bằng cách sử dụng chữ cái, số và ký hiệu.",
+        "pass_match": "Mật khẩu không khớp.",
+        "year_invalid": "Vui lòng nhập năm hợp lệ (1900-{year}).",
+        "phone_invalid": "Vui lòng nhập số điện thoại hợp lệ.",
+        "verification_failed": "Đã xảy ra lỗi không mong muốn. Vui lòng thử lại.",
+        "credentials_invalid": "Thông tin đăng nhập không hợp lệ.",
+        "user_exists": "Địa chỉ email đã được liên kết với một tài khoản.",
+        "display_name_taken": "Tên hiển thị đã được sử dụng. Vui lòng chọn tên khác.",
+        "phone_taken": "Số điện thoại đã được liên kết với một tài khoản.",
+        "referrer_invalid": "ID người giới thiệu được cung cấp không tồn tại.",
+        "referrer_required": "ID người giới thiệu là bắt buộc.",
+        "generic_error": "Đã xảy ra lỗi không mong muốn. Vui lòng thử lại.",
+        "title_failed": "Hành động không thành công",
+        "network_issue": "Không thể kết nối với máy chủ. Vui lòng kiểm tra mạng của bạn.",
+        "general_error": "Đã xảy ra lỗi. Vui lòng thử lại sau."
+      },
+      "success": {
+        "signin": "Đăng nhập thành công.",
+        "signup": "Tài khoản đã được tạo thành công.",
+        "signin_title": "Chào mừng!",
+        "signin_msg": "Bạn đã đăng nhập thành công.",
+        "signup_title": "Tài khoản đã được tạo!",
+        "signup_msg": "Tài khoản của bạn đã được tạo thành công."
+      }
+    }
+  },
+  "faqData": [
+    {
+      "category": "Tính năng & Khả năng của nền tảng",
+      "items": [
+        {
+          "id": "feat-1",
+          "question": "Tôi có cần kinh nghiệm lập trình để sử dụng nền tảng không?",
+          "answer": "Không cần kinh nghiệm lập trình. Chúng tôi đã thiết kế nền tảng với bảng điều khiển trực quan và công cụ xây dựng lược đồ hình ảnh cho phép bạn quản lý, đồng bộ và tải lên các cấu trúc dữ liệu phức tạp mà không cần viết một dòng mã nào. Mục tiêu của chúng tôi là làm cho xử lý dữ liệu nâng cao trở nên dễ tiếp cận với người dùng thông thường."
+        },
+        {
+          "id": "feat-2",
+          "question": "Công cụ phát hiện thực thể AI hoạt động như thế nào?",
+          "answer": "Công cụ trí tuệ hỗ trợ AI độc quyền của chúng tôi tự động phân tích các thuộc tính dữ liệu thô đến và chủ động gợi ý đúng loại lược đồ, ánh xạ quan hệ và nhãn thuộc tính. Điều này giảm đáng kể nhu cầu nhập dữ liệu thủ công, giảm thiểu lỗi con người và tăng tốc khả năng hoàn thành nhiệm vụ hàng ngày của bạn."
+        },
+        {
+          "id": "feat-3",
+          "question": "Có ứng dụng di động nào không?",
+          "answer": "Mặc dù chúng tôi không có ứng dụng tải xuống độc lập, nền tảng của chúng tôi hoàn toàn dựa trên web và được tối ưu hóa cao cho cả trình duyệt máy tính để bàn và di động. Chúng tôi chọn cách tiếp cận ưu tiên web để đảm bảo các bản vá bảo mật quan trọng và cập nhật hệ thống được triển khai cho tất cả người dùng ngay lập tức, cho phép bạn quản lý bảng điều khiển một cách liền mạch từ bất kỳ thiết bị nào có kết nối internet ổn định."
+        }
+      ]
+    },
+    {
+      "category": "Công nghệ & Cơ sở hạ tầng",
+      "items": [
+        {
+          "id": "infra-1",
+          "question": "\"Lược đồ\" chính xác là gì trong ngữ cảnh nền tảng này?",
+          "answer": "Lược đồ là khung có cấu trúc xác định cách dữ liệu thô, không có cấu trúc được tổ chức, kết nối và hiểu bởi máy móc. Các đối tác thương nhân của chúng tôi yêu cầu dữ liệu có cấu trúc hoàn hảo để huấn luyện mô hình và tổ chức danh mục của họ. Nền tảng của chúng tôi xử lý các lược đồ ngữ nghĩa này để đảm bảo tính toàn vẹn dữ liệu trước khi chúng được xác thực và tải lên sổ cái tài chính."
+        },
+        {
+          "id": "infra-2",
+          "question": "Bạn có cung cấp API công khai cho nhà phát triển không?",
+          "answer": "Hiện tại, nền tảng của chúng tôi hoạt động hoàn toàn qua bảng điều khiển web hình ảnh và chúng tôi không cung cấp API công khai cho tài khoản người dùng. Tích hợp API chuyên dụng chỉ bị giới hạn nghiêm ngặt cho các đối tác tổ chức và thương nhân đã được phê duyệt để duy trì tính toàn vẹn của kho phân bổ và ngăn chặn việc cào dữ liệu bên ngoài trái phép."
+        },
+        {
+          "id": "infra-3",
+          "question": "Tôi có thể sử dụng bot hoặc script tự động để hoàn thành nhiệm vụ không?",
+          "answer": "Không. Việc sử dụng bot tự động, script, macro hoặc bất kỳ phần mềm trái phép nào khác để hoàn thành nhiệm vụ bị nghiêm cấm. Các thương nhân của chúng tôi trả tiền cho sự giám sát con người chân thực trong quá trình xác thực. Tham gia vào hoạt động tự động sẽ ngay lập tức kích hoạt hệ thống chống gian lận của chúng tôi, dẫn đến cấm tài khoản vĩnh viễn và mất toàn bộ thu nhập đã tạo ra."
+        },
+        {
+          "id": "infra-4",
+          "question": "Bạn có cung cấp webhook cho thông báo số dư sổ cái thời gian thực không?",
+          "answer": "Không, hiện tại chúng tôi không cung cấp webhook hoặc điểm cuối API công khai cho thông báo sổ cái thời gian thực. Để đảm bảo bảo mật tối đa cho dữ liệu tài chính của bạn, chúng tôi sử dụng hệ thống vòng kín. Bạn phải đăng nhập trực tiếp vào bảng điều khiển đã xác thực để giám sát số dư, mốc sắp tới và hoạt động giao dịch gần đây."
+        }
+      ]
+    },
+    {
+      "category": "Tài khoản & Điều kiện đủ điều kiện",
+      "items": [
+        {
+          "id": "acc-1",
+          "question": "Ai đủ điều kiện sử dụng nền tảng?",
+          "answer": "Để tuân thủ các quy định tài chính quốc tế nghiêm ngặt và chính sách Chống rửa tiền (AML), người dùng phải ít nhất 23 tuổi. Ngoài ra, bạn phải cư trú tại một trong các khu vực hoạt động được hỗ trợ của chúng tôi, hiện bao gồm Vương quốc Anh, Hoa Kỳ, Canada, Châu Âu, Nhật Bản, Hàn Quốc, Singapore, Tây Ban Nha, Hồng Kông hoặc Thái Lan."
+        },
+        {
+          "id": "acc-2",
+          "question": "Có bất kỳ phí ban đầu nào để tham gia không?",
+          "answer": "Không, việc tạo tài khoản hoàn toàn miễn phí và không có bất kỳ khoản phí đăng ký ẩn nào. Nền tảng của chúng tôi tạo doanh thu thông qua việc xử lý thành công dữ liệu lược đồ cho các đối tác thương nhân, không phải bằng cách tính phí người dùng khoản phí tham gia."
+        },
+        {
+          "id": "acc-3",
+          "question": "ID tài khoản người giới thiệu là gì và tại sao tôi cần nó?",
+          "answer": "ID người giới thiệu là mã duy nhất được sử dụng trong quá trình đăng ký. Nó được yêu cầu để đảm bảo bạn được đặt chính xác trong mạng của chúng tôi và được ghép nối với huấn luyện viên cấp cao đúng. ID này thiết lập liên kết hướng dẫn trực tiếp để bạn có hỗ trợ ngay lập tức từ người dùng có kinh nghiệm từ ngày đầu tiên."
+        },
+        {
+          "id": "acc-4",
+          "question": "Tôi có thể tạo nhiều tài khoản không?",
+          "answer": "Không, việc thiết lập nhiều tài khoản bị nghiêm cấm trừ khi được đội ngũ tuân thủ của chúng tôi cho phép rõ ràng bằng văn bản. Để duy trì phân bổ hạn mức công bằng trên toàn mạng và tuân thủ quy định AML, người dùng không thể tạo tài khoản khác nhau dưới cùng một danh tính hoặc sử dụng biệt danh để vượt qua giới hạn hàng ngày."
+        },
+        {
+          "id": "acc-5",
+          "question": "Tôi có thể xóa tài khoản của mình không?",
+          "answer": "Có, bạn có quyền đóng tài khoản bất kỳ lúc nào. Tuy nhiên, bạn không được đóng hoặc xóa tài khoản khi còn bất kỳ hoạt động đang chờ, chu kỳ đang hoạt động hoặc khoản thiếu hụt nào. Tất cả sổ cái tài chính phải được thanh toán và xóa hoàn toàn trước khi yêu cầu xóa tài khoản có thể được xử lý thành công."
+        }
+      ]
+    },
+    {
+      "category": "Bảo mật tài khoản & Quyền riêng tư",
+      "items": [
+        {
+          "id": "sec-1",
+          "question": "Dữ liệu cá nhân và hoạt động trên nền tảng của tôi có được mã hóa không?",
+          "answer": "Có. Bảo vệ quyền riêng tư dữ liệu nghiêm ngặt là ưu tiên tuyệt đối của chúng tôi. Tất cả dữ liệu người dùng nhạy cảm, bao gồm thông tin nhận dạng cá nhân, sổ cái tài chính và thông tin đăng nhập rút tiền, đều được bảo mật bằng mã hóa AES-256 cấp quân sự cả khi truyền và khi lưu trữ. Hơn nữa, kiến trúc của chúng tôi bao gồm Tường lửa dữ liệu để bảo vệ biên và Bảo vệ ngữ nghĩa để chủ động lọc các mối đe dọa mạng."
+        },
+        {
+          "id": "sec-2",
+          "question": "Nền tảng có tuân thủ luật bảo vệ dữ liệu GDPR và CCPA không?",
+          "answer": "Có. Chúng tôi tuân thủ nghiêm ngặt các quy định bảo vệ dữ liệu quốc tế lớn, bao gồm GDPR (Châu Âu) và CCPA (California). Chúng tôi chỉ thu thập dữ liệu tối thiểu cần thiết cho tuân thủ pháp lý AML/KYC và hoạt động nền tảng. Chúng tôi đảm bảo rằng chúng tôi sẽ không bao giờ bán thông tin cá nhân hoặc tài chính của bạn cho các nhà môi giới dữ liệu bên thứ ba."
+        },
+        {
+          "id": "sec-3",
+          "question": "Ai sở hữu quyền sở hữu trí tuệ của các lược đồ có cấu trúc mà tôi xử lý?",
+          "answer": "Tất cả quyền sở hữu trí tuệ đối với lược đồ có cấu trúc, tập dữ liệu đã xử lý và sổ cái kết quả vẫn là tài sản độc quyền, bí mật của Công ty và các đối tác thương nhân của chúng tôi. Người dùng được bồi thường hào phóng cho nỗ lực xử lý và xác thực của họ, nhưng họ không giữ bất kỳ quyền sở hữu, bản quyền hoặc quyền cấp phép nào đối với dữ liệu chính nó."
+        },
+        {
+          "id": "sec-4",
+          "question": "Tôi có thể xuất lịch sử lược đồ đã xử lý của mình không?",
+          "answer": "Không. Do các Thỏa thuận Không tiết lộ (NDA) nghiêm ngặt và hợp đồng bảo mật với các đối tác thương nhân của chúng tôi, dữ liệu bạn xử lý được coi là tài sản độc quyền cao. Để ngăn chặn gián điệp doanh nghiệp hoặc rò rỉ dữ liệu, người dùng bị hạn chế kỹ thuật không được xuất, tải xuống hoặc cào lịch sử xử lý lược đồ của họ."
+        },
+        {
+          "id": "sec-5",
+          "question": "Cụm mật khẩu rút tiền là gì và tại sao nó được yêu cầu?",
+          "answer": "Cụm mật khẩu rút tiền của bạn đóng vai trò là khóa tài chính riêng tư. Đây là lớp ủy quyền thứ cấp bắt buộc cần thiết để phê duyệt bất kỳ yêu cầu rút tiền thông thường nào. Điều này đảm bảo rằng ngay cả trong trường hợp rất khó xảy ra là mật khẩu tài khoản chính của bạn bị xâm phạm, những kẻ xấu không thể chuyển khoản tiền sổ cái khó kiếm được của bạn mà không có khóa thứ cấp này."
+        },
+        {
+          "id": "sec-6",
+          "question": "Tôi quên mật khẩu, làm thế nào để khôi phục tài khoản?",
+          "answer": "Nếu bạn mất quyền truy cập vào tài khoản, bạn phải liên hệ với đội ngũ hỗ trợ của chúng tôi qua cổng thông tin bảo mật. Vì chúng tôi xử lý sổ cái tài chính, bạn sẽ được yêu cầu xác minh danh tính (thường qua việc gửi tài liệu KYC) trước khi chúng tôi có thể cấp đặt lại thủ công. Quy trình nghiêm ngặt này ngăn chặn kỹ thuật xã hội và chiếm đoạt tài khoản trái phép."
+        }
+      ]
+    },
+    {
+      "category": "Hoạt động chung",
+      "items": [
+        {
+          "id": "gen-1",
+          "question": "Nhiệm vụ đang hoạt động chính xác là gì?",
+          "answer": "Nhiệm vụ là công việc cốt lõi bạn thực hiện trên nền tảng, bao gồm Xử lý dữ liệu tự động và phân bổ lược đồ Sổ cái tài chính. Khi bạn bắt đầu nhiệm vụ, bạn thiết lập kết nối bảo mật với kho phân bổ để đồng bộ một lược đồ có cấu trúc, xác minh tập dữ liệu về độ chính xác và tải nó lên sổ cái. Quy trình này xác thực dữ liệu thương nhân và tạo ra lợi suất tài sản của bạn."
+        },
+        {
+          "id": "gen-2",
+          "question": "Cần gì để bắt đầu hoặc đặt lại chu kỳ?",
+          "answer": "Để đảm bảo người dùng có đủ thanh khoản để xử lý lược đồ giá trị cao, mọi chu kỳ đều yêu cầu số dư sổ cái tối thiểu để khởi tạo. Đối với tài khoản mới hoàn toàn, chu kỳ sớm nhất bắt đầu ở mức tối thiểu $80. Đối với tất cả các chu kỳ sau, số dư tối thiểu yêu cầu là $150. Bạn không thể kích hoạt đặt lại chu kỳ trong khi đang ở giữa chu kỳ đang hoạt động."
+        },
+        {
+          "id": "gen-3",
+          "question": "Tôi có thể bỏ qua, xóa hoặc đảo ngược nhiệm vụ hạn mức đang hoạt động không?",
+          "answer": "Không. Một khi nhiệm vụ được đồng bộ vào bảng điều khiển của bạn, nó bị ràng buộc nghiêm ngặt với chu kỳ hiện tại của bạn. Nhiệm vụ không thể bị bỏ qua, xóa, đảo ngược hoặc vượt qua dưới bất kỳ hoàn cảnh nào. Bạn phải hoàn thành quy trình xác thực để tiến tới hạn mức tiếp theo."
+        },
+        {
+          "id": "gen-4",
+          "question": "Điều gì xảy ra nếu tôi giữ lược đồ sản phẩm quá lâu?",
+          "answer": "Nếu một nhiệm vụ được đồng bộ nhưng giữ mà không tải lên quá 48 giờ, nó sẽ làm tắc nghẽn kho phân bổ và làm chậm tiến độ của đối tác thương nhân chúng tôi. Trong những trường hợp này, có thể áp dụng phí danh nghĩa từ sổ cái của bạn để bù đắp chi phí hành chính, và lịch thanh toán tiêu chuẩn có thể được điều chỉnh do vi phạm tốc độ hoạt động."
+        },
+        {
+          "id": "gen-5",
+          "question": "Tại sao tôi thỉnh thoảng nhận được tệp bị hỏng?",
+          "answer": "Thỉnh thoảng, dữ liệu thô do thương nhân cung cấp chứa các đoạn không đọc được hoặc bị hỏng, dẫn đến tệp bị hỏng. Những tệp này không đủ điều kiện để tạo bất kỳ lợi suất nào. Tuy nhiên, vì hệ thống vẫn phải phân bổ tài nguyên máy chủ để lấy và phân công dữ liệu cho bạn, nó sẽ tiêu tốn một trong 40 hạn mức khả dụng của bạn cho chu kỳ đó."
+        },
+        {
+          "id": "gen-6",
+          "question": "Giờ hoạt động tiêu chuẩn của bạn là gì?",
+          "answer": "Hoạt động hỗ trợ và xử lý chính của chúng tôi, bao gồm xem xét rút tiền thủ công và kiểm toán KYC, chạy từ Thứ Hai đến Thứ Sáu, 10:00 AM đến 10:00 PM giờ EST. Điều này phù hợp với giờ ngân hàng toàn cầu truyền thống. Tính khả dụng cuối tuần (Thứ Bảy và Chủ Nhật) có thể thay đổi tùy theo bảo trì hệ thống đã lên lịch và lượng hàng đợi đang hoạt động."
+        },
+        {
+          "id": "gen-7",
+          "question": "Làm thế nào để tôi liên hệ với đội ngũ hỗ trợ khách hàng?",
+          "answer": "Để có giải quyết nhanh nhất và an toàn nhất, bạn có thể liên hệ trực tiếp với đội ngũ hỗ trợ chuyên dụng của chúng tôi qua tiện ích trò chuyện trực tiếp nằm trên bảng điều khiển của bạn. Điều này đảm bảo bạn đang giao tiếp từ môi trường đã xác thực, cho phép đại lý của chúng tôi kéo thông tin chi tiết tài khoản của bạn ngay lập tức."
+        }
+      ]
+    },
+    {
+      "category": "Huấn luyện & Hướng dẫn",
+      "items": [
+        {
+          "id": "coach-1",
+          "question": "Vai trò của huấn luyện viên được phân công của tôi là gì?",
+          "answer": "Huấn luyện viên được phân công của bạn là người dùng cấp cao, có kinh nghiệm cao của nền tảng. Vai trò của họ là cung cấp hướng dẫn một-một, giúp bạn hiểu các sắc thái của hoạt động lược đồ và dạy bạn cách tối ưu hóa nhiệm vụ hàng ngày. Vì chương trình giới thiệu của chúng tôi, họ được khuyến khích tài chính để thấy bạn thành công."
+        },
+        {
+          "id": "coach-2",
+          "question": "Huấn luyện viên của tôi được phân công như thế nào?",
+          "answer": "Huấn luyện viên của bạn được tự động liên kết với tài khoản của bạn trong quá trình đăng ký hoàn toàn dựa trên ID tài khoản người giới thiệu bạn cung cấp. Việc phân công trực tiếp này đảm bảo bạn có điểm liên lạc chuyên dụng đã quen thuộc với thời gian giới thiệu của bạn."
+        },
+        {
+          "id": "coach-3",
+          "question": "Huấn luyện viên của tôi có chịu trách nhiệm về hiệu suất tài chính hoặc khoản thiếu hụt của tài khoản tôi không?",
+          "answer": "Không. Mặc dù huấn luyện viên của bạn ở đó để cung cấp đào tạo, hướng dẫn hoạt động và lời khuyên chiến lược, tài khoản của bạn là hồ sơ cá nhân nghiêm ngặt. Bạn duy trì toàn quyền tự chủ và trách nhiệm đối với nhiệm vụ hàng ngày, số dư sổ cái và bất kỳ khoản thiếu hụt tiềm năng nào của riêng bạn. Huấn luyện viên của bạn không có quyền truy cập vào quỹ cá nhân của bạn và không thể thực hiện nhiệm vụ thay cho bạn."
+        }
+      ]
+    },
+    {
+      "category": "Cấp vốn sổ cái & Nạp tiền",
+      "items": [
+        {
+          "id": "fund-1",
+          "question": "Khoản thiếu hụt là gì và làm thế nào để giải quyết?",
+          "answer": "Khoản thiếu hụt xảy ra khi bạn được phân công một lược đồ cao cấp, lợi suất cao vượt quá giá trị hiện tại của cấp sổ cái của bạn. Để xử lý nhiệm vụ giá trị cao này và tạo ra lợi suất cao cấp liên quan, bạn phải tạm thời bù đắp khoảng trống. Để giải quyết khoản thiếu hụt, hãy liên hệ với đội ngũ hỗ trợ trực tiếp của chúng tôi để nhận hướng dẫn về việc nạp chính xác số tiền yêu cầu. Việc nạp tiền có thể được thực hiện an toàn qua kênh fiat truyền thống hoặc mạng blockchain được hỗ trợ."
+        },
+        {
+          "id": "fund-2",
+          "question": "Việc nạp tiền mất bao lâu để phản ánh trong tài khoản của tôi?",
+          "answer": "Thời gian nạp tiền phụ thuộc nhiều vào tắc nghẽn mạng blockchain hoặc tốc độ xử lý ngân hàng. Tuy nhiên, một khi bạn đã hoàn tất chuyển khoản thành công và cung cấp biên lai giao dịch cho đội ngũ hỗ trợ trực tiếp của chúng tôi, quỹ thường sẽ phản ánh trong tổng số dư sổ cái của bạn trong vòng 15 đến 30 phút sau khi xác minh mạng tiêu chuẩn."
+        },
+        {
+          "id": "fund-3",
+          "question": "Tôi có thể nạp tiền để bỏ qua hạn mức hàng ngày không?",
+          "answer": "Không. Chức năng cốt lõi của doanh nghiệp chúng tôi là xử lý dữ liệu thực tế, không phải đầu tư vốn thuần túy. Việc nạp tiền chỉ được sử dụng nghiêm ngặt để bắt đầu/đặt lại chu kỳ mới hoặc xóa khoản thiếu hụt cao cấp đang hoạt động. Bạn không thể trả tiền để vượt qua công việc xác thực thủ công bắt buộc."
+        }
+      ]
+    },
+    {
+      "category": "Thu nhập, Lợi suất & Phí",
+      "items": [
+        {
+          "id": "earn-1",
+          "question": "Lợi suất tài sản được tính như thế nào?",
+          "answer": "Lợi suất tài sản được tính động dựa trên độ phức tạp của lược đồ và nhu cầu thị trường thương nhân hiện tại. Đối với mỗi nhiệm vụ tiêu chuẩn bạn hoàn thành và tải lên thành công, tỷ lệ phần trăm lợi suất dao động ngẫu nhiên từ 1% đến 6% giá trị cốt lõi của tài sản."
+        },
+        {
+          "id": "earn-2",
+          "question": "Chu kỳ là gì và có bao nhiêu hạn mức?",
+          "answer": "Một chu kỳ sản phẩm hoàn chỉnh bao gồm 40 hạn mức (phân bổ dữ liệu cá nhân). Chúng tôi thực thi giới hạn nghiêm ngặt 2 chu kỳ đầy đủ mỗi ngày. Giới hạn này ngăn ngừa kiệt sức người dùng, duy trì độ chính xác xác thực dữ liệu cao và đảm bảo phân bổ công việc công bằng trên toàn mạng toàn cầu của chúng tôi."
+        },
+        {
+          "id": "earn-3",
+          "question": "Điều gì xảy ra nếu tôi không hoàn thành tất cả 40 hạn mức trong một lần ngồi?",
+          "answer": "Bạn hoàn toàn không bị yêu cầu hoàn thành chu kỳ đầy đủ 40 hạn mức trong một lần ngồi. Bạn có thể tạm dừng công việc và tiếp tục khi thuận tiện. Tuy nhiên, hãy nhớ quy tắc 48 giờ: bạn không được giữ nhiệm vụ đã đồng bộ đang hoạt động quá 48 giờ để đảm bảo đường ống xử lý của thương nhân không bị chậm trễ."
+        },
+        {
+          "id": "earn-4",
+          "question": "Thu nhập của tôi có tự động tích lũy không?",
+          "answer": "Không, thu nhập của bạn không tích lũy toán học theo chu kỳ. Mỗi chu kỳ mới đặt lại các chỉ số cơ bản để duy trì chi phí dự đoán cho thương nhân của chúng tôi. Tuy nhiên, tất cả lợi suất đã tạo ra từ các chu kỳ trước sẽ an toàn tích lũy trong tổng số dư sổ cái của bạn cho đến khi bạn yêu cầu rút tiền cuối cùng thành công."
+        }
+      ]
+    },
+    {
+      "category": "Phần thưởng hiệu suất & Điểm danh",
+      "items": [
+        {
+          "id": "reward-1",
+          "question": "Làm thế nào để tôi nhận thưởng chào mừng?",
+          "answer": "Để giúp bạn đạt ngưỡng chu kỳ ban đầu nhanh hơn, khoản thưởng chào mừng $20.00 được tự động ghi vào số dư sổ cái khả dụng ngay khi đăng ký thành công. Không có bước bổ sung, biểu mẫu ẩn hoặc thời gian chờ nào cần thiết để nhận nó."
+        },
+        {
+          "id": "reward-2",
+          "question": "Theo dõi mốc điểm danh hoạt động như thế nào?",
+          "answer": "Chúng tôi đánh giá cao những người xử lý dữ liệu nhất quán. Bằng cách hoàn thành nhiệm vụ hàng ngày của bạn mỗi ngày, bạn xây dựng chuỗi điểm danh không gián đoạn. Khi bạn đạt mốc cụ thể (như Ngày 7, Ngày 14, v.v.), hệ thống sẽ tự động mở khóa các khoản thưởng thanh toán cơ bản đã lên lịch được ghi trực tiếp vào số dư của bạn."
+        },
+        {
+          "id": "reward-3",
+          "question": "Chỉ số điểm danh đầy đủ là gì?",
+          "answer": "Nếu bạn đạt điểm danh hoàn hảo bằng cách hoàn thành tất cả nhiệm vụ hàng ngày mà không bỏ sót một ngày nào trong tháng hiện tại, bạn sẽ mở khóa Chỉ số điểm danh đầy đủ. Điều này áp dụng hệ số nhân lớn, tự động cho tổng thanh toán cơ bản đã tích lũy của bạn cho chu kỳ đó, thưởng cho những người dùng đáng tin cậy nhất của chúng tôi. (Lưu ý: Hệ số này chỉ áp dụng cho thanh toán cơ bản, không áp dụng cho các lợi suất biến đổi khác)."
+        },
+        {
+          "id": "reward-4",
+          "question": "Điều gì xảy ra nếu tôi bỏ lỡ một ngày nhiệm vụ?",
+          "answer": "Vì thương nhân của chúng tôi dựa vào lượng hàng ngày nhất quán, việc không hoàn thành hạn mức cho ngày đó sẽ phá vỡ chuỗi điểm danh đang hoạt động của bạn. Điều này có nghĩa là bạn sẽ bỏ lỡ hệ số nhân Chỉ số điểm danh đầy đủ cho tháng đó và sẽ cần khởi động lại tiến độ hướng tới mốc tiếp theo từ ngày đầu tiên."
+        },
+        {
+          "id": "reward-5",
+          "question": "Các sự kiện thưởng thời hạn giới hạn là gì?",
+          "answer": "Trong các giai đoạn nhu cầu thương nhân bất thường cao, chúng tôi chạy các sự kiện khuyến mãi đặc biệt cung cấp phần thưởng tăng độc quyền. Các sự kiện này xuất hiện động trên bảng điều khiển của bạn trong thời gian giới hạn. Bạn nên kiểm tra phần Sự kiện khuyến mãi định kỳ trước khi chúng hết hạn để không bỏ lỡ cửa sổ kiếm tiền cao điểm!"
+        }
+      ]
+    },
+    {
+      "category": "Chương trình giới thiệu & Liên kết",
+      "items": [
+        {
+          "id": "ref-1",
+          "question": "Tôi có nhận hoa hồng khi giới thiệu người dùng mới không?",
+          "answer": "Có! Chúng tôi thích tái đầu tư ngân sách quảng cáo vào cộng đồng. Nếu bạn tham gia chương trình giới thiệu tùy chọn của chúng tôi, bạn kiếm được thưởng trọn đời 20% dựa trên lợi nhuận do người được giới thiệu trực tiếp của bạn tạo ra. Khoản 20% này được chi trả hoàn toàn từ túi của Công ty, nghĩa là người được giới thiệu của bạn vẫn giữ 100% thu nhập của riêng họ."
+        },
+        {
+          "id": "ref-2",
+          "question": "Đây có phải là cấu trúc tiếp thị đa cấp (MLM) không?",
+          "answer": "Không, tuyệt đối không. Cấu trúc giới thiệu của chúng tôi chỉ giới hạn ở một cấp (1-đối-1). Bạn chỉ kiếm thưởng từ người dùng trực tiếp bạn giới thiệu và đào tạo. Chúng tôi không hỗ trợ tiếp thị đa cấp, kim tự tháp hoặc cấu trúc hoa hồng nhiều tầng vì chúng tôi muốn khuyến khích hướng dẫn chân thực, trực tiếp."
+        },
+        {
+          "id": "ref-3",
+          "question": "Ai đủ điều kiện tham gia chương trình giới thiệu?",
+          "answer": "Để đảm bảo người giới thiệu của chúng tôi thực sự hiểu nền tảng trước khi họ cố gắng dạy người khác, bạn phải tích lũy tổng cộng 14 ngày điểm danh hoạt động trước khi được phép tạo ID giới thiệu. Để duy trì chất lượng hướng dẫn cao, cũng có thời gian chờ bắt buộc 14 ngày giữa mỗi người được giới thiệu thành công bạn thực hiện."
+        },
+        {
+          "id": "ref-4",
+          "question": "Tại sao thưởng giới thiệu của tôi bị tạm dừng?",
+          "answer": "Thưởng giới thiệu chỉ hoạt động khi tài khoản của Người được giới thiệu ở trạng thái tốt. Nếu người được giới thiệu của bạn bị kẹt và để nhiệm vụ ở trạng thái \"đang chờ\", thưởng 20% của bạn từ tài khoản đó sẽ tạm dừng. Quy tắc này tồn tại để khuyến khích huấn luyện viên chủ động giúp người được giới thiệu của họ vượt qua trở ngại. Một khi họ tải lên nhiệm vụ đang chờ, thưởng của bạn sẽ tiếp tục ngay lập tức."
+        }
+      ]
+    },
+    {
+      "category": "Rút tiền & Số dư sổ cái",
+      "items": [
+        {
+          "id": "pay-1",
+          "question": "Có điều kiện cụ thể trước khi tôi có thể yêu cầu rút tiền không?",
+          "answer": "Có. Để duy trì ổn định sổ cái nghiêm ngặt và đảm bảo hạn mức hàng ngày của thương nhân được hoàn thành trước khi vốn rời khỏi hệ sinh thái, bạn phải hoàn thành tất cả nhiệm vụ đang hoạt động trong chu kỳ hiện tại. Bạn cũng phải đảm bảo không có số dư còn lại hoặc khoản thiếu hụt nào trên tài khoản. Rút tiền nghiêm ngặt không thể được xử lý giữa chu kỳ."
+        },
+        {
+          "id": "pay-2",
+          "question": "Có số tiền rút tối thiểu không?",
+          "answer": "Có, số tiền rút tối thiểu là $20. Mức tối thiểu này được thực thi vì nền tảng chịu chi phí phí gas mạng và chi phí hành chính ngân hàng cho giao dịch của bạn, điều này không khả thi về mặt tài chính cho các giao dịch vi mô dưới $20."
+        },
+        {
+          "id": "pay-3",
+          "question": "Có giới hạn khối lượng giao dịch cho rút tiền thông thường không?",
+          "answer": "Để duy trì ổn định sổ cái và thanh khoản mạng, khả năng rút tiền được căn chỉnh với cấp hoạt động đang hoạt động của bạn. Tài khoản Cơ bản tiêu chuẩn có thể xử lý an toàn rút tiền lên đến $5.000 mỗi giao dịch. Người dùng thường xuyên xử lý lược đồ cao cấp và hoạt động ở cấp Plus được cấp giới hạn rút tiền không hạn chế để phù hợp với khối lượng cao hơn. Giới hạn giao dịch hiện tại của bạn có thể được xem bất kỳ lúc nào trong cài đặt bảng điều khiển."
+        },
+        {
+          "id": "pay-4",
+          "question": "Có bất kỳ phí rút tiền nào không?",
+          "answer": "Chúng tôi không tính bất kỳ phí rút tiền nội bộ hoặc phần trăm nào trên số dư của bạn. Hơn nữa, chúng tôi chịu phí gas mạng crypto cho rút tiền đã mã hóa để tối đa hóa thu nhập bạn nhận được. Tuy nhiên, nếu bạn chọn phương thức ngân hàng fiat truyền thống, bạn chịu trách nhiệm cho bất kỳ tỷ giá chuyển khoản quốc tế nào do tổ chức tài chính của riêng bạn áp dụng."
+        },
+        {
+          "id": "pay-5",
+          "question": "Rút tiền thường mất bao lâu?",
+          "answer": "Bạn nên gửi yêu cầu rút tiền trong vòng 24 đến 48 giờ sau khi hoàn thành chu kỳ. Sau khi gửi, rút tiền thường xử lý trong vòng một giờ, mặc dù thời gian thanh toán cuối cùng phụ thuộc vào tốc độ tổ chức tài chính nhận hoặc mạng blockchain. Bạn cũng có thể thông báo cho đội ngũ hỗ trợ trực tiếp của chúng tôi sau khi gửi yêu cầu để hỗ trợ xử lý sớm nhất có thể. Tất cả yêu cầu vẫn phải chịu kiểm tra Chống rửa tiền (AML) bắt buộc và xác minh lợi suất."
+        },
+        {
+          "id": "pay-6",
+          "question": "Nền tảng hỗ trợ những phương thức rút tiền nào?",
+          "answer": "Chúng tôi hỗ trợ nhiều phương thức thanh toán toàn cầu đa dạng phù hợp với khu vực đã đăng ký của bạn để đảm bảo tính linh hoạt tối đa. Các lựa chọn bao gồm Chuyển khoản ngân hàng fiat trực tiếp (như ACH, SEPA, BACS và Interac) cũng như Tài sản mã hóa (Tiền điện tử qua cấu hình mạng thủ công)."
+        },
+        {
+          "id": "pay-7",
+          "question": "Điều gì xảy ra nếu tôi hướng rút tiền đến địa chỉ ví crypto hoặc mạng sai?",
+          "answer": "Do tính chất phi tập trung của công nghệ blockchain, giao dịch tiền điện tử là không thể đảo ngược. Nếu bạn gửi rút tiền đến địa chỉ ví không chính xác hoặc chọn mạng sai, quỹ của bạn sẽ bị mất vĩnh viễn. Chúng tôi không có khả năng kỹ thuật để khôi phục token đã gửi, vì vậy vui lòng kiểm tra kỹ chi tiết đích."
+        },
+        {
+          "id": "pay-8",
+          "question": "Tôi có cần ví không lưu ký để nhận rút tiền đã mã hóa không?",
+          "answer": "Không, ví không lưu ký không phải là yêu cầu nghiêm ngặt. Bạn có thể sử dụng bất kỳ ví nào hỗ trợ token và mạng cụ thể bạn chọn trên trang rút tiền. Điều này bao gồm ví không lưu ký riêng tư cũng như địa chỉ nạp tiền trực tiếp từ các sàn giao dịch tập trung lớn."
+        }
+      ]
+    },
+    {
+      "category": "Ngân hàng & Thanh toán fiat",
+      "items": [
+        {
+          "id": "bank-1",
+          "question": "Tôi có thể yêu cầu rút tiền đến tài khoản ngân hàng dưới tên người khác không?",
+          "answer": "Không, dưới bất kỳ hoàn cảnh nào. Để tuân thủ quy định Chống rửa tiền (AML) và Biết khách hàng (KYC) quốc tế nghiêm ngặt, tên pháp lý trên tài khoản ngân hàng đích phải khớp hoàn hảo với danh tính đã xác minh trên tài khoản nền tảng của bạn. Bất kỳ nỗ lực chuyển khoản bên thứ ba nào sẽ kích hoạt cờ bảo mật và bị từ chối tự động."
+        },
+        {
+          "id": "bank-2",
+          "question": "Tại sao chuyển khoản ngân hàng của tôi bị từ chối hoặc chậm trễ?",
+          "answer": "Hệ thống ngân hàng fiat thường chậm hơn và cứng nhắc hơn mạng crypto. Chuyển khoản ngân hàng thường bị chậm do lỗi nhập của người dùng (số định tuyến/số tài khoản không chính xác), ngày lễ ngân hàng khu vực hoặc giữ bảo mật thông thường do tổ chức tài chính nhận đặt. Nếu chuyển khoản thất bại cứng, quỹ sẽ được trả an toàn về số dư sổ cái của bạn."
+        },
+        {
+          "id": "bank-3",
+          "question": "Bạn có hỗ trợ chuyển khoản dây quốc tế không?",
+          "answer": "Mặc dù chúng tôi hỗ trợ kỹ thuật chuyển khoản dây quốc tế truyền thống cho một số khu vực xa xôi, xin lưu ý rằng phương thức này thường không khả dụng hoặc chịu bảo trì kéo dài do tỷ lệ thất bại cao. Khi khả dụng, bạn hoàn toàn chịu trách nhiệm chi trả bất kỳ phí chuyển khoản quốc tế đến nào do ngân hàng trung gian tính."
+        }
+      ]
+    },
+    {
+      "category": "Khắc phục sự cố kỹ thuật",
+      "items": [
+        {
+          "id": "tech-1",
+          "question": "Tôi nên làm gì nếu bảng điều khiển của tôi bị treo trong nhiệm vụ đang hoạt động?",
+          "answer": "Đừng hoảng loạn. Nếu bảng điều khiển của bạn bị treo, trình duyệt của bạn bị sập hoặc bạn mất kết nối internet, chỉ cần làm mới trang hoặc đăng nhập lại. Tiến độ của bạn, bao gồm lược đồ đang hoạt động và số dư sổ cái hiện tại, được lưu an toàn trên máy chủ đám mây của chúng tôi theo thời gian thực, cho phép bạn tiếp tục chính xác nơi bạn đã dừng lại."
+        },
+        {
+          "id": "tech-2",
+          "question": "Tôi có được bồi thường nếu gián đoạn máy chủ khiến tôi bỏ lỡ chu kỳ không?",
+          "answer": "Không. Mặc dù chúng tôi đầu tư mạnh vào cơ sở hạ tầng để cố gắng đạt thời gian hoạt động tối đa tuyệt đối, chúng tôi không cung cấp bồi thường tài chính cho chu kỳ bị bỏ lỡ, chuỗi điểm danh bị hỏng hoặc hạn mức hết hạn do gián đoạn máy chủ tạm thời, không lường trước hoặc cửa sổ bảo trì hệ thống đã lên lịch."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,800 @@
+{
+  "nav": {
+    "signin": "Aanmelden",
+    "signup": "Account Aanmaken"
+  },
+  "dashboard": {
+    "currency_format": "${amount}",
+    "meta_title": "Dashboard",
+    "nav": {
+      "logo_alt": "Logo",
+      "overview": "Accountinstellingen",
+      "assignments": "Actieve Opdrachten",
+      "payouts": "Uitbetalingen Beheren",
+      "rewards": "Prestatiebeloningen",
+      "referrals": "Verwijzingsprogramma",
+      "faq": "Veelgestelde Vragen",
+      "terms": "Servicevoorwaarden",
+      "privacy": "Privacybeleid",
+      "cookies": "Cookiebeleid",
+      "legal": "Juridisch & Registratie",
+      "logout": "Uitloggen",
+      "logout_confirm": "Weet u zeker dat u wilt uitloggen van uw account?"
+    },
+    "modal": {
+      "verification_failed_title": "Verificatie Mislukt",
+      "success": "Geslaagd",
+      "error": "Fout",
+      "warning": "Waarschuwing",
+      "notice": "Melding",
+      "missing_fields": "Ontbrekende Velden",
+      "action_denied": "Actie Geweigerd",
+      "payout_requested": "Uitbetaling Aangevraagd",
+      "funds_received": "Bedrag Ontvangen 🎉",
+      "funds_received_msg": "U heeft {amount} ontvangen. Controleer uw saldooverzicht.",
+      "network_error": "Er is een netwerkfout opgetreden.",
+      "general_error": "Er is een fout opgetreden. Probeer het later opnieuw.",
+      "verification_failed": "Verificatie mislukt."
+    },
+    "coach_account": "Dit is een coachaccount voor trainingsdoeleinden.",
+    "coach_account_short": "Coachaccount",
+    "overview": {
+      "welcome": "Welkom, {name}",
+      "subtitle": "Beheer uw profiel, beveiligingsvoorkeuren en uitbetalingsinstellingen.",
+      "profile_title": "Openbaar Profiel",
+      "upload_btn": "Foto Uploaden",
+      "upload_hint": "JPG of PNG.",
+      "avatar_success": "Profielfoto bijgewerkt.",
+      "upload_fail": "Uploaden van afbeelding mislukt.",
+      "auth_title": "Wachtwoord Bijwerken",
+      "current_pass": "Huidig Wachtwoord",
+      "new_pass": "Nieuw Wachtwoord",
+      "confirm_pass": "Nieuw Wachtwoord Bevestigen",
+      "save_pass": "Wachtwoord Opslaan",
+      "pass_update_success": "Wachtwoord succesvol bijgewerkt.",
+      "pass_update_fail": "Wachtwoord bijwerken mislukt.",
+      "pass_incorrect": "Huidig wachtwoord is onjuist.",
+      "passphrase_title": "Uitbetalingswachtzin",
+      "first_time_setup": "Eerste Installatie Vereist",
+      "passphrase_desc": "Deze wachtzin fungeert als uw persoonlijke financiële sleutel, vereist om uitbetalingen te autoriseren via het portaal Uitbetalingen Beheren. Voor de initiële configuratie dient u uw geregistreerde e-mailadres op te geven.",
+      "passphrase_update_desc": "Werk uw persoonlijke financiële sleutel bij. Deze sleutel is verplicht voor het autoriseren van al uw standaard opnameverzoeken.",
+      "account_region": "Accountregio",
+      "verify_email": "Account E-mailadres",
+      "new_passphrase": "Nieuwe Wachtzin",
+      "confirm_passphrase": "Wachtzin Bevestigen",
+      "verify_btn": "Verifiëren & Sleutel Instellen",
+      "current_passphrase": "Huidige Wachtzin",
+      "update_btn": "Sleutel Bijwerken",
+      "passphrase_length": "Wachtzin moet minimaal 6 tekens bevatten.",
+      "passphrase_match": "Wachtzinnen komen niet overeen.",
+      "setup_success": "Wachtzin veilig geconfigureerd.",
+      "email_mismatch": "E-mailadres komt niet overeen met onze gegevens.",
+      "update_success": "Wachtzin succesvol bijgewerkt.",
+      "passphrase_incorrect": "Huidige wachtzin is onjuist.",
+      "loading": "Laden..."
+    },
+    "referrals": {
+      "copy": "Kopiëren",
+      "title": "Verwijzingsprogramma",
+      "optional": "Optioneel",
+      "subtitle": "Het verwijzingsprogramma is een volledig optionele functie. Uw dagelijkse opdrachten, aanwezigheid en primaire uitbetalingen worden niet beïnvloed door deelname.",
+      "your_id": "Uw Verwijzings-ID",
+      "id_desc": "Kopieer uw unieke verwijzings-ID hieronder. Deel dit met iemand die baat kan hebben bij ons platform en verdien een levenslange bonus op hun gegenereerde inkomsten.",
+      "overview_title": "Programmaoverzicht",
+      "overview_p1": "In plaats van traditionele advertenties kiezen wij ervoor ons budget rechtstreeks terug te investeren in onze community. Wanneer een in aanmerking komende gebruiker (de \"Verwijzer\") met succes een nieuwe gebruiker (de \"Doorverwezene\") aanmeldt, ontvangt de Verwijzer een <strong>levenslange bonus van 20%</strong> op basis van de winsten gegenereerd door de Doorverwezene.",
+      "overview_l1": "Deze bonus van 20% wordt volledig gedragen door het Bedrijf.",
+      "overview_l2": "De Doorverwezene behoudt 100% van zijn oorspronkelijke verdiensten.",
+      "overview_l3": "Alle verdiende verwijzingsbonussen worden rechtstreeks bijgeschreven op het saldooverzicht van de Verwijzer.",
+      "mlm_title": "Uitsluitend Directe Verwijzingen (Geen MLM)",
+      "mlm_desc": "Onze verwijzingsstructuur is strikt één-op-één. Wij ondersteunen geen multi-level marketing (MLM) of gelaagde commissiestructuren. De Verwijzer heeft uitsluitend recht op bonussen van de directe Doorverwezene die hij heeft aangemeld. Indien de Doorverwezene vervolgens een derde partij verwijst, ontvangt de oorspronkelijke Verwijzer geen commissie van die derde gebruiker.",
+      "paused_title": "Openstaande Opdrachten & Gepauzeerde Bonussen",
+      "paused_desc": "Verwijzingsbonussen zijn alleen actief wanneer het account van de Doorverwezene in goede staat verkeert. Indien een Doorverwezene een opdracht in een \"openstaande\" status achterlaat, wordt uw bonus van 20% tijdelijk gepauzeerd. Bonussen die gedurende deze gepauzeerde periode zouden zijn gegenereerd, vervallen en worden niet met terugwerkende kracht vrijgegeven. Zodra de Doorverwezene de openstaande opdracht verwerkt, hervat uw bonus van 20% onmiddellijk voor al hun toekomstige voltooiingen.",
+      "eligibility_title": "Voorwaarden & Beperkingen",
+      "eligibility_l1": "<strong>Aanwezigheidsvereiste:</strong> Ter bescherming van de integriteit van het bedrijf dient een Verwijzer minimaal 14 aanwezigheidsdagen te hebben opgebouwd sinds het aanmaken van het account, voordat hij gemachtigd is een verwijzings-ID te genereren of te delen.",
+      "eligibility_l2": "<strong>Wachttijd:</strong> Om de kwaliteit van verwijzingen te waarborgen, kunnen links slechts aan één persoon tegelijk worden gedeeld. Na het succesvol koppelen van een nieuwe Doorverwezene geldt een wachttijd van 14 dagen voordat de Verwijzer een volgende gebruiker mag aandragen.",
+      "eligibility_l3": "<strong>Fraude & Accountverbanning:</strong> Misbruik van het programma, waaronder het aanmaken van meerdere accounts voor zelfverwijzing of het gebruik van frauduleuze methoden, is ten strengste verboden. Overtredingen resulteren in het onmiddellijk verbeuren van alle bonusverdiensten en een permanente verbanning van alle gekoppelde accounts."
+    },
+    "rewards": {
+      "welcome_bonus": "Welkomstbonus",
+      "welcome_desc": "Als nieuw lid is automatisch een <span class=\"font-semibold text-black dark:text-white\">Welkomstbonus van $20,00</span> bijgeschreven op uw beschikbaar saldo bij registratie. Deze bonus is bedoeld om u een vliegende start te geven en wordt rechtstreeks aan uw standaardsaldo toegevoegd.",
+      "salary_title": "Aanwezigheids­mijlpaal­tracker",
+      "salary_desc": "Voltooi dagelijkse opdrachten om uw aankomende uitbetalings­mijlpalen te bereiken.",
+      "days": "Dagen",
+      "milestones": "Uitbetalingstijdlijn",
+      "perfect_attendance": "Volledige Aanwezigheid KPI",
+      "perfect_desc": "Consistentie loont. Voltooi alle {days} dagelijkse opdrachten binnen de huidige maand om de Volledige Aanwezigheid KPI te behalen. Dit past automatisch een <span class=\"font-semibold text-black dark:text-white\">+15% Basis Uitbetalingsmultiplicator</span> toe op uw verdiensten voor de cyclus. <br><br><strong class=\"text-[#444] dark:text-[#ccc] font-medium\">Werking:</strong> De multiplicator wordt uitsluitend toegepast op uw gecumuleerde basisuitbetalingen. Indien uw totale basisuitbetalingen bijvoorbeeld $1.200 bedragen, voegt de +15% multiplicator een extra $180 toe, waardoor uw totale basisuitbetaling uitkomt op $1.380. (Opmerking: Overige verdiensten worden afzonderlijk berekend en worden niet beïnvloed door deze multiplicator).",
+      "promotions": "Tijdelijke Bonusacties",
+      "promo_desc": "Bonusacties zijn speciale, tijdelijke mogelijkheden die af en toe plaatsvinden. Wanneer ze actief zijn, verschijnen ze hier voor een beperkte duur zodat u kans heeft exclusieve beloningen te verdienen. Kom regelmatig terug voordat ze verlopen!",
+      "fetching_promos": "Actieve acties ophalen...",
+      "no_promos": "Momenteel geen actieve acties.",
+      "full_attendance_kpi": "Volledige Aanwezigheid KPI",
+      "milestone_day": "Mijlpaal: Dag {day}",
+      "next_upcoming": "Volgende Aankomende Uitbetaling",
+      "credited": "Bijgeschreven op Saldo",
+      "scheduled": "Gepland",
+      "base_multiplier": "+15% Basismultiplicator"
+    },
+    "assignments": {
+      "title": "Actieve Schema-allocaties",
+      "product_visual": "Productafbeelding",
+      "subtitle": "Geautomatiseerde Gegevensverwerking & Financieel Saldooverzicht",
+      "ledger_balance": "Totaal Saldooverzicht",
+      "ledger_desc": "Kernoperationele fondsen, inclusief winsten.",
+      "outstanding": "Openstaand Saldo",
+      "outstanding_desc": "Het financieringstekort dat vereist is om de openstaande opdracht te vereffenen.",
+      "current_balance": "Huidig Saldo",
+      "current_balance_desc": "Totaal saldooverzicht geprojecteerd met de actieve openstaande opdracht.",
+      "cycle_profit": "Winst Huidige Cyclus",
+      "cycle_profit_desc": "Deze berekening wordt bijgewerkt aan het begin van elke nieuwe cyclus. Alle winsten worden vervolgens toegevoegd aan het totale saldooverzicht.",
+      "yield_rate": "Rendement",
+      "schema_sync": "Schemasynchronisatie",
+      "quota_remaining": "Quotum: {current} / {max} Resterend",
+      "sync_desc": "Maak een beveiligde verbinding met de allocatiepool om de volgende beschikbare gestructureerde dataset te synchroniseren en te inspecteren vóór uitvoering van het saldooverzicht.",
+      "syncing": "Payload synchroniseren...",
+      "sync_btn": "Volgend Schema Synchroniseren",
+      "timestamp_id": "Tijdstempel-ID",
+      "reference": "Referentie",
+      "asset_value": "Activawaarde",
+      "yield": "Rendement",
+      "verifying": "Saldooverzicht Verifiëren...",
+      "proceed_btn": "Doorgaan naar Uploaden",
+      "idle": "Gegevensweergave inactief. Synchroniseer een structureel schema.",
+      "recent_activity": "Recente Activiteit",
+      "no_activity": "Geen recente activiteit.",
+      "asset": "Activa",
+      "collapse": "Inklappen",
+      "view_all": "Alle Activiteit Bekijken",
+      "pending_schema_error": "Upload het openstaande schema voordat u doorgaat naar het volgende.",
+      "sync_error": "Synchronisatie van volgend schema mislukt.",
+      "sync_network_error": "Er is een netwerkfout opgetreden tijdens het synchroniseren.",
+      "upload_outstanding_error": "Uploaden niet mogelijk.",
+      "corrupted_file": "Beschadigd bestand.",
+      "upload_error": "Uploaden van schema mislukt.",
+      "upload_network_error": "Er is een netwerkfout opgetreden tijdens het uploaden.",
+      "status_success": "Geslaagd",
+      "status_pending": "In Behandeling",
+      "status_corrupted": "Beschadigd"
+    },
+    "payouts": {
+      "default_desc": "Uitbetaling",
+      "title": "Uitbetalingen Beheren",
+      "ledger_balance": "Saldooverzicht",
+      "bank_country": "Land / Regio van Bank",
+      "available_methods": "Beschikbare Uitbetalingsmethoden",
+      "unavailable": "Momenteel niet beschikbaar",
+      "tokenized": "Getokeniseerd Actief",
+      "manual_config": "Handmatige netwerkconfiguratie",
+      "token": "Token",
+      "token_placeholder": "bijv. ETH",
+      "network": "Netwerk",
+      "network_placeholder": "bijv. ERC-20",
+      "wallet_address": "Portemonnee-adres",
+      "amount": "Bedrag",
+      "passphrase": "Uitbetalingswachtzin",
+      "processing": "Verwerken...",
+      "withdraw_btn": "Uitbetaling Aanvragen",
+      "history_title": "Recente Transacties",
+      "th_date": "Tijdstempel-ID",
+      "th_method": "Omschrijving",
+      "th_amount": "Bedrag",
+      "th_status": "Status",
+      "status_success": "Geslaagd",
+      "status_pending": "In Behandeling",
+      "status_declined": "Geweigerd",
+      "welcome_bonus_desc": "Welkomstbonus",
+      "fill_required": "Vul alle verplichte velden in om een uitbetaling aan te vragen.",
+      "action_denied_quota": "U dient alle actieve opdrachten te voltooien (Quotum: {current} / {max} resterend) voordat u een uitbetaling kunt aanvragen.",
+      "exceeds_balance": "Het aangevraagde bedrag overschrijdt uw beschikbaar saldooverzicht.",
+      "request_success": "Uitbetalingsverzoek voor {amount} succesvol ingediend. Het verzoek staat momenteel open voor goedkeuring.",
+      "passphrase_error": "Onjuiste uitbetalingswachtzin.",
+      "request_error": "Uitbetaling aanvragen mislukt.",
+      "network_error": "Er is een netwerkfout opgetreden bij het aanvragen van de uitbetaling."
+    },
+    "regions": {
+      "us": "Verenigde Staten",
+      "uk": "Verenigd Koninkrijk",
+      "ca": "Canada",
+      "eu": "Europa (Eurozone)",
+      "es": "Spanje",
+      "hk": "Hongkong",
+      "jp": "Japan",
+      "kr": "Zuid-Korea",
+      "sg": "Singapore",
+      "th": "Thailand",
+      "wire_us": "Overboeking / ACH",
+      "wire_uk": "BACS / Overboeking",
+      "wire_ca": "Interac / Overboeking",
+      "wire_eu": "SEPA-overboeking",
+      "bank_name": "Banknaam",
+      "bank_name_jp": "Banknaam (銀行名)",
+      "bank_code": "Bankcode",
+      "branch_code": "Filiaalcode",
+      "branch_code_jp": "Filiaalcode (支店コード)",
+      "account_num": "Rekeningnummer",
+      "account_num_jp": "Rekeningnummer (口座番号)",
+      "account_type_jp": "Rekeningtype (口座種別)",
+      "placeholder_hsbc": "bijv. HSBC, Hang Seng",
+      "placeholder_3digit": "3-cijferige code",
+      "placeholder_4digit": "4-cijferige code",
+      "placeholder_account": "Voer rekeningnummer in",
+      "placeholder_mufg": "bijv. Mitsubishi UFJ",
+      "placeholder_futsu": "bijv. Futsu (Gewoon)",
+      "placeholder_7digit": "7-cijferig nummer",
+      "placeholder_nodash": "Invoeren zonder koppeltekens",
+      "placeholder_dbs": "bijv. DBS, UOB, OCBC",
+      "placeholder_kasikorn": "bijv. Kasikorn, SCB, Bangkok Bank"
+    }
+  },
+  "contact": {
+    "title": "Neem Contact Op",
+    "subtitle": "Wij horen graag van u.",
+    "name": "Naam",
+    "email": "E-mailadres",
+    "message": "Bericht",
+    "submit": "Verzenden",
+    "success": "Bericht succesvol verzonden.",
+    "modal_title": "Bericht Verzonden",
+    "modal_msg": "Bedankt voor uw bericht. Wij hebben uw bericht ontvangen.",
+    "btn_close": "Sluiten",
+    "error_title": "Verzenden Mislukt",
+    "error_send": "Uw bericht kon niet worden verzonden. Probeer het later opnieuw."
+  },
+  "home": {
+    "hero": {
+      "title": "Geen configuratie vereist<br>voor gestructureerde gegevens. Breng uw schema's direct in kaart.",
+      "subtitle": "Een centraal platform voor semantische gegevens met realtime schemavalidatie en entiteitsanalyse."
+    },
+    "meta": {
+      "title": "The Structured Data Company | Het Schema-infrastructuurplatform",
+      "description": "Het uniforme platform voor gestructureerde gegevens en schemabeheer — dat duidelijkheid en semantische betekenis brengt aan uw frontend."
+    },
+    "partners": {
+      "trusted_prefix": "Vertrouwd door de beste",
+      "trusted_suffix": "teams.",
+      "typewriter": {
+        "web_apps": "kennisgrafieken",
+        "ecommerce": "gekoppelde gegevens",
+        "marketing": "semantische zoekmachineoptimalisatie",
+        "education": "datacatalogi",
+        "security": "identiteitsschema's",
+        "finance": "financiële ontologieën",
+        "healthcare": "klinische gegevens",
+        "software": "API-schema's",
+        "ai": "LLM-trainingsdata"
+      }
+    },
+    "workflow": {
+      "origin": "Oorsprong",
+      "tracking": {
+        "eyebrow": "Validatie",
+        "title": "Schema-integriteit",
+        "desc": "Visualiseer realtime gegevensvalidatie en schema-gezondheid via een heldere, intuïtieve weergave. Signaleer afwijkingen snel en blijf geïnformeerd met live structurele inzichten."
+      },
+      "processing": {
+        "eyebrow": "Integratie",
+        "title": "Semantische Koppeling",
+        "desc": "Houd uw gegevensschema's realtime gesynchroniseerd over alle wereldwijde instanties. Zorg voor consistente typen, soepele integratie en betrouwbare gegevenslevering overal."
+      },
+      "unifying": {
+        "eyebrow": "Register",
+        "title": "Het Schemaregister",
+        "desc": "Centraliseer schema's, JSON-LD-fragmenten en datamodellen in één uniform dashboard. Verminder fragmentatie en beheer elke relevante entiteit vanuit één centrale plek."
+      }
+    },
+    "security": {
+      "main_title": "Ingebouwde gegevensbeveiliging. Standaard voor iedereen.",
+      "main_subtitle": "Onze semantische firewall biedt systeembrede bescherming en beveiligt uw datastructuren standaard.",
+      "firewall": {
+        "title": "Gegevensfirewall",
+        "subtitle": "Robuuste bescherming aan de rand",
+        "desc": "Ons wereldwijde randnetwerk absorbeert volumetrische aanvallen direct, zodat uw gegevensoorsprong onzichtbaar en onaangetast blijft voor kwaadaardig verkeer."
+      },
+      "waf": {
+        "title": "Semantische Beveiliging",
+        "subtitle": "Beschermt gegevensverkeer tegen bedreigingen",
+        "desc": "Intelligente filtering analyseert inkomende pakketten in realtime en blokkeert injectie- en misvormde entiteiten voordat ze uw dataopslag bereiken."
+      },
+      "workspace": {
+        "title": "Toegangsbeheer",
+        "subtitle": "Vertrouwde schematoegang voor teams",
+        "desc": "Zero-trust-architectuur zorgt ervoor dat alleen geauthenticeerde gebruikers en conforme apparaten uw interne tools en gegevensbronnen kunnen wijzigen."
+      }
+    },
+    "code": {
+      "title": "Eenvoud voorop, altijd.",
+      "desc": "Intuïtieve dashboards, visuele schemabuilders en uitgebreide handleidingen die naadloos aansluiten op uw bestaande workflow — zonder één regel code te schrijven."
+    },
+    "stats": {
+      "lines_code": "Dagelijks in kaart gebrachte gegevensentiteiten",
+      "languages": "Ondersteunde schematypes en semantische vocabulaires",
+      "downloads": "Downloads van schemapakketten"
+    },
+    "fluid": {
+      "title": "Zelfherstellende schemabewerkingen.",
+      "desc": "Automatiseer de metadata. AI-gestuurde intelligentie stelt proactief de juiste schematypes, eigenschapslabels en relatiekoppelingen voor en past deze toe.",
+      "ai_detection": "Entiteitsdetectie",
+      "assign": {
+        "header": "Type Gedetecteerd",
+        "sub": "Eigenschappen analyseren...",
+        "action": "Suggestie: Schema.org/Person (98%)"
+      },
+      "label": {
+        "header": "Contextanalyse",
+        "sub": "Vocabulaire scannen...",
+        "action": "Toegepast: [Semantisch] [Vereist]"
+      },
+      "route": {
+        "header": "Koppelingsopdracht",
+        "sub": "Ontologieën matchen...",
+        "action": "Verzonden naar: Data Engineering"
+      }
+    },
+    "cta": "Bouw iets zinvols.",
+    "footer": {
+      "about_title": "Over Ons",
+      "sf_title": "Verenigd Koninkrijk",
+      "sf_address": "C/O Chalk Hill Barn Office 1 Upstairs<br>Yew Tree Farm, Stone Street, Stanford, Kent<br>Engeland, TN25 6DH",
+      "london_title": "",
+      "london_address": "",
+      "mission": "Wij leveren de semantische infrastructuur om een gestructureerd web te definiëren, op te schalen en te beveiligen, zodat gegevens universeel begrijpelijk worden.",
+      "copyright": "&copy; 2026 The Structured Data Company Limited. Alle rechten voorbehouden.",
+      "status": "Alle systemen functioneren normaal.",
+      "links": {
+        "terms": "Servicevoorwaarden",
+        "privacy": "Privacybeleid",
+        "cookies": "Cookiebeleid",
+        "legal": "Juridisch en Registratie"
+      }
+    }
+  },
+  "terms": {
+    "sidebar": {
+      "title": "Juridisch Centrum",
+      "tos": "Servicevoorwaarden",
+      "privacy": "Privacybeleid",
+      "cookies": "Cookiebeleid",
+      "registration": "Juridisch & Registratie"
+    },
+    "title": "Juridisch",
+    "tos": {
+      "title": "Servicevoorwaarden",
+      "last_updated": "Laatst herzien op 2 mei 2024",
+      "content": "LEES DE VOLGENDE SERVICEVOORWAARDEN VAN HET PORTAAL ZORGVULDIG DOOR VOORDAT U LID WORDT VAN HET BEDRIJF OF GEBRUIK MAAKT VAN DE DIENSTEN VAN HET BEDRIJF. DEZE SERVICEVOORWAARDEN VORMEN EEN JURIDISCHE OVEREENKOMST TUSSEN U EN HET BEDRIJF EN ZIJN EEN AANVULLING OP DE VOORWAARDEN VAN DE OVEREENKOMST (ZOALS HIERONDER GEDEFINIEERD). INDIEN U DEZE SERVICEVOORWAARDEN NIET ACCEPTEERT OF NIET KAN ACCEPTEREN, IS HET U NIET TOEGESTAAN LID TE WORDEN VAN HET BEDRIJF. INDIEN U ELEKTRONISCH TOEGANG KRIJGT TOT DEZE ADDENDUM, BEVESTIGT U UW INSTEMMING MET DE VOORWAARDEN DOOR OP DE KNOP \"ACCOUNT AANMAKEN\" TE KLIKKEN. INDIEN U NIET INSTEMT MET DEZE SERVICEVOORWAARDEN, MAAK DAN GEEN ACCOUNT AAN.<br><br>Deze Servicevoorwaarden (de \"Voorwaarden\") regelen uw toegang tot en gebruik van onze website en mobiele applicatie (gezamenlijk het \"Portaal\"), en bijbehorende inhoud, functies, software en toepassingen binnen het Portaal (gezamenlijk de \"Dienst\"). Het Portaal en de Dienst worden beheerd en onderhouden door The Structured Data Company. De termen \"wij\", \"ons\", \"onze\" en \"Bedrijf\" verwijzen eveneens naar The Structured Data Company. De term \"u\" verwijst naar de persoon die het Portaal bezoekt.<br><br>Lees deze Voorwaarden zorgvuldig door. Ze bevatten belangrijke informatie over uw wettelijke rechten, waaronder beperkingen op de aansprakelijkheid van het Bedrijf en bepaalde derden, disclaimers van garanties en een onderwerping aan jurisdictie. Elke keer dat u via welk middel dan ook toegang krijgt tot de Dienst (bijvoorbeeld via internet of op een mobiel apparaat), stemt u onherroepelijk in met de versie van de Voorwaarden die op dat moment op het Portaal staat gepubliceerd. U mag het Portaal of de Dienst niet gebruiken indien u niet instemt met deze Voorwaarden. Door toegang te krijgen tot of gebruik te maken van de dienst, stemt u in met deze voorwaarden.<br><br><strong>TOELATINGSVEREISTEN</strong><br>Om gebruik te mogen maken van de Diensten van het Bedrijf, dient u minimaal 23 jaar oud te zijn en woonachtig te zijn in het Verenigd Koninkrijk, de Verenigde Staten, Canada, Europa, Japan, Zuid-Korea, Singapore, Spanje, Hongkong of Thailand. Bepaalde functies zijn mogelijk niet beschikbaar afhankelijk van uw locatie en andere toelatingscriteria. U mag geen software of netwerktechnieken gebruiken, waaronder een Virtual Private Network (VPN), om uw IP-adres te wijzigen of deze beperking anderszins te omzeilen.<br><br><strong>WIJZIGINGEN</strong><br>Wij kunnen deze servicevoorwaarden, ons privacybeleid en ons cookiebeleid van tijd tot tijd wijzigen. Indien wij materiële wijzigingen aanbrengen, zullen wij u hiervan via onze diensten of op andere wijze op de hoogte stellen, zodat u de wijzigingen kunt bekijken voordat ze van kracht worden. Wij komen overeen dat wijzigingen geen terugwerkende kracht hebben. Indien u bezwaar heeft tegen wijzigingen, kunt u uw account sluiten. Uw voortgezet gebruik van onze diensten na publicatie of kennisgeving van wijzigingen betekent dat u instemt met de bijgewerkte voorwaarden per de ingangsdatum.<br><br><strong>BESCHIKBAARHEID, FOUTEN EN ONNAUWKEURIGHEDEN</strong><br>Toegang tot de Diensten kan worden verminderd of onbeschikbaar zijn tijdens perioden van aanzienlijke volatiliteit of volume. Dit kan leiden tot beperkingen in de toegang tot uw Account of de Diensten, waaronder het onvermogen om transacties te initiëren of te voltooien, en kan ook leiden tot vertraagde reactietijden van de klantenservice.<br><br>a. Wij garanderen niet dat de Site of andere Diensten zonder onderbreking beschikbaar zijn en wij garanderen niet dat enige order wordt uitgevoerd, geaccepteerd, geregistreerd of open blijft, of dat uw Account toegankelijk is; en<br><br>b. Houd er rekening mee dat onze reactietijden voor ondersteuning vertraagd kunnen zijn, ook tijdens perioden van aanzienlijke volatiliteit of volume, met name voor niet-veiligheids- en integriteitsgebonden kwesties.<br>Hoewel wij ernaar streven nauwkeurige en tijdige informatie op de Site te verstrekken, is de Site (inclusief, maar niet beperkt tot, de Inhoud zoals hieronder gedefinieerd) mogelijk niet altijd volledig nauwkeurig, compleet of actueel en kan technische onnauwkeurigheden of typografische fouten bevatten. Ter continuering van zo volledig en nauwkeurig mogelijke informatie kan informatie, voor zover toegestaan door toepasselijk recht, van tijd tot tijd zonder voorafgaande kennisgeving worden gewijzigd of bijgewerkt. U dient alle informatie te verifiëren voordat u erop vertrouwt en alle beslissingen op basis van informatie op de Site zijn uitsluitend uw eigen verantwoordelijkheid.<br><br>Wij actualiseren voortdurend ons aanbod van producten en diensten. Producten of diensten op onze service kunnen fout geprijsd, onjuist beschreven of niet beschikbaar zijn. Wij kunnen niet garanderen dat de informatie volledig en juist is. Wij behouden ons het recht voor om informatie op elk moment zonder voorafgaande kennisgeving te wijzigen of bij te werken en fouten te corrigeren. In geval van onvoorziene omstandigheden is het Bedrijf gerechtigd de diensten tijdelijk te onderbreken voor onderhoud of reparatie, indien dit noodzakelijk is voor een goede werking van de diensten.<br><br><strong>ACCOUNT</strong><br>U dient een account bij ons te hebben (\"Account\") om bepaalde onderdelen van de Dienst te kunnen gebruiken. Bij het aanmaken van een Account verklaart en garandeert u dat u de wettelijke meerderjarigheidsleeftijd in uw jurisdictie heeft bereikt, dat u rechtens bevoegd bent juridisch bindende overeenkomsten aan te gaan, en dat alle informatie die u verstrekt nauwkeurig, actueel, waarheidsgetrouw en volledig is. U bent als enige verantwoordelijk voor alle activiteiten onder uw Account. Wij zijn op geen enkele wijze aansprakelijk indien uw wachtwoord en/of Account door een derde worden misbruikt. U stemt er dan ook mee in uw wachtwoord veilig te houden en uw accountgegevens te allen tijde actueel te houden.<br><br>Tenzij uitdrukkelijk door ons toegestaan en onder voorbehoud van de Voorwaarden, mag u geen meerdere Accounts aanmaken. U mag uw Account of accountgegevens niet uitlenen, overdragen of verkopen aan een andere partij en mag niet het account van een andere gebruiker gebruiken zonder diens schriftelijke toestemming.<br><br>Wij kunnen u af en toe contacteren via het e-mailadres dat u bij de accountregistratie heeft opgegeven. U kunt zich niet afmelden voor dergelijke communicatie en u bent verantwoordelijk voor het bijhouden van een actueel e-mailadres. Indien u communicatie mist door een onjuist, verouderd of onvolledig e-mailadres, zijn wij niet aansprakelijk voor eventuele verliezen of schade als gevolg hiervan.<br><br>U mag uw account niet sluiten of verwijderen zolang er openstaande transacties zijn. Het Bedrijf behoudt zich het recht voor een gebruikersaccount te deactiveren bij frauduleuze activiteiten die een gebruiker heeft gepleegd gedurende het bestaan van het Bedrijf.<br><br>Handelingen die als frauduleuze activiteit kunnen worden aangemerkt:<br>a. Het aanmaken van meerdere accounts onder dezelfde identiteit;<br>b. Het aanmaken van meerdere accounts om meerdere keren gebruik te maken van bonussen van het Bedrijf;<br>c. Fraude met gestolen creditcards of fraude met andere betaalmethoden;<br>d. Elk gedrag dat kenmerken van frauduleuze activiteit vertoont en risico's voor de dienst met zich meebrengt.<br><br><strong>VERBODEN ACTIVITEITEN</strong><br>U stemt ermee in dat u het volgende niet zult doen:<br><br>a. De Dienst of enige Inhoud kopiëren, wijzigen of afgeleide werken daarvan maken;<br><br>b. Enige Inhoud (inclusief gegevens) kopiëren, manipuleren of aggregeren met het doel deze beschikbaar te stellen aan derden;<br><br>c. Enige Inhoud of toegang tot de Dienst verhandelen, verkopen, verhuren, uitlenen, leasen of in licentie geven, hetzij commercieel of gratis;<br><br>d. Data mining, crawling, \"scraping\", robots of vergelijkbare geautomatiseerde of gegevensverzamelmethoden gebruiken of introduceren in de Dienst, of handmatig enig gedeelte van de Dienst openen, verkrijgen, bewaken of kopiëren, of Inhoud downloaden of opslaan (tenzij uitdrukkelijk door ons toegestaan);<br><br>e. Buitensporige informatieverzoeken indienen of handelingen verrichten die de Dienst of enige server of netwerk verbonden met de Dienst verstoren, onderbreken of onevenredig belasten, of de kwaliteit of beschikbaarheid van enige Inhoud of de snelheid of functionaliteit van de Dienst negatief beïnvloeden;<br><br>f. Een virus, Trojaans paard, worm, tijdbom of andere schadelijke software in de Dienst of het Platform introduceren, of enig apparaat, software of routine gebruiken om hardware of software te omzeilen die volumeverzoeken om informatie verbiedt;<br><br>g. Beveiligingsmaatregelen schenden, omzeilen of ontwijken die bedoeld zijn om toegang tot het Platform, de Inhoud of de Dienst te beperken of te voorkomen; of<br><br>h. Op andere wijze proberen ongeautoriseerde toegang te krijgen tot de Dienst, enige Inhoud of computersystemen of netwerken verbonden met de Dienst of enige server van het Bedrijf, via hacking, wachtwoordmining, ongeautoriseerd gebruik van andermans wachtwoord/inloggegevens of enig andere methode;<br><br>i. Het gebruik van de Dienst door andere gebruikers beperken, belemmeren of verstoren (inclusief via hacking of het bekladden van het Portaal);<br><br>j. Via het Portaal computerprogramma's introduceren of verspreiden die systemen, gegevens of persoonlijke informatie van ons of derden beschadigen, verstoren, onderscheppen, verzamelen, vrijgeven of openbaar maken;<br><br>k. Gebruik maken van onze handelsmerken, dienstmerken, handelsnamen of logo's, of die van derden die op het Platform worden weergegeven;<br><br>l. Auteursrechtelijke of andere eigendomsvermeldingen in de Inhoud wijzigen of verwijderen;<br><br>m. De Website, Inhoud of Dienst gebruiken voor of in verband met activiteiten die (i) toepasselijke wet- en regelgeving schenden, inclusief maar niet beperkt tot het kantoor voor buitenlandse vermogenscontrole (OFAC) van het Amerikaanse Ministerie van Financiën, of (ii) opbrengsten uit onwettige of illegale activiteiten betreffen.<br><br>Voorts erkent en aanvaardt u dat u (en niet wij) als enige verantwoordelijk bent voor het verkrijgen en onderhouden van alle telecommunicatie-, breedbanden- en computerhardware, -apparatuur, -software en -diensten die u nodig heeft voor toegang tot en gebruik van de Dienst, alsmede voor het betalen van alle hiermee verband houdende kosten.<br><br><strong>AANSPRAKELIJKHEIDSBEPERKINGEN</strong><br>De Diensten, het Portaal en de Site worden aangeboden op een \"zoals ze zijn\" en \"zoals beschikbaar\" basis, zonder verdere beloften van onze kant met betrekking tot de beschikbaarheid van de Diensten. Wij geven in het bijzonder geen impliciete garanties van eigendomsrecht, verkoopbaarheid, geschiktheid voor een bepaald doel en/of niet-inbreuk. Wij doen geen beloften dat toegang tot de Site, de Diensten of het daarin opgenomen materiaal continu, ononderbroken, tijdig of foutvrij zal zijn.<br><br>Indien u een geschil heeft met een of meer gebruikers van het Bedrijf, stemt u ermee in dat noch wij, noch onze gelieerde ondernemingen of dienstverleners, noch onze respectieve functionarissen, directeuren, vertegenwoordigers, medewerkers of partners aansprakelijk zijn voor claims, eisen of schade van welke aard dan ook voortvloeiend uit of verband houdend met dergelijke geschillen.<br><br>Wij zijn niet aansprakelijk voor enige schending van de Overeenkomst, inclusief vertragingen, prestatiemislukkingen of serviceonderbrekingen, wanneer deze direct of indirect voortvloeien uit abnormale en onvoorzienbare omstandigheden buiten onze controle, noch zijn wij aansprakelijk indien de schending het gevolg is van de toepassing van verplicht wettelijke bepalingen.<br><br><strong>DISCLAIMER VAN GARANTIES</strong><br>Het Bedrijf en zijn gelieerde ondernemingen doen geen verklaringen of garanties met betrekking tot de diensten, inclusief dat de diensten ononderbroken of foutvrij zijn, en leveren de diensten (inclusief inhoud en informatie) op een \"zoals ze zijn\" en \"zoals beschikbaar\" basis. Voor zover maximaal toegestaan door toepasselijk recht, wijst het Bedrijf en zijn gelieerde ondernemingen elke impliciete of wettelijke garantie af, inclusief elke impliciete garantie van eigendomstitel, gegevensnauwkeurigheid, niet-inbreuk of verkoopbaarheid of geschiktheid voor een bepaald doel.<br><br>VOOR ZOVER MAXIMAAL TOEGESTAAN DOOR TOEPASSELIJK RECHT, AANVAARDT HET BEDRIJF GEEN AANSPRAKELIJKHEID OF VERANTWOORDELIJKHEID VOOR (I) FOUTEN, VERGISSINGEN OF ONNAUWKEURIGHEDEN IN ENIGE INHOUD; (II) PERSOONLIJK OF EIGENDOMSLETSEL VAN WELKE AARD DAN OOK ALS GEVOLG VAN UW TOEGANG TOT OF GEBRUIK VAN DE DIENST; (III) ONGEAUTORISEERDE TOEGANG TOT OF GEBRUIK VAN ONZE SERVERS EN/OF ALLE DAARIN OPGESLAGEN INFORMATIE; (IV) ONDERBREKING OF STOPZETTING VAN TRANSMISSIE VAN OF NAAR DE DIENST; (V) BUGS, VIRUSSEN, TROJAANSE PAARDEN OF DERGELIJKE DIE VIA DE DIENST DOOR DERDEN KUNNEN WORDEN DOORGEZONDEN; (VI) FOUTEN OF WEGLATINGEN IN ENIGE INHOUD OF VOOR VERLIES OF SCHADE OPGELOPEN ALS GEVOLG VAN HET GEBRUIK VAN INHOUD DIE VIA DE DIENST IS GEPLAATST, DOORGEZONDEN OF ANDERSZINS BESCHIKBAAR GESTELD; EN/OF (VII) LASTERLIJK, AANSTOOTGEVEND OF ONWETTIG GEDRAG VAN DERDEN.<br><br><strong>DEELNAME EN NALEVING</strong><br>Om de betrokkenheid van gebruikers bij onze producten en diensten te beoordelen en hun bereidheid voor toekomstige innovaties te meten, dienen gebruikers alle productcycli te voltooien voordat zij een opnameverzoek indienen. Opnames kunnen niet worden verwerkt midden in een cyclus, en productinteracties kunnen niet worden geannuleerd, overgeslagen of teruggedraaid vanwege bindende overeenkomsten met onze handelspartners. Ons systeem wordt regelmatig bijgewerkt; het langdurig vasthouden van een product door een gebruiker kan de voortgang van handelspartners negatief beïnvloeden. Gebruikers worden aangemoedigd hun productcycli te voltooien en opnameverzoeken in te dienen binnen 24 tot 48 uur. Indien een product langer dan de opgegeven 48 uur wordt bewaard, voorzien onze servicevoorwaarden in aanpassingen van de standaard betalingsschema's op basis van wederzijdse overeenstemming. Bij dergelijke aanpassingen kunnen nominale vergoedingen in rekening worden gebracht ter dekking van administratieve kosten. Het Bedrijf kan ook aanvullende documentatie opvragen ter verificatie van de authenticiteit van de betrokken fondsen. Gebruikers kunnen worden gevraagd de herkomst van deze fondsen aan te tonen. Bij twijfels over de legitimiteit van de fondsen behoudt het Bedrijf zich het recht voor een audit van het account uit te voeren. Om naleving te waarborgen, werkt elk account met afzonderlijke betalersinformatie, met uitzondering van coachaccounts.<br><br><strong>OPSCHORTING, BEËINDIGING EN ANNULERING</strong><br>Wij kunnen: (a) uw toegang tot alle of bepaalde Diensten van het Bedrijf opschorten, beperken of beëindigen, en/of (c) uw Account met onmiddellijke ingang deactiveren of annuleren om gegronde redenen, waaronder maar niet beperkt tot de gevallen waarin:<br><br>a. Een overheidsinstantie ons hiertoe verplicht;<br>b. U niet in staat lijkt te zijn één of meer verplichtingen na te komen;<br>c. Er sprake is van een insolventiegebeuртenis van welke aard dan ook (naar ons uitsluitend oordeel);<br>d. Er een onderzoek, claim, actie of procedure van welke aard dan ook tegen u wordt gestart (inclusief onderzoek naar vermoedelijk marktmisbruik, manipulatie of andere criminele activiteiten), u toepasselijke wet- en regelgeving heeft geschonden, of stappen worden ondernomen om een zekerheidsrecht jegens u af te dwingen;<br>e. U deze Overeenkomst schendt; of<br>f. Wij dit anderszins noodzakelijk achten ter bescherming van ons of het Bedrijf.<br>Indien wij uw Account opschorten, beperken of sluiten en/of uw gebruik van de Diensten beëindigen, zullen wij u (tenzij dit wettelijk niet is toegestaan) informeren over onze handelingen en de redenen voor weigering, opschorting of sluiting, en waar van toepassing de procedure voor het corrigeren van feitelijke fouten die tot de weigering, opschorting of sluiting van uw Account hebben geleid.<br>Wij kunnen uw account onmiddellijk, zonder voorafgaande kennisgeving of aansprakelijkheid, om welke reden dan ook beëindigen, opschorten of annuleren, met name indien u de Voorwaarden schendt. Bij beëindiging vervalt uw recht om de dienst te gebruiken onmiddellijk.<br><br><strong>EIGENDOM EN INTELLECTUELE EIGENDOMSRECHTEN</strong><br>a. Onder voorbehoud van deze Voorwaarden mag u Inhoud bekijken, afdrukken en kopiëren voor eigen persoonlijk gebruik. Het is u niet toegestaan Inhoud op welke wijze dan ook te kopiëren, reproduceren, downloaden, \"screen scrapen\", opslaan, verzenden, uitzenden, publiceren, wijzigen, afgeleide werken te maken, weer te geven, uit te voeren, te distribueren, te herverkopen, te licentiëren, te huren, te leasen of anderszins te gebruiken of over te dragen in strijd met deze Voorwaarden.<br><br>b. Alle Inhoud is eigendom van of wordt beheerd door het Bedrijf. Het Bedrijf, zijn logo, en alle andere product- of dienstnamen of slogans op de Dienst zijn geregistreerde en/of gewoonterechterlijke handelsmerken van het Bedrijf of zijn leveranciers of licentiegevers en mogen niet worden gekopieerd, nagemaakt of gebruikt zonder voorafgaande schriftelijke toestemming van het Bedrijf of de betreffende merkhouder. De uitstraling en het gevoel van de Dienst zijn het dienstmerk, handelsmerk en/of handelsuitstraling van het Bedrijf en mogen niet worden gekopieerd, nagemaakt of gebruikt zonder voorafgaande schriftelijke toestemming.<br><br>c. Niets in deze Voorwaarden verleent u enig belang in de intellectuele eigendomsrechten van het Bedrijf of van derden.<br><br>d. Alle gerelateerde logo's, handelsmerken, dienstmerken en handelsnamen zijn uitsluitend het eigendom van het Bedrijf.<br><br>e. U erkent dat het Bedrijf en/of zijn leveranciers het auteursrecht bezitten op alle Inhoud onder toepasselijk recht, en alle rechten op dergelijke Inhoud hebben voorbehouden.<br><br><strong>LINKS NAAR ANDERE WEBSITES</strong><br>Onze dienst kan links bevatten naar websites of diensten van derden die niet eigendom zijn van of worden beheerd door het Bedrijf. Het Bedrijf heeft geen controle over en aanvaardt geen verantwoordelijkheid voor de inhoud, het privacybeleid of de praktijken van websites of diensten van derden. U erkent en stemt ermee in dat het Bedrijf niet verantwoordelijk of aansprakelijk is, direct of indirect, voor enige schade of verlies veroorzaakt of beweerd te worden veroorzaakt door of in verband met het gebruik van of vertrouwen op dergelijke inhoud, goederen of diensten die beschikbaar zijn op of via dergelijke websites of diensten. Wij raden u ten zeerste aan de algemene voorwaarden en het privacybeleid van bezochte websites van derden te lezen.<br><br>U STEMT ERMEE IN DAT HET BEDRIJF ONDER GEEN ENKELE OMSTANDIGHEID VERANTWOORDELIJK OF AANSPRAKELIJK IS, DIRECT OF INDIRECT, VOOR GOEDEREN, DIENSTEN, INFORMATIE, BRONNEN EN/OF INHOUD BESCHIKBAAR OP OF VIA WEBSITES OF DIENSTEN VAN DERDEN, VOOR TRANSACTIES OF COMMUNICATIE MET DERDEN, OF VOOR SCHADE, VERLIEZEN OF LETSEL VEROORZAAKT DOOR OF IN VERBAND MET HET VOORGAANDE OF UW GEBRUIK VAN OF VERTROUWEN OP MATERIALEN, INHOUD OF ZAKELIJKE PRAKTIJKEN VAN DERDEN.<br><br><strong>BELEID INZAKE ONEERLIJK HANDELEN</strong><br>Ter opsporing, ontmoediging en voorkoming van oneerlijk handelen hanteert het Bedrijf de volgende beginselen:<br><br>a. Toewijzing van handhavings-, financiële inlichtingen- en toezichtsmiddelen op risicogerichte basis;<br>b. Nauwe beleids- en operationele coördinatie en samenwerking binnen de Overheid;<br>c. Een preventieve aanpak die strenge vergunningsvereisten en uitgebreide rapportageplichten, strikte Anti-Oneerlijk Handelen-regelgeving en risicogebaseerd toezicht op de relevante financiële en niet-financiële sectoren combineert;<br>d. Verbetering van het begrip van oneerlijk-handelenrisico's bij private stakeholders en bevordering van een nalevingscultuur;<br>e. Doortastend en afschrikwekkend optreden tegen oneerlijke activiteiten, inclusief die gerelateerd aan buitenlandse misdrijven;<br>f. Bijstand verlenen aan andere rechtsgebieden via formele en informele kanalen, spontaan en op verzoek.<br><br><strong>VERTROUWELIJKHEIDSBELEID MET SAMENWERKENDE HANDELAARS</strong><br>A. Vertrouwelijke en Bedrijfseigen Informatie<br>In de uitoefening van de werkzaamheden worden medewerkers blootgesteld aan vertrouwelijke en bedrijfseigen informatie van de werkgever. Vertrouwelijke en bedrijfseigen informatie omvat alle gegevens of informatie die concurrentiegevoelig is en niet algemeen bekend is bij het publiek, inclusief maar niet beperkt tot informatie over ontwikkelings- en marketingplannen, financiën, operaties, systemen, eigendomsconcepten, documentatie, rapporten, gegevens, specificaties, computersoftware, broncode, objectcode, stroomdiagrammen, databases, uitvindingen, knowhow, handelsgeheimen, klantenlijsten, leveranciersrelaties, prijsstelling, bedrijfsplannen en interne prestatie-informatie met betrekking tot activiteiten in het verleden, heden of de toekomst. De medewerker erkent en stemt ermee in dat de vertrouwelijke en bedrijfseigen informatie waardevolle eigendom van de werkgever is, ontwikkeld over een lange periode met aanzienlijke kosten, en bescherming verdient.<br><br>B. Vertrouwelijkheidsverplichtingen<br>Tenzij uitdrukkelijk anders toegestaan in deze Overeenkomst, zal de medewerker geen vertrouwelijke en bedrijfseigen informatie op welke wijze dan ook, direct of indirect, openbaar maken of gebruiken, noch gedurende de looptijd van deze Overeenkomst noch daarna, tenzij vereist voor de uitoefening van zijn taken of met voorafgaande schriftelijke toestemming van de werkgever.<br><br>C. Rechten op Vertrouwelijke en Bedrijfseigen Informatie<br>Alle ideeën, concepten, werkproducten, informatie, schriftelijk materiaal of andere vertrouwelijke en bedrijfseigen informatie die door de werkgever aan de medewerker worden bekendgemaakt, (i) zijn en blijven de exclusieve eigendom van de werkgever, en (ii) worden uitsluitend bekendgemaakt aan de medewerker op basis van de overeenkomst van de medewerker deze vertrouwelijk te houden. Deze overeenkomst verleent de medewerker geen enkel recht, licentie, eigendom of ander belang in of op de vertrouwelijke en bedrijfseigen informatie.<br><br>D. Onherstelbare Schade<br>De medewerker erkent dat gebruik of openbaarmaking van vertrouwelijke en bedrijfseigen informatie op een wijze die niet in overeenstemming is met deze overeenkomst, aanleiding geeft tot onherstelbare schade waarvoor schadevergoeding geen afdoend rechtsmiddel zou zijn. Bijgevolg heeft de werkgever, naast andere wettelijke rechtsmiddelen, recht op billijke of gerechtelijke maatregelen ter voorkoming van ongeautoriseerd gebruik of openbaarmaking. De werkgever heeft het recht alle juridisch toelaatbare rechtsmiddelen te benutten, inclusief maar niet beperkt tot directe en indirecte schadevergoeding, alsmede de terugvordering van proceskosten en advocatenhonoraria."
+    },
+    "privacy": {
+      "title": "Privacybeleid",
+      "last_updated": "Laatst herzien op 11 januari 2024",
+      "content": "Bij The Structured Data Company zijn wij sterk toegewijd aan de bescherming en eerbiediging van uw privacy. Dit Privacybeleid (\"Privacybeleid\") heeft betrekking op uw toegang tot en gebruik van deze website (de \"Website\"), alsmede bijbehorende inhoud, software en mobiele applicaties (gezamenlijk de \"Dienst\"). Dit Privacybeleid legt uit wanneer, waarom en hoe wij persoonlijke informatie verzamelen en gebruiken van personen die onze Website bezoeken of gebruik maken van onze Diensten, onder welke voorwaarden wij uw persoonlijke informatie aan derden kunnen verstrekken, en hoe wij uw persoonlijke informatie beveiligen. Wij kunnen dit Privacybeleid van tijd tot tijd wijzigen. Door gebruik te maken van onze Website of onze Diensten, stemt u in met dit Privacybeleid. Lees dit Beleid zorgvuldig door.<br><br><strong>WIJZIGINGEN</strong><br>Het Bedrijf (\"wij\" of \"ons\") kan dit privacybeleid wijzigen en bij materiële wijzigingen zullen wij u via onze diensten of op andere wijze informeren, zodat u de wijzigingen kunt bekijken voordat ze van kracht worden. Indien u bezwaar heeft, kunt u uw account sluiten. Uw voortgezet gebruik van onze diensten na publicatie of kennisgeving van wijzigingen aan dit privacybeleid houdt in dat het verzamelen, gebruiken en delen van uw persoonsgegevens onderworpen is aan het bijgewerkte privacybeleid per de ingangsdatum.<br><br><strong>ACCOUNT AANMAKEN</strong><br>Om een account aan te maken, dient u gegevens te verstrekken, waaronder uw e-mailadres en/of mobiel nummer en een zelf ingesteld wachtwoord. Bij het verzamelen van persoonlijke informatie doen wij dit binnen de noodzakelijke grenzen, waarbij rechtmatigheid en eerlijkheid prioriteit hebben. Wij kunnen uw persoonlijke informatie direct van u verzamelen of van andere entiteiten waarmee wij samenwerken, zoals handelaars, gebruikers, overheidsinstanties of onze eigen interne bronnen. Persoonlijke informatie die wij verzamelen, gebruiken en openbaar maken omvat:<br><br>a. Contactgegevens, zoals uw naam, e-mailadres en contactnummer;<br><br>b. Identiteitsgegevens zoals uw nationaliteit;<br><br>c. Informatie vereist onder toepasselijke wet- en regelgeving, professionele verplichtingen, intern beleid en risicobeheer, zoals bewaarplichten, fraudepreventie, auditdoeleinden, nalevingsscreening en due diligence;<br><br>d. Informatie met betrekking tot informatietechnologiesystemen en -processen, kantoorapparatuur en -faciliteiten; en<br><br>e. Foto's en ander audiovisueel materiaal.<br>Indien u persoonlijke informatie van een andere persoon aan ons verstrekt, bevestigt u dat deze juist en correct is, dat alle vereiste toestemmingen zijn verkregen, of dat u anderszins gerechtigd bent dergelijke persoonlijke informatie aan ons te verstrekken.<br><br><strong>BESCHERMING VAN UW PERSOONLIJKE GEGEVENS</strong><br>Wij maken gebruik van passende technische, organisatorische en administratieve beveiligingsmaatregelen om uw persoonlijke informatie te beschermen tegen verlies, misbruik of ongeautoriseerde toegang, openbaarmaking, wijziging of vernietiging. Wij beperken de toegang tot uw persoonlijke informatie tot degenen die een legitieme zakelijke noodzaak hebben om deze te kennen. Persoonlijke informatie wordt onder passend beheer geplaatst met redelijke beschermende maatregelen. Er zijn echter altijd risico's verbonden aan het verstrekken van persoonlijke informatie, aangezien geen enkele technologie volledig risicovrij is. Indien er sprake is van een datalek, zullen wij onmiddellijk en effectief maatregelen treffen voor zover dit mogelijk is.<br><br><strong>BEWARING VAN UW PERSOONLIJKE GEGEVENS</strong><br>Wij bewaren uw persoonlijke informatie niet langer dan redelijkerwijs noodzakelijk voor de doeleinden waarvoor deze is verzameld, of zolang als vereist voor zakelijke of wettelijke doeleinden. Bij het vernietigen van uw persoonlijke informatie nemen wij commercieel redelijke maatregelen om uw persoonlijke informatie onherstelbaar of niet-reproduceerbaar te maken in overeenstemming met toepasselijk recht.<br><br><strong>HOE WIJ UW PERSOONLIJKE GEGEVENS GEBRUIKEN</strong><br>Hoe wij uw persoonlijke informatie gebruiken, hangt af van de diensten die u gebruikt, hoe u deze diensten gebruikt en de keuzes die u in uw instellingen maakt. Wij gebruiken de informatie die wij over u hebben om onze diensten te leveren en te personaliseren, mede met behulp van geautomatiseerde systemen en gevolgtrekkingen, zodat onze diensten relevanter en nuttiger voor u en anderen zijn.<br><br><strong>COOKIES EN VERGELIJKBARE TECHNOLOGIEËN</strong><br>Zoals nader beschreven in ons Cookiebeleid, gebruiken wij cookies en vergelijkbare technologieën (zoals pixels en advertentietags) om gegevens te verzamelen (zoals apparaat-ID's) om u en uw apparaten te herkennen op en via verschillende diensten en apparaten. Wij staan ook bepaalde derden toe cookies te gebruiken zoals beschreven in ons Cookiebeleid.<br><br><strong>BEVEILIGING</strong><br>Wij implementeren beveiligingsmaatregelen om uw gegevens te beschermen, zoals HTTPS. Wij bewaken onze systemen regelmatig op mogelijke kwetsbaarheden en aanvallen. Wij kunnen echter de beveiliging van informatie die u aan ons stuurt niet garanderen.<br><br><strong>DO NOT TRACK-SIGNALEN</strong><br>Wij delen momenteel geen persoonlijke gegevens met derden voor directe marketingdoeleinden zonder uw toestemming.<br><br><strong>BEOORDELING VAN HET PRIVACYBELEID</strong><br>Dit portaal zal niet openbaar worden gemaakt en strikt vertrouwelijk worden gehouden om lekken van vertrouwelijke informatie van handelaars te voorkomen."
+    },
+    "cookies": {
+      "title": "Cookiebeleid",
+      "last_updated": "Van kracht per 19 november 2015",
+      "content": "Bij het Bedrijf geloven wij in duidelijkheid en openheid over hoe wij gegevens over u verzamelen en gebruiken. Dit cookiebeleid is van toepassing op elk product of dienst van het Bedrijf dat naar dit beleid verwijst. Wij gebruiken cookies en vergelijkbare technologieën zoals pixels, lokale opslag en mobiele advertentie-ID's (in dit beleid gezamenlijk aangeduid als \"cookies\") om gegevens te verzamelen en te gebruiken als onderdeel van onze diensten, zoals gedefinieerd in ons Privacybeleid. In de geest van transparantie biedt dit beleid gedetailleerde informatie over hoe en wanneer wij deze technologieën gebruiken.<br>Door onze diensten te blijven bezoeken of gebruiken, stemt u in met het gebruik van cookies en vergelijkbare technologieën voor de in dit beleid beschreven doeleinden.<br><br><strong>WELKE TECHNOLOGIEËN WORDEN GEBRUIKT</strong><br><br><strong>COOKIES</strong><br>Cookies zijn kleine tekstbestanden met een reeks tekens die op uw computer of mobiel apparaat kunnen worden geplaatst, waarmee uw browser of apparaat uniek worden geïdentificeerd. Wij kunnen technologieën zoals cookies, pixels en lokale opslag gebruiken om producten, diensten en advertenties te leveren, te beveiligen en te begrijpen. Wij gebruiken twee soorten cookies: persistente cookies en sessiecookies. Een persistente cookie blijft na de huidige sessie bestaan en wordt voor vele doeleinden gebruikt, zoals het herkennen van u als bestaand lid. Een sessiecookie bestaat alleen zo lang als de sessie (gewoonlijk het huidige websitebezoek of de browsersessie).<br><br><strong>PIXELS</strong><br>Een pixel is een kleine afbeelding die kan worden ingebed in webpagina's en e-mails, waarvoor een aanroep naar onze servers vereist is om de pixel te renderen. Wij gebruiken pixels om meer te leren over uw interacties met e-mail- of webinhoud. Pixels kunnen ons en derden ook in staat stellen cookies in uw browser te plaatsen.<br><br><strong>LOKALE OPSLAG</strong><br>Lokale opslag stelt een website of applicatie in staat informatie lokaal op uw apparaat op te slaan. Lokale opslag kan worden gebruikt om de ervaring te verbeteren, bijvoorbeeld door functies in te schakelen, uw voorkeuren te onthouden en de sitefunctionaliteit te versnellen.<br><br><strong>WAARVOOR WORDEN DEZE TECHNOLOGIEËN GEBRUIKT</strong><br>Wij gebruiken cookies en vergelijkbare technologieën om u te herkennen wanneer u onze diensten bezoekt. Indien u bent ingelogd, helpen deze technologieën ons u de juiste informatie te tonen en uw ervaring te personaliseren. Cookies stellen het Bedrijf in staat u te identificeren en uw account te verifiëren.<br><br><strong>BEVEILIGING</strong><br>Wij gebruiken cookies en vergelijkbare technologieën om uw interacties met onze diensten sneller en veiliger te maken. Cookies ondersteunen onze beveiligingsfuncties, houden uw account veilig en helpen ons kwaadaardige activiteiten en schendingen van onze Gebruikersovereenkomst te detecteren.<br><br><strong>VOORKEUREN, FUNCTIES EN DIENSTEN</strong><br>Wij gebruiken cookies en vergelijkbare technologieën om de functionaliteit van onze diensten mogelijk te maken, zoals het helpen invullen van formulieren en het bieden van functies, inzichten en gepersonaliseerde inhoud. Wij gebruiken deze technologieën ook om informatie over uw browser en voorkeuren te onthouden.<br><br><strong>BROWSERINSTELLINGEN</strong><br>De meeste browsers stellen u in staat cookies via hun instellingen te beheren. Bovendien kunt u met de meeste browsers cookies bekijken en verwijderen. Raadpleeg de documentatie van uw browserfabrikant voor meer informatie over browserinstellingen.<br><br><strong>HOE KUNT U COOKIES BEHEREN?</strong><br>Bezoek de Network Advertising Initiative op http://www.networkadvertising.org/managing/opt_out.asp, de Digital Advertising Alliance op http://www.aboutads.info/, of de European Digital Advertising Alliance op http://youronlinechoices.eu/ voor meer informatie over de keuzes die adverteerders bieden om te bepalen hoe informatie over uw online activiteiten wordt verzameld en gebruikt. Uw browser of apparaat kan ook instellingen bieden waarmee u browsercookies kunt in- of uitschakelen en kunt verwijderen. Bepaalde onderdelen van de producten van het Bedrijf werken mogelijk niet correct als u het gebruik van browsercookies heeft uitgeschakeld."
+    },
+    "registration": {
+      "certificate": "Certificaat",
+      "title": "Juridische Kennisgeving en Registratie",
+      "content": "<strong>1. Partijen</strong><br>De partijen bij deze Algemene Gebruiksvoorwaarden zijn het Bedrijf en u als gebruiker, waarbij onder gebruiker wordt verstaan elke natuurlijke of rechtspersoon die vrijwillig en kosteloos toegang heeft tot het Portaal, ongeacht of u gebruik maakt van de aangeboden diensten. Het enkele feit van het bezoeken van het Portaal betekent dat u zich zonder voorbehoud onderwerpt aan deze Algemene Gebruiksvoorwaarden.<br><br><strong>2. Diensten</strong><br>Wij bieden het Portaal aan om onze activiteiten te verspreiden en internetgebruikers specifieke informatie te verstrekken over de diensten die wij aanbieden.<br><br><strong>3. Verplichtingen van de gebruiker</strong><br>Als gebruiker stemt u ermee in:<br><br>De Dienst zorgvuldig, correct en rechtmatig te gebruiken, met inachtneming van geldende wet- en regelgeving (met name op het gebied van gegevensbescherming en intellectuele eigendom), de goede zeden, de openbare orde en deze Algemene Gebruiksvoorwaarden.<br><br>Deze Algemene Gebruiksvoorwaarden of andere toepasselijke voorwaarden periodiek te raadplegen op eventuele wijzigingen.<br><br>De kennisgevingen die wij u sturen te controleren, omdat deze belangrijke informatie kunnen bevatten.<br><br>Het Portaal niet voor commerciële doeleinden te gebruiken, zoals het verzamelen van informatie of inhoud om andere diensten aan te bieden die duidelijke concurrentie voor het Portaal vormen.<br><br>Het Portaal niet te wijzigen of te proberen te wijzigen op enigerlei wijze, of middelen te gebruiken die het uiterlijk of de functies van het Portaal nabootsen.<br><br>Geen computervirussen, wormen, Trojaanse paarden of andere schadelijke code te introduceren die is ontworpen om de functionaliteiten van het Portaal te verstoren, te vernietigen of te beperken.<br><br>Geen gebruik te maken van reverse engineering-technieken en/of het decoderen, decompileren of op andere wijze achterhalen van de broncode van het Portaal of enig ander element dat is onderworpen aan intellectuele eigendomsrechten.<br><br>De dienst (of een netwerk verbonden met de dienst) niet te beschadigen, uitschakelen, overbelasten of belemmeren, of het gebruik ervan te verstoren.<br><br>In geen geval handelingen te verrichten die de rechten of belangen van het Portaal of derden kunnen schenden, zoals intellectuele of industriële eigendomsrechten.<br><br><strong>4. Intellectuele en industriële eigendomsrechten</strong><br>De intellectuele eigendomsrechten op het Bedrijf en de elementen waaruit het bestaat, inclusief de programmering, het ontwerp, de toepassingen, afbeeldingen, codes, teksten of daarin opgenomen afbeeldingen, behoren uitsluitend toe aan het Bedrijf. De domeinnaam, merken, handelsnamen en in het algemeen alle onderscheidende kenmerken van het Bedrijf zijn eveneens eigendom van het Bedrijf. Enige reproductie, distributie, openbare mededeling, transformatie of enige andere vorm van gebruik is verboden zonder uitdrukkelijke schriftelijke toestemming van het Bedrijf. Indien u een inbreuk op de intellectuele en/of industriële eigendomsrechten constateert, neem dan zo spoedig mogelijk contact op met de klantenservice.<br><br><strong>5. Links naar externe sites</strong><br>Het Portaal kan links bevatten naar pagina's of websites van derden die geen verband houden met het Portaal. Het Portaal aanvaardt geen verantwoordelijkheid voor deze links of de inhoud die via deze links toegankelijk is. Gebruikers die deze links volgen, doen dit op eigen risico.<br><br><strong>6. Uitsluiting van Aansprakelijkheid</strong><br>Het Portaal streeft ernaar de diensten en functionaliteiten altijd beschikbaar te houden. De toegang tot het Portaal wordt echter aangeboden \"zoals het is\", volgens de beschikbaarheid en beperkingen die op enig moment van kracht zijn. Het Bedrijf aanvaardt geen aansprakelijkheid die voortvloeit uit misbruik van het Portaal door de gebruiker, of voor schending van verplichtingen of verbintenissen die zijn aangegaan onder deze Algemene Gebruiksvoorwaarden. In het algemeen zijn noch het Bedrijf noch zijn medewerkers aansprakelijk voor gederfde inkomsten of werkelijke verliezen om welke reden dan ook.<br><br><strong>7. Schadeloosstelling</strong><br>Indien het Bedrijf schade, verliezen of kosten (inclusief advocaten- en rechtbankkosten) lijdt als gevolg van een schending door gebruikers van deze Algemene Gebruiksvoorwaarden of andere toepasselijke voorwaarden, is de gebruiker verplicht het Bedrijf schadeloos te stellen. Dit geldt ook wanneer als gevolg van een schending door de gebruiker claims worden ingediend door derden tegen het Bedrijf.<br><br><strong>8. Gegevensbescherming en beveiligingsrisico's</strong><br>Het verzamelen van persoonsgegevens via het Bedrijf en de verwerking ervan door het Bedrijf wordt geregeld door een specifiek Privacybeleid.<br><br><strong>9. Algemene bepalingen</strong><br>9.1. Vrijwaring en interpretatie<br>Deze Algemene Gebruiksvoorwaarden vormen een overeenkomst tussen u als gebruiker en het Portaal. Indien de bevoegde autoriteit een bepaling onwettig, ongeldig of niet-afdwingbaar verklaart, dient deze bepaling te worden geïnterpreteerd op een wijze die zo dicht mogelijk bij de oorspronkelijke bedoeling ligt. Een dergelijke verklaring met betrekking tot één of meer clausules laat de geldigheid van de overige clausules onverlet.<br><br>9.2. Toepasselijk recht en bevoegde rechter<br>De betrekkingen tussen het Portaal en de gebruiker worden beheerst door het recht van de Verenigde Staten. Bij geschillen over de interpretatie of naleving van deze Algemene Gebruiksvoorwaarden onderwerpen partijen zich aan de bevoegde rechtbanken, tenzij dwingend recht een ander rechtsgebied voorschrijft.<br><br><strong>CERTIFICAAT</strong><br>Geregistreerde Entiteitsnaam: The Structured Data Company Limited<br>Geregistreerd Adres: C/O Chalk Hill Barn Office 1 Upstairs, Yew Tree Farm, Stone Street, Stanford, Kent, Engeland, TN25 6DH<br>Bedrijfsnummer: 16095340"
+    },
+    "footer": "&copy; <span id=\"year\">2026</span> The Structured Data Company. Alle rechten voorbehouden."
+  },
+  "auth": {
+    "footer": {
+      "terms": "Servicevoorwaarden",
+      "privacy": "Privacybeleid",
+      "cookies": "Cookiebeleid",
+      "legal": "Juridisch en Registratie"
+    },
+    "form": {
+      "info_banner": "Het domein kan onregelmatig worden bijgewerkt om de meest recente informatie weer te geven.",
+      "btn_try_again": "Opnieuw proberen",
+      "title_signin": "Aanmelden",
+      "title_signup": "Account Aanmaken",
+      "label_display_name": "Weergavenaam",
+      "label_email_signin": "Weergavenaam of E-mailadres",
+      "label_email_signup": "E-mailadres",
+      "label_referrer": "Verwijzer Account-ID",
+      "hint_referrer": "Voer het ID van de verwijzer in om de juiste coachtoewijzing te garanderen.",
+      "label_phone": "Telefoonnummer",
+      "label_password": "Wachtwoord",
+      "label_confirm_password": "Wachtwoord Bevestigen",
+      "label_yob": "Geboortejaar",
+      "hint_yob": "Vereist voor leeftijdsverificatie.",
+      "alert_captcha": "Bevestig dat u geen robot bent.",
+      "agreement": "Door een account aan te maken, verklaar ik dat ik 23 jaar of ouder ben, dat ik akkoord ga met de Servicevoorwaarden en dat ik het Privacybeleid en Cookiebeleid heb gelezen.",
+      "forgot_password": "Wachtwoord vergeten? Neem contact op met de klantenservice.",
+      "btn_signin": "Aanmelden",
+      "btn_signup": "Account Aanmaken",
+      "btn_continue": "Doorgaan",
+      "btn_get_started": "Aan de Slag",
+      "toggle": {
+        "no_account": "Heeft u nog geen account?",
+        "create": "Account aanmaken",
+        "has_account": "Heeft u al een account?",
+        "signin": "Aanmelden"
+      },
+      "logs": {
+        "autologin_fail": "Registratie geslaagd, maar automatisch inloggen mislukt"
+      },
+      "errors": {
+        "email": "Voer een geldig e-mailadres in.",
+        "pass_length": "Gebruik minimaal 6 tekens voor uw wachtwoord.",
+        "pass_complex": "Kies een sterker wachtwoord met letters, cijfers en symbolen.",
+        "pass_match": "Wachtwoorden komen niet overeen.",
+        "year_invalid": "Voer een geldig jaar in (1900-{year}).",
+        "phone_invalid": "Voer een geldig telefoonnummer in.",
+        "verification_failed": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+        "credentials_invalid": "Ongeldige inloggegevens.",
+        "user_exists": "E-mailadres is al gekoppeld aan een account.",
+        "display_name_taken": "Weergavenaam is al in gebruik. Kies een andere naam.",
+        "phone_taken": "Telefoonnummer is al gekoppeld aan een account.",
+        "referrer_invalid": "Het opgegeven Verwijzer-ID bestaat niet.",
+        "referrer_required": "Verwijzer-ID is verplicht.",
+        "generic_error": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+        "title_failed": "Actie Niet Geslaagd",
+        "network_issue": "Kan geen verbinding maken met de server. Controleer uw netwerk.",
+        "general_error": "Er is een fout opgetreden. Probeer het later opnieuw."
+      },
+      "success": {
+        "signin": "Succesvol aangemeld.",
+        "signup": "Account succesvol aangemaakt.",
+        "signin_title": "Welkom!",
+        "signin_msg": "U bent succesvol aangemeld.",
+        "signup_title": "Account Aangemaakt!",
+        "signup_msg": "Uw account is succesvol aangemaakt."
+      }
+    }
+  },
+  "faqData": [
+    {
+      "category": "Platformfuncties & Mogelijkheden",
+      "items": [
+        {
+          "id": "feat-1",
+          "question": "Heb ik programmeerervaring nodig om het platform te gebruiken?",
+          "answer": "Nee, programmeerervaring is niet vereist. Wij hebben het platform ontworpen met intuïtieve dashboards en visuele schemabuilders waarmee u complexe datastructuren kunt beheren, synchroniseren en uploaden zonder één regel code te schrijven. Ons doel is geavanceerde gegevensverwerking toegankelijk te maken voor dagelijkse gebruikers."
+        },
+        {
+          "id": "feat-2",
+          "question": "Hoe werkt de AI-entiteitsdetectie?",
+          "answer": "Onze propriëtaire AI-gestuurde intelligentie-engine analyseert automatisch inkomende ruwe gegevenseigenschappen en stelt proactief de juiste schematypes, relatiekoppelingen en eigenschapslabels voor. Dit vermindert aanzienlijk de noodzaak van handmatige gegevensinvoer, minimaliseert menselijke fouten en versnelt uw vermogen om dagelijkse opdrachten te voltooien."
+        },
+        {
+          "id": "feat-3",
+          "question": "Is er een mobiele app beschikbaar?",
+          "answer": "Hoewel wij geen zelfstandige downloadbare app hebben, is ons platform volledig webgebaseerd en sterk geoptimaliseerd voor zowel desktop- als mobiele browsers. Wij hebben gekozen voor een web-first aanpak om ervoor te zorgen dat kritieke beveiligingspatches en systeemupdates onmiddellijk aan alle gebruikers worden uitgerold, zodat u uw dashboard naadloos kunt beheren vanaf elk apparaat met een stabiele internetverbinding."
+        }
+      ]
+    },
+    {
+      "category": "Technologie & Infrastructuur",
+      "items": [
+        {
+          "id": "infra-1",
+          "question": "Wat is precies een \"Schema\" in de context van dit platform?",
+          "answer": "Een schema is een gestructureerd raamwerk dat bepaalt hoe ongestructureerde ruwe gegevens worden georganiseerd, verbonden en begrepen door machines. Onze handelspartners vereisen perfect gestructureerde gegevens om hun modellen te trainen en hun catalogi te organiseren. Ons platform verwerkt deze semantische schema's om gegevensintegriteit te waarborgen voordat ze worden gevalideerd en geüpload naar het financiële saldooverzicht."
+        },
+        {
+          "id": "infra-2",
+          "question": "Biedt u een openbare API voor ontwikkelaars?",
+          "answer": "Momenteel werkt ons platform volledig via ons visuele webdashboard en bieden wij geen openbare API voor consumentenaccounts. Dedicated API-integratie is strikt beperkt tot onze goedgekeurde institutionele partners en handelspartners om de integriteit van onze allocatiepool te handhaven en ongeautoriseerde externe scraping te voorkomen."
+        },
+        {
+          "id": "infra-3",
+          "question": "Mag ik geautomatiseerde bots of scripts gebruiken om mijn opdrachten te voltooien?",
+          "answer": "Nee. Het gebruik van geautomatiseerde bots, scripts, macro's of andere ongeautoriseerde software om opdrachten te voltooien is ten strengste verboden. Onze handelaars betalen voor authentiek menselijk toezicht tijdens het validatieproces. Geautomatiseerde activiteiten zullen onmiddellijk onze anti-fraudesystemen activeren, resulterend in een permanente accountverbanning en het verbeuren van alle gegenereerde verdiensten."
+        },
+        {
+          "id": "infra-4",
+          "question": "Biedt u webhooks voor realtime saldooverzichtmeldingen?",
+          "answer": "Nee, wij bieden momenteel geen webhooks of openbare API-eindpunten voor realtime saldokennisgevingen. Om maximale beveiliging van uw financiële gegevens te garanderen, maken wij gebruik van een gesloten systeem. U dient rechtstreeks in te loggen op uw geauthenticeerd dashboard om uw saldo, aankomende mijlpalen en recente transactieactiviteiten te bewaken."
+        }
+      ]
+    },
+    {
+      "category": "Account & Toelatingsvereisten",
+      "items": [
+        {
+          "id": "acc-1",
+          "question": "Wie kan het platform gebruiken?",
+          "answer": "Om te voldoen aan strenge internationale financiële regelgeving en anti-witwasbeleid (AML), dienen gebruikers minimaal 23 jaar oud te zijn. Bovendien dient u te wonen in één van onze ondersteunde operationele regio's, die momenteel het Verenigd Koninkrijk, de Verenigde Staten, Canada, Europa, Japan, Zuid-Korea, Singapore, Spanje, Hongkong en Thailand omvatten."
+        },
+        {
+          "id": "acc-2",
+          "question": "Zijn er aanmeldkosten vooraf?",
+          "answer": "Nee, het aanmaken van een account is volledig gratis en er zijn geen verborgen aanmeldkosten. Ons platform genereert inkomsten via de succesvolle verwerking van schemagegevens voor onze handelspartners, niet door onze gebruikers een toetredingsvergoeding in rekening te brengen."
+        },
+        {
+          "id": "acc-3",
+          "question": "Wat is een Verwijzer Account-ID en waarom heb ik er één nodig?",
+          "answer": "Een Verwijzer-ID is een unieke code die wordt gebruikt tijdens het registratieproces. Het is vereist om ervoor te zorgen dat u correct wordt geplaatst binnen ons netwerk en wordt gekoppeld aan de juiste senior coach. Dit ID legt een direct mentorschapsverband vast zodat u van dag één af aan directe ondersteuning heeft van een ervaren gebruiker."
+        },
+        {
+          "id": "acc-4",
+          "question": "Kan ik meerdere accounts aanmaken?",
+          "answer": "Nee, het aanmaken van meerdere accounts is ten strengste verboden, tenzij uitdrukkelijk schriftelijk toegestaan door ons complianceteam. Om een eerlijke quotumverdeling over ons netwerk te handhaven en te voldoen aan AML-regelgeving, kunnen gebruikers geen verschillende accounts aanmaken onder dezelfde identiteit of aliassen gebruiken om dagelijkse limieten te omzeilen."
+        },
+        {
+          "id": "acc-5",
+          "question": "Kan ik mijn account verwijderen?",
+          "answer": "Ja, u heeft het recht uw account op elk moment te sluiten. U mag uw account echter niet sluiten of verwijderen zolang er openstaande transacties, actieve cycli of uitstaande tekorten zijn. Alle financiële saldooverzichten moeten volledig zijn vereffend en afgerond voordat een accountverwijderingsverzoek succesvol kan worden verwerkt."
+        }
+      ]
+    },
+    {
+      "category": "Accountbeveiliging & Privacy",
+      "items": [
+        {
+          "id": "sec-1",
+          "question": "Zijn mijn persoonlijke gegevens en platformactiviteiten versleuteld?",
+          "answer": "Ja. Strikte gegevensprivacy is onze absolute prioriteit. Alle gevoelige gebruikersgegevens, inclusief persoonlijke identificatiegegevens, financiële saldooverzichten en uitbetalingsgegevens, zijn beveiligd met militaire AES-256-versleuteling, zowel tijdens overdracht als in rust. Bovendien beschikt onze architectuur over een Gegevensfirewall voor randbeveiliging en een Semantische Beveiliging voor proactieve filtering van netwerkaanvallen."
+        },
+        {
+          "id": "sec-2",
+          "question": "Voldoet het platform aan de AVG en CCPA-privacywetgeving?",
+          "answer": "Ja. Wij voldoen strikt aan grote internationale gegevensprivacyregels, waaronder de AVG (Europa) en CCPA (Californië). Wij verzamelen alleen de minimaal noodzakelijke gegevens voor wettelijke AML/KYC-naleving en platformbeheer. Wij garanderen dat wij uw persoonlijke of financiële informatie nooit zullen verkopen aan externe gegevensmakelaars."
+        },
+        {
+          "id": "sec-3",
+          "question": "Wie is eigenaar van de intellectuele eigendomsrechten van de structurele schema's die ik verwerk?",
+          "answer": "Alle intellectuele eigendomsrechten op de structurele schema's, verwerkte datasets en resulterende saldooverzichten blijven het exclusieve, vertrouwelijke eigendom van het Bedrijf en onze handelspartners. Gebruikers worden ruimhartig gecompenseerd voor hun verwerkings- en validatie-inspanningen, maar zij behouden geen eigendoms-, auteursrechtelijke of licentiëeringsrechten op de gegevens zelf."
+        },
+        {
+          "id": "sec-4",
+          "question": "Kan ik mijn verwerkte schemageschiedenis exporteren?",
+          "answer": "Nee. Vanwege strikte geheimhoudingsovereenkomsten (NDA's) en vertrouwelijkheidscontracten met onze handelspartners worden de gegevens die u verwerkt als sterk bedrijfseigen beschouwd. Om bedrijfsspionage of datalekken te voorkomen, zijn gebruikers technisch beperkt in het exporteren, downloaden of scrapen van hun schimaverwerkingsgeschiedenis."
+        },
+        {
+          "id": "sec-5",
+          "question": "Wat is een Uitbetalingswachtzin en waarom is deze vereist?",
+          "answer": "Uw Uitbetalingswachtzin fungeert als uw persoonlijke financiële sleutel. Het is een verplichte, secundaire autorisatiestap die vereist is voor het goedkeuren van standaard uitbetalingsverzoeken. Dit zorgt ervoor dat zelfs in het uiterst onwaarschijnlijke geval dat uw hoofdaccountwachtwoord wordt gecompromitteerd, kwaadwillenden uw verdiende saldofondsen niet kunnen overmaken zonder deze secundaire sleutel."
+        },
+        {
+          "id": "sec-6",
+          "question": "Ik ben mijn wachtwoord vergeten. Hoe herstel ik toegang tot mijn account?",
+          "answer": "Indien u de toegang tot uw account bent kwijtgeraakt, dient u contact op te nemen met ons ondersteuningsteam via het beveiligde portaal. Omdat wij te maken hebben met financiële saldooverzichten, dient u uw identiteit te verifiëren (vaak via KYC-documentindiening) voordat wij een handmatige reset kunnen uitvoeren. Dit strenge proces voorkomt social engineering en ongeautoriseerde accountovername."
+        }
+      ]
+    },
+    {
+      "category": "Algemene Bedrijfsvoering",
+      "items": [
+        {
+          "id": "gen-1",
+          "question": "Wat zijn de actieve \"Opdrachten\" precies?",
+          "answer": "Opdrachten zijn het kernwerk dat u op het platform uitvoert, bestaande uit Geautomatiseerde Gegevensverwerking en Financiële Saldooverzicht-schema-allocaties. Wanneer u een opdracht start, maakt u een beveiligde verbinding met onze allocatiepool om een structureel schema te synchroniseren, de dataset op nauwkeurigheid te verifiëren en dit naar het saldooverzicht te uploaden. Dit proces valideert handelaarsgegevens en genereert uw activarendement."
+        },
+        {
+          "id": "gen-2",
+          "question": "Wat is vereist om een cyclus te starten of opnieuw in te stellen?",
+          "answer": "Om ervoor te zorgen dat gebruikers voldoende liquiditeit hebben om hoogwaardige schema's te verwerken, vereist elke cyclus een minimaal saldooverzicht. Voor nieuwe accounts begint de vroegste cyclus bij een minimum van $80. Voor alle volgende cycli is het vereiste minimumsaldo $150. U kunt geen cyclusreset activeren terwijl u zich momenteel midden in een actieve cyclus bevindt."
+        },
+        {
+          "id": "gen-3",
+          "question": "Kan ik een actieve quota-opdracht overslaan, verwijderen of terugdraaien?",
+          "answer": "Nee. Zodra een opdracht is gesynchroniseerd met uw dashboard, is deze strikt gebonden aan uw huidige cyclus. Opdrachten kunnen onder geen enkele omstandigheid worden overgeslagen, verwijderd, teruggedraaid of omzeild. U dient het validatieproces te voltooien om naar het volgende quotum te kunnen gaan."
+        },
+        {
+          "id": "gen-4",
+          "question": "Wat gebeurt er als ik een productschema te lang vasthoud?",
+          "answer": "Indien een opdracht is gesynchroniseerd maar langer dan 48 uur wordt bewaard zonder te worden geüpload, verstopt dit de allocatiepool en vertraagt het actief de voortgang van onze handelspartners. In dergelijke gevallen kunnen nominale kosten van uw saldo worden ingehouden ter dekking van administratieve kosten en kunnen standaard betalingsschema's worden aangepast vanwege de schending van de operationele snelheid."
+        },
+        {
+          "id": "gen-5",
+          "question": "Waarom ontvang ik soms beschadigde bestanden?",
+          "answer": "Af en toe bevatten de ruwe gegevens van handelaars onleesbare of beschadigde fragmenten, wat resulteert in een beschadigd bestand. Deze bestanden komen niet in aanmerking voor het genereren van rendement. Omdat het systeem echter wel serverruimte moest toewijzen om de gegevens op te halen en aan u toe te wijzen, wordt dit beschouwd als één van uw 40 beschikbare quota voor die cyclus."
+        },
+        {
+          "id": "gen-6",
+          "question": "Wat zijn uw standaard openingstijden?",
+          "answer": "Onze primaire ondersteunings- en verwerkingsoperaties, inclusief handmatige uitbetalingsbeoordelingen en KYC-audits, verlopen van maandag tot en met vrijdag van 10:00 tot 22:00 uur EST. Dit sluit aan bij de traditionele mondiale bankiersuren. De beschikbaarheid in het weekend (zaterdag en zondag) kan variëren op basis van geplande systeemonderhoud en actieve wachtrijen."
+        },
+        {
+          "id": "gen-7",
+          "question": "Hoe neem ik contact op met het klantenserviceteam?",
+          "answer": "Voor de snelste en veiligste oplossing kunt u ons toegewijde ondersteuningsteam rechtstreeks bereiken via de live chatwidget op uw dashboard. Dit zorgt ervoor dat u communiceert vanuit een geauthenticeerde omgeving, waardoor onze medewerkers uw accountgegevens onmiddellijk kunnen raadplegen."
+        }
+      ]
+    },
+    {
+      "category": "Coaching & Mentorschap",
+      "items": [
+        {
+          "id": "coach-1",
+          "question": "Wat is de rol van mijn toegewezen coach?",
+          "answer": "Uw toegewezen coach is een zeer ervaren, senior gebruiker van het platform. Hun rol is om u persoonlijke begeleiding te bieden, u te helpen de nuances van schemaoperaties te begrijpen en u te leren hoe u uw dagelijkse opdrachten kunt optimaliseren. Vanwege ons verwijzingsprogramma hebben zij een financiële stimulans om uw succes te bevorderen."
+        },
+        {
+          "id": "coach-2",
+          "question": "Hoe wordt mijn coach toegewezen?",
+          "answer": "Uw coach wordt automatisch aan uw account gekoppeld tijdens het registratieproces op basis van het Verwijzer Account-ID dat u heeft opgegeven. Deze directe toewijzing zorgt ervoor dat u een vast aanspreekpunt heeft dat al vertrouwd is met uw inwerktraject."
+        },
+        {
+          "id": "coach-3",
+          "question": "Is mijn coach verantwoordelijk voor de financiële prestaties of tekorten van mijn account?",
+          "answer": "Nee. Hoewel uw coach er is om training, operationele begeleiding en strategisch advies te bieden, is uw account strikt een individueel profiel. U behoudt volledige autonomie en verantwoordelijkheid over uw eigen dagelijkse opdrachten, saldooverzicht en eventuele tekorten. Uw coach heeft geen toegang tot uw persoonlijke fondsen en kan geen opdrachten namens u uitvoeren."
+        }
+      ]
+    },
+    {
+      "category": "Saldofinanciering & Stortingen",
+      "items": [
+        {
+          "id": "fund-1",
+          "question": "Wat is een Tekort en hoe los ik het op?",
+          "answer": "Een tekort treedt op wanneer u wordt toegewezen aan een premium, hoogrendement schema dat de huidige waarde van uw saldotier overschrijdt. Om deze hoogwaardige opdracht te verwerken en het bijbehorende premiumrendement te genereren, dient u tijdelijk het verschil te overbruggen. Neem contact op met ons live ondersteuningsteam voor instructies over het storten van de exact vereiste fondsen. Stortingen kunnen veilig worden gedaan via traditionele fiatkanalen of ondersteunde blockchainnetwerken."
+        },
+        {
+          "id": "fund-2",
+          "question": "Hoe lang duurt het voordat stortingen op mijn account worden bijgeboekt?",
+          "answer": "Stortingstijden zijn sterk afhankelijk van de congestie van het blockchainnetwerk of de verwerkingssnelheid van de bank. Zodra u de overdracht echter succesvol heeft voltooid en de transactieontvangst aan ons live ondersteuningsteam heeft verstrekt, worden de fondsen doorgaans binnen 15 tot 30 minuten na standaard netwerkverificatie bijgeschreven op uw totale saldooverzicht."
+        },
+        {
+          "id": "fund-3",
+          "question": "Kan ik fondsen storten om mijn dagelijkse quota te overslaan?",
+          "answer": "Nee. De kernfunctie van ons bedrijf is daadwerkelijke gegevensverwerking, geen puur kapitaalinvestering. Stortingen worden uitsluitend gebruikt voor het starten of opnieuw instellen van een nieuwe cyclus of het vereffenen van een actief premiumtekort. U kunt niet betalen om het verplichte handmatige validatiewerk te omzeilen."
+        }
+      ]
+    },
+    {
+      "category": "Verdiensten, Rendementen & Kosten",
+      "items": [
+        {
+          "id": "earn-1",
+          "question": "Hoe wordt het Activarendement berekend?",
+          "answer": "Activarendement wordt dynamisch berekend op basis van de complexiteit van het schema en de huidige vraag van handelaars op de markt. Voor elke standaard opdracht die u succesvol voltooit en uploadt, varieert het rendementspercentage willekeurig tussen 1% en 6% van de kernwaarde van het actief."
+        },
+        {
+          "id": "earn-2",
+          "question": "Wat is een cyclus en hoeveel quota's heeft deze?",
+          "answer": "Eén volledige productcyclus bestaat uit 40 quota's (individuele gegevensopdrachten). Wij hanteren een strikte limiet van 2 volledige cycli per dag. Deze beperking voorkomt gebruikersoverbelasting, handhaaft een hoge nauwkeurigheid van gegevensvalidatie en zorgt voor een eerlijke werkverdeling over ons wereldwijde netwerk."
+        },
+        {
+          "id": "earn-3",
+          "question": "Wat gebeurt er als ik niet alle 40 quota's in één keer afmaak?",
+          "answer": "U bent absoluut niet verplicht een volledige cyclus van 40 quota's in één zitting te voltooien. U kunt uw werk pauzeren en hervatten wanneer het u uitkomt. Vergeet echter de 48-uursregel niet: u mag een actieve, gesynchroniseerde opdracht niet langer dan 48 uur vasthouden om te voorkomen dat de verwerkingspipelines van handelaars worden vertraagd."
+        },
+        {
+          "id": "earn-4",
+          "question": "Worden mijn verdiensten automatisch samengesteld?",
+          "answer": "Nee, uw verdiensten worden niet wiskundig samengesteld van cyclus naar cyclus. Elke nieuwe cyclus reset de basisparameters om voorspelbare kosten voor onze handelaars te handhaven. Alle gegenereerde rendementen uit vorige cycli blijven echter veilig accumuleren in uw totale saldooverzicht totdat u met succes een definitieve uitbetaling aanvraagt."
+        }
+      ]
+    },
+    {
+      "category": "Prestatiebeloningen & Aanwezigheid",
+      "items": [
+        {
+          "id": "reward-1",
+          "question": "Hoe claim ik de Welkomstbonus?",
+          "answer": "Om u te helpen uw initiële cyclusdrempels sneller te bereiken, wordt een Welkomstbonus van $20,00 automatisch bijgeschreven op uw beschikbaar saldooverzicht onmiddellijk na succesvolle registratie. Er zijn geen extra stappen, verborgen formulieren of wachttijden vereist om deze te claimen."
+        },
+        {
+          "id": "reward-2",
+          "question": "Hoe werkt de Aanwezigheids­mijlpaal­tracker?",
+          "answer": "Wij hechten grote waarde aan consistente gegevensverwerkers. Door elke dag uw dagelijkse opdrachten te voltooien, bouwt u een ononderbroken aanwezigheidsreeks op. Wanneer u specifieke mijlpalen bereikt (zoals Dag 7, Dag 14 enz.), ontgrendelt het systeem automatisch geplande basisuitbetalingsbonussen die rechtstreeks aan uw saldo worden bijgeschreven."
+        },
+        {
+          "id": "reward-3",
+          "question": "Wat is de Volledige Aanwezigheid KPI?",
+          "answer": "Indien u perfecte aanwezigheid bereikt door alle dagelijkse opdrachten te voltooien zonder een enkele dag te missen in de huidige maand, ontgrendelt u de Volledige Aanwezigheid KPI. Dit past een grote, automatische multiplicator toe op uw totale gecumuleerde basisuitbetalingen voor die cyclus, waarmee onze meest betrouwbare gebruikers worden beloond. (Opmerking: Deze multiplicator is uitsluitend van toepassing op basisuitbetalingen, niet op andere variabele rendementen.)"
+        },
+        {
+          "id": "reward-4",
+          "question": "Wat gebeurt er als ik een dag opdrachten mis?",
+          "answer": "Omdat onze handelaars vertrouwen op consistent dagelijks volume, verbreekt het niet voltooien van uw quotum voor die dag uw actieve aanwezigheidsreeks. Dit betekent dat u de Volledige Aanwezigheid KPI-multiplicator voor die maand misloopt en uw voortgang naar de volgende mijlpaal van dag één opnieuw moet beginnen."
+        },
+        {
+          "id": "reward-5",
+          "question": "Wat zijn Tijdelijke Bonusacties?",
+          "answer": "Tijdens perioden van ongewoon hoge handelaarsvraag organiseren wij speciale promotie-evenementen met exclusieve, verhoogde beloningen. Deze evenementen verschijnen dynamisch op uw dashboard voor een beperkte duur. Controleer de sectie Promoties regelmatig voordat ze verlopen zodat u de piekverdienstperioden niet mist!"
+        }
+      ]
+    },
+    {
+      "category": "Verwijzings- & Affiliateprogramma",
+      "items": [
+        {
+          "id": "ref-1",
+          "question": "Verdien ik een commissie voor het doorverwijzen van nieuwe gebruikers?",
+          "answer": "Ja! Wij investeren ons advertentiebudget liever terug in onze community. Indien u deelneemt aan ons optionele verwijzingsprogramma, verdient u een levenslange bonus van 20% op basis van de winsten gegenereerd door uw directe verwijzing. Deze 20% wordt volledig gedragen door het Bedrijf, wat betekent dat uw doorverwezene nog steeds 100% van zijn eigen verdiensten behoudt."
+        },
+        {
+          "id": "ref-2",
+          "question": "Is dit een multi-level marketing (MLM)-structuur?",
+          "answer": "Nee, absoluut niet. Onze verwijzingsstructuur is strikt één-op-één. U verdient alleen bonussen van de directe gebruiker die u heeft doorverwezen en getraind. Wij ondersteunen geen multi-level marketing, piramidesystemen of gelaagde commissiestructuren omdat wij oprecht, direct mentorschap willen bevorderen."
+        },
+        {
+          "id": "ref-3",
+          "question": "Wie komt in aanmerking voor deelname aan het verwijzingsprogramma?",
+          "answer": "Om ervoor te zorgen dat onze verwijzers het platform daadwerkelijk begrijpen voordat ze anderen proberen te onderwijzen, dient u een totaal van 14 actieve aanwezigheidsdagen te hebben opgebouwd voordat u gemachtigd bent een verwijzings-ID te genereren. Om mentorschap van hoge kwaliteit te handhaven, geldt er ook een verplichte wachttijd van 14 dagen tussen elke succesvolle verwijzing."
+        },
+        {
+          "id": "ref-4",
+          "question": "Waarom is mijn verwijzingsbonus gepauzeerd?",
+          "answer": "Verwijzingsbonussen zijn alleen actief wanneer het account van uw Doorverwezene in goede staat verkeert. Indien uw doorverwezene vastloopt en een opdracht in een \"openstaande\" status achterlaat, wordt uw bonus van 20% tijdelijk gepauzeerd. Deze regel is bedoeld om coaches te motiveren hun doorverwezenen actief te helpen obstakels te overwinnen. Zodra zij de openstaande opdracht uploaden, hervat uw bonus onmiddellijk."
+        }
+      ]
+    },
+    {
+      "category": "Uitbetalingen & Saldooverzichten",
+      "items": [
+        {
+          "id": "pay-1",
+          "question": "Zijn er specifieke voorwaarden voordat ik een uitbetaling kan aanvragen?",
+          "answer": "Ja. Om strikte saldostabiliteit te handhaven en te garanderen dat de dagelijkse quota's van handelaars worden vervuld voordat kapitaal het ecosysteem verlaat, dient u alle actieve opdrachten binnen uw huidige cyclus te voltooien. Bovendien mogen er geen uitstaande saldi of tekorten op uw account zijn. Uitbetalingen kunnen strikt niet worden verwerkt midden in een cyclus."
+        },
+        {
+          "id": "pay-2",
+          "question": "Is er een minimaal uitbetalingsbedrag?",
+          "answer": "Ja, het minimale uitbetalingsbedrag is $20. Dit minimum wordt gehanteerd omdat het platform de kosten van netwerk-gas fees en administratieve bankkosten voor uw transacties absorbeert, wat financieel niet levensvatbaar is voor microtransacties onder $20."
+        },
+        {
+          "id": "pay-3",
+          "question": "Zijn er transactievolumenlimieten voor standaard uitbetalingen?",
+          "answer": "Om saldostabiliteit en netwerklikwiditeit te handhaven, zijn uitbetalingscapaciteiten afgestemd op uw actieve operationele tier. Standaard basisaccounts kunnen uitbetalingen van maximaal $5.000 per transactie veilig verwerken. Gebruikers die regelmatig premiumschema's verwerken en op een Plus-tier opereren, krijgen onbeperkte uitbetalingsplafonds toegewezen. Uw huidige transactielimieten zijn op elk moment te raadplegen in uw dashboardinstellingen."
+        },
+        {
+          "id": "pay-4",
+          "question": "Zijn er uitbetalingskosten?",
+          "answer": "Wij brengen geen interne uitbetalingskosten of percentages in rekening op uw saldo. Bovendien dekken wij de crypto-netwerk-gas fees voor getokeniseerde uitbetalingen om uw netto-opbrengsten te maximaliseren. Indien u echter kiest voor traditionele fiatbankiersmethoden, bent u verantwoordelijk voor eventuele internationale overboekingstarieven die uw eigen financiële instelling toepast."
+        },
+        {
+          "id": "pay-5",
+          "question": "Hoe lang duren uitbetalingen doorgaans?",
+          "answer": "U dient uw uitbetalingsverzoek in te dienen binnen 24 tot 48 uur na het voltooien van een cyclus. Eenmaal ingediend, worden uitbetalingen vaak binnen een uur verwerkt, hoewel de definitieve afwikkelingstijden afhankelijk zijn van uw ontvangende financiële instelling of de snelheid van het blockchainnetwerk. U kunt ons live ondersteuningsteam ook informeren na het indienen van uw verzoek om verwerking zo spoedig mogelijk te faciliteren. Alle verzoeken zijn onderworpen aan verplichte anti-witwascontroles (AML) en rendementsverificatie."
+        },
+        {
+          "id": "pay-6",
+          "question": "Welke uitbetalingsmethoden worden ondersteund door het platform?",
+          "answer": "Wij ondersteunen een wereldwijd gediversifieerd scala aan afwikkelingsmethoden op maat van uw geregistreerde regio voor maximale flexibiliteit. Opties omvatten directe fiat bankoverschrijvingen (zoals ACH, SEPA, BACS en Interac) evenals Getokeniseerde Activa (Cryptocurrency via handmatige netwerkconfiguratie)."
+        },
+        {
+          "id": "pay-7",
+          "question": "Wat gebeurt er als ik een uitbetaling naar het verkeerde cryptowalletadres of netwerk stuur?",
+          "answer": "Vanwege de gedecentraliseerde aard van blockchaintechnologie zijn cryptocurrency-transacties strikt onomkeerbaar. Indien u een uitbetaling stuurt naar een onjuist walletadres of het verkeerde netwerk selecteert, zijn uw fondsen permanent verloren. Wij hebben geen technische mogelijkheid om verzonden tokens te recupereren, dus controleer uw bestemmingsgegevens zorgvuldig vooraf."
+        },
+        {
+          "id": "pay-8",
+          "question": "Heb ik een niet-custodiale portemonnee nodig om getokeniseerde uitbetalingen te ontvangen?",
+          "answer": "Nee, een niet-custodiale portemonnee is niet strikt vereist. U kunt elke portemonnee gebruiken die het specifieke token en netwerk ondersteunt dat u op de uitbetalingspagina selecteert. Dit omvat zowel privé niet-custodiale portemonnees als directe stortingsadressen van grote gecentraliseerde beurzen."
+        }
+      ]
+    },
+    {
+      "category": "Bankieren & Fiat-afwikkelingen",
+      "items": [
+        {
+          "id": "bank-1",
+          "question": "Kan ik een uitbetaling aanvragen naar een bankrekening op naam van iemand anders?",
+          "answer": "Nee, onder geen enkele omstandigheid. Om te voldoen aan strenge internationale anti-witwas (AML) en ken-uw-klant (KYC) regelgeving, dient de juridische naam op uw bestemmingsbankrekening exact overeen te komen met de geverifieerde identiteit op uw platformaccount. Pogingen tot overdracht naar derden activeren een beveiligingswaarschuwing en worden automatisch geweigerd."
+        },
+        {
+          "id": "bank-2",
+          "question": "Waarom werd mijn bankoverschrijving geweigerd of vertraagd?",
+          "answer": "Fiat-banksystemen zijn vaak trager en rigider dan cryptonetwerken. Bankoverschrijvingen worden doorgaans vertraagd door gebruikersinvoerfouten (onjuiste routing- of rekeningnummers), regionale bankvakanties of routinematige beveiligingsblokkeringen door uw ontvangende financiële instelling. Indien een overboeking definitief mislukt, worden de fondsen veilig teruggestort op uw saldooverzicht."
+        },
+        {
+          "id": "bank-3",
+          "question": "Ondersteunt u internationale overschrijvingen?",
+          "answer": "Hoewel wij technisch gezien traditionele internationale overschrijvingen ondersteunen voor bepaalde afgelegen regio's, is deze methode frequent niet beschikbaar of onderworpen aan uitgebreid onderhoud vanwege hoge mislukkingspercentages. Indien beschikbaar, bent u volledig verantwoordelijk voor eventuele inkomende internationale overboekingskosten die door tussenliggende banken in rekening worden gebracht."
+        }
+      ]
+    },
+    {
+      "category": "Technische Probleemoplossing",
+      "items": [
+        {
+          "id": "tech-1",
+          "question": "Wat moet ik doen als mijn dashboard vastloopt tijdens een actieve opdracht?",
+          "answer": "Geen paniek. Als uw dashboard vastloopt, uw browser crasht of u de internetverbinding verliest, ververs dan simpelweg de pagina of log opnieuw in. Uw voortgang, inclusief uw actieve schema en huidig saldooverzicht, wordt realtime veilig opgeslagen op onze cloudservers, zodat u precies kunt verdergaan waar u was gebleven."
+        },
+        {
+          "id": "tech-2",
+          "question": "Word ik gecompenseerd als een serveruitval mij een cyclus laat missen?",
+          "answer": "Nee. Hoewel wij zwaar investeren in onze infrastructuur om maximale beschikbaarheid na te streven, bieden wij geen financiële compensatie voor gemiste cycli, verbroken aanwezigheidsreeksen of verlopen quota's als gevolg van tijdelijke, onvoorziene serveruitval of geplande systeemonderhoudvensters."
+        }
+      ]
+    }
+  ]
+}

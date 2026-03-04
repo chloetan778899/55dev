@@ -1,0 +1,800 @@
+{
+  "nav": {
+    "signin": "Anmelden",
+    "signup": "Konto erstellen"
+  },
+  "dashboard": {
+    "currency_format": "${amount}",
+    "meta_title": "Dashboard",
+    "nav": {
+      "logo_alt": "Logo",
+      "overview": "Kontoeinstellungen",
+      "assignments": "Aktive Zuweisungen",
+      "payouts": "Auszahlungen verwalten",
+      "rewards": "Leistungsprämien",
+      "referrals": "Empfehlungsprogramm",
+      "faq": "Häufig gestellte Fragen",
+      "terms": "Nutzungsbedingungen",
+      "privacy": "Datenschutzrichtlinie",
+      "cookies": "Cookie-Richtlinie",
+      "legal": "Rechtliches & Registrierung",
+      "logout": "Abmelden",
+      "logout_confirm": "Möchten Sie sich wirklich von Ihrem Konto abmelden?"
+    },
+    "modal": {
+      "verification_failed_title": "Verifizierung fehlgeschlagen",
+      "success": "Erfolg",
+      "error": "Fehler",
+      "warning": "Warnung",
+      "notice": "Hinweis",
+      "missing_fields": "Fehlende Felder",
+      "action_denied": "Aktion verweigert",
+      "payout_requested": "Auszahlung beantragt",
+      "funds_received": "Guthaben erhalten 🎉",
+      "funds_received_msg": "Sie haben {amount} erhalten, bitte überprüfen Sie Ihren Ledger-Saldo.",
+      "network_error": "Ein Netzwerkfehler ist aufgetreten.",
+      "general_error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+      "verification_failed": "Verifizierung fehlgeschlagen."
+    },
+    "coach_account": "Dies ist ein Betreuer-Konto zu Schulungszwecken.",
+    "coach_account_short": "Betreuer-Konto",
+    "overview": {
+      "welcome": "Willkommen, {name}",
+      "subtitle": "Verwalten Sie Ihr Profil, Sicherheitseinstellungen und Auszahlungskonfigurationen.",
+      "profile_title": "Öffentliches Profil",
+      "upload_btn": "Foto hochladen",
+      "upload_hint": "JPG oder PNG.",
+      "avatar_success": "Profilbild aktualisiert.",
+      "upload_fail": "Fehler beim Hochladen des Bildes.",
+      "auth_title": "Passwort aktualisieren",
+      "current_pass": "Aktuelles Passwort",
+      "new_pass": "Neues Passwort",
+      "confirm_pass": "Neues Passwort bestätigen",
+      "save_pass": "Passwort speichern",
+      "pass_update_success": "Passwort erfolgreich aktualisiert.",
+      "pass_update_fail": "Fehler beim Aktualisieren des Passworts.",
+      "pass_incorrect": "Falsches aktuelles Passwort.",
+      "passphrase_title": "Auszahlungs-Passphrase",
+      "first_time_setup": "Ersteinrichtung erforderlich",
+      "passphrase_desc": "Diese Passphrase fungiert als Ihr privater Finanzschlüssel, der zur Autorisierung von Auszahlungen im Auszahlungsportal erforderlich ist. Um diesen Schlüssel erstmalig zu konfigurieren, müssen Sie die E-Mail-Adresse Ihres registrierten Kontos angeben.",
+      "passphrase_update_desc": "Aktualisieren Sie Ihren privaten Finanzschlüssel. Dieser Schlüssel wird aus Sicherheitsgründen benötigt, um alle Ihre standardmäßigen Auszahlungsanforderungen zu autorisieren.",
+      "account_region": "Kontoregion",
+      "verify_email": "Konto-E-Mail",
+      "new_passphrase": "Neue Passphrase",
+      "confirm_passphrase": "Passphrase bestätigen",
+      "verify_btn": "Schlüssel verifizieren & konfigurieren",
+      "current_passphrase": "Aktuelle Passphrase",
+      "update_btn": "Schlüssel aktualisieren",
+      "passphrase_length": "Die Passphrase muss mindestens 6 Zeichen lang sein.",
+      "passphrase_match": "Die Passphrasen stimmen nicht überein.",
+      "setup_success": "Passphrase sicher konfiguriert.",
+      "email_mismatch": "E-Mail stimmt nicht mit unseren Aufzeichnungen überein.",
+      "update_success": "Passphrase erfolgreich aktualisiert.",
+      "passphrase_incorrect": "Aktuelle Passphrase ist falsch.",
+      "loading": "Lädt..."
+    },
+    "referrals": {
+      "copy": "Kopieren",
+      "title": "Empfehlungsprogramm",
+      "optional": "Optional",
+      "subtitle": "Das Empfehlungsprogramm ist eine völlig optionale Funktion. Ihre täglichen Zuweisungen, Anwesenheiten und primären Auszahlungen werden nicht davon beeinflusst, ob Sie teilnehmen oder nicht.",
+      "your_id": "Ihre Empfehlungs-ID",
+      "id_desc": "Kopieren Sie unten Ihre eindeutige Empfehlungs-ID. Teilen Sie diese mit jemandem, der von unserem Unternehmen profitieren könnte, und beginnen Sie, einen lebenslangen Bonus auf die von ihnen generierten Erträge zu verdienen.",
+      "overview_title": "Programmübersicht",
+      "overview_p1": "Anstatt auf traditionelle Werbung zu setzen, reinvestieren wir unser Budget direkt in unsere Community. Wenn ein berechtigter Nutzer (der \"Werbende\") erfolgreich einen neuen Nutzer (den \"Geworbenen\") vermittelt, erhält der Werbende einen <strong>lebenslangen Bonus von 20 %</strong> basierend auf den vom Geworbenen erzielten Gewinnen.",
+      "overview_l1": "Dieser 20 %-Bonus wird vollständig vom Unternehmen subventioniert.",
+      "overview_l2": "Der Geworbene behält 100 % seiner ursprünglichen Erträge.",
+      "overview_l3": "Alle verdienten Empfehlungsboni werden direkt dem Ledger-Saldo des Werbenden gutgeschrieben.",
+      "mlm_title": "Ausschließlich direkte Empfehlungen (Kein MLM)",
+      "mlm_desc": "Unsere Empfehlungsstruktur ist strikt eins-zu-eins (1-zu-1). Wir unterstützen kein Multi-Level-Marketing (MLM) oder mehrstufige Provisionsstrukturen. Der Werbende hat ausschließlich Anspruch auf Boni des direkten Geworbenen, den er erfolgreich vermittelt hat. Wenn der Geworbene in der Folge einen Dritten vermittelt, erhält der ursprüngliche Werbende keine Provision von diesem Drittnutzer.",
+      "paused_title": "Ausstehende Zuweisungen & Pausierte Boni",
+      "paused_desc": "Empfehlungsboni sind nur aktiv, wenn sich das Konto des Geworbenen in einem ordnungsgemäßen Zustand befindet. Wenn ein Geworbener eine Zuweisung in einem \"ausstehenden\" Zustand belässt, wird Ihr 20 %-Bonus von seinem Konto pausiert. Alle Boni, die während dieses pausierten Zustands generiert worden wären, verfallen und werden nicht rückwirkend ausgezahlt. Sobald der Geworbene seine ausstehende Zuweisung abschließt, wird Ihr 20 %-Bonus für alle zukünftigen Abschlüsse sofort fortgesetzt.",
+      "eligibility_title": "Berechtigung & Einschränkungen",
+      "eligibility_l1": "<strong>Anwesenheitsanforderung:</strong> Um die Integrität des Unternehmens zu wahren, muss ein Werbender seit der Kontoerstellung insgesamt 14 Anwesenheitstage angesammelt haben, bevor er berechtigt ist, eine Empfehlungs-ID zu generieren oder zu teilen.",
+      "eligibility_l2": "<strong>Sperrfrist (Cooldown):</strong> Um qualitativ hochwertige Empfehlungen zu gewährleisten, dürfen Links nur mit jeweils einer Person geteilt werden. Nach der erfolgreichen Verknüpfung eines neuen Geworbenen wird der Werbende mit einer 14-tägigen Sperrfrist belegt, bevor er einen weiteren Nutzer werben darf.",
+      "eligibility_l3": "<strong>Betrug & Kontosperrungen:</strong> Missbrauch des Programms, einschließlich der Erstellung mehrerer Konten für Eigenempfehlungen oder der Nutzung betrügerischer Methoden, ist strengstens untersagt. Verstöße führen zum sofortigen Verfall aller Bonuseinnahmen und einer dauerhaften Sperrung aller damit verbundenen Konten."
+    },
+    "rewards": {
+      "welcome_bonus": "Willkommensbonus",
+      "welcome_desc": "Als neues Mitglied wurde Ihnen bei der Registrierung automatisch ein <span class=\"font-semibold text-black dark:text-white\">Willkommensbonus von 20,00 $</span> auf Ihr verfügbares Guthaben gutgeschrieben. Dieser Bonus wird bereitgestellt, um Ihnen einen Vorsprung bei Ihren Erträgen zu verschaffen, und wird direkt zu Ihrem Standardsaldo hinzugefügt.",
+      "salary_title": "Anwesenheits-Meilenstein-Tracker",
+      "salary_desc": "Schließen Sie die täglichen Zuweisungen ab, um Ihre anstehenden Auszahlungsmeilensteine zu erreichen.",
+      "days": "Tage",
+      "milestones": "Auszahlungszeitplan",
+      "perfect_attendance": "Voller Anwesenheits-KPI",
+      "perfect_desc": "Konsistenz zahlt sich aus. Schließen Sie alle {days} täglichen Zuweisungen innerhalb des aktuellen Monats ab, um den Vollen Anwesenheits-KPI zu erreichen. Dadurch wird automatisch ein <span class=\"font-semibold text-black dark:text-white\">Basis-Auszahlungsmultiplikator von +15 %</span> auf Ihre Erträge für den Zyklus angewendet. <br><br><strong class=\"text-[#444] dark:text-[#ccc] font-medium\">So funktioniert es:</strong> Der Multiplikator wird ausschließlich auf Ihre angesammelten Basis-Auszahlungen angewendet. Wenn sich Ihre gesamten Basis-Auszahlungen beispielsweise auf 1.200 $belaufen, fügt der +15 % Multiplikator zusätzliche 180$ hinzu, was eine endgültige Basis-Auszahlungssumme von 1.380 $ ergibt. (Hinweis: Andere Erträge werden separat berechnet und sind von diesem Multiplikator nicht betroffen).",
+      "promotions": "Zeitlich begrenzte Bonus-Events",
+      "promo_desc": "Bonus-Events sind spezielle, temporäre Gelegenheiten, die gelegentlich auftreten. Wenn sie aktiv sind, erscheinen sie hier für eine begrenzte Dauer, um Ihnen die Möglichkeit zu geben, exklusive Prämien zu verdienen. Schauen Sie regelmäßig vorbei, bevor sie ablaufen!",
+      "fetching_promos": "Aktive Werbeaktionen werden abgerufen...",
+      "no_promos": "Zurzeit keine aktiven Events.",
+      "full_attendance_kpi": "Voller Anwesenheits-KPI",
+      "milestone_day": "Meilenstein: Tag {day}",
+      "next_upcoming": "Nächste anstehende Auszahlung",
+      "credited": "Dem Saldo gutgeschrieben",
+      "scheduled": "Geplant",
+      "base_multiplier": "+15 % Basis-Multiplikator"
+    },
+    "assignments": {
+      "title": "Aktive Schema-Zuweisungen",
+      "product_visual": "Produktvisualisierung",
+      "subtitle": "Automatisierte Datenverarbeitung & Finanz-Ledger",
+      "ledger_balance": "Gesamter Ledger-Saldo",
+      "ledger_desc": "Operative Kernmittel, einschließlich Gewinne.",
+      "outstanding": "Ausstehender Saldo",
+      "outstanding_desc": "Der Finanzierungsfehlbetrag, der zur Begleichung der ausstehenden Zuweisung erforderlich ist.",
+      "current_balance": "Aktueller Saldo",
+      "current_balance_desc": "Projizierter gesamter Ledger-Saldo inklusive der ausstehenden aktiven Zuweisung.",
+      "cycle_profit": "Aktueller Zyklusgewinn",
+      "cycle_profit_desc": "Diese Berechnung wird zu Beginn jedes neuen Zyklus aktualisiert. Alle Gewinne werden dann dem gesamten Ledger-Saldo hinzugefügt.",
+      "yield_rate": "Renditesatz",
+      "schema_sync": "Schema-Synchronisierung",
+      "quota_remaining": "Kontingent: {current} / {max} verbleibend",
+      "sync_desc": "Stellen Sie eine sichere Verbindung zum Zuweisungspool her, um den nächsten verfügbaren strukturierten Datensatz vor der Ledger-Ausführung zu synchronisieren und zu prüfen.",
+      "syncing": "Payload wird synchronisiert...",
+      "sync_btn": "Nächstes Schema synchronisieren",
+      "timestamp_id": "Zeitstempel-ID",
+      "reference": "Referenz",
+      "asset_value": "Anlagewert",
+      "yield": "Rendite",
+      "verifying": "Ledger wird verifiziert...",
+      "proceed_btn": "Weiter zum Hochladen",
+      "idle": "Datenansicht im Leerlauf. Bitte synchronisieren Sie ein strukturelles Schema.",
+      "recent_activity": "Letzte Aktivitäten",
+      "no_activity": "Keine aktuellen Aktivitäten.",
+      "asset": "Anlage",
+      "collapse": "Einklappen",
+      "view_all": "Alle Aktivitäten anzeigen",
+      "pending_schema_error": "Bitte laden Sie das ausstehende Schema hoch, bevor Sie mit dem nächsten fortfahren.",
+      "sync_error": "Fehler beim Synchronisieren des nächsten Schemas.",
+      "sync_network_error": "Netzwerkfehler während der Synchronisierung.",
+      "upload_outstanding_error": "Hochladen nicht möglich.",
+      "corrupted_file": "Beschädigte Datei.",
+      "upload_error": "Fehler beim Hochladen des Schemas.",
+      "upload_network_error": "Netzwerkfehler beim Hochladen.",
+      "status_success": "Erfolgreich",
+      "status_pending": "Ausstehend",
+      "status_corrupted": "Beschädigt"
+    },
+    "payouts": {
+      "default_desc": "Auszahlung",
+      "title": "Auszahlungen verwalten",
+      "ledger_balance": "Ledger-Saldo",
+      "bank_country": "Bankland / Region",
+      "available_methods": "Verfügbare Auszahlungsmethoden",
+      "unavailable": "Derzeit nicht verfügbar",
+      "tokenized": "Tokenisierte Anlage",
+      "manual_config": "Manuelle Netzwerkkonfiguration",
+      "token": "Token",
+      "token_placeholder": "z. B. ETH",
+      "network": "Netzwerk",
+      "network_placeholder": "z. B. ERC-20",
+      "wallet_address": "Wallet-Adresse",
+      "amount": "Betrag",
+      "passphrase": "Auszahlungs-Passphrase",
+      "processing": "Verarbeitung läuft...",
+      "withdraw_btn": "Auszahlung anfordern",
+      "history_title": "Letzte Transaktionen",
+      "th_date": "Zeitstempel-ID",
+      "th_method": "Beschreibung",
+      "th_amount": "Betrag",
+      "th_status": "Status",
+      "status_success": "Erfolgreich",
+      "status_pending": "Ausstehend",
+      "status_declined": "Abgelehnt",
+      "welcome_bonus_desc": "Willkommensbonus",
+      "fill_required": "Bitte füllen Sie alle erforderlichen Felder aus, um eine Auszahlung anzufordern.",
+      "action_denied_quota": "Sie müssen alle aktiven Zuweisungen abschließen (Kontingent: {current} / {max} verbleibend), bevor Sie eine Auszahlung anfordern können.",
+      "exceeds_balance": "Der angeforderte Betrag übersteigt Ihren verfügbaren Ledger-Saldo.",
+      "request_success": "Auszahlungsanforderung über {amount} erfolgreich eingereicht. Sie wartet nun auf die Genehmigung.",
+      "passphrase_error": "Falsche Auszahlungs-Passphrase.",
+      "request_error": "Fehler beim Anfordern der Auszahlung.",
+      "network_error": "Netzwerkfehler beim Anfordern der Auszahlung."
+    },
+    "regions": {
+      "us": "Vereinigte Staaten",
+      "uk": "Vereinigtes Königreich",
+      "ca": "Kanada",
+      "eu": "Europa (Eurozone)",
+      "es": "Spanien",
+      "hk": "Hongkong",
+      "jp": "Japan",
+      "kr": "Südkorea",
+      "sg": "Singapur",
+      "th": "Thailand",
+      "wire_us": "Banküberweisung / ACH",
+      "wire_uk": "BACS / Banküberweisung",
+      "wire_ca": "Interac / Banküberweisung",
+      "wire_eu": "SEPA-Überweisung",
+      "bank_name": "Name der Bank",
+      "bank_name_jp": "Name der Bank (銀行名)",
+      "bank_code": "Bankleitzahl / Bank Code",
+      "branch_code": "Filialcode / Branch Code",
+      "branch_code_jp": "Filialcode (支店コード)",
+      "account_num": "Kontonummer",
+      "account_num_jp": "Kontonummer (口座番号)",
+      "account_type_jp": "Kontoart (口座種別)",
+      "placeholder_hsbc": "z. B. HSBC, Hang Seng",
+      "placeholder_3digit": "3-stelliger Code",
+      "placeholder_4digit": "4-stelliger Code",
+      "placeholder_account": "Kontonummer eingeben",
+      "placeholder_mufg": "z. B. Mitsubishi UFJ",
+      "placeholder_futsu": "z. B. Futsu (Normal)",
+      "placeholder_7digit": "7-stellige Nummer",
+      "placeholder_nodash": "Ohne Bindestriche eingeben",
+      "placeholder_dbs": "z. B. DBS, UOB, OCBC",
+      "placeholder_kasikorn": "z. B. Kasikorn, SCB, Bangkok Bank"
+    }
+  },
+  "contact": {
+    "title": "Kontakt aufnehmen",
+    "subtitle": "Wir würden uns freuen, von Ihnen zu hören.",
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "submit": "Senden",
+    "success": "Nachricht erfolgreich gesendet.",
+    "modal_title": "Nachricht gesendet",
+    "modal_msg": "Vielen Dank für Ihre Kontaktaufnahme. Wir haben Ihre Nachricht erhalten.",
+    "btn_close": "Schließen",
+    "error_title": "Senden fehlgeschlagen",
+    "error_send": "Wir konnten Ihre Nachricht nicht senden. Bitte versuchen Sie es später erneut."
+  },
+  "home": {
+    "hero": {
+      "title": "Zero-Config<br>für strukturierte Daten. Mappen Sie Ihre Schemata sofort.",
+      "subtitle": "Ein Kontrollzentrum für semantische Daten mit Echtzeit-Schema-Validierung und Entitäts-Insights."
+    },
+    "meta": {
+      "title": "The Structured Data Company | Die Plattform für Schema-Infrastruktur",
+      "description": "Die einheitliche Plattform für strukturierte Daten und Schema-Management – bringt Klarheit und semantische Bedeutung in Ihr Frontend."
+    },
+    "partners": {
+      "trusted_prefix": "Vertraut von den besten",
+      "trusted_suffix": "Teams.",
+      "typewriter": {
+        "web_apps": "Wissensgraphen",
+        "ecommerce": "Linked Data",
+        "marketing": "Semantisches SEO",
+        "education": "Datenkataloge",
+        "security": "Identitätsschemata",
+        "finance": "Finanz-Ontologien",
+        "healthcare": "Klinische Daten",
+        "software": "API-Schemata",
+        "ai": "LLM-Trainingsdaten"
+      }
+    },
+    "workflow": {
+      "origin": "Ursprung",
+      "tracking": {
+        "eyebrow": "Validierung",
+        "title": "Schema-Integrität",
+        "desc": "Visualisieren Sie die Echtzeit-Datenvalidierung und Schema-Gesundheit durch eine klare, intuitive Ansicht. Erkennen Sie Abweichungen schnell und bleiben Sie mit Live-Struktur-Insights auf dem Laufenden."
+      },
+      "processing": {
+        "eyebrow": "Integration",
+        "title": "Semantisches Mapping",
+        "desc": "Halten Sie Ihre Datenschemata in Echtzeit über alle globalen Instanzen hinweg synchronisiert. Stellen Sie konsistente Typen, reibungslose Integration und zuverlässige Datenbereitstellung überall sicher."
+      },
+      "unifying": {
+        "eyebrow": "Registry",
+        "title": "Die Schema-Registry",
+        "desc": "Zentralisieren Sie Schemata, JSON-LD-Fragmente und Datenmodelle in einem einheitlichen Dashboard. Reduzieren Sie Fragmentierung und verwalten Sie jede relevante Entität von einem einzigen Ort aus."
+      }
+    },
+    "security": {
+      "main_title": "Integrierte Datensicherheit. Für alle inbegriffen.",
+      "main_subtitle": "Unsere semantische Firewall bietet systemweiten Schutz und sichert Ihre Datenstrukturen standardmäßig ab.",
+      "firewall": {
+        "title": "Daten-Firewall",
+        "subtitle": "Robuster Schutz am Edge",
+        "desc": "Unser globales Edge-Netzwerk absorbiert volumetrische Angriffe sofort und stellt sicher, dass Ihr Datenursprung unsichtbar bleibt und von bösartigem Datenverkehr unberührt bleibt."
+      },
+      "waf": {
+        "title": "Semantischer Wächter",
+        "subtitle": "Schützt den Datenverkehr vor Bedrohungen",
+        "desc": "Intelligente Filter analysieren eingehende Pakete in Echtzeit und blockieren Injektionen sowie fehlerhafte Entitäten, bevor sie Ihren Datenspeicher erreichen."
+      },
+      "workspace": {
+        "title": "Zugriffskontrolle",
+        "subtitle": "Vertrauenswürdiger Schema-Zugriff für Teams",
+        "desc": "Die Zero-Trust-Architektur stellt sicher, dass nur authentifizierte Benutzer und konforme Geräte Ihre internen Tools und Datenressourcen ändern können."
+      }
+    },
+    "code": {
+      "title": "Einfachheit zuerst, immer.",
+      "desc": "Intuitive Dashboards, visuelle Schema-Builder und umfassende Leitfäden fügen sich nahtlos in Ihren bestehenden Workflow ein, ohne dass Sie eine einzige Codezeile schreiben müssen."
+    },
+    "stats": {
+      "lines_code": "Täglich gemappte Datenentitäten",
+      "languages": "Unterstützte Schematypen und semantische Vokabularien",
+      "downloads": "Downloads von Schema-Paketen"
+    },
+    "fluid": {
+      "title": "Selbstheilende Schema-Operationen.",
+      "desc": "Automatisieren Sie die Metadaten. KI-gestützte Intelligenz schlägt proaktiv die richtigen Schematypen, Eigenschaftsbezeichnungen und Beziehungsmappings vor und wendet diese an.",
+      "ai_detection": "Entitätserkennung",
+      "assign": {
+        "header": "Typ erkannt",
+        "sub": "Eigenschaften werden analysiert...",
+        "action": "Vorgeschlagen: Schema.org/Person (98%)"
+      },
+      "label": {
+        "header": "Kontextanalyse",
+        "sub": "Vokabular wird gescannt...",
+        "action": "Angewendet: [Semantisch] [Erforderlich]"
+      },
+      "route": {
+        "header": "Mapping-Anfrage",
+        "sub": "Ontologien werden abgeglichen...",
+        "action": "Gesendet an: Data Engineering"
+      }
+    },
+    "cta": "Bauen Sie etwas Bedeutungsvolles.",
+    "footer": {
+      "about_title": "Über uns",
+      "sf_title": "Vereinigtes Königreich",
+      "sf_address": "C/O Chalk Hill Barn Office 1 Upstairs<br>Yew Tree Farm, Stone Street, Stanford, Kent<br>England, TN25 6DH",
+      "london_title": "",
+      "london_address": "",
+      "mission": "Wir stellen die semantische Infrastruktur bereit, um ein strukturiertes Web zu definieren, zu skalieren und zu sichern, sodass Daten universell verständlich werden.",
+      "copyright": "&copy; 2026 The Structured Data Company Limited. Alle Rechte vorbehalten.",
+      "status": "Alle Systeme normal.",
+      "links": {
+        "terms": "Nutzungsbedingungen",
+        "privacy": "Datenschutzrichtlinie",
+        "cookies": "Cookie-Richtlinie",
+        "legal": "Rechtliches und Registrierung"
+      }
+    }
+  },
+  "terms": {
+    "sidebar": {
+      "title": "Rechtszentrum",
+      "tos": "Nutzungsbedingungen",
+      "privacy": "Datenschutzrichtlinie",
+      "cookies": "Cookie-Richtlinie",
+      "registration": "Rechtliches & Registrierung"
+    },
+    "title": "Rechtliches",
+    "tos": {
+      "title": "Nutzungsbedingungen",
+      "last_updated": "Zuletzt aktualisiert am 2. Mai 2024",
+      "content": "BITTE LESEN SIE DIE FOLGENDEN NUTZUNGSBEDINGUNGEN DES PORTALS SORGFÄLTIG DURCH, BEVOR SIE DEM UNTERNEHMEN BEITRETEN ODER DIE DIENSTE DES UNTERNEHMENS NUTZEN. DIESE NUTZUNGSBEDINGUNGEN STELLEN EINE RECHTLICHE VEREINBARUNG ZWISCHEN IHNEN UND DEM UNTERNEHMEN DAR UND GELTEN ZUSÄTZLICH ZU DEN BEDINGUNGEN DER VEREINBARUNG (WIE UNTEN DEFINIERT). WENN SIE DIESE NUTZUNGSBEDINGUNGEN NICHT AKZEPTIEREN ODER NICHT AKZEPTIEREN KÖNNEN, IST ES IHNEN NICHT GESTATTET, DEM UNTERNEHMEN BEIZUTRETEN. WENN SIE AUF DIESEN NACHTRAG ELEKTRONISCH ZUGREIFEN, BESTÄTIGEN SIE IHR EINVERSTÄNDNIS MIT DEN BEDINGUNGEN DIESES NACHTRAGS, INDEM SIE AUF DIE SCHALTFLÄCHE \"KONTO ERSTELLEN\" KLICKEN. WENN SIE DIESEN NUTZUNGSBEDINGUNGEN NICHT ZUSTIMMEN, ERSTELLEN SIE KEIN KONTO.<br><br>Diese Nutzungsbedingungen (die \"Bedingungen\") regeln Ihren Zugriff auf und die Nutzung unserer Website und mobilen Anwendung (zusammen das \"Portal\") sowie zugehöriger Inhalte, Funktionen, Software und Anwendungen im Portal (zusammen der \"Dienst\"). Das Portal und der Dienst werden von The Structured Data Company verwaltet und gepflegt. Die Begriffe \"wir\", \"uns\", \"unser\" und \"Unternehmen\" beziehen sich ebenfalls auf The Structured Data Company. Der Begriff \"Sie\" bezieht sich auf die Person, die das Portal besucht.<br><br>Bitte lesen Sie diese Bedingungen sorgfältig durch. Sie enthalten wichtige Informationen zu Ihren gesetzlichen Rechten, einschließlich Haftungsbeschränkungen des Unternehmens und bestimmter Dritter, Gewährleistungsausschlüssen und der Unterwerfung unter die Gerichtsbarkeit. Jedes Mal, wenn Sie mit beliebigen Mitteln (z. B. über das Internet oder auf einem mobilen Gerät) auf den Dienst zugreifen, erklären Sie sich unwiderruflich damit einverstanden, die Version der Bedingungen einzuhalten, die zum Zeitpunkt Ihres Zugriffs auf dem Portal veröffentlicht ist. Sie dürfen das Portal oder den Dienst nicht nutzen, wenn Sie diesen Bedingungen nicht zustimmen. Durch den Zugriff auf oder die Nutzung des Dienstes erklären Sie sich mit diesen Bedingungen einverstanden.<br><br><strong>BERECHTIGUNG</strong><br>Um zur Nutzung eines der Unternehmensdienste berechtigt zu sein, müssen Sie mindestens 23 Jahre alt sein und Ihren Wohnsitz in Großbritannien, den USA, Kanada, Europa, Japan, Südkorea, Singapur, Spanien, Hongkong oder Thailand haben. Es gibt bestimmte Funktionen, die Ihnen abhängig von Ihrem Standort und anderen Zulassungskriterien möglicherweise zur Verfügung stehen oder nicht. Sie dürfen keine Software- oder Netzwerktechniken, einschließlich der Verwendung eines Virtual Private Network (VPN), verwenden, um Ihre Internetprotokolladresse zu ändern oder dieses Verbot anderweitig zu umgehen oder zu versuchen, es zu umgehen.<br><br><strong>ÄNDERUNGEN</strong><br>Wir können diese Nutzungsbedingungen, unsere Datenschutzrichtlinie und unsere Cookie-Richtlinie von Zeit zu Zeit ändern. Wenn wir wesentliche Änderungen daran vornehmen, werden wir Sie über unsere Dienste oder auf andere Weise benachrichtigen, um Ihnen die Möglichkeit zu geben, die Änderungen zu überprüfen, bevor sie wirksam werden. Wir vereinbaren, dass Änderungen nicht rückwirkend erfolgen können. Wenn Sie Einwände gegen Änderungen haben, können Sie Ihr Konto schließen. Ihre fortgesetzte Nutzung unserer Dienste, nachdem wir eine Mitteilung über unsere Änderungen an diesen Bedingungen veröffentlicht oder gesendet haben, bedeutet, dass Sie den aktualisierten Bedingungen ab ihrem Inkrafttreten zustimmen.<br><br><strong>VERFÜGBARKEIT, FEHLER UND UNGENAUIGKEITEN</strong><br>Der Zugriff auf die Dienste kann in Zeiten erheblicher Volatilität oder großen Volumens eingeschränkt sein oder nicht zur Verfügung stehen. Dies könnte zu Einschränkungen beim Zugriff auf Ihr Konto oder die Dienste führen, einschließlich der Unfähigkeit, Transaktionen einzuleiten oder abzuschließen, und kann auch zu Verzögerungen bei den Reaktionszeiten des Supports führen.<br><br>a. Wir garantieren nicht, dass die Website oder andere Dienste ohne Unterbrechung verfügbar sind, und wir garantieren nicht, dass eine Bestellung ausgeführt, angenommen, aufgezeichnet wird oder offen bleibt oder dass Ihr Konto zugänglich ist; und<br><br>b. Bitte beachten Sie, dass sich unsere Support-Reaktionszeiten verzögern können, insbesondere in Zeiten erheblicher Volatilität oder großen Volumens, insbesondere bei Themen, die nicht Sicherheit und Vertrauen betreffen.<br>Obwohl wir bestrebt sind, auf der Website genaue und zeitnahe Informationen bereitzustellen, ist die Website (einschließlich, aber nicht beschränkt auf den Inhalt (wie unten definiert)) möglicherweise nicht immer vollständig richtig, vollständig oder aktuell und kann auch technische Ungenauigkeiten oder typografische Fehler enthalten. In dem Bemühen, Ihnen weiterhin möglichst vollständige und genaue Informationen zur Verfügung zu stellen, können Informationen im gesetzlich zulässigen Umfang von Zeit zu Zeit ohne Vorankündigung geändert oder aktualisiert werden, einschließlich, aber nicht beschränkt auf Informationen zu unseren Richtlinien, Produkten und Dienstleistungen. Dementsprechend sollten Sie alle Informationen überprüfen, bevor Sie sich darauf verlassen, und alle Entscheidungen, die auf den auf der Website enthaltenen Informationen basieren, liegen in Ihrer alleinigen Verantwortung, und wir übernehmen für solche Entscheidungen keine Haftung.<br><br>Wir aktualisieren unser Angebot an Produkten und Dienstleistungen im Service ständig. Die in unserem Service verfügbaren Produkte oder Dienstleistungen sind möglicherweise falsch bepreist, ungenau beschrieben oder nicht verfügbar, und es kann zu Verzögerungen bei der Aktualisierung der Informationen im Service und in unserer Werbung auf anderen Websites kommen. Wir können und wollen die Richtigkeit oder Vollständigkeit von Informationen, einschließlich Produktbildern, Spezifikationen, Verfügbarkeit und Dienstleistungen, nicht garantieren. Wir behalten uns das Recht vor, Informationen jederzeit ohne vorherige Ankündigung zu ändern oder zu aktualisieren und Fehler, Ungenauigkeiten oder Auslassungen zu korrigieren. Bei unvorhergesehenen Ereignissen ist das Unternehmen berechtigt, die Dienste zu Wartungs- oder Reparaturzwecken auszusetzen, wenn dies zur Gewährleistung des ordnungsgemäßen Betriebs der Dienste erforderlich ist.<br><br><strong>KONTO</strong><br>Sie müssen ein Konto bei uns (\"Konto\") haben, um einige Teile des Dienstes nutzen zu können. Wenn Sie ein Konto erstellen, versichern und garantieren Sie, dass Sie in Ihrer jeweiligen Gerichtsbarkeit mindestens volljährig sind, in der Lage sind, rechtsverbindliche Verträge nach geltendem Recht abzuschließen und zu erfüllen, und dass alle Informationen, die Sie angeben, richtig, aktuell, wahrheitsgemäß und vollständig sind. Sie sind allein verantwortlich für alle Aktivitäten unter Ihrem Konto. Wir sind in keiner Weise verantwortlich, wenn Ihr Passwort und/oder Ihr Konto missbraucht oder von einem Dritten verwendet werden. Sie erklären sich daher bereit, Ihr Passwort sicher aufzubewahren und Ihre Kontoinformationen jederzeit auf dem neuesten Stand zu halten.<br><br>Sofern von uns nicht ausdrücklich gestattet und vorbehaltlich der Bedingungen und aller anderen zusätzlichen Bedingungen, wie das Unternehmen einzig und allein bestimmt, dürfen Sie nicht mehrere Konten einrichten. Sie dürfen Ihr Konto oder Ihre Kontoinformationen nicht an eine andere Partei verleihen, übertragen oder verkaufen und dürfen das Konto eines anderen Benutzers nicht ohne dessen schriftliche Zustimmung verwenden.<br><br>Wir können Sie gelegentlich unter der in Ihrer Kontoregistrierung angegebenen E-Mail-Adresse kontaktieren. Sie können sich von solchen Mitteilungen nicht abmelden, und Sie übernehmen die Verantwortung dafür, dass Ihre E-Mail-Adresse aktuell ist. Wenn Sie Mitteilungen aufgrund einer ungenauen, veralteten oder unvollständigen E-Mail-Adresse verpasst haben, haften wir nicht für Verluste oder Schäden, die dadurch verursacht werden, dass Sie die Mitteilung verpasst haben.<br><br>Sie dürfen Ihr Konto nicht schließen oder löschen, während noch Vorgänge ausstehen. Das Unternehmen behält sich das Recht vor, das Konto eines Benutzers im Falle betrügerischer Aktivitäten zu deaktivieren, die ein Benutzer während der Existenz des Unternehmens durchgeführt hat.<br><br>Handlungen, die als betrügerische Aktivitäten angesehen werden können:<br>a. Erstellen verschiedener Konten unter derselben Identität;<br>b. Erstellen verschiedener Konten, um die Boni des Unternehmens mehrmals zu nutzen;<br>c. Betrug mit gestohlenen Kreditkarten oder Betrug mit anderen Zahlungsmethoden;<br>d. Jedes Verhalten, das Anzeichen von betrügerischen Aktivitäten aufweist und Risiken für den Dienst darstellt.<br><br><strong>VERBOTENE AKTIVITÄTEN</strong><br>Sie stimmen zu, dass Sie Folgendes nicht tun werden:<br><br>a. Den Dienst oder jeglichen Inhalt kopieren, modifizieren oder abgeleitete Werke davon erstellen;<br><br>b. Inhalte (einschließlich Daten) kopieren, manipulieren oder aggregieren, um sie Dritten zur Verfügung zu stellen;<br><br>c. Mit Inhalten oder dem Zugang zum Dienst handeln, diese verkaufen, vermieten, verleihen, verleasen oder lizenzieren, sei es kommerziell oder kostenlos;<br><br>d. Data Mining, Crawling, \"Scraping\", Roboter oder ähnliche automatisierte oder datensammelnde oder -extrahierende Methoden im Dienst verwenden oder in diesen einführen oder manuell auf Teile des Dienstes zugreifen, diese erwerben, überwachen oder kopieren oder Inhalte herunterladen oder speichern (sofern nicht ausdrücklich von uns autorisiert);<br><br>e. Übermäßige Anfragen nach Informationen stellen oder Handlungen vornehmen, die den Dienst oder mit dem Dienst verbundene Server oder Netzwerke stören, unterbrechen oder unverhältnismäßig belasten oder die Qualität oder Verfügbarkeit von Inhalten oder die Geschwindigkeit oder Funktionalität des Dienstes negativ beeinflussen;<br><br>f. Einen Virus, Trojaner, Wurm, eine Logikbombe oder andere Malware in den Dienst oder die Plattform einführen oder ein Gerät, eine Software oder eine Routine verwenden, um Software oder Hardware zu umgehen, die Massenanfragen nach Informationen verhindert;<br><br>g. Sicherheitsmaßnahmen verletzen, umgehen oder unterlaufen, die dazu dienen, den Zugriff auf die Plattform, den Inhalt oder den Dienst einzuschränken oder zu verhindern; oder<br><br>h. Anderweitig versuchen, sich unbefugten Zugang zum Dienst, zu Inhalten oder zu Computersystemen oder Netzwerken, die mit dem Dienst verbunden sind, oder zu Servern des Unternehmens zu verschaffen, sei es durch Hacking, Password Mining, unbefugte Nutzung des Passworts/der Anmeldeinformationen eines anderen oder auf andere Weise;<br><br>i. Die Nutzung des Dienstes durch andere Benutzer einschränken, behindern oder stören (einschließlich durch Hacken oder Verunstalten des Portals);<br><br>j. Über das Portal Computerprogramme einführen oder anderweitig verbreiten, die Systeme, Daten oder persönliche Informationen von uns oder Dritten beschädigen, stören, abfangen, sammeln, freigeben oder offenlegen;<br><br>k. Unsere Marken, Dienstleistungsmarken, Handelsnamen oder Logos oder die von Dritten, die auf der Plattform angezeigt werden, nutzen;<br><br>l. Urheberrechts- oder andere Eigentumshinweise im Inhalt ändern oder entfernen;<br><br>m. Die Website, den Inhalt oder den Dienst für oder in Verbindung mit Aktivitäten nutzen, die (i) gegen geltende Gesetze, Statuten, Verordnungen oder Vorschriften verstoßen, einschließlich, aber nicht beschränkt auf das Office of Foreign Assets Control (OFAC) des Finanzministeriums, oder (ii) Erlöse aus rechtswidrigen oder illegalen Aktivitäten beinhalten.<br><br>Darüber hinaus erkennen Sie an und stimmen zu, dass Sie (und nicht wir) allein dafür verantwortlich sind, alle Telekommunikations-, Breitband- und Computerhardware, Ausrüstung, Software und Dienste zu beschaffen und aufrechtzuerhalten, die Sie für den Zugriff auf und die Nutzung des Dienstes benötigen, und alle damit verbundenen Gebühren zu zahlen.<br><br><strong>HAFTUNGSBESCHRÄNKUNGEN</strong><br>Die Dienste, das Portal und die Website werden im Ist-Zustand (\"as is\") und nach Verfügbarkeit (\"as available\") bereitgestellt, ohne dass wir weitere Zusagen hinsichtlich der Verfügbarkeit der Dienste machen. Insbesondere geben wir keine stillschweigenden Gewährleistungen für Rechtsmängelhaftung, Marktgängigkeit, Eignung für einen bestimmten Zweck und/oder Nichtverletzung von Rechten Dritter. Wir geben keine Zusagen, dass der Zugriff auf die Website, einen der Dienste oder die darin enthaltenen Materialien kontinuierlich, ununterbrochen, zeitgerecht oder fehlerfrei sein wird.<br><br>Wenn Sie Streitigkeiten mit einem oder mehreren Benutzern des Unternehmens haben, stimmen Sie zu, dass weder wir noch unsere verbundenen Unternehmen oder Dienstleister noch unsere jeweiligen leitenden Angestellten, Direktoren, Händler, Vertreter, Joint-Venture-Partner, Mitarbeiter und Repräsentanten für Ansprüche, Forderungen und Schäden (tatsächliche und Folgeschäden, direkte oder indirekte) jeglicher Art und Natur haften, die aus oder in irgendeiner Weise in Verbindung mit solchen Streitigkeiten entstehen.<br><br>Wir haften nicht für Vertragsverletzungen, einschließlich Verzögerungen, Leistungsausfällen oder Dienstunterbrechungen, die direkt oder indirekt auf anormale und unvorhersehbare Umstände außerhalb unserer Kontrolle zurückzuführen sind, deren Folgen trotz aller gegenteiligen Bemühungen unvermeidlich gewesen wären, noch haften wir, wenn die Vertragsverletzung auf der Anwendung zwingender gesetzlicher Vorschriften beruht.<br><br><strong>HAFTUNGSAUSSCHLUSS</strong><br>Das Unternehmen und seine verbundenen Unternehmen geben keine Zusicherungen oder Gewährleistungen in Bezug auf die Dienste, einschließlich jeglicher Zusicherungen, dass die Dienste ununterbrochen oder fehlerfrei sind, und stellen die Dienste (einschließlich Inhalte und Informationen) im Ist-Zustand (\"as is\") und nach Verfügbarkeit (\"as available\") zur Verfügung. Soweit nach geltendem Recht zulässig, lehnen das Unternehmen und seine verbundenen Unternehmen jegliche stillschweigende oder gesetzliche Gewährleistung ab, einschließlich jeglicher stillschweigenden Gewährleistung für Rechtsmängelhaftung, Datengenauigkeit, Nichtverletzung von Rechten Dritter oder Marktgängigkeit oder Eignung für einen bestimmten Zweck.<br><br>SOWEIT GESETZLICH ZULÄSSIG, ÜBERNIMMT DAS UNTERNEHMEN KEINE HAFTUNG ODER VERANTWORTUNG FÜR (I) FEHLER, IRRTÜMER ODER UNGENAUIGKEITEN VON INHALTEN; (II) SACHSCHÄDEN JEGLICHER ART, DIE SICH AUS IHREM ZUGRIFF AUF ODER IHRER NUTZUNG DES DIENSTES ERGEBEN; (III) JEGLICHEN UNBEFUGTEN ZUGRIFF AUF ODER DIE NUTZUNG UNSERER SERVER UND/ODER ALLER DARIN GESPEICHERTEN INFORMATIONEN; (IV) JEGLICHE UNTERBRECHUNG ODER EINSTELLUNG DER ÜBERTRAGUNG ZUM ODER VOM DIENST; (V) JEGLICHE BUGS, VIREN, TROJANER ODER ÄHNLICHES, DIE VON EINEM DRITTEN AN ODER DURCH DEN DIENST ÜBERTRAGEN WERDEN KÖNNEN; (VI) JEGLICHE FEHLER ODER AUSLASSUNGEN IN INHALTEN ODER FÜR VERLUSTE ODER SCHÄDEN, DIE ALS FOLGE DER NUTZUNG VON INHALTEN ENTSTEHEN, DIE VERÖFFENTLICHT, ÜBERTRAGEN ODER ANDERWEITIG ÜBER DEN DIENST ZUR VERFÜGUNG GESTELLT WURDEN; UND/ODER (VII) DAS DIFFAMIERENDE, BELEIDIGENDE ODER ILLEGALE VERHALTEN DRITTER.<br><br><strong>ENGAGEMENT UND COMPLIANCE</strong><br>Um das Verständnis der Benutzer für unsere Produkte und Dienstleistungen und deren Engagement für diese zu bewerten sowie ihre Bereitschaft für zukünftige Innovationen zu beurteilen, ist es erforderlich, dass die Benutzer alle Produktzyklen abschließen, bevor sie eine Auszahlungsanforderung stellen. Auszahlungen können nicht mitten im Zyklus verarbeitet werden, und Produktinteraktionen können aufgrund bindender Vereinbarungen mit unseren Vertriebspartnern weder abgebrochen, übersprungen noch rückgängig gemacht werden. Unser System wird häufig aktualisiert, wobei minütlich Produkte hinzugefügt und entfernt werden, und ein längeres Halten eines Produkts durch einen Benutzer kann sich nachteilig auf den Fortschritt der Händler auswirken. Benutzer werden ermutigt, ihre Produktzyklen abzuschließen und Auszahlungsanforderungen innerhalb eines Zeitrahmens von 24 bis 48 Stunden einzureichen. Für den Fall, dass ein Produkt länger als die angegebene 48-Stunden-Frist aufbewahrt wird, sehen unsere Nutzungsbedingungen Anpassungen der standardmäßigen Zahlungspläne basierend auf einer gegenseitigen Vereinbarung zwischen dem Benutzer und unserem Unternehmen vor. Sollten solche Anpassungen vorgenommen werden, können geringfügige Gebühren erhoben werden, um die mit diesen Änderungen verbundenen Verwaltungskosten zu decken und eine kontinuierliche Servicebereitstellung sicherzustellen. Details zu diesen Gebühren sind im Abschnitt Rechnungsanpassungen unserer Benutzervereinbarungen enthalten, um die Transparenz zu fördern und das Verständnis zu erleichtern. Dieser Ansatz ermöglicht es uns, flexibel auf die unterschiedlichen finanziellen Situationen unserer Nutzer zu reagieren und gleichzeitig die Effizienz und den Fortschritt unserer Vertriebspartner zu sichern. Darüber hinaus kann das Unternehmen weitere Unterlagen anfordern, um die Echtheit der beteiligten Gelder zu überprüfen. Benutzer können auch aufgefordert werden, die Herkunft dieser Gelder nachzuweisen. Sollten Bedenken hinsichtlich der Legitimität der Gelder bestehen, behält sich das Unternehmen das Recht vor, ein Audit des Benutzerkontos durchzuführen. Dieser umfassende Ansatz trägt dazu bei sicherzustellen, dass alle finanziellen Interaktionen innerhalb unserer Plattform den höchsten Sicherheits- und Compliance-Standards entsprechen. Um die Einhaltung der Vorschriften zu gewährleisten und Klarheit bei den Transaktionsabläufen zu schaffen, muss jedes Konto mit unterschiedlichen Zahlerinformationen betrieben werden, mit Ausnahme von Betreuer-Konten.<br><br><strong>AUSSETZUNG, KÜNDIGUNG UND STORNIERUNG</strong><br>Wir können: (a) Ihren Zugriff auf alle oder einen Teil der Unternehmensdienste aussetzen, einschränken oder beenden und/oder (c) Ihr Konto mit sofortiger Wirkung aus wichtigem Grund deaktivieren oder kündigen, einschließlich, aber nicht beschränkt auf Fälle, in denen:<br><br>a. Wir von einer Regierungsbehörde dazu aufgefordert werden;<br>b. Sie nicht in der Lage sind oder zu sein scheinen, Ihren Verpflichtungen im Hinblick auf eine oder mehrere Pflichten nachzukommen;<br>c. Sie von einem Insolvenzereignis jeglicher Art betroffen sind (nach unserem absoluten Ermessen);<br>d. Gegen Sie eine Untersuchung, Klage, Maßnahme oder ein Verfahren jeglicher Art eingeleitet wird (einschließlich, aber nicht beschränkt auf Untersuchungen wegen Verdachts auf Marktmissbrauch, Manipulation oder anderes kriminelles Verhalten), Sie gegen geltendes Recht verstoßen haben oder Schritte von einer Person unternommen werden, um ein Sicherungsrecht gegen Sie durchzusetzen;<br>e. Sie gegen diese Vereinbarung verstoßen; oder<br>f. Wir es anderweitig für notwendig erachten, um uns oder das Unternehmen zu schützen.<br>Wenn wir Ihr Konto aussetzen, einschränken oder schließen und/oder Ihre Nutzung der Dienste beenden, werden wir (sofern es uns nicht gesetzlich untersagt ist) Sie über unsere Maßnahmen und die Gründe für die Verweigerung, Aussetzung oder Schließung informieren und gegebenenfalls das Verfahren zur Korrektur sachlicher Fehler mitteilen, die zur Verweigerung, Aussetzung oder Schließung Ihres Kontos geführt haben.<br>Wir können Ihr Konto sofort, ohne vorherige Ankündigung oder Haftung, aus welchem Grund auch immer, einschließlich und ohne Einschränkung, wenn Sie gegen die Bedingungen verstoßen, kündigen oder sperren oder stornieren. Bei Beendigung erlischt Ihr Recht zur Nutzung des Dienstes sofort.<br><br><strong>EIGENTUM UND GEISTIGES EIGENTUM</strong><br>a. Vorbehaltlich dieser Bedingungen dürfen Sie Inhalte für Ihren eigenen persönlichen Gebrauch ansehen, drucken und Kopien davon anfertigen. Sie dürfen Inhalte nicht ganz oder teilweise kopieren, reproduzieren, herunterladen, per \"Screen Scraping\" erfassen, speichern, übertragen, senden, veröffentlichen, modifizieren, abgeleitete Werke daraus erstellen, anzeigen, vorführen, vertreiben, weiterverteilen, verkaufen, lizenzieren, vermieten, verleasen oder anderweitig nutzen, übertragen (weder in gedruckter, elektronischer oder anderer Form) oder verwerten, auf eine Weise, die nicht diesen Bedingungen entspricht.<br><br>b. Im Verhältnis zwischen dem Unternehmen und Ihnen ist sämtlicher Inhalt Eigentum des Unternehmens oder wird von diesem kontrolliert. Das Unternehmen, sein Logo und, sofern unten nicht anders angegeben, alle anderen Produkt- oder Dienstleistungsnamen oder Slogans, die auf dem Dienst angezeigt werden, sind eingetragene und/oder gewohnheitsrechtliche Marken des Unternehmens oder seiner Lieferanten oder Lizenzgeber und dürfen ohne vorherige schriftliche Genehmigung des Unternehmens oder des jeweiligen Markeninhabers weder ganz noch teilweise kopiert, imitiert oder verwendet werden. Darüber hinaus sind das Erscheinungsbild des Dienstes, einschließlich aller Seitenkopfzeilen, benutzerdefinierten Grafiken, Schaltflächensymbole und Skripte, die Dienstleistungsmarke, Marke und/oder Handelsaufmachung des Unternehmens und dürfen ohne die vorherige schriftliche Genehmigung des Unternehmens weder ganz noch teilweise kopiert, imitiert oder verwendet werden. Alle anderen Marken, eingetragenen Marken, Produktnamen und Firmennamen oder Logos, die im Dienst erwähnt werden, sind Eigentum ihrer jeweiligen Inhaber. Ein Verweis auf Produkte, Dienstleistungen, Prozesse oder andere Informationen nach Handelsnamen, Markenzeichen, Hersteller, Lieferant oder anderweitig stellt keine Billigung, Unterstützung oder Empfehlung durch das Unternehmen dar oder impliziert diese.<br><br>c. Nichts in diesen Bedingungen gewährt Ihnen ein Interesse an dem geistigen Eigentum des Unternehmens oder eines Dritten.<br><br>d. Alle zugehörigen Logos, Marken, Dienstleistungsmarken und Handelsnamen sind ausschließliches Eigentum des Unternehmens. Das Fehlen eines Namens, Logos oder einer anderen Marke in diesem Dokument stellt keinen Verzicht auf jegliche geistige Eigentumsrechte dar, die das Unternehmen etabliert hat. Andere Marken, Namen oder Logos, die auf der Website verwendet werden, sind Eigentum ihrer jeweiligen Inhaber. Sie sind nicht berechtigt, eine der vorgenannten zu verwenden.<br><br>e. Sie erkennen an, dass das Unternehmen und/oder seine Anbieter die Urheberrechte an sämtlichen Inhalten gemäß den geltenden Gesetzen (einschließlich Urheberrechtsgesetzen und anderen Gesetzen zum Schutz geistigen Eigentums) besitzen und sich alle Rechte an diesen Inhalten vorbehalten haben.<br><br><strong>LINKS ZU ANDEREN WEBSITES</strong><br>Unser Service kann Links zu Websites oder Diensten Dritter enthalten, die nicht Eigentum des Unternehmens sind oder von diesem kontrolliert werden. Das Unternehmen hat keine Kontrolle über den Inhalt, die Datenschutzrichtlinien oder Praktiken von Websites oder Diensten Dritter und übernimmt dafür keine Verantwortung. Sie erkennen ferner an und stimmen zu, dass das Unternehmen weder direkt noch indirekt für Schäden oder Verluste verantwortlich oder haftbar ist, die durch oder in Verbindung mit der Nutzung von oder dem Vertrauen auf solche Inhalte, Waren oder Dienste, die auf oder über solche Websites oder Dienste verfügbar sind, verursacht wurden oder angeblich verursacht wurden. Wir raten Ihnen dringend, die Allgemeinen Geschäftsbedingungen und Datenschutzrichtlinien aller Websites oder Dienste Dritter, die Sie besuchen, zu lesen.<br><br>SIE STIMMEN ZU, DASS DAS UNTERNEHMEN UNTER KEINEN UMSTÄNDEN DIREKT ODER INDIREKT FÜR WAREN, DIENSTLEISTUNGEN, INFORMATIONEN, RESSOURCEN UND/ODER INHALTE VERANTWORTLICH ODER HAFTBAR IST, DIE AUF ODER ÜBER EINE WEBSITE ODER DIENSTE DRITTER VERFÜGBAR SIND, FÜR JEGLICHE GESCHÄFTE ODER KOMMUNIKATIONEN, DIE SIE MIT DRITTEN HABEN KÖNNTEN, ODER FÜR SCHÄDEN ODER VERLUSTE, DIE DURCH ODER IN VERBINDUNG MIT EINEM DER VORSTEHENDEN PUNKTE ODER IHRER NUTZUNG ODER IHREM VERTRAUEN AUF DIE MATERIALIEN ODER DEN INHALT ODER DIE GESCHÄFTSPRAKTIKEN EINES DRITTEN VERURSACHT WURDEN ODER ANGEBLICH VERURSACHT WURDEN.<br><br><strong>RICHTLINIE ZU UNEHRLICHEM VERHALTEN</strong><br>Um unehrliches Verhalten zu erkennen, abzuschrecken und zu verhindern, befolgt das Unternehmen diese Grundsätze:<br><br>a. Zuweisung von Ressourcen für Strafverfolgung, Financial Intelligence und Aufsicht auf risikobewusster Basis;<br>b. Aufrechterhaltung einer engen politischen und operativen Koordination und Zusammenarbeit mit der Regierung;<br>c. Verfolgung eines präventiven Ansatzes, der strenge Lizenzierungs- und umfassende Meldepflichten, strenge Vorschriften gegen unehrliches Verhalten und eine risikobasierte Aufsicht über die relevanten finanziellen und nichtfinanziellen Sektoren kombiniert;<br>d. Verbesserung des Verständnisses von Akteuren des privaten Sektors für die Risiken unehrlichen Verhaltens und Förderung einer Kultur der Compliance;<br>e. Ergreifung entschlossener und abschreckender Strafverfolgungsmaßnahmen gegen unehrliche Aktivitäten, einschließlich solcher, die sich auf ausländische Verbrechen beziehen;<br>f. Bereitstellung von Unterstützung für andere Gerichtsbarkeiten über formelle und informelle Kanäle, spontan und auf Anfrage.<br><br><strong>VERTRAULICHKEITSRICHTLINIE MIT KOOPERIERENDEN HÄNDLERN</strong><br>A. Vertrauliche und proprietäre Informationen<br>Im Rahmen der Beschäftigung werden Mitarbeiter vertraulichen und proprietären Informationen des Arbeitgebers ausgesetzt. Vertrauliche und proprietäre Informationen bezeichnen alle Daten oder Informationen, die wettbewerbsrechtlich sensibles Material sind und der Öffentlichkeit nicht allgemein bekannt sind, einschließlich, aber nicht beschränkt auf Informationen in Bezug auf Entwicklung und Pläne, Marketingstrategien, Finanzen, Betrieb, Systeme, proprietäre Konzepte, Dokumentation, Berichte, Daten, Spezifikationen, Computersoftware, Quellcode, Objektcode, Flussdiagramme, Daten, Datenbanken, Erfindungen, Know-how, Geschäftsgeheimnisse, Kundenlisten, Kundenbeziehungen, Kundenprofile, Lieferantenlisten, Lieferantenbeziehungen, Lieferantenprofile, Preisgestaltung, Umsatzschätzungen, Geschäftspläne und interne Leistungsergebnisse in Bezug auf vergangene, gegenwärtige oder zukünftige Geschäftsaktivitäten, technische Informationen, Designs, Prozesse, Verfahren, Formeln oder Verbesserungen, die der Arbeitgeber als vertraulich und proprietär ansieht. Der Mitarbeiter erkennt an und stimmt zu, dass die vertraulichen und proprietären Informationen wertvolles Eigentum des Arbeitgebers sind, das über einen langen Zeitraum unter erheblichen Kosten entwickelt wurde und das schützenswert ist.<br><br>B. Vertraulichkeitsverpflichtungen<br>Sofern in dieser Vereinbarung nicht ausdrücklich anders zugelassen, darf der Mitarbeiter weder während der Laufzeit dieser Vereinbarung noch zu irgendeinem Zeitpunkt danach vertrauliche und proprietäre Informationen direkt oder indirekt auf irgendeine Weise offenlegen oder nutzen, es sei denn, dies ist zur Erfüllung seiner Aufgaben und Verantwortlichkeiten erforderlich oder es liegt die vorherige schriftliche Zustimmung des Arbeitgebers vor.<br><br>C. Rechte an vertraulichen und proprietären Informationen<br>Alle Ideen, Konzepte, Arbeitsprodukte, Informationen, schriftlichen Materialien oder anderen vertraulichen und proprietären Informationen, die dem Mitarbeiter vom Arbeitgeber offengelegt werden, (i) sind und bleiben das alleinige und ausschließliche Eigentum des Arbeitgebers und (ii) werden dem Mitarbeiter nur im Vertrauen auf die Vereinbarung des Mitarbeiters offengelegt oder es wird ihm gestattet, diese zu erwerben, sie vertraulich zu behandeln und sie nicht zu nutzen oder an andere Personen weiterzugeben, außer zur Förderung des Geschäfts des Arbeitgebers. Sofern hierin nicht ausdrücklich vorgesehen, verleiht diese Vereinbarung dem Mitarbeiter kein Recht, keine Lizenz, kein Eigentum oder andere Interessen oder Titel an, für oder unter vertraulichen und proprietären Informationen.<br><br>D. Irreparabler Schaden<br>Der Mitarbeiter erkennt an, dass die Nutzung oder Offenlegung von vertraulichen und proprietären Informationen in einer Weise, die mit dieser Vereinbarung unvereinbar ist, zu irreparablen Schäden führt, für die Schadensersatz kein angemessener Rechtsbehelf wäre. Dementsprechend hat der Arbeitgeber zusätzlich zu allen anderen gesetzlichen oder nach Billigkeitsrecht verfügbaren Rechtsbehelfen Anspruch auf Unterlassung gegen die unbefugte Nutzung oder Offenlegung vertraulicher und proprietärer Informationen. Der Arbeitgeber ist berechtigt, jeden anderen gesetzlich zulässigen Rechtsbehelf zu verfolgen, der infolge eines solchen Verstoßes zur Verfügung steht, einschließlich, aber nicht beschränkt auf direkte Schäden und Folgeschäden. Bei jeder Klage, die vom Arbeitgeber gemäß diesem Abschnitt erhoben wird, hat der Arbeitgeber Anspruch auf Erstattung seiner Anwaltsgebühren und -kosten vom Mitarbeiter."
+    },
+    "privacy": {
+      "title": "Datenschutzrichtlinie",
+      "last_updated": "Zuletzt aktualisiert am 11. Januar 2024",
+      "content": "Bei The Structured Data Company setzen wir uns stark für den Schutz und die Wahrung Ihrer Privatsphäre ein. Diese Datenschutzrichtlinie (\"Datenschutzrichtlinie\") deckt Ihren Zugriff auf und die Nutzung dieser Website (die \"Website\") sowie der zugehörigen Inhalte, Software und mobilen Anwendungen (zusammen der \"Dienst\") ab. Diese Datenschutzrichtlinie erklärt, wann, warum und wie wir personenbezogene Daten über Personen erheben und verwenden, die unsere Website besuchen oder unsere Dienste nutzen, die Bedingungen, unter denen wir Ihre personenbezogenen Daten gegenüber anderen offenlegen können, und wie wir Ihre personenbezogenen Daten sicher aufbewahren. Wir können diese Datenschutzrichtlinie von Zeit zu Zeit ändern. Durch die Nutzung unserer Website oder unserer Dienste erklären Sie sich mit dieser Datenschutzrichtlinie einverstanden. Bitte lesen Sie diese Richtlinie sorgfältig durch. Wir verpflichten uns, Ihre Privatsphäre durch die Einhaltung der Bestimmungen dieser Richtlinie zu schützen.<br><br><strong>ÄNDERUNGEN</strong><br>Das Unternehmen (\"wir\" oder \"uns\") kann diese Datenschutzrichtlinie ändern. Wenn wir wesentliche Änderungen daran vornehmen, werden wir Sie über unsere Dienste oder auf andere Weise benachrichtigen, um Ihnen die Möglichkeit zu geben, die Änderungen zu überprüfen, bevor sie wirksam werden. Wenn Sie Einwände gegen Änderungen haben, können Sie Ihr Konto schließen. Sie erkennen an, dass Ihre fortgesetzte Nutzung unserer Dienste nach der Veröffentlichung oder dem Senden einer Mitteilung über unsere Änderungen an dieser Datenschutzrichtlinie bedeutet, dass die Erfassung, Nutzung und Weitergabe Ihrer personenbezogenen Daten ab deren Inkrafttreten der aktualisierten Datenschutzrichtlinie unterliegt.<br><br><strong>KONTO ERSTELLEN</strong><br>Um ein Konto zu erstellen, müssen Sie Daten angeben, einschließlich Ihrer E-Mail-Adresse und/oder Handynummer sowie eines selbst festgelegten Passworts. Wenn wir personenbezogene Daten erheben, erheben wir diese im notwendigen Rahmen, und die Erhebung erfolgt mit Priorität auf der Gewährleistung von Rechtmäßigkeit und Fairness. Wir können Ihre personenbezogenen Daten direkt von Ihnen oder von anderen Stellen erheben, mit denen wir zusammenarbeiten, wie z. B. Händlern, Benutzern, Regierungsbehörden, öffentlichen oder staatlichen Stellen oder unseren eigenen Einrichtungen. Zu den personenbezogenen Daten, die wir erheben, verwenden und offenlegen, gehören:<br><br>a. Kontaktinformationen, wie Ihr Name, Ihre E-Mail-Adresse und Kontaktnummer;<br><br>b. Identitätsinformationen wie Ihre Nationalität;<br><br>c. Informationen, die nach geltenden Gesetzen und Vorschriften, beruflichen Verpflichtungen, internen Richtlinien und Risikomanagementverfahren erforderlich sind, wie z. B. Aufzeichnungspflichten, Betrugsprävention, Prüfungszwecke, Compliance-Überprüfungen und Due-Diligence-Prüfungen, Sanktionsregime und Gerichtsbeschlüsse, unabhängig davon, ob in zugelassenen Regionen oder anderswo;<br><br>d. Informationen in Bezug auf Informations- und Kommunikationstechnologiesysteme und -prozesse, Büroausstattung und -einrichtungen; und<br><br>e. Fotos und andere audiovisuelle Informationen.<br>Wenn Sie uns die personenbezogenen Daten einer anderen Person übermitteln, bestätigen Sie, dass diese wahr und richtig sind, dass alle erforderlichen Zustimmungen eingeholt wurden oder dass Sie anderweitig berechtigt sind, uns diese personenbezogenen Daten zur Verfügung zu stellen.<br><br><strong>SCHUTZ IHRER PERSONENBEZOGENEN DATEN</strong><br>Wir setzen geeignete technische, organisatorische und administrative Sicherheitsmaßnahmen ein, um Ihre personenbezogenen Daten vor Verlust, Missbrauch oder unbefugtem Zugriff, Offenlegung, Änderung oder Zerstörung zu schützen. Wir beschränken den Zugriff auf Ihre personenbezogenen Daten auch auf diejenigen, die ein echtes geschäftliches Bedürfnis haben, diese zu kennen. Personenbezogene Daten werden mit den erforderlichen und angemessenen Schutzmaßnahmen verwaltet, um unfairen Zugriff, Verlust, Verfälschung, Weitergabe usw. aus der Perspektive einer ordnungsgemäßen Informationstechnologie und Verwaltung zu verhindern. Es bestehen jedoch immer Risiken bei der Bereitstellung personenbezogener Daten, da keine Technologie völlig risikofrei ist oder eine 100%ige Sicherheit garantieren kann. Sollte es bei der Verwaltung zu Fahrlässigkeiten kommen, wie z. B. zum Durchsickern solcher Daten, wären wir in der Lage, so weit wie möglich sofortige und wirksame Gegenmaßnahmen zu ergreifen.<br><br><strong>AUFBEWAHRUNG IHRER PERSONENBEZOGENEN DATEN</strong><br>Wir werden Ihre personenbezogenen Daten nicht länger aufbewahren, als wir es für die Zwecke, für die sie erhoben wurden, für vernünftigerweise erforderlich halten, oder für einen längeren Zeitraum, wenn dies aus geschäftlichen oder rechtlichen Gründen erforderlich ist. Bei der Vernichtung Ihrer personenbezogenen Daten werden wir wirtschaftlich angemessene Maßnahmen ergreifen, um Ihre personenbezogenen Daten in Übereinstimmung mit geltendem Recht unwiederbringlich oder nicht reproduzierbar zu machen.<br><br><strong>WIE WIR IHRE PERSONENBEZOGENEN DATEN VERWENDEN</strong><br>Wie wir Ihre personenbezogenen Daten verwenden, hängt davon ab, welche Dienste Sie nutzen, wie Sie diese Dienste nutzen und welche Entscheidungen Sie in Ihren Einstellungen treffen. Wir verwenden die Informationen, die wir über Sie haben, um unsere Dienste bereitzustellen und zu personalisieren, einschließlich mit Hilfe von automatisierten Systemen und Schlussfolgerungen, die wir ziehen, damit unsere Dienste (einschließlich Werbung) für Sie und andere relevanter und nützlicher sein können.<br><br><strong>COOKIE UND ÄHNLICHE TECHNOLOGIEN</strong><br>Wie in unserer Cookie-Richtlinie näher beschrieben, verwenden wir Cookies und ähnliche Technologien (z. B. Pixel und Ad-Tags), um Daten (z. B. Geräte-IDs) zu sammeln, um Sie und Ihre Geräte auf, außerhalb und über verschiedene Dienste und Geräte hinweg zu erkennen, auf denen Sie mit unseren Diensten interagiert haben. Wir gestatten auch einigen anderen die Verwendung von Cookies, wie in unserer Cookie-Richtlinie beschrieben.<br><br><strong>SICHERHEIT</strong><br>Wir implementieren Sicherheitsmaßnahmen zum Schutz Ihrer Daten, wie z. B. HTTPS. Wir überwachen unsere Systeme regelmäßig auf mögliche Schwachstellen und Angriffe. Wir können jedoch die Sicherheit von Informationen, die Sie an uns senden, nicht garantieren. Es gibt keine Garantie dafür, dass Daten nicht durch eine Verletzung unserer physischen, technischen oder verwaltungstechnischen Sicherheitsvorkehrungen aufgerufen, offengelegt, verändert oder zerstört werden.<br><br><strong>DO-NOT-TRACK-SIGNALE</strong><br>Wir geben derzeit ohne Ihre Erlaubnis keine personenbezogenen Daten an Dritte für deren Direktmarketingzwecke weiter.<br><br><strong>ÜBERPRÜFUNG DER DATENSCHUTZRICHTLINIE</strong><br>Dieses Portal wird nicht öffentlich anerkannt und streng vertraulich behandelt, um die Weitergabe vertraulicher Informationen von Händlern zu verhindern."
+    },
+    "cookies": {
+      "title": "Cookie-Richtlinie",
+      "last_updated": "Gültig ab 19. November 2015",
+      "content": "Beim Unternehmen glauben wir daran, klar und offen darüber zu sein, wie wir Daten über Sie erfassen und verwenden. Diese Cookie-Richtlinie gilt für alle Produkte oder Dienstleistungen des Unternehmens, die auf diese Richtlinie verlinken oder diese durch Verweis einbeziehen. Wir verwenden Cookies und ähnliche Technologien wie Pixel, lokalen Speicher und mobile Werbe-IDs (in dieser Richtlinie zusammenfassend als \"Cookies\" bezeichnet), um Daten im Rahmen unserer Dienste zu erfassen und zu verwenden, wie in unserer Datenschutzrichtlinie (\"Dienste\") definiert. Dies umfasst unsere Websites, Kommunikationen, mobilen Anwendungen und externen Dienste, wie unsere Werbedienste und die Plugins oder Tags \"Mit dem Unternehmen bewerben\" und \"Mit dem Unternehmen teilen\". Im Sinne der Transparenz bietet diese Richtlinie detaillierte Informationen darüber, wie und wann wir diese Technologien verwenden.<br>Indem Sie unsere Dienste weiterhin besuchen oder nutzen, stimmen Sie der Verwendung von Cookies und ähnlichen Technologien für die in dieser Richtlinie beschriebenen Zwecke zu.<br><br><strong>WELCHE TECHNOLOGIEN VERWENDET WERDEN</strong><br><br><strong>COOKIES</strong><br>Cookies sind kleine Textdateien, die eine Zeichenfolge enthalten und auf Ihrem Computer oder Mobilgerät platziert werden können, um Ihren Browser oder Ihr Gerät eindeutig zu identifizieren. Wir können Technologien wie Cookies, Pixel und lokalen Speicher verwenden, um Produkte, Dienste und Anzeigen bereitzustellen, zu sichern und zu verstehen. Wir verwenden zwei Arten von Cookies: persistente Cookies und Sitzungs-Cookies. Ein persistentes Cookie bleibt über die aktuelle Sitzung hinaus bestehen und wird für viele Zwecke verwendet, z. B. um Sie als bestehendes Mitglied zu erkennen, damit Sie einfacher zum Unternehmen zurückkehren und mit unseren Diensten interagieren können, ohne sich erneut anmelden zu müssen. Da ein persistentes Cookie in Ihrem Browser verbleibt, wird es vom Unternehmen gelesen, wenn Sie auf eine unserer Websites zurückkehren oder eine Website eines Drittanbieters besuchen, die unsere Dienste nutzt. Sitzungs-Cookies bleiben nur so lange bestehen wie die Sitzung (normalerweise der aktuelle Besuch einer Website oder eine Browsersitzung).<br><br><strong>PIXEL</strong><br>Ein Pixel ist ein winziges Bild, das in Webseiten und E-Mails eingebettet sein kann und einen Aufruf (der Geräte- und Besuchsinformationen liefert) an unsere Server erfordert, damit das Pixel in diesen Webseiten und E-Mails gerendert wird. Wir verwenden Pixel, um mehr über Ihre Interaktionen mit E-Mail-Inhalten oder Web-Inhalten zu erfahren, z. B. ob Sie mit Anzeigen oder Beiträgen interagiert haben. Pixel können es uns und Dritten auch ermöglichen, Cookies in Ihrem Browser zu platzieren.<br><br><strong>LOKALER SPEICHER</strong><br>Der lokale Speicher ermöglicht es einer Website oder Anwendung, Informationen lokal auf Ihrem/Ihren Gerät(en) zu speichern. Der lokale Speicher kann verwendet werden, um das Erlebnis mit dem Unternehmen zu verbessern, beispielsweise durch die Aktivierung von Funktionen, das Erinnern an Ihre Präferenzen und die Beschleunigung der Website-Funktionalität.<br><br><strong>WOFÜR WERDEN DIESE TECHNOLOGIEN ZUR AUTHENTIFIZIERUNG VERWENDET</strong><br>Wir verwenden Cookies und ähnliche Technologien, um Sie zu erkennen, wenn Sie unsere Dienste besuchen. Wenn Sie beim Unternehmen angemeldet sind, helfen uns diese Technologien, Ihnen die richtigen Informationen anzuzeigen und Ihr Erlebnis entsprechend Ihren Einstellungen zu personalisieren. Beispielsweise ermöglichen es Cookies dem Unternehmen, Sie zu identifizieren und Ihr Konto zu verifizieren.<br><br><strong>SICHERHEIT</strong><br>Wir verwenden Cookies und ähnliche Technologien, um Ihre Interaktionen mit unseren Diensten schneller und sicherer zu machen. Beispielsweise verwenden wir Cookies, um unsere Sicherheitsfunktionen zu aktivieren und zu unterstützen, Ihr Konto sicher zu halten und böswillige Aktivitäten und Verstöße gegen unsere Nutzervereinbarung zu erkennen.<br><br><strong>PRÄFERENZEN, FUNKTIONEN UND DIENSTE</strong><br>Wir verwenden Cookies und ähnliche Technologien, um die Funktionalität unserer Dienste zu ermöglichen, z. B. um Ihnen das einfachere Ausfüllen von Formularen in unseren Diensten zu ermöglichen und Ihnen in Verbindung mit unseren Plugins Funktionen, Einblicke und angepasste Inhalte bereitzustellen. Wir verwenden diese Technologien auch, um uns Informationen über Ihren Browser und Ihre Präferenzen zu merken.<br><br><strong>BROWSER-STEUERUNGEN</strong><br>Bei den meisten Browsern können Sie Cookies über deren Einstellungen steuern, die angepasst werden können, um Ihre Zustimmung zur Verwendung von Cookies widerzuspiegeln. Darüber hinaus ermöglichen es die meisten Browser auch, Cookies zu überprüfen und zu löschen, einschließlich der Cookies des Unternehmens. Um mehr über Browser-Steuerungen zu erfahren, konsultieren Sie bitte die vom Hersteller Ihres Browsers bereitgestellte Dokumentation.<br><br><strong>WIE KÖNNEN SIE COOKIES STEUERN?</strong><br>Um mehr über die Möglichkeiten zu erfahren, die Werbetreibende Personen generell bieten, um die Erfassung und Verwendung von Informationen über ihre Online-Aktivitäten im Laufe der Zeit und über Websites oder Onlinedienste Dritter hinweg zu beeinflussen, besuchen Sie die Network Advertising Initiative unter http://www.networkadvertising.org/managing/opt_out.asp, die Digital Advertising Alliance unter http://www.aboutads.info/ oder die European Digital Advertising Alliance unter http://youronlinechoices.eu/. Darüber hinaus bietet Ihr Browser oder Gerät möglicherweise Einstellungen, mit denen Sie auswählen können, ob Browser-Cookies gesetzt werden, und um diese zu löschen. Diese Kontrollen variieren je nach Browser, und Hersteller können jederzeit sowohl die von ihnen zur Verfügung gestellten Einstellungen als auch deren Funktionsweise ändern. Ab dem 23. Juni 2021 finden Sie unter den untenstehenden Links weitere Informationen zu den von gängigen Browsern angebotenen Steuerungen. Bestimmte Teile der Produkte des Unternehmens funktionieren möglicherweise nicht ordnungsgemäß, wenn Sie die Verwendung von Browser-Cookies deaktiviert haben."
+    },
+    "registration": {
+      "certificate": "Zertifikat",
+      "title": "Rechtliche Hinweise und Registrierung",
+      "content": "<strong>1. Parteien</strong><br>Die Parteien dieser Allgemeinen Nutzungsbedingungen sind das Unternehmen und Sie als Benutzer, verstanden als jede natürliche oder juristische Person, die frei, freiwillig und ohne Bezahlung auf das Portal zugreift, unabhängig davon, ob Sie die dort angebotenen Dienste nutzen oder nicht. Allein die Tatsache, das Portal zu besuchen, bedeutet, dass Sie sich diesen Allgemeinen Nutzungsbedingungen vorbehaltlos unterwerfen.<br><br><strong>2. Dienste</strong><br>Wir stellen das Portal zur Verfügung, um unsere Aktivitäten zu verbreiten und damit Internetnutzer spezifische Informationen über die von uns angebotenen Dienste erhalten, die sich auf die Suchmaschine oder die Positionierung von Produkten auf dem Markt beziehen.<br><br><strong>3. Pflichten des Nutzers</strong><br>Als Nutzer verpflichten Sie sich:-<br><br>Eine sorgfältige, korrekte und rechtmäßige Nutzung des Dienstes unter Einhaltung des geltenden Rechts (insbesondere im Hinblick auf Datenschutz sowie geistiges und gewerbliches Eigentum), der guten Sitten, der öffentlichen Ordnung und dieser Allgemeinen Nutzungsbedingungen zu gewährleisten.<br><br>Diese Allgemeinen Nutzungsbedingungen oder andere anwendbare Bedingungen regelmäßig auf mögliche Änderungen zu überprüfen.<br><br>Die von uns an Sie gesendeten Benachrichtigungen zu prüfen, da diese wichtige Informationen enthalten können.<br><br>Das Portal nicht für kommerzielle Zwecke zu nutzen; beispielsweise durch das Sammeln von Informationen oder Inhalten zur Bereitstellung anderer Dienste, die eine offensichtliche Konkurrenz für das Portal darstellen könnten.<br><br>Das Portal in keiner Weise zu verändern oder zu versuchen, es zu verändern, oder Handlungen oder Mittel einzusetzen, die darauf abzielen, das Erscheinungsbild oder die Funktionen des Portals zu simulieren.<br><br>Keine Handlungen auszuführen, die die Einführung von Computerviren, Würmern, Trojanern oder anderen Arten von bösartigem Code beinhalten, die darauf abzielen, die Funktionalitäten des Portals zu unterbrechen, zu zerstören oder einzuschränken.<br><br>Keine Reverse-Engineering-Techniken zu verwenden und/oder den Quellcode des Portals oder eines anderen Elements, das dem Urheberrecht oder zugrunde liegenden geistigen Eigentumsrechten unterliegt, zu entschlüsseln, zu dekompilieren oder ein anderes System zu verwenden, das darauf abzielt, diesen zu entdecken.<br><br>Den Dienst (oder ein oder mehrere mit dem Dienst verbundene Netzwerke) nicht zu beschädigen, zu deaktivieren, zu überlasten, zu behindern oder seine Nutzung zu stören.<br><br>In jedem Fall keine Handlungen durchzuführen, die die Rechte oder Interessen des Portals oder Dritter verletzen könnten, wie z. B. geistiges Eigentum oder gewerbliche Rechte (Patente, Markennamen, Urheberrechte, Geschäftsgeheimnisse usw.).<br><br><strong>4. Geistiges und gewerbliches Eigentum</strong><br>Die Rechte an geistigem Eigentum am Unternehmen und an den Elementen, aus denen es besteht, einschließlich der Programmierung, des Designs, der Anwendungen, Grafiken, Codes, Texte oder Bilder darin, gehören ausschließlich dem Unternehmen, oder das Unternehmen verfügt über die erforderlichen Rechte und/oder Genehmigungen für deren Nutzung. Der Name der Domain, die Marken, Handelsnamen und im Allgemeinen jedes Erkennungszeichen im Unternehmen sind ebenfalls Eigentum des Unternehmens, und/oder das Unternehmen verfügt über die erforderlichen Lizenzen, um sie zu verwenden. Infolge des Vorstehenden ist jede Vervielfältigung, Verbreitung, öffentliche Wiedergabe (einschließlich der Zugänglichmachung), Umwandlung oder jede andere Form der Nutzung, auch wenn die Quellen angegeben sind, ohne die ausdrückliche schriftliche Zustimmung des Unternehmens oder des ausschließlichen Inhabers der betroffenen Rechte untersagt. Wenn Sie eine Verletzung der geistigen und/oder gewerblichen Eigentumsrechte im Unternehmen feststellen, melden Sie dies bitte so schnell wie möglich, indem Sie sich an den Support wenden.<br><br><strong>5. Links zu Websites Dritter</strong><br>Das Portal kann Links zu Seiten oder Websites von Dritten enthalten, die nicht mit dem Portal in Verbindung stehen. Das Portal übernimmt keine Verantwortung für diese Links oder die Inhalte, auf die darüber zugegriffen werden kann, da es deren Funktionen, Werbung oder im Allgemeinen die auf diesen Seiten enthaltenen Informationen nicht billigt oder überprüft und jegliche Haftung für deren Inhalt und ordnungsgemäßen Betrieb oder für Folgen oder Schäden, die durch den Zugriff darauf entstehen könnten, ablehnt. Benutzer, die auf diese Links zugreifen, tun dies auf eigenes Risiko, akzeptieren den externen Charakter dieser Inhalte und die Unfähigkeit von BRANDVIOUS, INC., zu garantieren, dass es keine Bedrohungen, Malware oder Viren, illegalen Inhalte oder andere Links gibt, die wiederum zu Websites mit einer oder mehreren der genannten Eigenschaften führen.<br><br><strong>6. Haftungsausschluss</strong><br>Das Portal arbeitet daran sicherzustellen, dass die Dienste und Funktionalitäten des Portals jederzeit verfügbar sind. Beim Zugriff auf das Portal wird es jedoch im \"Ist-Zustand\" (as is) angezeigt, entsprechend der jeweils gegebenen Verfügbarkeit und Einschränkungen. Trotz der kontinuierlichen Bemühungen des Unternehmens, die Systeme und Inhalte des Portals zu schützen, wofür es die üblichen Sicherheitsstandards im Internet verwendet, ist es nicht möglich, umfassende Garantien gegen mögliche Einbrüche oder Informationsverluste zu geben. Ebenso gibt es keine Garantie für das Fehlen von Viren oder anderen schädlichen Elementen im Portal oder auf Websites Dritter, die zu Software- und Hardwareänderungen im Computersystem des Benutzers führen könnten. Der Benutzer geht daher davon aus und versteht, dass Situationen auftreten können, die außerhalb der Kontrolle des Unternehmens liegen. Das Unternehmen übernimmt keine Haftung, die sich aus der missbräuchlichen Nutzung des Portals durch den Benutzer oder aus der Verletzung von Verpflichtungen oder Zusagen ergeben könnte, die unter diesen Allgemeinen Nutzungsbedingungen oder anderen anwendbaren Bedingungen eingegangen wurden. Im Allgemeinen haften weder das Unternehmen noch seine Mitarbeiter im Falle von entgangenem Gewinn oder tatsächlichem Verlust aus irgendeinem Grund.<br><br><strong>7. Schadloshaltung</strong><br>Erleidet das Unternehmen durch einen Verstoß der Nutzer gegen diese Allgemeinen Nutzungsbedingungen oder andere anwendbare Bedingungen Schäden, Verluste oder Kosten jeglicher Art (einschließlich Anwalts- und Gerichtskosten), ist der Nutzer verpflichtet, das Unternehmen zu entschädigen. Dies ist auch der Fall, wenn aufgrund eines Verstoßes des Nutzers Ansprüche von Dritten gegen das Unternehmen geltend gemacht werden; in diesem Fall stellt der Dritte das Unternehmen schadlos, und das Unternehmen kann vom Nutzer jegliche Ausgaben, Kosten oder Schäden fordern, die sich aus seinen Handlungen ergeben.<br><br><strong>8. Datenschutz und Sicherheitsrisiken</strong><br>Die Erhebung personenbezogener Daten durch das Unternehmen und deren Verarbeitung durch das Unternehmen wird durch eine spezifische Datenschutzrichtlinie geregelt, auf die die Kandidaten durch Einsehen Zugriff haben.<br><br><strong>9. Allgemeine Angelegenheiten</strong><br>9.1. Salvatorische Klausel und Auslegung<br>Diese Allgemeinen Nutzungsbedingungen stellen eine Vereinbarung zwischen Ihnen als Nutzer und dem Portal dar. Sollte die zuständige Behörde eine Bestimmung für rechtswidrig, ungültig oder nicht durchsetzbar erklären, muss diese Bestimmung so ausgelegt werden, dass sie ihrer ursprünglichen Absicht am nächsten kommt. Eine solche Erklärung in Bezug auf eine oder mehrere Klauseln berührt nicht die Gültigkeit der übrigen Klauseln. Wenn das Unternehmen eine der Bestimmungen dieser Bedingungen nicht strikt einhält, stellt dies keinen Verzicht auf eine mögliche Forderung nach Einhaltung in der Zukunft dar und darf auch keinesfalls als solcher ausgelegt werden.<br><br>9.2. Anwendbares Recht und Gerichtsstand<br>Die Beziehungen zwischen dem Portal und dem Nutzer unterliegen den Gesetzen der Vereinigten Staaten. Im Falle von Meinungsverschiedenheiten in Bezug auf die Auslegung oder Einhaltung dieser Allgemeinen Nutzungsbedingungen verzichten sie ausdrücklich auf jeden anderen Gerichtsstand, der ihnen zustehen könnte, und unterwerfen sich den Gerichten, es sei denn, ein zwingendes Gesetz schreibt einen anderen Gerichtsstand vor.<br><br><strong>ZERTIFIKAT</strong><br>Name der registrierten Entität: The Structured Data Company Limited<br>Registrierte Adresse: C/O Chalk Hill Barn Office 1 Upstairs, Yew Tree Farm, Stone Street, Stanford, Kent, England, TN25 6DH<br>Firmennummer: 16095340"
+    },
+    "footer": "&copy; <span id=\"year\">2026</span> The Structured Data Company. Alle Rechte vorbehalten."
+  },
+  "auth": {
+    "footer": {
+      "terms": "Nutzungsbedingungen",
+      "privacy": "Datenschutzrichtlinie",
+      "cookies": "Cookie-Richtlinie",
+      "legal": "Rechtliches und Registrierung"
+    },
+    "form": {
+      "info_banner": "Die Domain wird möglicherweise unregelmäßig aktualisiert, um die neuesten Informationen widerzuspiegeln.",
+      "btn_try_again": "Erneut versuchen",
+      "title_signin": "Anmelden",
+      "title_signup": "Konto erstellen",
+      "label_display_name": "Anzeigename",
+      "label_email_signin": "Anzeigename oder E-Mail",
+      "label_email_signup": "E-Mail",
+      "label_referrer": "Empfehlungs-Konto-ID",
+      "hint_referrer": "Geben Sie die ID des Werbenden ein, um eine korrekte Betreuer-Zuweisung sicherzustellen.",
+      "label_phone": "Telefonnummer",
+      "label_password": "Passwort",
+      "label_confirm_password": "Passwort bestätigen",
+      "label_yob": "Geburtsjahr",
+      "hint_yob": "Für die Altersverifikation erforderlich.",
+      "alert_captcha": "Bitte bestätigen Sie, dass Sie kein Roboter sind.",
+      "agreement": "Durch die Erstellung eines Kontos bestätige ich, dass ich 23 Jahre oder älter bin, den Nutzungsbedingungen zustimme und die Datenschutz- und Cookie-Richtlinie gelesen habe.",
+      "forgot_password": "Passwort vergessen? Kontaktieren Sie den Support.",
+      "btn_signin": "Anmelden",
+      "btn_signup": "Konto erstellen",
+      "btn_continue": "Weiter",
+      "btn_get_started": "Loslegen",
+      "toggle": {
+        "no_account": "Sie haben noch kein Konto?",
+        "create": "Konto erstellen",
+        "has_account": "Sie haben bereits ein Konto?",
+        "signin": "Anmelden"
+      },
+      "logs": {
+        "autologin_fail": "Registrierung erfolgreich, aber Auto-Login fehlgeschlagen"
+      },
+      "errors": {
+        "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        "pass_length": "Verwenden Sie 6 oder mehr Zeichen für Ihr Passwort.",
+        "pass_complex": "Wählen Sie ein sichereres Passwort mit Buchstaben, Zahlen und Symbolen.",
+        "pass_match": "Die Passwörter stimmen nicht überein.",
+        "year_invalid": "Bitte geben Sie ein gültiges Jahr ein (1900-{year}).",
+        "phone_invalid": "Bitte geben Sie eine gültige Telefonnummer ein.",
+        "verification_failed": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+        "credentials_invalid": "Ungültige Anmeldedaten.",
+        "user_exists": "Diese E-Mail-Adresse ist bereits mit einem Konto verknüpft.",
+        "display_name_taken": "Der Anzeigename ist bereits vergeben. Bitte wählen Sie einen anderen.",
+        "phone_taken": "Diese Telefonnummer ist bereits mit einem Konto verknüpft.",
+        "referrer_invalid": "Die angegebene Empfehlungs-ID existiert nicht.",
+        "referrer_required": "Eine Empfehlungs-ID ist erforderlich.",
+        "generic_error": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+        "title_failed": "Aktion fehlgeschlagen",
+        "network_issue": "Keine Verbindung zum Server möglich. Bitte überprüfen Sie Ihr Netzwerk.",
+        "general_error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
+      },
+      "success": {
+        "signin": "Erfolgreich angemeldet.",
+        "signup": "Konto erfolgreich erstellt.",
+        "signin_title": "Willkommen!",
+        "signin_msg": "Sie haben sich erfolgreich angemeldet.",
+        "signup_title": "Konto erstellt!",
+        "signup_msg": "Ihr Konto wurde erfolgreich erstellt."
+      }
+    }
+  },
+  "faqData": [
+    {
+      "category": "Plattform-Features & Fähigkeiten",
+      "items": [
+        {
+          "id": "feat-1",
+          "question": "Benötige ich Programmierkenntnisse, um die Plattform zu nutzen?",
+          "answer": "Es sind keine Programmierkenntnisse erforderlich. Wir haben die Plattform mit intuitiven Dashboards und visuellen Schema-Buildern entwickelt, mit denen Sie komplexe Datenstrukturen verwalten, synchronisieren und hochladen können, ohne eine einzige Codezeile schreiben zu müssen. Unser Ziel ist es, die fortschrittliche Datenverarbeitung für normale Benutzer zugänglich zu machen."
+        },
+        {
+          "id": "feat-2",
+          "question": "Wie funktioniert die KI-Entitätserkennung?",
+          "answer": "Unsere proprietäre, KI-gesteuerte Intelligenz-Engine analysiert automatisch eingehende Rohdaten-Eigenschaften und schlägt proaktiv die richtigen Schematypen, Beziehungszuordnungen und Eigenschaftsbezeichnungen vor. Dies reduziert die Notwendigkeit manueller Dateneingaben erheblich, minimiert menschliche Fehler und beschleunigt Ihre Fähigkeit, tägliche Zuweisungen abzuschließen."
+        },
+        {
+          "id": "feat-3",
+          "question": "Gibt es eine mobile App?",
+          "answer": "Obwohl wir keine eigenständige, herunterladbare App anbieten, ist unsere Plattform vollständig webbasiert und für Desktop- sowie mobile Browser hochgradig optimiert. Wir haben uns für einen Web-First-Ansatz entschieden, um sicherzustellen, dass wichtige Sicherheits-Patches und System-Updates sofort für alle Benutzer bereitgestellt werden, sodass Sie Ihr Dashboard nahtlos von jedem Gerät mit einer stabilen Internetverbindung aus verwalten können."
+        }
+      ]
+    },
+    {
+      "category": "Technologie & Infrastruktur",
+      "items": [
+        {
+          "id": "infra-1",
+          "question": "Was genau ist ein \"Schema\" im Kontext dieser Plattform?",
+          "answer": "Ein Schema ist ein strukturiertes Framework, das definiert, wie rohe, unstrukturierte Daten von Maschinen organisiert, verknüpft und verstanden werden. Unsere Vertriebspartner benötigen perfekt strukturierte Daten, um ihre Modelle zu trainieren und ihre Kataloge zu organisieren. Unsere Plattform verarbeitet diese semantischen Schemata, um die Datenintegrität sicherzustellen, bevor sie validiert und in das Finanz-Ledger hochgeladen werden."
+        },
+        {
+          "id": "infra-2",
+          "question": "Bieten Sie eine öffentliche API für Entwickler an?",
+          "answer": "Derzeit läuft unsere Plattform vollständig über unser visuelles Web-Dashboard, und wir bieten keine öffentliche API für Verbraucherkonten an. Die dedizierte API-Integration ist streng auf unsere genehmigten institutionellen Partner und Vertriebspartner beschränkt, um die Integrität unseres Zuweisungspools zu wahren und unbefugtes externes Scraping zu verhindern."
+        },
+        {
+          "id": "infra-3",
+          "question": "Kann ich automatisierte Bots oder Skripte verwenden, um meine Zuweisungen abzuschließen?",
+          "answer": "Nein. Die Verwendung von automatisierten Bots, Skripten, Makros oder sonstiger nicht autorisierter Software zum Abschließen von Zuweisungen ist strengstens untersagt. Unsere Händler zahlen für authentische menschliche Kontrolle während des Validierungsprozesses. Die Beteiligung an automatisierten Aktivitäten löst sofort unsere Betrugsbekämpfungssysteme aus, was zu einer dauerhaften Kontosperrung und dem Verfall aller generierten Erträge führt."
+        },
+        {
+          "id": "infra-4",
+          "question": "Bieten Sie Webhooks für Echtzeit-Benachrichtigungen über den Ledger-Saldo an?",
+          "answer": "Nein, wir bieten derzeit keine Webhooks oder öffentlichen API-Endpunkte für Echtzeit-Ledger-Benachrichtigungen an. Um maximale Sicherheit für Ihre Finanzdaten zu gewährleisten, verwenden wir ein geschlossenes System. Sie müssen sich direkt bei Ihrem authentifizierten Dashboard anmelden, um Ihren Kontostand, anstehende Meilensteine und jüngste Transaktionsaktivitäten zu überwachen."
+        }
+      ]
+    },
+    {
+      "category": "Konto & Berechtigung",
+      "items": [
+        {
+          "id": "acc-1",
+          "question": "Wer ist berechtigt, die Plattform zu nutzen?",
+          "answer": "Um strengen internationalen Finanzvorschriften und Richtlinien zur Bekämpfung von Geldwäsche (AML) zu entsprechen, müssen Benutzer mindestens 23 Jahre alt sein. Darüber hinaus müssen Sie in einer unserer unterstützten Betriebsregionen ansässig sein, zu denen derzeit Großbritannien, die USA, Kanada, Europa, Japan, Südkorea, Singapur, Spanien, Hongkong oder Thailand gehören."
+        },
+        {
+          "id": "acc-2",
+          "question": "Fallen bei der Anmeldung Vorabgebühren an?",
+          "answer": "Nein, die Kontoerstellung ist völlig kostenlos, und es gibt absolut keine versteckten Anmeldegebühren. Unsere Plattform generiert Einnahmen durch die erfolgreiche Verarbeitung von Schema-Daten für unsere Vertriebspartner, nicht indem wir unseren Nutzern eine Eintrittsgebühr berechnen."
+        },
+        {
+          "id": "acc-3",
+          "question": "Was ist eine Empfehlungs-Konto-ID und warum brauche ich sie?",
+          "answer": "Eine Empfehlungs-ID ist ein eindeutiger Code, der während des Anmeldevorgangs verwendet wird. Sie ist erforderlich, um sicherzustellen, dass Sie in unserem Netzwerk richtig platziert und dem korrekten Senior-Betreuer zugewiesen werden. Diese ID stellt eine direkte Mentoring-Verbindung her, sodass Sie vom ersten Tag an sofortige Unterstützung durch einen erfahrenen Benutzer haben."
+        },
+        {
+          "id": "acc-4",
+          "question": "Kann ich mehrere Konten erstellen?",
+          "answer": "Nein, das Erstellen mehrerer Konten ist strengstens untersagt, es sei denn, unser Compliance-Team hat dies ausdrücklich schriftlich genehmigt. Um eine faire Kontingentverteilung in unserem gesamten Netzwerk aufrechtzuerhalten und die AML-Vorschriften einzuhalten, dürfen Benutzer keine verschiedenen Konten unter derselben Identität erstellen oder Pseudonyme verwenden, um Tageslimits zu umgehen."
+        },
+        {
+          "id": "acc-5",
+          "question": "Kann ich mein Konto löschen?",
+          "answer": "Ja, Sie haben das Recht, Ihr Konto jederzeit zu schließen. Sie dürfen Ihr Konto jedoch nicht schließen oder löschen, während noch laufende Vorgänge, aktive Zyklen oder ausstehende Fehlbeträge vorhanden sind. Alle Finanz-Ledger müssen vollständig abgerechnet und ausgeglichen sein, bevor eine Kontolöschanfrage erfolgreich bearbeitet werden kann."
+        }
+      ]
+    },
+    {
+      "category": "Kontosicherheit & Datenschutz",
+      "items": [
+        {
+          "id": "sec-1",
+          "question": "Sind meine persönlichen Daten und Plattformaktivitäten verschlüsselt?",
+          "answer": "Ja. Strikter Datenschutz hat bei uns absolute Priorität. Alle sensiblen Benutzerdaten, einschließlich persönlicher Identifikatoren, Finanz-Ledger und Auszahlungsdaten, sind sowohl bei der Übertragung als auch im Ruhezustand mit militärischer AES-256-Verschlüsselung gesichert. Darüber hinaus umfasst unsere Architektur eine Daten-Firewall für Edge-Schutz und einen Semantischen Wächter, um Netzwerkbedrohungen proaktiv zu filtern."
+        },
+        {
+          "id": "sec-2",
+          "question": "Entspricht die Plattform den Datenschutzgesetzen der DSGVO und des CCPA?",
+          "answer": "Ja. Wir halten uns strikt an die wichtigsten internationalen Datenschutzbestimmungen, einschließlich der DSGVO (Europa) und des CCPA (Kalifornien). Wir erfassen nur die minimalen Daten, die für die AML/KYC-Compliance und den Plattformbetrieb erforderlich sind. Wir garantieren, dass wir Ihre persönlichen oder finanziellen Daten niemals an Datenbroker von Drittanbietern verkaufen werden."
+        },
+        {
+          "id": "sec-3",
+          "question": "Wem gehört das geistige Eigentum der von mir verarbeiteten strukturellen Schemata?",
+          "answer": "Alle Rechte an geistigem Eigentum für die strukturellen Schemata, die verarbeiteten Datensätze und die resultierenden Ledger bleiben das ausschließliche, vertrauliche Eigentum des Unternehmens und unserer Vertriebspartner. Benutzer werden für ihre Verarbeitungs- und Validierungsbemühungen großzügig entschädigt, behalten jedoch keine Eigentums-, Urheber- oder Lizenzrechte an den Daten selbst."
+        },
+        {
+          "id": "sec-4",
+          "question": "Kann ich meinen Verlauf der verarbeiteten Schemata exportieren?",
+          "answer": "Nein. Aufgrund strenger Geheimhaltungsvereinbarungen (NDAs) und Vertraulichkeitsverträge mit unseren Vertriebspartnern gelten die von Ihnen verarbeiteten Daten als streng proprietär. Um Wirtschaftsspionage oder Datenlecks zu verhindern, ist es den Benutzern technisch untersagt, ihren Schema-Verarbeitungsverlauf zu exportieren, herunterzuladen oder zu scrapen."
+        },
+        {
+          "id": "sec-5",
+          "question": "Was ist eine Auszahlungs-Passphrase und warum wird sie benötigt?",
+          "answer": "Ihre Auszahlungs-Passphrase fungiert als Ihr privater finanzieller Schlüssel. Sie ist eine obligatorische, sekundäre Autorisierungsschicht, die zur Genehmigung jeder Standard-Auszahlungsanforderung erforderlich ist. Dies stellt sicher, dass selbst in dem höchst unwahrscheinlichen Fall, dass das Passwort Ihres Hauptkontos kompromittiert wird, böswillige Akteure Ihre hart erarbeiteten Ledger-Guthaben ohne diesen sekundären Schlüssel nicht überweisen können."
+        },
+        {
+          "id": "sec-6",
+          "question": "Ich habe mein Passwort vergessen, wie kann ich mein Konto wiederherstellen?",
+          "answer": "Wenn Sie den Zugriff auf Ihr Konto verloren haben, müssen Sie unser Support-Team über das sichere Portal kontaktieren. Da wir mit Finanz-Ledgern arbeiten, müssen Sie Ihre Identität überprüfen (oftmals durch das Einreichen von KYC-Dokumenten), bevor wir eine manuelle Zurücksetzung durchführen können. Dieser strenge Prozess verhindert Social Engineering und unautorisierte Kontoübernahmen."
+        }
+      ]
+    },
+    {
+      "category": "Allgemeine Betriebsabläufe",
+      "items": [
+        {
+          "id": "gen-1",
+          "question": "Was genau sind die aktiven \"Zuweisungen\"?",
+          "answer": "Zuweisungen sind die Kernarbeit, die Sie auf der Plattform ausführen, bestehend aus der automatisierten Datenverarbeitung und Schema-Zuweisungen für das Finanz-Ledger. Wenn Sie eine Zuweisung starten, stellen Sie eine sichere Verbindung zu unserem Zuweisungspool her, um ein strukturelles Schema zu synchronisieren, den Datensatz auf Genauigkeit zu überprüfen und in das Ledger hochzuladen. Dieser Prozess validiert die Händlerdaten und generiert Ihre Anlagenrendite."
+        },
+        {
+          "id": "gen-2",
+          "question": "Was ist erforderlich, um einen Zyklus zu starten oder zurückzusetzen?",
+          "answer": "Um sicherzustellen, dass Benutzer über ausreichend Liquidität verfügen, um hochwertige Schemata zu verarbeiten, erfordert jeder Zyklus einen Mindest-Ledger-Saldo, um gestartet zu werden. Für brandneue Konten beginnt der früheste Zyklus bei einem Minimum von 80 $. Für alle nachfolgenden Zyklen beträgt der erforderliche Mindestsaldo 150 $. Sie können keinen Zyklus-Reset auslösen, während Sie sich mitten in einem aktiven Zyklus befinden."
+        },
+        {
+          "id": "gen-3",
+          "question": "Kann ich eine aktive Kontingent-Zuweisung überspringen, entfernen oder rückgängig machen?",
+          "answer": "Nein. Sobald eine Zuweisung mit Ihrem Dashboard synchronisiert ist, ist sie strikt an Ihren aktuellen Zyklus gebunden. Zuweisungen können unter keinen Umständen übersprungen, entfernt, rückgängig gemacht oder umgangen werden. Sie müssen den Validierungsprozess abschließen, um zur nächsten Quote überzugehen."
+        },
+        {
+          "id": "gen-4",
+          "question": "Was passiert, wenn ich ein Produktschema zu lange einbehalte?",
+          "answer": "Wenn eine Zuweisung synchronisiert wird, aber länger als 48 Stunden einbehalten wird, ohne hochgeladen zu werden, verstopft dies den Zuweisungspool und verzögert aktiv den Fortschritt unserer Vertriebspartner. In diesen Fällen können geringfügige Gebühren von Ihrem Ledger erhoben werden, um Verwaltungskosten zu decken, und standardmäßige Zahlungspläne können aufgrund des Verstoßes gegen die Betriebsgeschwindigkeit angepasst werden."
+        },
+        {
+          "id": "gen-5",
+          "question": "Warum erhalte ich manchmal beschädigte Dateien?",
+          "answer": "Gelegentlich enthalten die von Händlern bereitgestellten Rohdaten unlesbare oder fehlerhafte Fragmente, was zu einer beschädigten Datei führt. Diese Dateien sind nicht berechtigt, eine Rendite zu generieren. Da das System jedoch Serverressourcen zuweisen musste, um die Daten abzurufen und Ihnen zuzuweisen, wird dafür eines Ihrer 40 verfügbaren Kontingente für diesen Zyklus verbraucht."
+        },
+        {
+          "id": "gen-6",
+          "question": "Was sind Ihre regulären Betriebszeiten?",
+          "answer": "Unsere primären Support- und Verarbeitungsabläufe, einschließlich manueller Auszahlungsprüfungen und KYC-Audits, laufen von Montag bis Freitag von 10:00 Uhr bis 22:00 Uhr EST. Dies stimmt mit den traditionellen globalen Banköffnungszeiten überein. Die Verfügbarkeit an Wochenenden (Samstag und Sonntag) kann je nach geplanten Systemwartungsfenstern und dem aktiven Warteschlangenvolumen variieren."
+        },
+        {
+          "id": "gen-7",
+          "question": "Wie kontaktiere ich das Kundensupport-Team?",
+          "answer": "Für die schnellste und sicherste Lösung können Sie unser dediziertes Support-Team direkt über das Live-Chat-Widget auf Ihrem Dashboard erreichen. Dies stellt sicher, dass Sie aus einer authentifizierten Umgebung kommunizieren, wodurch unsere Mitarbeiter Ihre Kontodaten sofort aufrufen können."
+        }
+      ]
+    },
+    {
+      "category": "Coaching & Mentoring",
+      "items": [
+        {
+          "id": "coach-1",
+          "question": "Welche Rolle spielt mein zugewiesener Betreuer?",
+          "answer": "Ihr zugewiesener Betreuer ist ein sehr erfahrener, leitender Benutzer der Plattform. Seine Rolle besteht darin, Sie individuell anzuleiten, Ihnen die Feinheiten der Schema-Operationen zu erklären und Ihnen zu zeigen, wie Sie Ihre täglichen Zuweisungen optimieren können. Aufgrund unseres Empfehlungsprogramms haben sie einen finanziellen Anreiz, Sie erfolgreich zu sehen."
+        },
+        {
+          "id": "coach-2",
+          "question": "Wie wird mein Betreuer zugewiesen?",
+          "answer": "Ihr Betreuer wird Ihrem Konto während des Registrierungsprozesses automatisch zugewiesen, und zwar ausschließlich auf Basis der von Ihnen angegebenen Empfehlungs-Konto-ID. Diese direkte Zuweisung stellt sicher, dass Sie einen festen Ansprechpartner haben, der bereits mit Ihrem Einarbeitungszeitplan vertraut ist."
+        },
+        {
+          "id": "coach-3",
+          "question": "Ist mein Betreuer für die finanzielle Leistung oder Unterdeckungen meines Kontos verantwortlich?",
+          "answer": "Nein. Während Ihr Betreuer dazu da ist, Schulungen, operative Anleitungen und strategische Ratschläge zu geben, ist Ihr Konto streng ein individuelles Profil. Sie behalten die volle Autonomie und Verantwortung für Ihre eigenen täglichen Zuweisungen, Ihren Ledger-Saldo und mögliche Fehlbeträge. Ihr Betreuer hat keinen Zugriff auf Ihre persönlichen Gelder und kann keine Zuweisungen in Ihrem Namen durchführen."
+        }
+      ]
+    },
+    {
+      "category": "Ledger-Finanzierung & Einlagen",
+      "items": [
+        {
+          "id": "fund-1",
+          "question": "Was ist ein Fehlbetrag und wie behebe ich ihn?",
+          "answer": "Ein Fehlbetrag (Unterdeckung) tritt auf, wenn Ihnen ein Premium-Schema mit hoher Rendite zugewiesen wird, das den aktuellen Wert Ihrer Ledger-Stufe übersteigt. Um diese hochwertige Zuweisung zu verarbeiten und die damit verbundene Premium-Rendite zu generieren, müssen Sie die Lücke vorübergehend überbrücken. Um einen Fehlbetrag zu beheben, wenden Sie sich an unser Live-Support-Team, um Anweisungen zur Einzahlung der exakt benötigten Mittel zu erhalten. Einzahlungen können sicher über traditionelle Fiat-Kanäle oder unterstützte Blockchain-Netzwerke getätigt werden."
+        },
+        {
+          "id": "fund-2",
+          "question": "Wie lange dauert es, bis Einlagen auf meinem Konto verbucht sind?",
+          "answer": "Einzahlungszeiten hängen stark von der Überlastung des Blockchain-Netzwerks oder der Verarbeitungsgeschwindigkeit der Bank ab. Sobald Sie die Überweisung jedoch erfolgreich abgeschlossen und die Transaktionsquittung an unser Live-Support-Team weitergeleitet haben, spiegeln sich die Mittel nach der Standard-Netzwerkverifizierung in der Regel innerhalb von 15 bis 30 Minuten in Ihrem gesamten Ledger-Saldo wider."
+        },
+        {
+          "id": "fund-3",
+          "question": "Kann ich Gelder einzahlen, um meine täglichen Quoten zu überspringen?",
+          "answer": "Nein. Die Kernfunktion unseres Geschäfts ist die tatsächliche Datenverarbeitung, nicht die reine Kapitalanlage. Einlagen werden ausschließlich verwendet, um einen neuen Zyklus zu starten/zurückzusetzen oder eine aktive Premium-Unterdeckung auszugleichen. Sie können kein Geld bezahlen, um die obligatorische manuelle Validierungsarbeit zu umgehen."
+        }
+      ]
+    },
+    {
+      "category": "Einnahmen, Renditen & Gebühren",
+      "items": [
+        {
+          "id": "earn-1",
+          "question": "Wie wird die Anlagenrendite berechnet?",
+          "answer": "Die Anlagenrendite wird dynamisch basierend auf der Komplexität des Schemas und der aktuellen Marktnachfrage der Händler berechnet. Für jede Standardzuweisung, die Sie erfolgreich abschließen und hochladen, variiert der prozentuale Renditesatz zufällig zwischen 1 % und 6 % des Basiswerts der Anlage."
+        },
+        {
+          "id": "earn-2",
+          "question": "Was ist ein Zyklus und wie viele Kontingente hat er?",
+          "answer": "Ein vollständiger Produktzyklus besteht aus 40 Kontingenten (einzelne Datenzuweisungen). Wir erzwingen ein striktes Limit von 2 vollen Zyklen pro einzelnem Tag. Diese Begrenzung verhindert ein Burnout der Nutzer, gewährleistet eine hohe Genauigkeit bei der Datenvalidierung und sorgt für eine faire Verteilung der Arbeit in unserem gesamten globalen Netzwerk."
+        },
+        {
+          "id": "earn-3",
+          "question": "Was passiert, wenn ich nicht alle 40 Quoten in einer Sitzung abschließe?",
+          "answer": "Sie sind absolut nicht verpflichtet, einen vollen 40-Quoten-Zyklus in einer einzigen Sitzung abzuschließen. Sie können Ihre Arbeit unterbrechen und nach Belieben fortsetzen. Denken Sie jedoch an die 48-Stunden-Regel: Sie dürfen eine aktive, synchronisierte Zuweisung nicht länger als 48 Stunden einbehalten, um sicherzustellen, dass die Verarbeitungspipelines der Händler nicht verzögert werden."
+        },
+        {
+          "id": "earn-4",
+          "question": "Zinsen sich meine Erträge automatisch auf (Zinseszins)?",
+          "answer": "Nein, Ihre Erträge werden von Zyklus zu Zyklus nicht mathematisch verzinst (kein Zinseszins). Jeder neue Zyklus setzt die Basismetriken zurück, um vorhersehbare Kosten für unsere Händler zu gewährleisten. Sämtliche generierte Rendite aus vorherigen Zyklen verbleibt jedoch sicher als kumulierter Betrag in Ihrem gesamten Ledger-Saldo, bis Sie erfolgreich eine endgültige Auszahlung anfordern."
+        }
+      ]
+    },
+    {
+      "category": "Leistungsprämien & Anwesenheit",
+      "items": [
+        {
+          "id": "reward-1",
+          "question": "Wie fordere ich den Willkommensbonus an?",
+          "answer": "Um Ihnen zu helfen, Ihre anfänglichen Zyklusschwellenwerte schneller abzudecken, wird Ihrem verfügbaren Ledger-Saldo sofort nach erfolgreicher Registrierung automatisch ein Willkommensbonus von 20,00 $ gutgeschrieben. Es sind keine zusätzlichen Schritte, versteckten Formulare oder Wartezeiten erforderlich, um ihn zu beanspruchen."
+        },
+        {
+          "id": "reward-2",
+          "question": "Wie funktioniert der Anwesenheits-Meilenstein-Tracker?",
+          "answer": "Wir legen großen Wert auf konsistente Datenverarbeiter. Indem Sie Ihre täglichen Zuweisungen an jedem einzelnen Tag abschließen, bauen Sie eine ununterbrochene Anwesenheitsserie auf. Wenn Sie bestimmte Meilensteine erreichen (wie z. B. Tag 7, Tag 14 usw.), schaltet das System automatisch geplante Basis-Auszahlungsboni frei, die Ihrem Saldo direkt gutgeschrieben werden."
+        },
+        {
+          "id": "reward-3",
+          "question": "Was ist der Volle Anwesenheits-KPI?",
+          "answer": "Wenn Sie eine perfekte Anwesenheit erreichen, indem Sie alle täglichen Zuweisungen abschließen, ohne einen einzigen Tag im aktuellen Monat zu verpassen, schalten Sie den Vollen Anwesenheits-KPI frei. Dieser wendet einen massiven, automatischen Multiplikator auf Ihre gesamten kumulierten Basis-Auszahlungen für diesen Zyklus an und belohnt unsere zuverlässigsten Nutzer. (Hinweis: Dieser Multiplikator gilt nur für Basis-Auszahlungen, nicht für andere variable Renditen)."
+        },
+        {
+          "id": "reward-4",
+          "question": "Was passiert, wenn ich einen Tag lang keine Zuweisungen erledige?",
+          "answer": "Da unsere Händler auf ein konstantes Tagesvolumen angewiesen sind, unterbricht das Versäumen Ihres Tageskontingents Ihre aktive Anwesenheitsserie. Dies bedeutet, dass Sie den Vollen Anwesenheits-KPI-Multiplikator für diesen Monat verpassen und Ihren Fortschritt in Richtung des nächsten Meilensteins wieder von Tag eins an neu starten müssen."
+        },
+        {
+          "id": "reward-5",
+          "question": "Was sind zeitlich begrenzte Bonus-Events?",
+          "answer": "In Zeiten ungewöhnlich hoher Händlernachfrage führen wir spezielle Werbeaktionen durch, die exklusive, erhöhte Belohnungen bieten. Diese Events erscheinen dynamisch für eine begrenzte Zeit in Ihrem Dashboard. Sie sollten den Bereich für Werbeaktionen regelmäßig überprüfen, bevor sie verfallen, damit Sie keine Spitzenverdienstfenster verpassen!"
+        }
+      ]
+    },
+    {
+      "category": "Empfehlungs- & Partnerprogramm",
+      "items": [
+        {
+          "id": "ref-1",
+          "question": "Verdiene ich eine Provision für die Empfehlung neuer Benutzer?",
+          "answer": "Ja! Wir bevorzugen es, unser Werbebudget wieder in unsere Community zu reinvestieren. Wenn Sie an unserem optionalen Empfehlungsprogramm teilnehmen, erhalten Sie einen lebenslangen Bonus von 20 %, basierend auf den von Ihrer direkten Empfehlung erzielten Gewinnen. Diese 20 % werden vollständig aus der Tasche des Unternehmens subventioniert, was bedeutet, dass der von Ihnen Geworbene weiterhin 100 % seiner eigenen Einnahmen behält."
+        },
+        {
+          "id": "ref-2",
+          "question": "Ist dies eine Multi-Level-Marketing (MLM) Struktur?",
+          "answer": "Nein, absolut nicht. Unsere Empfehlungsstruktur ist strikt eins-zu-eins (1-zu-1). Sie erhalten nur Boni von dem direkten Benutzer, den Sie empfohlen und geschult haben. Wir unterstützen kein Multi-Level-Marketing, keine Schneeballsysteme oder gestaffelte Provisionsstrukturen, weil wir echtes, direktes Mentoring fördern möchten."
+        },
+        {
+          "id": "ref-3",
+          "question": "Wer ist berechtigt, am Empfehlungsprogramm teilzunehmen?",
+          "answer": "Um sicherzustellen, dass unsere Werbenden die Plattform tatsächlich verstehen, bevor sie versuchen, sie anderen beizubringen, müssen Sie insgesamt 14 aktive Anwesenheitstage ansammeln, bevor Sie berechtigt sind, eine Empfehlungs-ID zu generieren. Um ein qualitativ hochwertiges Mentoring aufrechtzuerhalten, gibt es außerdem eine obligatorische 14-tägige Sperrfrist (Cooldown) zwischen jeder erfolgreichen Empfehlung, die Sie tätigen."
+        },
+        {
+          "id": "ref-4",
+          "question": "Warum ist mein Empfehlungsbonus pausiert?",
+          "answer": "Empfehlungsboni sind nur dann aktiv, wenn sich das Konto Ihres Geworbenen in einem ordnungsgemäßen Zustand befindet. Wenn Ihr Geworbener nicht weiterkommt und eine Zuweisung in einem \"ausstehenden\" Zustand belässt, wird Ihr 20 %-Bonus von seinem Konto vorübergehend pausiert. Diese Regel existiert, um Betreuer zu motivieren, ihren Geworbenen aktiv dabei zu helfen, Hürden zu überwinden. Sobald sie die ausstehende Zuweisung hochladen, wird Ihr Bonus sofort wieder aufgenommen."
+        }
+      ]
+    },
+    {
+      "category": "Auszahlungen & Ledger-Salden",
+      "items": [
+        {
+          "id": "pay-1",
+          "question": "Gibt es spezifische Bedingungen, bevor ich eine Auszahlung anfordern kann?",
+          "answer": "Ja. Um eine strikte Ledger-Stabilität aufrechtzuerhalten und sicherzustellen, dass die täglichen Quoten der Händler erfüllt werden, bevor Kapital das Ökosystem verlässt, müssen Sie alle aktiven Zuweisungen innerhalb Ihres aktuellen Zyklus abschließen. Sie müssen außerdem sicherstellen, dass auf Ihrem Konto keine ausstehenden Salden oder Fehlbeträge vorhanden sind. Auszahlungen können grundsätzlich nicht mitten im Zyklus abgewickelt werden."
+        },
+        {
+          "id": "pay-2",
+          "question": "Gibt es einen Mindestauszahlungsbetrag?",
+          "answer": "Ja, der Mindestauszahlungsbetrag liegt bei 20 $. Dieses Minimum wird durchgesetzt, weil die Plattform die Kosten für Netzwerk-Gasgebühren und den administrativen Bankaufwand für Ihre Transaktionen übernimmt, was bei Mikrotransaktionen unter 20 $ finanziell unrentabel ist."
+        },
+        {
+          "id": "pay-3",
+          "question": "Gibt es Transaktionsvolumengrenzen für Standardauszahlungen?",
+          "answer": "Um die Stabilität des Ledgers und die Netzwerkliquidität zu gewährleisten, sind die Auszahlungskapazitäten an Ihre aktive Betriebsstufe angepasst. Standard-Basic-Konten können Auszahlungen von bis zu 5.000 $ pro Transaktion sicher verarbeiten. Benutzer, die regelmäßig Premium-Schemata verarbeiten und auf einer Plus-Stufe agieren, erhalten uneingeschränkte Auszahlungsobergrenzen, um ihr höheres Volumen zu bewältigen. Ihre aktuellen Transaktionslimits können Sie jederzeit in Ihren Dashboard-Einstellungen einsehen."
+        },
+        {
+          "id": "pay-4",
+          "question": "Fallen Auszahlungsgebühren an?",
+          "answer": "Wir erheben keine internen Auszahlungsgebühren oder Prozentsätze auf Ihre Salden. Darüber hinaus übernehmen wir die Krypto-Netzwerk-Gasgebühren für tokenisierte Auszahlungen, um Ihren Nettoverdienst zu maximieren. Wenn Sie sich jedoch für traditionelle Fiat-Bankmethoden entscheiden, sind Sie für alle internationalen Überweisungsgebühren verantwortlich, die von Ihrem eigenen Finanzinstitut erhoben werden."
+        },
+        {
+          "id": "pay-5",
+          "question": "Wie lange dauern Auszahlungen in der Regel?",
+          "answer": "Sie sollten Ihre Auszahlungsanforderung innerhalb von 24 bis 48 Stunden nach Abschluss eines Zyklus einreichen. Sobald sie eingereicht wurde, werden Auszahlungen oft innerhalb einer Stunde bearbeitet, wobei die endgültigen Abwicklungszeiten von Ihrem empfangenden Finanzinstitut oder der Geschwindigkeit des Blockchain-Netzwerks abhängen. Sie können auch unser Live-Support-Team informieren, nachdem Sie Ihre Anfrage eingereicht haben, um die Bearbeitung so schnell wie möglich zu erleichtern. Alle Anfragen unterliegen den obligatorischen Prüfungen zur Bekämpfung der Geldwäsche (AML) und der Verifizierung der Renditen."
+        },
+        {
+          "id": "pay-6",
+          "question": "Welche Auszahlungsmethoden werden von der Plattform unterstützt?",
+          "answer": "Wir unterstützen ein weltweit diversifiziertes Spektrum von Abwicklungsmethoden, die auf Ihre registrierte Region zugeschnitten sind, um maximale Flexibilität zu gewährleisten. Zu den Optionen gehören direkte Fiat-Banküberweisungen (wie ACH, SEPA, BACS und Interac) sowie tokenisierte Anlagen (Kryptowährung über manuelle Netzwerkkonfiguration)."
+        },
+        {
+          "id": "pay-7",
+          "question": "Was passiert, wenn ich eine Auszahlung an die falsche Krypto-Wallet-Adresse oder das falsche Netzwerk richte?",
+          "answer": "Aufgrund der dezentralen Natur der Blockchain-Technologie sind Kryptowährungstransaktionen strikt irreversibel. Wenn Sie eine Auszahlung an eine falsche Wallet-Adresse senden oder das falsche Netzwerk auswählen, sind Ihre Gelder dauerhaft verloren. Wir haben keine technischen Möglichkeiten, gesendete Token wiederherzustellen, überprüfen Sie daher bitte Ihre Zieldaten sehr sorgfältig."
+        },
+        {
+          "id": "pay-8",
+          "question": "Benötige ich eine Non-Custodial-Wallet (nicht verwahrte Wallet), um tokenisierte Auszahlungen zu erhalten?",
+          "answer": "Nein, eine Non-Custodial-Wallet ist nicht zwingend erforderlich. Sie können jede Wallet verwenden, die den spezifischen Token und das Netzwerk unterstützt, das Sie auf der Auszahlungsseite auswählen. Dies schließt private Non-Custodial-Wallets sowie direkte Einzahlungsadressen von großen zentralisierten Börsen (Exchanges) ein."
+        }
+      ]
+    },
+    {
+      "category": "Banking & Fiat-Abwicklungen",
+      "items": [
+        {
+          "id": "bank-1",
+          "question": "Kann ich eine Auszahlung auf ein Bankkonto beantragen, das auf den Namen einer anderen Person lautet?",
+          "answer": "Nein, unter keinen Umständen. Um die strengen internationalen Bestimmungen zur Bekämpfung von Geldwäsche (AML) und Know Your Customer (KYC) einzuhalten, muss der rechtliche Name auf Ihrem Zielbankkonto perfekt mit der verifizierten Identität auf Ihrem Plattformkonto übereinstimmen. Alle versuchten Überweisungen an Dritte lösen eine Sicherheitswarnung aus und werden automatisch abgelehnt."
+        },
+        {
+          "id": "bank-2",
+          "question": "Warum wurde meine Banküberweisung abgelehnt oder verzögert?",
+          "answer": "Fiat-Bankensysteme sind oft langsamer und starrer als Krypto-Netzwerke. Banküberweisungen verzögern sich in der Regel aufgrund von Benutzereingabefehlern (falsche Bankleitzahlen/Kontonummern), regionalen Bankfeiertagen oder routinemäßigen Sicherheitssperren, die von Ihrem empfangenden Finanzinstitut verhängt werden. Wenn eine Überweisung endgültig fehlschlägt, werden die Gelder sicher auf Ihr Ledger-Guthaben zurückerstattet."
+        },
+        {
+          "id": "bank-3",
+          "question": "Unterstützen Sie internationale Überweisungen (Wire Transfers)?",
+          "answer": "Obwohl wir bestimmte abgelegene Regionen technisch mit traditionellen internationalen Überweisungen unterstützen, beachten Sie bitte, dass diese Methode aufgrund hoher Ausfallraten häufig nicht verfügbar ist oder längeren Wartungsarbeiten unterliegt. Wenn sie verfügbar ist, sind Sie vollständig dafür verantwortlich, alle eingehenden Gebühren für internationale Überweisungen zu decken, die von zwischengeschalteten Banken erhoben werden."
+        }
+      ]
+    },
+    {
+      "category": "Technische Fehlerbehebung",
+      "items": [
+        {
+          "id": "tech-1",
+          "question": "Was soll ich tun, wenn mein Dashboard während einer aktiven Zuweisung einfriert?",
+          "answer": "Keine Panik. Wenn Ihr Dashboard einfriert, Ihr Browser abstürzt oder Sie die Internetverbindung verlieren, aktualisieren Sie einfach die Seite oder loggen Sie sich erneut ein. Ihr Fortschritt, einschließlich Ihres aktiven Schemas und Ihres aktuellen Ledger-Saldos, wird in Echtzeit sicher auf unseren Cloud-Servern gespeichert, sodass Sie genau dort weitermachen können, wo Sie aufgehört haben."
+        },
+        {
+          "id": "tech-2",
+          "question": "Werde ich entschädigt, wenn ein Serverausfall dazu führt, dass ich einen Zyklus verpasse?",
+          "answer": "Nein. Obwohl wir massiv in unsere Infrastruktur investieren, um eine absolute maximale Betriebszeit anzustreben, gewähren wir keine finanzielle Entschädigung für verpasste Zyklen, unterbrochene Anwesenheitsserien oder abgelaufene Kontingente, die auf vorübergehende, unvorhergesehene Serverausfälle oder geplante Systemwartungsfenster zurückzuführen sind."
+        }
+      ]
+    }
+  ]
+}

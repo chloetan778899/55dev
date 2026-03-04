@@ -1,0 +1,800 @@
+{
+  "nav": {
+    "signin": "Se connecter",
+    "signup": "Créer un compte"
+  },
+  "dashboard": {
+    "currency_format": "${amount}",
+    "meta_title": "Tableau de bord",
+    "nav": {
+      "logo_alt": "Logo",
+      "overview": "Paramètres du compte",
+      "assignments": "Affectations actives",
+      "payouts": "Gérer les versements",
+      "rewards": "Récompenses de performance",
+      "referrals": "Programme de parrainage",
+      "faq": "Questions fréquemment posées",
+      "terms": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité",
+      "cookies": "Politique des cookies",
+      "legal": "Mentions légales et enregistrement",
+      "logout": "Déconnexion",
+      "logout_confirm": "Êtes-vous sûr de vouloir vous déconnecter de votre compte ?"
+    },
+    "modal": {
+      "verification_failed_title": "Vérification échouée",
+      "success": "Succès",
+      "error": "Erreur",
+      "warning": "Avertissement",
+      "notice": "Avis",
+      "missing_fields": "Champs manquants",
+      "action_denied": "Action refusée",
+      "payout_requested": "Versement demandé",
+      "funds_received": "Fonds reçus 🎉",
+      "funds_received_msg": "Vous avez reçu {amount}, veuillez vérifier le solde du registre.",
+      "network_error": "Une erreur de réseau s'est produite.",
+      "general_error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+      "verification_failed": "La vérification a échoué."
+    },
+    "coach_account": "Ceci est un compte de coach à des fins d'entraînement.",
+    "coach_account_short": "Compte Coach",
+    "overview": {
+      "welcome": "Bienvenue, {name}",
+      "subtitle": "Gérez votre profil, vos préférences de sécurité et vos configurations de versement.",
+      "profile_title": "Profil public",
+      "upload_btn": "Téléverser une photo",
+      "upload_hint": "JPG ou PNG.",
+      "avatar_success": "Photo de profil mise à jour.",
+      "upload_fail": "Échec du téléversement de l'image.",
+      "auth_title": "Mettre à jour le mot de passe",
+      "current_pass": "Mot de passe actuel",
+      "new_pass": "Nouveau mot de passe",
+      "confirm_pass": "Confirmer le nouveau mot de passe",
+      "save_pass": "Enregistrer le mot de passe",
+      "pass_update_success": "Mot de passe mis à jour avec succès.",
+      "pass_update_fail": "Échec de la mise à jour du mot de passe.",
+      "pass_incorrect": "Mot de passe actuel incorrect.",
+      "passphrase_title": "Phrase secrète de versement",
+      "first_time_setup": "Configuration initiale requise",
+      "passphrase_desc": "Cette phrase secrète agit comme votre clé financière privée, requise pour autoriser les versements dans le portail Gérer les versements. Pour configurer cette clé initialement, vous devez fournir l'e-mail de votre compte enregistré.",
+      "passphrase_update_desc": "Mettez à jour votre clé financière privée. Cette clé est requise de manière sécurisée pour autoriser toutes vos demandes de retrait standard.",
+      "account_region": "Région du compte",
+      "verify_email": "E-mail du compte",
+      "new_passphrase": "Nouvelle phrase secrète",
+      "confirm_passphrase": "Confirmer la phrase secrète",
+      "verify_btn": "Vérifier et configurer la clé",
+      "current_passphrase": "Phrase secrète actuelle",
+      "update_btn": "Mettre à jour la clé",
+      "passphrase_length": "La phrase secrète doit comporter au moins 6 caractères.",
+      "passphrase_match": "Les phrases secrètes ne correspondent pas.",
+      "setup_success": "Phrase secrète configurée de manière sécurisée.",
+      "email_mismatch": "L'e-mail ne correspond pas à nos enregistrements.",
+      "update_success": "Phrase secrète mise à jour avec succès.",
+      "passphrase_incorrect": "Phrase secrète actuelle incorrecte.",
+      "loading": "Chargement..."
+    },
+    "referrals": {
+      "copy": "Copier",
+      "title": "Programme de parrainage",
+      "optional": "Optionnel",
+      "subtitle": "Le programme de parrainage est une fonctionnalité entièrement optionnelle. Vos affectations quotidiennes, votre assiduité et vos versements principaux ne seront pas affectés que vous participiez ou non.",
+      "your_id": "Votre ID de parrainage",
+      "id_desc": "Copiez votre ID de parrainage unique ci-dessous. Partagez-le avec quelqu'un qui pourrait bénéficier de notre société, et commencez à gagner un bonus à vie sur les revenus qu'il génère.",
+      "overview_title": "Aperçu du programme",
+      "overview_p1": "Au lieu de la publicité traditionnelle, nous choisissons de réinvestir notre budget directement dans notre communauté. Lorsqu'un utilisateur éligible (le « Parrain ») parraine avec succès un nouvel utilisateur (le « Filleul »), le Parrain gagnera un <strong>bonus à vie de 20 %</strong> basé sur les profits générés par le Filleul.",
+      "overview_l1": "Ce bonus de 20 % est entièrement subventionné par la Société.",
+      "overview_l2": "Le Filleul conserve 100 % de ses gains originaux.",
+      "overview_l3": "Tous les bonus de parrainage gagnés sont crédités directement sur le solde du registre du Parrain.",
+      "mlm_title": "Parrainages directs stricts (aucun MLM)",
+      "mlm_desc": "Notre structure de parrainage est strictement un-à-un (1 contre 1). Nous ne soutenons pas le marketing à plusieurs niveaux (MLM) ou les structures de commission à niveaux. Le Parrain a droit aux bonus uniquement de la part du Filleul direct qu'il a parrainé avec succès. Si le Filleul parraine ensuite une tierce personne, le Parrain original ne gagne aucune commission de cet utilisateur tiers.",
+      "paused_title": "Affectations en attente et bonus suspendus",
+      "paused_desc": "Les bonus de parrainage sont actifs uniquement lorsque le compte du Filleul est en bonne situation. Si un Filleul laisse une affectation dans un état « en attente », votre bonus de 20 % de son compte sera suspendu. Tous les bonus qui auraient été générés pendant cet état de suspension sont perdus et ne seront pas libérés rétroactivement. Une fois que le Filleul efface son affectation en attente, votre bonus de 20 % reprendra immédiatement pour toutes ses futures réalisations.",
+      "eligibility_title": "Admissibilité et limitations",
+      "eligibility_l1": "<strong>Exigence d'assiduité :</strong> Pour protéger l'intégrité de la société, un Parrain doit avoir accumulé un total de 14 jours d'assiduité depuis la création du compte avant d'être autorisé à générer ou partager un ID de parrainage.",
+      "eligibility_l2": "<strong>Période de latence :</strong> Pour assurer des parrainages de haute qualité, les liens peuvent être partagés avec une seule personne à la fois. Après avoir lié avec succès un nouveau Filleul, le Parrain est placé en période de latence de 14 jours avant d'être autorisé à parrainer un autre utilisateur.",
+      "eligibility_l3": "<strong>Fraude et bannissements de compte :</strong> L'abus du programme, y compris la création de plusieurs comptes pour auto-parrainage ou l'utilisation de méthodes frauduleuses, est strictement interdit. Les violations entraîneront la perte immédiate de tous les gains de bonus et un bannissement permanent de tous les comptes associés."
+    },
+    "rewards": {
+      "welcome_bonus": "Bonus de bienvenue",
+      "welcome_desc": "En tant que nouveau membre, un <span class=\"font-semibold text-black dark:text-white\">bonus de bienvenue de 20,00 $</span> a été automatiquement crédité sur votre solde disponible lors de l'inscription. Ce bonus est fourni pour vous donner un bon départ sur vos gains et est ajouté directement à votre solde standard.",
+      "salary_title": "Suivi des jalons d'assiduité",
+      "salary_desc": "Complétez les affectations quotidiennes pour atteindre vos jalons de versement à venir.",
+      "days": "Jours",
+      "milestones": "Calendrier des versements",
+      "perfect_attendance": "Indicateur clé de performance d'assiduité complète",
+      "perfect_desc": "La constance paie. Complétez toutes les {days} affectations quotidiennes au cours du mois en cours pour atteindre l'indicateur clé de performance d'assiduité complète. Cela applique automatiquement un <span class=\"font-semibold text-black dark:text-white\">multiplicateur de versement de base de +15 %</span> à vos gains pour le cycle. <br><br><strong class=\"text-[#444] dark:text-[#ccc] font-medium\">Comment cela fonctionne :</strong> Le multiplicateur est appliqué exclusivement à vos versements de base accumulés. Par exemple, si vos versements de base totaux s'élèvent à 1 200 $, le multiplicateur de +15 % ajoutera 180 $ supplémentaires, portant votre total de versement de base final à 1 380 $. (Note : Les autres gains sont calculés séparément et ne sont pas affectés par ce multiplicateur).",
+      "promotions": "Événements bonus à durée limitée",
+      "promo_desc": "Les événements bonus sont des opportunités spéciales et temporaires qui se produisent occasionnellement. Lorsqu'ils sont actifs, ils apparaissent ici pour une durée limitée pour vous donner une chance de gagner des récompenses exclusives. Revenez périodiquement avant qu'ils n'expirent !",
+      "fetching_promos": "Récupération des promotions actives...",
+      "no_promos": "Aucun événement actif pour le moment.",
+      "full_attendance_kpi": "Indicateur clé de performance d'assiduité complète",
+      "milestone_day": "Jalon : Jour {day}",
+      "next_upcoming": "Prochain versement à venir",
+      "credited": "Crédité au solde",
+      "scheduled": "Programmé",
+      "base_multiplier": "+15 % Multiplicateur de base"
+    },
+    "assignments": {
+      "title": "Allocations de schémas actives",
+      "product_visual": "Visuel du produit",
+      "subtitle": "Traitement automatisé des données et registre financier",
+      "ledger_balance": "Solde total du registre",
+      "ledger_desc": "Fonds opérationnels de base, y compris les profits.",
+      "outstanding": "Solde en suspens",
+      "outstanding_desc": "Le déficit de financement requis pour régler l'affectation en attente.",
+      "current_balance": "Solde actuel",
+      "current_balance_desc": "Solde total du registre projeté avec l'affectation active en attente.",
+      "cycle_profit": "Profit du cycle en cours",
+      "cycle_profit_desc": "Ce calcul est mis à jour au début de chaque nouveau cycle. Tous les profits sont ensuite ajoutés au solde total du registre.",
+      "yield_rate": "Taux de rendement",
+      "schema_sync": "Synchronisation du schéma",
+      "quota_remaining": "Quota : {current} / {max} restant",
+      "sync_desc": "Établissez une connexion sécurisée au pool d'allocations pour synchroniser et inspecter le prochain ensemble de données structuré disponible avant l'exécution du registre.",
+      "syncing": "Synchronisation du contenu...",
+      "sync_btn": "Synchroniser le prochain schéma",
+      "timestamp_id": "ID de l'horodatage",
+      "reference": "Référence",
+      "asset_value": "Valeur de l'actif",
+      "yield": "Rendement",
+      "verifying": "Vérification du registre...",
+      "proceed_btn": "Procéder au téléversement",
+      "idle": "Vue des données inactive. Veuillez synchroniser un schéma structurel.",
+      "recent_activity": "Activité récente",
+      "no_activity": "Aucune activité récente.",
+      "asset": "Actif",
+      "collapse": "Réduire",
+      "view_all": "Voir toute l'activité",
+      "pending_schema_error": "Veuillez téléverser le schéma en attente avant de continuer vers le suivant.",
+      "sync_error": "Échec de la synchronisation du prochain schéma.",
+      "sync_network_error": "Une erreur de réseau s'est produite lors de la synchronisation.",
+      "upload_outstanding_error": "Impossible de téléverser.",
+      "corrupted_file": "Fichier corrompu.",
+      "upload_error": "Échec du téléversement du schéma.",
+      "upload_network_error": "Une erreur de réseau s'est produite lors du téléversement.",
+      "status_success": "Succès",
+      "status_pending": "En attente",
+      "status_corrupted": "Corrompu"
+    },
+    "payouts": {
+      "default_desc": "Versement",
+      "title": "Gérer les versements",
+      "ledger_balance": "Solde du registre",
+      "bank_country": "Pays / Région bancaire",
+      "available_methods": "Méthodes de versement disponibles",
+      "unavailable": "Actuellement indisponible",
+      "tokenized": "Actif tokenisé",
+      "manual_config": "Configuration manuelle du réseau",
+      "token": "Jeton",
+      "token_placeholder": "ex. ETH",
+      "network": "Réseau",
+      "network_placeholder": "ex. ERC-20",
+      "wallet_address": "Adresse de portefeuille",
+      "amount": "Montant",
+      "passphrase": "Phrase secrète de versement",
+      "processing": "Traitement en cours...",
+      "withdraw_btn": "Demander un versement",
+      "history_title": "Transactions récentes",
+      "th_date": "ID de l'horodatage",
+      "th_method": "Description",
+      "th_amount": "Montant",
+      "th_status": "Statut",
+      "status_success": "Succès",
+      "status_pending": "En attente",
+      "status_declined": "Refusé",
+      "welcome_bonus_desc": "Bonus de bienvenue",
+      "fill_required": "Veuillez remplir tous les champs requis pour demander un versement.",
+      "action_denied_quota": "Vous devez compléter toutes les affectations actives (Quota : {current} / {max} restant) avant de demander un versement.",
+      "exceeds_balance": "Le montant demandé dépasse votre solde de registre disponible.",
+      "request_success": "Demande de versement de {amount} soumise avec succès. Elle est maintenant en attente d'approbation.",
+      "passphrase_error": "Phrase secrète de versement incorrecte.",
+      "request_error": "Échec de la demande de versement.",
+      "network_error": "Une erreur de réseau s'est produite lors de la demande de versement."
+    },
+    "regions": {
+      "us": "États-Unis",
+      "uk": "Royaume-Uni",
+      "ca": "Canada",
+      "eu": "Europe (Zone euro)",
+      "es": "Espagne",
+      "hk": "Hong Kong",
+      "jp": "Japon",
+      "kr": "Corée du Sud",
+      "sg": "Singapour",
+      "th": "Thaïlande",
+      "wire_us": "Virement / ACH",
+      "wire_uk": "BACS / Virement",
+      "wire_ca": "Interac / Virement",
+      "wire_eu": "Transfert SEPA",
+      "bank_name": "Nom de la banque",
+      "bank_name_jp": "Nom de la banque (銀行名)",
+      "bank_code": "Code bancaire",
+      "branch_code": "Code de la succursale",
+      "branch_code_jp": "Code de la succursale (支店コード)",
+      "account_num": "Numéro de compte",
+      "account_num_jp": "Numéro de compte (口座番号)",
+      "account_type_jp": "Type de compte (口座種別)",
+      "placeholder_hsbc": "ex. HSBC, Hang Seng",
+      "placeholder_3digit": "Code à 3 chiffres",
+      "placeholder_4digit": "Code à 4 chiffres",
+      "placeholder_account": "Saisissez le numéro de compte",
+      "placeholder_mufg": "ex. Mitsubishi UFJ",
+      "placeholder_futsu": "ex. Futsu (Ordinaire)",
+      "placeholder_7digit": "Numéro à 7 chiffres",
+      "placeholder_nodash": "Saisissez sans tirets",
+      "placeholder_dbs": "ex. DBS, UOB, OCBC",
+      "placeholder_kasikorn": "ex. Kasikorn, SCB, Bangkok Bank"
+    }
+  },
+  "contact": {
+    "title": "Nous contacter",
+    "subtitle": "Nous serions ravis d'avoir de vos nouvelles.",
+    "name": "Nom",
+    "email": "E-mail",
+    "message": "Message",
+    "submit": "Envoyer",
+    "success": "Message envoyé avec succès.",
+    "modal_title": "Message envoyé",
+    "modal_msg": "Merci de nous avoir contactés. Nous avons reçu votre message.",
+    "btn_close": "Fermer",
+    "error_title": "Envoi échoué",
+    "error_send": "Nous n'avons pas pu envoyer votre message. Veuillez réessayer plus tard."
+  },
+  "home": {
+    "hero": {
+      "title": "Configuration zéro<br>pour les données structurées. Mappez instantanément vos schémas.",
+      "subtitle": "Un centre de contrôle pour les données sémantiques avec validation de schéma en temps réel et aperçus sur les entités."
+    },
+    "meta": {
+      "title": "La Société des Données Structurées | La Plateforme d'Infrastructure de Schémas", 
+      "description": "La plateforme unifiée pour la gestion des données structurées et des schémas — apportant clarté et signification sémantique à votre interface."
+    },
+    "partners": {
+      "trusted_prefix": "Approuvé par les meilleures",
+      "trusted_suffix": "équipes.",
+      "typewriter": {
+        "web_apps": "graphes de connaissances",
+        "ecommerce": "données liées",
+        "marketing": "référencement sémantique",
+        "education": "catalogues de données",
+        "security": "schémas d'identité",
+        "finance": "ontologies financières",
+        "healthcare": "données cliniques",
+        "software": "schémas d'API",
+        "ai": "données d'entraînement pour LLM"
+      }
+    },
+    "workflow": {
+      "origin": "Origine",
+      "tracking": {
+        "eyebrow": "Validation",
+        "title": "Intégrité du schéma",
+        "desc": "Visualisez la validation des données en temps réel et la santé du schéma via une vue claire et intuitive. Détectez rapidement les écarts et restez informé avec des aperçus structurels en direct."
+      },
+      "processing": {
+        "eyebrow": "Intégration",
+        "title": "Mappage sémantique",
+        "desc": "Maintenez vos schémas de données synchronisés en temps réel sur toutes les instances globales. Assurez des types cohérents, une intégration fluide et une livraison de données fiable partout."
+      },
+      "unifying": {
+        "eyebrow": "Registre",
+        "title": "Le Registre de Schémas",
+        "desc": "Centralisez les schémas, les fragments JSON-LD et les modèles de données dans un tableau de bord unifié. Réduisez la fragmentation et gérez chaque entité qui compte à partir d'un seul endroit."
+      }
+    },
+    "security": {
+      "main_title": "Sécurité des données intégrée. Inclus pour tous.",
+      "main_subtitle": "Notre pare-feu sémantique offre une protection à l'échelle du système, protégeant vos structures de données par défaut.",
+      "firewall": {
+        "title": "Pare-feu de données",
+        "subtitle": "Protection résiliente à la périphérie",
+        "desc": "Notre réseau périphérique mondial absorbe instantanément les attaques volumétriques, assurant que l'origine de vos données reste invisible et intacte par le trafic malveillant."
+      },
+      "waf": {
+        "title": "Garde sémantique",
+        "subtitle": "Protège le trafic de données contre les menaces",
+        "desc": "Le filtrage intelligent analyse les paquets entrants en temps réel, bloquant les injections et les entités malformées avant qu'elles n'atteignent votre magasin de données."
+      },
+      "workspace": {
+        "title": "Contrôle d'accès",
+        "subtitle": "Accès aux schémas de confiance pour les équipes",
+        "desc": "L'architecture zéro confiance garantit que seuls les utilisateurs authentifiés et les appareils conformes peuvent modifier vos outils internes et ressources de données."
+      }
+    },
+    "code": {
+      "title": "La simplicité d'abord, toujours.",
+      "desc": "Tableaux de bord intuitifs, constructeurs de schémas visuels et guides complets pour s'intégrer parfaitement à votre flux de travail existant sans écrire une seule ligne de code."
+    },
+    "stats": {
+      "lines_code": "Entités de données mappées quotidiennement",
+      "languages": "Types de schémas pris en charge et vocabulaires sémantiques",
+      "downloads": "Téléchargements de paquets de schémas"
+    },
+    "fluid": {
+      "title": "Opérations de schémas auto-réparatrices.",
+      "desc": "Automatisez les métadonnées. L'intelligence alimentée par l'IA suggère et applique de manière proactive les bons types de schémas, les étiquettes de propriétés et les mappages de relations.",
+      "ai_detection": "Détection d'entité",
+      "assign": {
+        "header": "Type détecté",
+        "sub": "Analyse des propriétés...",
+        "action": "Suggéré : Schema.org/Person (98 %)"
+      },
+      "label": {
+        "header": "Analyse du contexte",
+        "sub": "Scan du vocabulaire...",
+        "action": "Appliqué : [Sémantique] [Requis]"
+      },
+      "route": {
+        "header": "Demande de mappage",
+        "sub": "Correspondance des ontologies...",
+        "action": "Envoyé à : Ingénierie des données"
+      }
+    },
+    "cta": "Construisez quelque chose de significatif.",
+    "footer": {
+      "about_title": "À propos de nous",
+      "sf_title": "Royaume-Uni",
+      "sf_address": "C/O Chalk Hill Barn Office 1 Upstairs<br>Yew Tree Farm, Stone Street, Stanford, Kent<br>Angleterre, TN25 6DH",
+      "london_title": "",
+      "london_address": "",
+      "mission": "Nous fournissons l'infrastructure sémantique pour définir, mettre à l'échelle et sécuriser un web structuré, rendant les données universellement compréhensibles.",
+      "copyright": "&copy; 2026 The Structured Data Company Limited. Tous droits réservés.",
+      "status": "Tous les systèmes sont normaux.",
+      "links": {
+        "terms": "Conditions d'utilisation",
+        "privacy": "Politique de confidentialité",
+        "cookies": "Politique des cookies",
+        "legal": "Mentions légales et enregistrement"
+      }
+    }
+  },
+  "terms": {
+    "sidebar": {
+      "title": "Centre juridique",
+      "tos": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité",
+      "cookies": "Politique des cookies",
+      "registration": "Mentions légales et enregistrement"
+    },
+    "title": "Légal",
+    "tos": {
+      "title": "Conditions d'utilisation",
+      "last_updated": "Dernière révision le 2 mai 2024",
+      "content": "VEUILLEZ LIRE ATTENTIVEMENT LES CONDITIONS D'UTILISATION SUIVANTES DU PORTAIL AVANT DE REJOINDRE LA SOCIÉTÉ OU D'UTILISER LES SERVICES DE LA SOCIÉTÉ. CES CONDITIONS D'UTILISATION CONSTITUENT UN ACCORD LÉGAL ENTRE VOUS ET LA SOCIÉTÉ ET SONT EN PLUS DES CONDITIONS DE L'ACCORD (DÉFINI CI-DESSOUS). SI VOUS N'ACCEPTEZ PAS OU NE POUVEZ PAS ACCEPTER CES CONDITIONS D'UTILISATION, VOUS N'ÊTES PAS AUTORISÉ À REJOINDRE LA SOCIÉTÉ. SI VOUS ACCÉDEZ À CET ADDENDUM ÉLECTRONIQUEMENT, SIGNIFIEZ VOTRE ACCORD À ÊTRE LIÉ PAR LES CONDITIONS DE CET ADDENDUM EN CLIQUANT SUR LE BOUTON « CRÉER UN COMPTE ». SI VOUS N'ACCEPTEZ PAS CES CONDITIONS D'UTILISATION, NE CRÉEZ PAS DE COMPTE.<br><br>Ces Conditions d'utilisation (les « Conditions ») régissent votre accès et votre utilisation de notre site web et de notre application mobile (collectivement, le « Portail »), et du contenu, des fonctionnalités, des logiciels et des applications associés dans le Portail (collectivement, le « Service »). Le Portail et le Service sont administrés et maintenus par The Structured Data Company. Les termes « nous », « notre », « nos » et « Société » font également référence à The Structured Data Company. Le terme « vous » fait référence à la personne visitant le Portail.<br><br>Veuillez lire attentivement ces Conditions. Elles contiennent des informations importantes concernant vos droits légaux, y compris les limitations de responsabilité de la Société et de certaines tierces parties, les exclusions de garanties et une soumission à la juridiction. Chaque fois que vous accédez au Service par quelque moyen que ce soit (par exemple, via Internet ou sur un appareil mobile), vous acceptez irrévocablement de vous conformer à la version des Conditions publiée sur le Portail au moment où vous accédez au Portail. Vous ne pouvez pas utiliser le Portail ou le Service si vous n'acceptez pas ces Conditions. En accédant ou en utilisant le service, vous acceptez d'être lié par ces conditions.<br><br><strong>ADMISSIBILITÉ</strong><br>Pour être admissible à utiliser les Services de la Société, vous devez avoir au moins 23 ans et résider soit au Royaume-Uni, aux États-Unis, au Canada, en Europe, au Japon, en Corée du Sud, à Singapour, en Espagne, à Hong Kong ou en Thaïlande. Certaines fonctionnalités peuvent ou non être disponibles pour vous selon votre localisation et d'autres critères d'admissibilité. Vous ne devez pas utiliser de logiciels ou de techniques de réseau, y compris l'utilisation d'un Réseau Privé Virtuel (VPN) pour modifier votre adresse de protocole Internet ou contourner autrement ou tenter de contourner cette interdiction.<br><br><strong>MODIFICATIONS</strong><br>Nous pouvons modifier ces conditions d'utilisation, notre politique de confidentialité et notre politique des cookies de temps à autre. Si nous apportons des modifications importantes, nous vous en informerons via nos services ou par d'autres moyens pour vous donner l'opportunité d'examiner les modifications avant qu'elles ne deviennent effectives. Nous convenons que les modifications ne peuvent pas être rétroactives. Si vous vous opposez à toute modification, vous pouvez fermer votre compte. Votre utilisation continue de nos services après que nous ayons publié ou envoyé un avis sur nos modifications à ces conditions signifie que vous consentez aux conditions mises à jour à leur date d'effet.<br><br><strong>DISPONIBILITÉ, ERREURS ET INEXACTITUDES</strong><br>L'accès aux Services peut devenir dégradé ou indisponible pendant les périodes de volatilité ou de volume important. Cela pourrait entraîner des limitations d'accès à votre Compte ou aux Services, y compris l'incapacité d'initier ou de compléter des transactions et peut également entraîner des retards dans les temps de réponse du support.<br><br>a. Nous ne garantissons pas que le Site ou les autres Services seront disponibles sans interruption et nous ne garantissons pas que toute commande sera exécutée, acceptée, enregistrée ou restera ouverte ou que votre Compte sera accessible ; et<br><br>b. Veuillez noter que nos temps de réponse du support peuvent être retardés, y compris pendant les périodes de volatilité ou de volume important, en particulier pour les problèmes non liés à la confiance et à la sécurité.<br>Bien que nous ayons l'intention de fournir des informations précises et opportunes sur le Site, le Site (y compris, sans limitation, le Contenu (tel que défini ci-dessous)) peut ne pas toujours être entièrement précis, complet ou à jour et peut également inclure des inexactitudes techniques ou des erreurs typographiques. Dans un effort pour continuer à vous fournir des informations aussi complètes et précises que possible, les informations peuvent, dans la mesure permise par la loi applicable, être modifiées ou mises à jour de temps à autre sans préavis, y compris sans limitation les informations concernant nos politiques, produits et services. Par conséquent, vous devez vérifier toutes les informations avant de vous y fier, et toutes les décisions basées sur les informations contenues sur le Site sont de votre seule responsabilité et nous n'aurons aucune responsabilité pour de telles décisions.<br><br>Nous mettons constamment à jour nos offres de produits et services sur le service. Les produits ou services disponibles sur notre service peuvent être mal tarifés, décrits de manière inexacte ou indisponibles, et nous pouvons rencontrer des retards dans la mise à jour des informations sur le service et dans notre publicité sur d'autres sites web. Nous ne pouvons pas et ne garantissons pas l'exactitude ou l'exhaustivité de toute information, y compris les images de produits, les spécifications, la disponibilité et les services. Nous nous réservons le droit de modifier ou de mettre à jour les informations et de corriger les erreurs, inexactitudes ou omissions à tout moment sans préavis. En cas d'événements imprévus, la Société est autorisée à suspendre les services à des fins de maintenance ou de réparation si cela est nécessaire pour assurer le bon fonctionnement des services.<br><br><strong>COMPTE</strong><br>Vous avez besoin d'avoir un compte chez Nous (« Compte ») pour utiliser certaines parties du Service. Lorsque vous créez un Compte, vous déclarez et garantissez que vous avez au moins l'âge légal dans votre juridiction respective, que vous êtes capable de conclure et d'exécuter des contrats légalement contraignants selon la loi applicable, et que toutes les informations que vous fournissez sont exactes, à jour, véridiques et complètes. Vous êtes seul responsable de toutes les activités sous votre Compte. Nous ne serons en aucun cas responsables si votre mot de passe et/ou votre Compte sont détournés ou utilisés par un tiers. Vous acceptez donc de garder votre mot de passe sécurisé et de maintenir les informations de votre compte à jour à tout moment.<br><br>Sauf autorisation expresse de Notre part et sous réserve des Conditions et de toute autre condition supplémentaire que la Société détermine uniquement et absolument, vous ne devez pas configurer plusieurs Comptes. Vous ne devez pas prêter, transférer ou vendre votre Compte ou les informations de votre Compte à une autre partie et ne devez pas utiliser le Compte d'un autre utilisateur sans leur permission écrite.<br><br>Nous pouvons occasionnellement vous contacter à l'adresse e-mail fournie lors de l'enregistrement de votre Compte. Vous ne pourrez pas vous désabonner de telles communications, et vous assumerez la responsabilité de vous assurer que votre adresse e-mail est à jour. Si vous manquez des communications en raison d'une adresse e-mail inexacte, obsolète ou incomplète, Nous ne serons pas responsables des pertes ou dommages causés par vous manquant la communication.<br><br>Vous ne pouvez pas fermer ou supprimer votre compte s'il y a des opérations en attente. La Société se réserve le droit de désactiver le compte d'un utilisateur en cas d'activité frauduleuse accomplie par l'utilisateur pendant l'existence de la Société.<br><br>Actions qui peuvent être considérées comme une activité frauduleuse :<br>a. Création de différents comptes sous la même identité ;<br>b. Création de différents comptes afin d'utiliser les bonus de la Société plusieurs fois ;<br>c. Fraude avec des cartes de crédit volées ou fraude avec d'autres méthodes de paiement ;<br>d. Tout comportement qui présente des signes d'activité frauduleuse et des risques pour le service.<br><br><strong>ACTIVITÉS INTERDITES</strong><br>Vous acceptez que vous ne ferez pas :<br><br>a. Copier, modifier ou créer des œuvres dérivées du Service ou de tout Contenu ;<br><br>b. Copier, manipuler ou agréger tout Contenu (y compris les données) dans le but de le rendre disponible à tout tiers ;<br><br>c. Échanger, vendre, louer, prêter, louer à bail ou licencier tout Contenu ou accès au Service, que ce soit commercialement ou gratuitement ;<br><br>d. Utiliser ou introduire dans le Service toute méthode d'extraction de données, de crawling, de « scraping », de robot ou similaire automatisée ou de collecte ou d'extraction de données, ou accéder, acquérir, surveiller ou copier manuellement toute partie du Service, ou télécharger ou stocker du Contenu (sauf autorisation expresse de Notre part) ;<br><br>e. Faire des demandes excessives d'informations ou prendre toute action qui interfère avec, perturbe ou impose une charge indue sur le Service ou tout serveur ou réseau connecté au Service ou affecte négativement la qualité ou la disponibilité de tout Contenu, ou la vitesse ou la fonctionnalité du Service ;<br><br>f. Introduire un virus, un cheval de Troie, un ver, une bombe à retardement ou tout autre logiciel malveillant dans le Service ou la Plateforme, ou utiliser tout dispositif, logiciel ou routine pour contourner tout logiciel ou matériel qui interdit les demandes volumineuses d'informations ;<br><br>g. Violer, contourner ou éviter toute mesure de sécurité destinée à limiter ou empêcher l'accès à la Plateforme, au Contenu ou au Service ; ou<br><br>h. Tenter autrement d'obtenir un accès non autorisé au Service, à tout Contenu ou à tout système informatique ou réseau connecté au Service ou à tout serveur de la Société, que ce soit par piratage, minage de mots de passe, utilisation non autorisée du mot de passe/d'identifiants d'autrui ou tout autre moyen ;<br><br>i. Restreindre, inhiber ou interférer avec l'utilisation du Service par tout autre utilisateur (y compris par piratage ou défiguration du Portail) ;<br><br>j. Introduire ou distribuer autrement via le Portail tout programme informatique qui endommage, interfère avec, intercepte, collecte, libère ou divulgue tout système, donnée ou information personnelle de notre part ou de tout tiers ;<br><br>k. Faire usage de l'une de nos marques de commerce, marques de service, noms commerciaux ou logos ou ceux de tout tiers affichés sur la Plateforme ;<br><br>l. Modifier ou supprimer tout avis de droit d'auteur ou autre avis de propriété dans le Contenu ;<br><br>m. Utiliser le Site Web, le Contenu ou le Service pour ou en relation avec toute activité qui (i) viole toute loi, statut, ordonnance ou règlement applicable, y compris sans limitation le Bureau de contrôle des avoirs étrangers (OFAC) du Département du Trésor, ou (ii) implique les produits de toute activité illégale ou illicite.<br><br>De plus, vous reconnaissez et acceptez que vous (et non Nous) êtes seul responsable de l'obtention et du maintien de toutes les télécommunications, haut débit, et matériel informatique, équipement, logiciel et services nécessaires pour vous permettre d'accéder et d'utiliser le Service, et de payer tous les frais y afférents.<br><br><strong>LIMITATIONS DE RESPONSABILITÉ</strong><br>Les Services, le Portail et le Site sont fournis sur une base « en l'état » et « selon disponibilité », sans autres promesses de notre part concernant la disponibilité des Services. Spécifiquement, nous ne donnons aucune garantie implicite de titre, de qualité marchande, d'adéquation à un usage particulier et/ou de non-contrefaçon. Nous ne faisons aucune promesse que l'accès au Site, à l'un des Services, ou à l'un des matériaux contenus dans ceux-ci, sera continu, ininterrompu, opportun ou sans erreur.<br><br>Si vous avez un différend avec un ou plusieurs utilisateurs de la Société, vous acceptez que ni nous ni nos affiliés ou fournisseurs de services, ni aucun de nos dirigeants, administrateurs, marchands, agents, co-entrepreneurs, employés et représentants respectifs, ne seront responsables de toute réclamation, demande et dommages (réels et consécutifs, directs ou indirects) de quelque nature que ce soit découlant de ou en quelque manière liés à de tels différends.<br><br>Nous ne sommes pas responsables de toute violation de l'Accord, y compris les retards, les manquements dans l'exécution ou l'interruption du service, lorsqu'ils découlent directement ou indirectement de circonstances anormales et imprévisibles hors de notre contrôle, dont les conséquences auraient été inévitables malgré tous les efforts contraires, ni ne sommes-nous responsables lorsque la violation est due à l'application de règles légales obligatoires.<br><br><strong>EXCLUSION DE GARANTIE</strong><br>La Société et ses affiliés ne font aucune déclaration ou garantie concernant les services, y compris toute déclaration que les services seront ininterrompus ou sans erreur, et fournissent les services (y compris le contenu et les informations) sur une base « en l'état » et « selon disponibilité ». Dans toute la mesure permise par la loi applicable, la Société et ses affiliés excluent toute garantie implicite ou statutaire, y compris toute garantie implicite de titre, d'exactitude des données, de non-contrefaçon ou de qualité marchande ou d'adéquation à un usage particulier.<br><br>À L'EXTENT MAXIMUM PERMIS PAR LA LOI APPLICABLE, LA SOCIÉTÉ N'ASSUME AUCUNE RESPONSABILITÉ OU OBLIGATION POUR TOUT (I) ERREUR, ERREUR OU INEXACTITUDE DE TOUT CONTENU ; (II) DOMMAGE MATÉRIEL, DE QUELQUE NATURE QUE CE SOIT, RÉSULTANT DE VOTRE ACCÈS OU UTILISATION DU SERVICE ; (III) TOUT ACCÈS NON AUTORISÉ À OU UTILISATION DE NOS SERVEURS ET/OU DE TOUTES ET TOUTES LES INFORMATIONS STOCKÉES À CET ENDROIT ; (IV) TOUTE INTERRUPTION OU CESSATION DE TRANSMISSION VERS OU DEPUIS LE SERVICE ; (V) TOUT BOGUE, VIRUS, CHEVAL DE TROIE OU SIMILAIRE QUI PEUT ÊTRE TRANSMIS AU OU PAR LE SERVICE PAR UN TIERS ; (VI) TOUTE ERREUR OU OMISSION DANS TOUT CONTENU OU POUR TOUTE PERTE OU DOMMAGE SUBI EN RÉSULTAT DE L'UTILISATION DE TOUT CONTENU AFFICHÉ, TRANSMIS OU AUTREMENT MIS À DISPOSITION VIA LE SERVICE ; ET/OU (VII) LA CONDUITE DIFFAMATOIRE, OFFENSANTE OU ILLÉGALE DE TOUT TIERS.<br><br><strong>ENGAGEMENT ET CONFORMITÉ</strong><br>Pour évaluer la compréhension des utilisateurs et leur engagement avec nos produits et services, ainsi que pour mesurer leur préparation aux innovations futures, il est requis que les utilisateurs complètent tous les cycles de produits avant d'initier une demande de retrait. Les retraits ne peuvent pas être traités au milieu d'un cycle, ni aucune interaction de produit ne peut être annulée, sautée ou inversée, en raison d'accords contraignants avec nos partenaires marchands. Notre système subit des mises à jour fréquentes, avec des produits ajoutés et supprimés chaque minute, et la détention prolongée d'un produit par un utilisateur peut affecter négativement les progrès des marchands. Les utilisateurs sont encouragés à compléter leurs cycles de produits et à soumettre des demandes de retrait dans un délai de 24 à 48 heures. Dans le cas où un produit est conservé plus longtemps que la période de 48 heures spécifiée, nos conditions d'utilisation prévoient des ajustements aux calendriers de paiement standard basés sur un accord mutuel entre l'utilisateur et notre société. Si de tels ajustements se produisent, des frais nominaux peuvent être prélevés pour couvrir les coûts administratifs associés à ces changements et pour assurer la prestation continue du service. Les détails concernant ces frais sont inclus dans la section des ajustements de facturation de nos accords d'utilisateur, favorisant la transparence et aidant à la compréhension. Cette approche nous permet de répondre de manière flexible aux situations financières variées de nos utilisateurs tout en protégeant l'efficacité et les progrès de nos partenaires marchands. De plus, la Société peut demander des documents supplémentaires pour vérifier l'authenticité des fonds impliqués. Les utilisateurs peuvent également être invités à démontrer l'origine de ces fonds. S'il y a des préoccupations concernant la légitimité des fonds, la Société se réserve le droit de procéder à un audit du compte de l'utilisateur. Cette approche complète aide à garantir que toutes les interactions financières au sein de notre plateforme adhèrent aux normes les plus élevées de sécurité et de conformité. Pour maintenir la conformité et assurer la clarté dans les flux transactionnels, chaque compte doit fonctionner avec des informations de payeur distinctes, sauf dans le cas des comptes coach.<br><br><strong>SUSPENSION, TERMINAISON ET ANNULATION</strong><br>Nous pouvons : (a) suspendre, restreindre ou terminer votre accès à tout ou partie des Services de la Société, et/ou (c) désactiver ou annuler votre Compte avec effet immédiat pour une bonne raison, y compris, mais sans s'y limiter, lorsque :<br><br>a. Nous sommes requis par une autorité gouvernementale de le faire ;<br>b. Vous êtes, ou semblez être, incapable de remplir vos obligations concernant une ou plusieurs fonctions ;<br>c. Vous êtes soumis à un événement d'insolvabilité de tout type (tel que déterminé à notre discrétion absolue) ;<br>d. Toute enquête, réclamation, action ou procédure de quelque nature que ce soit est engagée contre vous (y compris sans limitation une enquête sur un abus de marché présumé, une manipulation ou une autre conduite criminelle), vous avez violé les Lois Applicables ou des mesures sont prises par toute personne pour exécuter tout intérêt de sécurité contre vous ;<br>e. Vous êtes en violation de cet Accord ; ou<br>f. Nous estimons autrement qu'il est nécessaire pour nous protéger ou protéger la Société.<br>Si nous suspendons, restreignons ou fermons votre Compte, et/ou terminons votre utilisation des Services, nous (sauf s'il est illégal pour nous de le faire) vous fournirons un avis de nos actions et les raisons du refus, de la suspension ou de la fermeture, et le cas échéant, avec la procédure pour corriger toute erreur factuelle qui a conduit au refus, à la suspension ou à la fermeture de votre Compte.<br>Nous pouvons terminer ou suspendre ou annuler votre compte immédiatement, sans préavis ni responsabilité, pour quelque raison que ce soit, y compris sans limitation, si vous violez les Conditions. Lors de la terminaison, votre droit d'utiliser le service cessera immédiatement.<br><br><strong>PROPRIÉTÉ ET PROPRIÉTÉ INTELLECTUELLE</strong><br>a. Sous réserve de ces Conditions, vous pouvez visualiser, imprimer et faire des copies du Contenu pour votre usage personnel. Vous ne devez pas copier, reproduire, télécharger, « screen scrape », stocker, transmettre, diffuser, publier, modifier, créer une œuvre dérivée de, afficher, exécuter, distribuer, redistribuer, vendre, licencier, louer, louer à bail ou autrement utiliser, transférer (que ce soit sous forme imprimée, électronique ou autre) ou exploiter tout Contenu, en tout ou en partie, de quelque manière que ce soit qui ne respecte pas ces Conditions.<br><br>b. Entre la Société et vous, tout le Contenu est détenu ou contrôlé par la Société. La Société, son logo et, sauf indication contraire ci-dessous, tous les autres noms de produits ou de services ou slogans affichés sur le Service sont des marques déposées et/ou de droit commun de la Société ou de ses fournisseurs ou concédants et ne peuvent pas être copiés, imités ou utilisés, en tout ou en partie, sans la permission écrite préalable de la Société ou du titulaire de la marque applicable. De plus, l'apparence et la sensation du Service, y compris tous les en-têtes de page, graphiques personnalisés, icônes de boutons et scripts, sont la marque de service, la marque de commerce et/ou l'habillage commercial de la Société et ne peuvent pas être copiés, imités ou utilisés, en tout ou en partie, sans la permission écrite préalable de la Société. Toutes les autres marques de commerce, marques déposées, noms de produits et noms de société ou logos mentionnés dans le Service sont la propriété de leurs propriétaires respectifs. La référence à tout produit, service, processus ou autre information, par nom commercial, marque de commerce, fabricant, fournisseur ou autrement ne constitue ni n'implique l'approbation, le parrainage ou la recommandation de ceux-ci par la Société.<br><br>c. Rien dans ces Conditions ne vous accorde un intérêt dans la propriété intellectuelle de la Société ou d'un tiers.<br><br>d. Tous les logos, marques de commerce, marques de service et noms commerciaux connexes sont la propriété exclusive de la Société. L'absence d'un nom, logo ou autre marque ici ne constitue pas une renonciation à tout droit de propriété intellectuelle que la Société a établi. Les autres marques de commerce, noms ou logos utilisés sur le Site Web sont la propriété de leurs propriétaires respectifs. Vous n'êtes pas autorisé à utiliser l'un des précédents.<br><br>e. Vous reconnaissez que la Société et/ou ses fournisseurs détiennent le droit d'auteur sur tout le Contenu selon les lois applicables (y compris les lois sur le droit d'auteur et les autres lois sur la propriété intellectuelle), et ont réservé tous les droits sur un tel Contenu.<br><br><strong>LIENS VERS D'AUTRES SITES WEB</strong><br>Notre service peut contenir des liens vers des sites web ou services de tiers qui ne sont pas détenus ou contrôlés par la Société. La Société n'a aucun contrôle sur, et n'assume aucune responsabilité pour, le contenu, les politiques de confidentialité ou les pratiques de tout site web ou service de tiers. Vous reconnaissez et acceptez en outre que la Société ne sera pas responsable ou redevable, directement ou indirectement, de tout dommage ou perte causé ou allégué d'être causé par ou en connexion avec l'utilisation ou la dépendance à tout tel contenu, biens ou services disponibles sur ou via de tels sites web ou services. Nous vous conseillons fortement de lire les conditions générales et les politiques de confidentialité de tout site web ou service de tiers que vous visitez.<br><br>VOUS ACCEPTEZ QUE LA SOCIÉTÉ NE SERA PAS, EN AUCUNE CIRCONSTANCE, RESPONSABLE OU REDEVABLE, DIRECTEMENT OU INDIRECTEMENT, POUR TOUT BIEN, SERVICE, INFORMATION, RESSOURCE ET/OU CONTENU DISPONIBLE SUR OU VIA TOUT SITE WEB OU SERVICE DE TIERS, POUR TOUTE TRANSACTION OU COMMUNICATION QUE VOUS POURRIEZ AVOIR AVEC DES TIERS, OU POUR TOUT DOMMAGE, PERTE OU PRÉJUDICE CAUSÉ OU ALLÉGUÉ D'ÊTRE CAUSÉ PAR OU EN CONNEXION AVEC L'UN DES PRÉCÉDENTS OU VOTRE UTILISATION OU DÉPENDANCE AUX MATÉRIAUX OU AU CONTENU OU AUX PRATIQUES COMMERCIALES DE TOUT TIERS.<br><br><strong>POLITIQUE SUR LES ACTES MALHONNÊTES</strong><br>Pour détecter, dissuader et prévenir les actes malhonnêtes, la Société suit ces principes :<br><br>a. Allouer les ressources d'application de la loi, de renseignement financier et de supervision sur une base sensible au risque ;<br>b. Maintenir une coordination et une coopération politiques et opérationnelles étroites à travers le Gouvernement ;<br>c. Adopter une approche préventive qui combine une licence rigoureuse et des exigences de rapport complètes, des réglementations strictes sur les Actes Malhonnêtes, et une supervision basée sur le risque des secteurs financiers et non financiers pertinents ;<br>d. Améliorer la compréhension des parties prenantes du secteur privé des risques d'actes malhonnêtes et promouvoir une culture de conformité ;<br>e. Prendre des mesures d'application de la loi décisives et dissuasives contre l'activité malhonnête, y compris celle liée aux crimes étrangers ;<br>f. Fournir une assistance à d'autres juridictions par des canaux formels et informels, spontanément et sur demande.<br><br><strong>POLITIQUE CONFIDENTIELLE AVEC LES MARCHANDS COOPÉRANTS</strong><br>A. Informations confidentielles et propriétaires<br>Au cours de l'emploi, les employés seront exposés à des informations confidentielles et propriétaires de l'employeur. Les informations confidentielles et propriétaires signifieront toute donnée ou information qui est un matériel sensible à la concurrence et non généralement connu du public, y compris, mais sans s'y limiter, les informations relatives au développement et aux plans, stratégies de marketing, finance, opérations, systèmes, concepts propriétaires, documentation, rapports, données, spécifications, logiciel informatique, code source, code objet, diagrammes de flux, données, bases de données, inventions, savoir-faire, secrets commerciaux, listes de clients, relations avec les clients, profils de clients, listes de fournisseurs, relations avec les fournisseurs, profils de fournisseurs, prix, estimations de ventes, plans d'affaires et résultats de performance internes relatifs aux activités commerciales passées, présentes ou futures, informations techniques, conception, processus, procédure, formule ou amélioration, que l'Employeur considère confidentielles et propriétaires. L'Employé reconnaît et accepte que les informations confidentielles et propriétaires sont une propriété précieuse de l'employeur, développée sur une longue période à des frais substantiels, et qu'elles méritent une protection.<br><br>B. Obligations de confidentialité<br>Sauf autorisation expresse contraire dans cet Accord, l'Employé ne doit pas divulguer ou utiliser de quelque manière que ce soit, directement ou indirectement, toute information confidentielle et propriétaire pendant la durée de cet Accord ou à tout moment par la suite, sauf si nécessaire pour exécuter leurs fonctions et responsabilités ou avec le consentement écrit préalable de l'employeur.<br><br>C. Droits sur les informations confidentielles et propriétaires<br>Toutes les idées, concepts, produits de travail, informations, matériel écrit ou autre information confidentielle et propriétaire divulguée à l'employé par l'employeur (i) sont et resteront la propriété exclusive et unique de l'employeur, et (ii) sont divulguées ou permises d'être acquises par l'employé uniquement en se fiant à l'accord de l'employé de les maintenir confidentielles et de ne pas les utiliser ou les divulguer à toute autre personne sauf dans le cadre des affaires de l'employeur. Sauf disposition expresse contraire ici, cet accord ne confère aucun droit, licence, propriété ou autre intérêt ou titre dans, à ou sous les informations confidentielles et propriétaires à l'employé.<br><br>D. Préjudice irréparable<br>L'employé reconnaît que l'utilisation ou la divulgation de toute information confidentielle et propriétaire d'une manière incompatible avec cet accord donnera lieu à un préjudice irréparable pour lequel les dommages ne seraient pas un recours adéquat. Par conséquent, en plus de tout autre recours légal qui peut être disponible en droit ou en équité, l'employeur aura droit à un recours équitable ou injonctif contre l'utilisation ou la divulgation non autorisée d'informations confidentielles et propriétaires. L'employeur aura droit à poursuivre tout autre recours légalement permis disponible en résultat de telle violation, y compris mais sans s'y limiter les dommages, tant directs que consécutifs. Dans toute action intentée par l'employeur en vertu de cette section, l'employeur aura droit à récupérer ses frais d'avocat et coûts de l'employé."
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "last_updated": "Dernière révision le 11 janvier 2024",
+      "content": "Chez The Structured Data Company, nous sommes fermement engagés à protéger et à respecter votre vie privée. Cette Politique de Confidentialité (« Politique de Confidentialité ») couvre votre accès et votre utilisation de ce site web (le « Site Web »), ainsi que le contenu, les logiciels et les applications mobiles associés (collectivement, le « Service »). Cette Politique de Confidentialité explique quand, pourquoi et comment nous collectons et utilisons les informations personnelles sur les personnes qui visitent notre Site Web ou utilisent nos Services, les conditions dans lesquelles nous pouvons divulguer vos informations personnelles à d'autres, et comment nous gardons vos informations personnelles sécurisées. Nous pouvons modifier cette Politique de Confidentialité de temps à autre. En utilisant notre Site Web ou nos Services, vous acceptez d'être lié par cette Politique de Confidentialité. Veuillez lire attentivement cette Politique. Nous sommes engagés à protéger votre vie privée grâce à notre conformité aux termes de cette Politique.<br><br><strong>MODIFICATIONS</strong><br>La Société (« nous » ou « notre ») peut modifier cette politique de confidentialité, et si nous apportons des modifications importantes, nous fournirons un avis via nos services, ou par d'autres moyens, pour vous donner l'opportunité d'examiner les modifications avant qu'elles ne deviennent effectives. Si vous vous opposez à toute modification, vous pouvez fermer votre compte. Vous reconnaissez que votre utilisation continue de nos services après que nous ayons publié ou envoyé un avis sur nos modifications à cette politique de confidentialité signifie que la collecte, l'utilisation et le partage de vos données personnelles sont soumis à la politique de confidentialité mise à jour à sa date d'effet.<br><br><strong>CRÉER UN COMPTE</strong><br>Pour créer un compte, vous devez fournir des données, y compris votre adresse e-mail et/ou votre numéro de mobile, et un mot de passe auto-configuré. Lors de la collecte d'informations personnelles, nous les collectons dans les limites nécessaires, et la collecte sera effectuée avec une priorité pour assurer la légalité et l'équité. Nous pouvons collecter vos informations personnelles directement de vous ou d'autres entités avec lesquelles nous travaillons, telles que les marchands, les utilisateurs, les autorités gouvernementales, les agences publiques ou gouvernementales, ou nos propres informations personnelles de la Société que nous collectons, utilisons et divulguons comprennent :<br><br>a. Informations de contact, telles que votre nom, adresse e-mail et numéro de contact ;<br><br>b. Informations d'identité telles que votre nationalité ;<br><br>c. Informations requises en vertu des lois et règlements applicables, obligations professionnelles, politiques internes et procédures de gestion des risques, telles que les obligations de tenue de registres, la prévention de la fraude, les fins d'audit, le dépistage de conformité et la diligence raisonnable, le régime de sanctions et l'ordonnance du tribunal, que ce soit dans l'une des Régions éligibles ou ailleurs ;<br><br>d. Informations relatives aux systèmes et processus de technologie de l'information et de la communication, équipement de bureau et installations ; et<br><br>e. Photographies et autres informations audio-visuelles.<br>Si vous soumettez les informations personnelles d'une autre personne à nous, vous confirmez qu'elles sont vraies et correctes, que tous les consentements nécessaires ont été obtenus, ou que vous êtes autrement autorisé à fournir de telles informations personnelles à nous.<br><br><strong>PROTECTION DE VOS INFORMATIONS PERSONNELLES</strong><br>Nous utilisons des mesures de sécurité techniques, organisationnelles et administratives appropriées pour protéger vos informations personnelles contre toute perte, mauvais usage ou accès, divulgation, altération ou destruction non autorisés. Nous limitons également l'accès à vos informations personnelles à ceux qui ont un besoin commercial légitime de les connaître. Les informations personnelles sont placées sous une administration appropriée avec des mesures de protection raisonnables et requises en place pour se protéger contre l'accès injuste, la perte, la falsification, la fuite, etc. du point de vue de la technologie de l'information et de l'administration appropriées. Cependant, il y a toujours des risques impliqués avec la fourniture d'informations personnelles, car aucune technologie n'est complètement sans risque ou ne peut être garantie à 100 % sécurisée. Si une négligence dans l'administration devait se produire, telle que la fuite de telles données, nous serions en mesure de prendre des contre-mesures immédiates et efficaces dans la mesure du possible.<br><br><strong>RETENTION DE VOS INFORMATIONS PERSONNELLES</strong><br>Nous ne conserverons pas vos informations personnelles pour une période plus longue que nous croyons raisonnablement nécessaire pour les fins pour lesquelles elles ont été collectées, ou pour une période plus longue requise à des fins commerciales ou légales. Lors de la destruction de vos informations personnelles, nous prendrons des mesures commercialement raisonnables pour rendre vos informations personnelles irrécupérables ou irréproductibles conformément à la loi applicable.<br><br><strong>COMMENT NOUS UTILISONS VOS INFORMATIONS PERSONNELLES</strong><br>La façon dont nous utilisons vos informations personnelles dépendra des services que vous utilisez, de la façon dont vous utilisez ces services et des choix que vous faites dans vos paramètres. Nous utilisons les informations que nous avons sur vous pour fournir et personnaliser nos services, y compris avec l'aide de systèmes automatisés et d'inférences que nous faisons, afin que nos services (y compris les publicités) puissent être plus pertinents et utiles pour vous et les autres.<br><br><strong>COOKIES ET TECHNOLOGIES SIMILAIRES</strong><br>Comme décrit plus en détail dans notre Politique des Cookies, nous utilisons des cookies et des technologies similaires (par ex., pixels et balises publicitaires) pour collecter des données (par ex., IDs d'appareil) pour vous reconnaître et reconnaître votre/vos appareil(s) sur, hors et à travers différents services et appareils où vous avez interagi avec nos services. Nous permettons également à certains autres d'utiliser des cookies comme décrit dans notre Politique des Cookies.<br><br><strong>SÉCURITÉ</strong><br>Nous mettons en œuvre des safeguards de sécurité conçus pour protéger vos données, tels que HTTPS. Nous surveillons régulièrement nos systèmes pour détecter d'éventuelles vulnérabilités et attaques. Cependant, nous ne pouvons pas garantir la sécurité de toute information que vous nous envoyez. Il n'y a aucune garantie que les données ne puissent pas être accessibles, divulguées, altérées ou détruites par une violation de l'un de nos safeguards physiques, techniques ou managériaux.<br><br><strong>SIGNAUX DO NOT TRACK</strong><br>Nous ne partageons actuellement pas de données personnelles avec des tiers à leurs fins de marketing direct sans votre permission.<br><br><strong>EXAMEN DE LA POLITIQUE DE CONFIDENTIALITÉ</strong><br>Ce portail ne sera pas publiquement reconnu et sera gardé strictement confidentiel afin d'empêcher les fuites d'informations confidentielles des marchands."
+    },
+    "cookies": {
+      "title": "Politique des cookies",
+      "last_updated": "En vigueur le 19 novembre 2015",
+      "content": "Chez la Société, nous croyons en la clarté et l'ouverture sur la façon dont nous collectons et utilisons les données vous concernant. Cette politique des cookies s'applique à tout produit ou service de la Société qui renvoie à cette politique ou l'incorpore par référence. Nous utilisons des cookies et des technologies similaires telles que les pixels, le stockage local et les IDs publicitaires mobiles (collectivement désignés dans cette politique comme des « cookies ») pour collecter et utiliser des données dans le cadre de nos services, tels que définis dans notre Politique de Confidentialité (« Services »), qui inclut nos sites, communications, applications mobiles et services hors site, tels que nos services publicitaires et les plugins ou balises « Postuler avec la Société » et « Partager avec la Société ». Dans un esprit de transparence, cette politique fournit des informations détaillées sur comment et quand nous utilisons ces technologies.<br>En continuant à visiter ou à utiliser nos services, vous acceptez l'utilisation des cookies et des technologies similaires aux fins décrites dans cette politique.<br><br><strong>QUELLES TECHNOLOGIES SONT UTILISÉES</strong><br><br><strong>COOKIES</strong><br>Les cookies sont de petits fichiers texte contenant une chaîne de caractères qui peuvent être placés sur votre ordinateur ou appareil mobile, qui identifient de manière unique votre navigateur ou appareil. Nous pouvons utiliser des technologies telles que les cookies, les pixels et le stockage local pour livrer, sécuriser et comprendre les produits, services et publicités. Nous utilisons deux types de cookies : les cookies persistants et les cookies de session. Un cookie persistant dure au-delà de la session en cours et est utilisé à de nombreuses fins, telles que vous reconnaître en tant que membre existant, afin qu'il soit plus facile de revenir à la Société et d'interagir avec nos services sans vous reconnecter. Comme un cookie persistant reste dans votre navigateur, il sera lu par la Société lorsque vous revenez sur l'un de nos sites ou visitez un site tiers qui utilise nos services. Les cookies de session durent seulement pendant la session (généralement la visite en cours sur un site web ou une session de navigateur).<br><br><strong>PIXELS</strong><br>Un pixel est une petite image qui peut être intégrée dans des pages web et des e-mails, nécessitant un appel (qui fournit des informations sur l'appareil et la visite) à nos serveurs pour que le pixel soit rendu dans ces pages web et e-mails. Nous utilisons les pixels pour en apprendre plus sur vos interactions avec le contenu des e-mails ou le contenu web, comme si vous avez interagi avec des publicités ou des publications. Les pixels peuvent également permettre à nous et à des tiers de placer des cookies sur votre navigateur.<br><br><strong>STOCKAGE LOCAL</strong><br>Le stockage local permet à un site web ou une application de stocker des informations localement sur votre/vos appareil(s). Le stockage local peut être utilisé pour améliorer l'expérience de la Société, par exemple en activant des fonctionnalités, en se souvenant de vos préférences et en accélérant la fonctionnalité du site.<br><br><strong>POUR QUOI CES TECHNOLOGIES SONT-ELLES UTILISÉES POUR L'AUTHENTIFICATION</strong><br>Nous utilisons des cookies et des technologies similaires pour vous reconnaître lorsque vous visitez nos services. Si vous êtes connecté à la Société, ces technologies nous aident à vous montrer les bonnes informations et à personnaliser votre expérience en ligne avec vos paramètres. Par exemple, les cookies permettent à la Société de vous identifier et de vérifier votre compte.<br><br><strong>SÉCURITÉ</strong><br>Nous utilisons des cookies et des technologies similaires pour rendre vos interactions avec nos services plus rapides et plus sécurisées. Par exemple, nous utilisons des cookies pour activer et soutenir nos fonctionnalités de sécurité, garder votre compte en sécurité et nous aider à détecter les activités malveillantes et les violations de notre Accord d'Utilisateur.<br><br><strong>PRÉFÉRENCES, FONCTIONNALITÉS ET SERVICES</strong><br>Nous utilisons des cookies et des technologies similaires pour activer la fonctionnalité de nos services, comme vous aider à remplir des formulaires sur nos services plus facilement et vous fournir des fonctionnalités, des aperçus et du contenu personnalisé en conjonction avec nos plugins. Nous utilisons également ces technologies pour nous souvenir d'informations sur votre navigateur et vos préférences.<br><br><strong>CONTRÔLES DU NAVIGATEUR</strong><br>La plupart des navigateurs vous permettent de contrôler les cookies via leurs paramètres, qui peuvent être adaptés pour refléter votre consentement à l'utilisation des cookies. De plus, la plupart des navigateurs vous permettent également d'examiner et d'effacer les cookies, y compris les cookies de la Société. Pour en savoir plus sur les contrôles du navigateur, veuillez consulter la documentation que votre fabricant de navigateur fournit.<br><br><strong>COMMENT POUVEZ-VOUS CONTRÔLER LES COOKIES ?</strong><br>Pour en savoir plus sur les choix que les annonceurs fournissent généralement aux individus pour influencer comment les informations sur leurs activités en ligne au fil du temps et à travers des sites web tiers ou des services en ligne sont collectées et utilisées, visitez la Network Advertising Initiative à http://www.networkadvertising.org/managing/opt_out.asp, la Digital Advertising Alliance à http://www.aboutads.info/, ou la European Digital Advertising Alliance à http://youronlinechoices.eu/. De plus, votre navigateur ou appareil peut offrir des paramètres qui vous permettent de choisir si les cookies du navigateur sont définis et de les supprimer. Ces contrôles varient selon le navigateur et les fabricants peuvent changer à la fois les paramètres qu'ils rendent disponibles et la façon dont ils fonctionnent à tout moment. À compter du 23 juin 2021, vous pouvez trouver des informations supplémentaires sur les contrôles offerts par les navigateurs populaires aux liens ci-dessous. Certaines parties des produits de la Société peuvent ne pas fonctionner correctement si vous avez désactivé l'utilisation des cookies du navigateur."
+    },
+    "registration": {
+      "certificate": "Certificat",
+      "title": "Avis légal et enregistrement",
+      "content": "<strong>1. Parties</strong><br>Les parties à ces Conditions Générales d'Utilisation sont la Société et vous en tant qu'utilisateur, compris comme toute personne physique ou morale qui accède librement, volontairement et sans paiement au Portail quel que soit que vous utilisiez ou non les services offerts là-bas. Le simple fait de visiter le Portail signifie que vous vous soumettez sans réserves à ces Conditions Générales d'Utilisation.<br><br><strong>2. Services</strong><br>Nous fournissons le Portail pour diffuser son activité et afin que les internautes aient des informations spécifiques sur les services qu'il offre, liés au Moteur de Recherche ou au positionnement de produits sur le marché.<br><br><strong>3. Obligations de l'utilisateur</strong><br>En tant qu'utilisateur, vous acceptez :-<br><br>D'utiliser le Service de manière diligente, correcte et légale, en respectant la loi en vigueur (en particulier celle relative à la protection des données et à la propriété intellectuelle et industrielle), les bonnes mœurs et la décence, l'ordre public et ces Conditions Générales d'Utilisation.<br><br>De consulter périodiquement ces Conditions Générales d'Utilisation ou toute autre condition applicable, en vérifiant les changements qui pourraient avoir été apportés à l'une d'elles.<br><br>De vérifier les notifications que nous vous envoyons, car elles peuvent inclure des informations importantes.<br><br>De ne pas utiliser le Portail à des fins commerciales ; par exemple, en collectant des informations ou du contenu pour fournir d'autres services qui pourraient représenter une concurrence évidente pour le Portail.<br><br>De ne pas modifier ou essayer de modifier le Portail de quelque manière que ce soit, ou d'agir ou d'utiliser des moyens conçus pour simuler l'apparence ou les fonctions du Portail.<br><br>De ne pas effectuer toute action qui implique l'introduction de virus informatiques, de vers, de chevaux de Troie ou de tout autre type de code malveillant conçu pour interrompre, détruire ou limiter les fonctionnalités du Portail.<br><br>De ne pas utiliser des techniques d'ingénierie inverse et/ou de déchiffrer, décompiler ou utiliser tout autre système conçu pour découvrir le code source du Portail ou de tout autre élément soumis au droit d'auteur ou aux droits de propriété intellectuelle sous-jacents.<br><br>De ne pas endommager, désactiver, surcharger ou entraver le service (ou un réseau ou des réseaux connectés au service), ou interférer avec son plaisir.<br><br>En tout cas, de ne pas effectuer toute action qui pourrait enfreindre les droits ou intérêts du Portail ou de tiers, tels que, par exemple, les droits de propriété intellectuelle ou industrielle (brevets, noms de marque, droits d'auteur, secrets commerciaux, etc.).<br><br><strong>4. Propriété intellectuelle et industrielle</strong><br>Les droits de propriété intellectuelle sur la Société et sur les éléments dont elle est composée, y compris la programmation, la conception, les applications, les graphiques, les codes, le texte ou les images qu'elle contient, appartiennent exclusivement à la Société, ou la Société a les droits et/ou autorisations nécessaires pour leur utilisation. Le nom de domaine, les marques, les noms commerciaux et en général toute marque distinctive dans la Société sont également la propriété de la Société, et/ou la Société a les licences nécessaires pour les utiliser. En conséquence de ce qui précède, toute reproduction, distribution, communication publique (y compris la mise à disposition), transformation ou toute autre forme d'utilisation, même si les sources sont spécifiées, est interdite, sans l'accord exprès écrit de la Société ou du propriétaire exclusif des droits affectés. Si vous détectez toute infraction aux droits de propriété intellectuelle et/ou industrielle dans la Société, veuillez le signaler dès que possible en contactant le support.<br><br><strong>5. Liens vers des sites tiers</strong><br>Le Portail peut inclure des liens vers des pages ou sites web de tiers non liés au Portail. Le Portail n'assume aucune responsabilité pour ces liens ou les contenus qui peuvent être accessibles via eux, car il n'approuve ni ne révise leurs fonctions, leur publicité ou en général les informations incluses dans ces pages, et décline toute responsabilité pour leur contenu et leur fonctionnement correct, ou toute conséquence ou dommage qui pourrait survenir en résultat de l'accès à eux. Les utilisateurs qui accèdent à l'un de ces liens le font à leurs propres risques, en acceptant la nature externe de ces contenus et l'incapacité de BRANDVIOUS, INC. à garantir qu'il n'y a pas de menaces, de logiciels malveillants ou de virus, de contenu illégal ou d'autres liens qui à leur tour mènent à des sites avec une ou plusieurs desdites caractéristiques.<br><br><strong>6. Exclusion de responsabilité</strong><br>Le Portail s'efforce d'assurer que les services et fonctionnalités du Portail sont toujours disponibles. Cependant, lors de l'accès au Portail, il sera montré « en l'état », selon la disponibilité et les limitations en place à tout moment. Malgré les efforts continus de la Société pour protéger les systèmes et le contenu inclus dans le Portail, à cette fin elle utilise les normes de sécurité communes sur Internet, il n'est pas possible d'offrir des garanties complètes sur les intrusions ou les pertes d'informations qui peuvent se produire. De même, il n'y a aucune garantie d'absence de virus ou d'autres éléments nuisibles dans le Portail ou dans des sites web tiers qui peuvent produire des changements dans le système informatique du logiciel et du matériel de l'utilisateur. L'utilisateur assume donc et comprend qu'il y a des situations qui peuvent être hors du contrôle de la Société. La Société n'accepte aucune responsabilité qui pourrait découler de l'utilisation abusive du Portail par l'utilisateur, ou pour la violation des obligations ou engagements assumés en vertu de ces Conditions Générales d'Utilisation, ou de toute autre condition qui peut être applicable. En général, ni la Société ni ses collaborateurs ne peuvent être tenus responsables en cas de perte de gains ou de perte réelle pour quelque raison que ce soit.<br><br><strong>7. Indemnité</strong><br>La Société subit tout type de dommage, perte ou coût (y compris les frais d'avocats et de représentants judiciaires) en résultat d'une violation par les utilisateurs de ces Conditions Générales d'Utilisation, ou de toute autre condition applicable, l'utilisateur sera obligé d'indemniser la Société. Cela sera également le cas si en résultat d'une violation par l'utilisateur des réclamations sont faites par des tiers contre la Société, dans lequel cas le tiers tiendra la Société inoffensive, et la Société pourra réclamer à l'utilisateur toute dépense, coût ou dommage découlant de ses actions.<br><br><strong>8. Protection des données et risques de sécurité</strong><br>La collecte de données personnelles via la Société et son traitement par la Société est régie par une Politique de Confidentialité spécifique à laquelle les candidats peuvent accéder en la visualisant.<br><br><strong>9. Questions générales</strong><br>9.1. Sauvegarde et interprétation<br>Ces Conditions Générales d'Utilisation constituent un accord entre vous en tant qu'utilisateur et le Portail. Si l'autorité compétente déclare une disposition illégale, invalide ou non exécutoire, cette disposition doit être interprétée de la manière la plus proche de son intention originale. Une telle déclaration concernant une ou plusieurs des clauses n'affectera pas la validité des restantes. Si la Société ne respecte pas strictement l'un des termes de ces Conditions, cela ne constitue pas, ni ne peut être interprété comme, une renonciation à une éventuelle demande de conformité à l'avenir.<br><br>9.2. Législation et juridiction<br>Les relations entre le Portail et l'utilisateur seront régies par la loi des États-Unis, et en cas de désaccord concernant l'interprétation ou la conformité à ces Conditions Générales d'Utilisation, ils renoncent expressément à toute autre juridiction qui pourrait leur correspondre, et se soumettent aux tribunaux, à moins que toute autre juridiction ne soit déterminée par la loi impérative.<br><br><strong>CERTIFICAT</strong><br>Nom de l'entité enregistrée : The Structured Data Company Limited<br>Adresse enregistrée : C/O Chalk Hill Barn Office 1 Upstairs, Yew Tree Farm, Stone Street, Stanford, Kent, England, TN25 6DH<br>Numéro de société : 16095340"
+    },
+    "footer": "&copy; <span id=\"year\">2026</span> The Structured Data Company. Tous droits réservés."
+  },
+  "auth": {
+    "footer": {
+      "terms": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité",
+      "cookies": "Politique des cookies",
+      "legal": "Mentions légales et enregistrement"
+    },
+    "form": {
+      "info_banner": "Le domaine peut être mis à jour de manière irrégulière pour refléter les dernières informations.",
+      "btn_try_again": "Réessayer",
+      "title_signin": "Se connecter",
+      "title_signup": "Créer un compte",
+      "label_display_name": "Nom d'affichage",
+      "label_email_signin": "Nom d'affichage ou e-mail",
+      "label_email_signup": "E-mail",
+      "label_referrer": "ID de compte du parrain",
+      "hint_referrer": "Saisissez l'ID du parrain pour assurer l'assignation correcte du coach.",
+      "label_phone": "Numéro de téléphone",
+      "label_password": "Mot de passe",
+      "label_confirm_password": "Confirmer le mot de passe",
+      "label_yob": "Année de naissance",
+      "hint_yob": "Requis pour la vérification de l'âge.",
+      "alert_captcha": "Veuillez vérifier que vous n'êtes pas un robot.",
+      "agreement": "En créant un compte, je certifie que j'ai 23 ans ou plus, j'accepte les Conditions d'utilisation, et j'ai lu la Politique de Confidentialité et la Politique des Cookies.",
+      "forgot_password": "Mot de passe oublié ? Contactez le support.",
+      "btn_signin": "Se connecter",
+      "btn_signup": "Créer un compte",
+      "btn_continue": "Continuer",
+      "btn_get_started": "Commencer",
+      "toggle": {
+        "no_account": "Vous n'avez pas de compte ?",
+        "create": "Créer un compte",
+        "has_account": "Vous avez déjà un compte ?",
+        "signin": "Se connecter"
+      },
+      "logs": {
+        "autologin_fail": "Inscription réussie, mais connexion automatique échouée"
+      },
+      "errors": {
+        "email": "Veuillez saisir une adresse e-mail valide.",
+        "pass_length": "Utilisez 6 caractères ou plus pour votre mot de passe.",
+        "pass_complex": "Choisissez un mot de passe plus fort en utilisant des lettres, des chiffres et des symboles.",
+        "pass_match": "Les mots de passe ne correspondent pas.",
+        "year_invalid": "Veuillez saisir une année valide (1900-{year}).",
+        "phone_invalid": "Veuillez saisir un numéro de téléphone valide.",
+        "verification_failed": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+        "credentials_invalid": "Identifiants invalides.",
+        "user_exists": "L'adresse e-mail est déjà associée à un compte.",
+        "display_name_taken": "Le nom d'affichage est déjà pris. Veuillez en choisir un autre.",
+        "phone_taken": "Le numéro de téléphone est déjà associé à un compte.",
+        "referrer_invalid": "L'ID de Parrain fourni n'existe pas.",
+        "referrer_required": "L'ID de Parrain est requis.",
+        "generic_error": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+        "title_failed": "Action infructueuse",
+        "network_issue": "Impossible de se connecter au serveur. Veuillez vérifier votre réseau.",
+        "general_error": "Une erreur s'est produite. Veuillez réessayer plus tard."
+      },
+      "success": {
+        "signin": "Connexion réussie.",
+        "signup": "Compte créé avec succès.",
+        "signin_title": "Bienvenue !",
+        "signin_msg": "Vous vous êtes connecté avec succès.",
+        "signup_title": "Compte créé !",
+        "signup_msg": "Votre compte a été créé avec succès."
+      }
+    }
+  },
+  "faqData": [
+    {
+      "category": "Fonctionnalités et capacités de la plateforme",
+      "items": [
+        {
+          "id": "feat-1",
+          "question": "Ai-je besoin d'expérience en codage pour utiliser la plateforme ?",
+          "answer": "Aucune expérience en codage n'est requise. Nous avons conçu la plateforme avec des tableaux de bord intuitifs et des constructeurs de schémas visuels qui vous permettent de gérer, synchroniser et téléverser des structures de données complexes sans écrire une seule ligne de code. Notre objectif est de rendre le traitement avancé des données accessible aux utilisateurs quotidiens."
+        },
+        {
+          "id": "feat-2",
+          "question": "Comment fonctionne la détection d'entité par IA ?",
+          "answer": "Notre moteur d'intelligence propriétaire alimenté par l'IA analyse automatiquement les propriétés des données brutes entrantes et suggère de manière proactive les types de schémas corrects, les mappages de relations et les étiquettes de propriétés. Cela réduit considérablement le besoin de saisie manuelle de données, minimise les erreurs humaines et accélère votre capacité à compléter les affectations quotidiennes."
+        },
+        {
+          "id": "feat-3",
+          "question": "Y a-t-il une application mobile disponible ?",
+          "answer": "Bien que nous n'ayons pas d'application téléchargeable autonome, notre plateforme est entièrement basée sur le web et hautement optimisée pour les navigateurs de bureau et mobiles. Nous avons choisi une approche web-first pour assurer que les correctifs de sécurité critiques et les mises à jour du système sont déployés instantanément pour tous les utilisateurs, vous permettant de gérer votre tableau de bord de manière fluide à partir de tout appareil avec une connexion Internet stable."
+        }
+      ]
+    },
+    {
+      "category": "Technologie et infrastructure",
+      "items": [
+        {
+          "id": "infra-1",
+          "question": "Qu'est-ce exactement qu'un « Schéma » dans le contexte de cette plateforme ?",
+          "answer": "Un schéma est un cadre structuré qui définit comment les données brutes, non structurées sont organisées, connectées et comprises par les machines. Nos partenaires marchands exigent des données parfaitement structurées pour entraîner leurs modèles et organiser leurs catalogues. Notre plateforme traite ces schémas sémantiques pour assurer l'intégrité des données avant qu'elles ne soient validées et téléversées dans le registre financier."
+        },
+        {
+          "id": "infra-2",
+          "question": "Offrez-vous une API publique pour les développeurs ?",
+          "answer": "Actuellement, notre plateforme fonctionne entièrement via notre tableau de bord web visuel et nous n'offrons pas d'API publique pour les comptes utilisateurs. L'intégration API dédiée est strictement réservée à nos partenaires institutionnels et marchands approuvés afin de maintenir l'intégrité de notre pool d'allocations et d'empêcher le scraping externe non autorisé."
+        },
+        {
+          "id": "infra-3",
+          "question": "Puis-je utiliser des robots ou des scripts automatisés pour compléter mes affectations ?",
+          "answer": "Non. L'utilisation de robots automatisés, de scripts, de macros ou de tout autre logiciel non autorisé pour compléter les affectations est strictement interdite. Nos marchands paient pour une supervision humaine authentique pendant le processus de validation. Toute activité automatisée déclenchera immédiatement nos systèmes anti-fraude, entraînant un bannissement permanent du compte et la perte de tous les gains générés."
+        },
+        {
+          "id": "infra-4",
+          "question": "Offrez-vous des webhooks pour les notifications en temps réel du solde du registre ?",
+          "answer": "Non, nous n'offrons actuellement pas de webhooks ni d'API publique pour les notifications en temps réel du registre. Pour assurer la sécurité maximale de vos données financières, nous utilisons un système en circuit fermé. Vous devez vous connecter directement à votre tableau de bord authentifié pour surveiller votre solde, les jalons à venir et l'activité transactionnelle récente."
+        }
+      ]
+    },
+    {
+      "category": "Compte et admissibilité",
+      "items": [
+        {
+          "id": "acc-1",
+          "question": "Qui est admissible à utiliser la plateforme ?",
+          "answer": "Pour respecter les réglementations financières internationales strictes et les politiques anti-blanchiment, les utilisateurs doivent avoir au moins 23 ans. De plus, vous devez résider dans l'une de nos régions opérationnelles prises en charge, qui incluent actuellement le Royaume-Uni, les États-Unis, le Canada, l'Europe, le Japon, la Corée du Sud, Singapour, l'Espagne, Hong Kong ou la Thaïlande."
+        },
+        {
+          "id": "acc-2",
+          "question": "Y a-t-il des frais initiaux pour rejoindre ?",
+          "answer": "Non, la création d'un compte est entièrement gratuite et il n'y a absolument aucun frais d'inscription caché. Notre plateforme génère ses revenus grâce au traitement réussi des données de schémas pour nos partenaires marchands, et non en facturant les utilisateurs un droit d'entrée."
+        },
+        {
+          "id": "acc-3",
+          "question": "Qu'est-ce qu'un ID de compte de parrain et pourquoi en ai-je besoin ?",
+          "answer": "Un ID de parrain est un code unique utilisé pendant le processus d'inscription. Il est requis pour vous placer correctement dans notre réseau et vous associer au bon coach senior. Cet ID établit un lien de mentorat direct afin que vous ayez un soutien immédiat d'un utilisateur expérimenté dès le premier jour."
+        },
+        {
+          "id": "acc-4",
+          "question": "Puis-je créer plusieurs comptes ?",
+          "answer": "Non, la création de plusieurs comptes est strictement interdite sauf autorisation écrite expresse de notre équipe de conformité. Pour maintenir une distribution équitable des quotas dans notre réseau et respecter les réglementations anti-blanchiment, les utilisateurs ne peuvent pas créer différents comptes sous la même identité ou utiliser des alias pour contourner les limites quotidiennes."
+        },
+        {
+          "id": "acc-5",
+          "question": "Puis-je supprimer mon compte ?",
+          "answer": "Oui, vous avez le droit de fermer votre compte à tout moment. Cependant, vous ne pouvez pas fermer ou supprimer votre compte s'il y a des opérations en attente, des cycles actifs ou des déficits en suspens. Tous les registres financiers doivent être entièrement réglés et effacés avant qu'une demande de suppression de compte puisse être traitée avec succès."
+        }
+      ]
+    },
+    {
+      "category": "Sécurité du compte et vie privée",
+      "items": [
+        {
+          "id": "sec-1",
+          "question": "Mes données personnelles et mon activité sur la plateforme sont-elles chiffrées ?",
+          "answer": "Oui. La stricte confidentialité des données est notre priorité absolue. Toutes les données sensibles des utilisateurs, y compris les identifiants personnels, les registres financiers et les identifiants de versement, sont sécurisées avec un chiffrement AES-256 de niveau militaire tant en transit qu'au repos. De plus, notre architecture inclut un pare-feu de données pour la protection à la périphérie et une garde sémantique pour filtrer proactivement les menaces réseau."
+        },
+        {
+          "id": "sec-2",
+          "question": "La plateforme est-elle conforme aux lois sur la protection des données GDPR et CCPA ?",
+          "answer": "Oui. Nous respectons strictement les principales réglementations internationales sur la protection des données, y compris le RGPD (Europe) et le CCPA (Californie). Nous collectons uniquement les données minimales nécessaires pour la conformité légale AML/KYC et le fonctionnement de la plateforme. Nous garantissons que nous ne vendrons jamais vos informations personnelles ou financières à des courtiers de données tiers."
+        },
+        {
+          "id": "sec-3",
+          "question": "Qui détient les droits de propriété intellectuelle des schémas structurés que je traite ?",
+          "answer": "Tous les droits de propriété intellectuelle sur les schémas structurés, les ensembles de données traités et les registres résultants restent la propriété exclusive et confidentielle de la Société et de nos partenaires marchands. Les utilisateurs sont généreusement compensés pour leurs efforts de traitement et de validation, mais ils ne conservent aucun droit de propriété, de droit d'auteur ou de licence sur les données elles-mêmes."
+        },
+        {
+          "id": "sec-4",
+          "question": "Puis-je exporter l'historique de mes schémas traités ?",
+          "answer": "Non. En raison d'accords de non-divulgation (NDA) stricts et de contrats de confidentialité avec nos partenaires marchands, les données que vous traitez sont considérées comme hautement propriétaires. Pour prévenir l'espionnage industriel ou les fuites de données, les utilisateurs sont techniquement restreints d'exporter, de télécharger ou de scraper l'historique de traitement de leurs schémas."
+        },
+        {
+          "id": "sec-5",
+          "question": "Qu'est-ce qu'une phrase secrète de versement et pourquoi est-elle requise ?",
+          "answer": "Votre phrase secrète de versement agit comme votre clé financière privée. Il s'agit d'une couche d'autorisation secondaire obligatoire requise pour approuver toute demande de versement standard. Cela garantit que même dans le cas très improbable où votre mot de passe principal de compte serait compromis, les acteurs malveillants ne peuvent pas transférer vos fonds du registre durement gagnés sans cette clé secondaire."
+        },
+        {
+          "id": "sec-6",
+          "question": "J'ai oublié mon mot de passe, comment puis-je récupérer mon compte ?",
+          "answer": "Si vous avez perdu l'accès à votre compte, vous devez contacter notre équipe de support via le portail sécurisé. Parce que nous traitons des registres financiers, vous devrez vérifier votre identité (souvent via la soumission de documents KYC) avant que nous puissions procéder à une réinitialisation manuelle. Ce processus strict empêche l'ingénierie sociale et les prises de contrôle de compte non autorisées."
+        }
+      ]
+    },
+    {
+      "category": "Opérations générales",
+      "items": [
+        {
+          "id": "gen-1",
+          "question": "Quelles sont exactement les « Affectations » actives ?",
+          "answer": "Les affectations sont le travail principal que vous effectuez sur la plateforme, consistant en un traitement automatisé des données et des allocations de schémas pour le registre financier. Lorsque vous commencez une affectation, vous établissez une connexion sécurisée à notre pool d'allocations pour synchroniser un schéma structurel, vérifier l'ensemble de données pour l'exactitude et le téléverser dans le registre. Ce processus valide les données des marchands et génère votre rendement d'actif."
+        },
+        {
+          "id": "gen-2",
+          "question": "Que faut-il pour démarrer ou réinitialiser un cycle ?",
+          "answer": "Pour garantir que les utilisateurs ont suffisamment de liquidités pour traiter des schémas de grande valeur, chaque cycle nécessite un solde minimum du registre pour commencer. Pour les comptes tout nouveaux, le premier cycle commence à un minimum de 80 $. Pour tous les cycles suivants, le solde minimum requis est de 150 $. Vous ne pouvez pas déclencher une réinitialisation de cycle si vous êtes au milieu d'un cycle actif."
+        },
+        {
+          "id": "gen-3",
+          "question": "Puis-je sauter, supprimer ou inverser une affectation de quota active ?",
+          "answer": "Non. Une fois qu'une affectation est synchronisée sur votre tableau de bord, elle est strictement liée à votre cycle en cours. Les affectations ne peuvent être sautées, supprimées, inversées ou contournées sous aucun prétexte. Vous devez compléter le processus de validation pour avancer vers le quota suivant."
+        },
+        {
+          "id": "gen-4",
+          "question": "Que se passe-t-il si je conserve un schéma de produit trop longtemps ?",
+          "answer": "Si une affectation est synchronisée mais conservée sans être téléversée pendant plus de 48 heures, elle encombre le pool d'allocations et retarde activement les progrès de nos partenaires marchands. Dans ces cas, des frais nominaux peuvent être prélevés sur votre registre pour couvrir les coûts administratifs, et les calendriers de paiement standard peuvent être ajustés en raison de la violation de la vitesse opérationnelle."
+        },
+        {
+          "id": "gen-5",
+          "question": "Pourquoi reçois-je parfois des fichiers corrompus ?",
+          "answer": "Occasionnellement, les données brutes fournies par les marchands contiennent des fragments illisibles ou cassés, entraînant un fichier corrompu. Ces fichiers ne sont pas éligibles pour générer un quelconque rendement. Cependant, comme le système a dû allouer des ressources serveur pour récupérer et vous assigner les données, il consommera l'un de vos 40 quotas disponibles pour ce cycle."
+        },
+        {
+          "id": "gen-6",
+          "question": "Quelles sont vos heures d'ouverture standard ?",
+          "answer": "Nos opérations de support et de traitement principales, y compris les examens manuels des versements et les audits KYC, fonctionnent du lundi au vendredi, de 10 h 00 à 22 h 00 EST. Cela correspond aux heures bancaires traditionnelles mondiales. La disponibilité le week-end (samedi et dimanche) peut varier en fonction des maintenances système planifiées et des volumes de files d'attente actifs."
+        },
+        {
+          "id": "gen-7",
+          "question": "Comment contacter l'équipe de support client ?",
+          "answer": "Pour la résolution la plus rapide et la plus sécurisée, vous pouvez joindre notre équipe de support dédiée directement via le widget de chat en direct situé sur votre tableau de bord. Cela garantit que vous communiquez depuis un environnement authentifié, permettant à nos agents d'accéder immédiatement à vos détails de compte."
+        }
+      ]
+    },
+    {
+      "category": "Coaching et mentorat",
+      "items": [
+        {
+          "id": "coach-1",
+          "question": "Quel est le rôle de mon coach assigné ?",
+          "answer": "Votre coach assigné est un utilisateur senior très expérimenté de la plateforme. Son rôle est de vous fournir une guidance individuelle, de vous aider à comprendre les nuances des opérations de schémas et de vous apprendre à optimiser vos affectations quotidiennes. Grâce à notre programme de parrainage, il est financièrement incité à vous voir réussir."
+        },
+        {
+          "id": "coach-2",
+          "question": "Comment mon coach est-il assigné ?",
+          "answer": "Votre coach est automatiquement lié à votre compte pendant le processus d'inscription sur la base entière de l'ID de compte de parrain que vous avez fourni. Cette assignation directe garantit que vous avez un point de contact dédié qui est déjà familier avec votre calendrier d'intégration."
+        },
+        {
+          "id": "coach-3",
+          "question": "Mon coach est-il responsable de la performance financière de mon compte ou des déficits ?",
+          "answer": "Non. Bien que votre coach soit là pour fournir une formation, une guidance opérationnelle et des conseils stratégiques, votre compte est strictement un profil individuel. Vous conservez une autonomie et une responsabilité totales sur vos propres affectations quotidiennes, votre solde du registre et tout déficit éventuel. Votre coach n'a pas accès à vos fonds personnels et ne peut pas effectuer d'affectations en votre nom."
+        }
+      ]
+    },
+    {
+      "category": "Financement du registre et dépôts",
+      "items": [
+        {
+          "id": "fund-1",
+          "question": "Qu'est-ce qu'un déficit et comment le résoudre ?",
+          "answer": "Un déficit se produit lorsque vous êtes assigné un schéma premium à haut rendement qui dépasse la valeur actuelle de votre palier de registre. Pour traiter cette affectation de grande valeur et générer le rendement premium associé, vous devez temporairement combler l'écart. Pour résoudre un déficit, contactez notre équipe de support en direct pour recevoir les instructions sur le dépôt des fonds exacts requis. Les dépôts peuvent être effectués de manière sécurisée via des canaux fiat traditionnels ou des réseaux blockchain pris en charge."
+        },
+        {
+          "id": "fund-2",
+          "question": "Combien de temps les dépôts mettent-ils à apparaître sur mon compte ?",
+          "answer": "Les délais de dépôt dépendent fortement de la congestion du réseau blockchain ou des vitesses de traitement bancaire. Cependant, une fois que vous avez effectué le transfert avec succès et fourni le reçu de transaction à notre équipe de support en direct, les fonds apparaîtront généralement dans votre solde total du registre dans les 15 à 30 minutes suivant la vérification standard du réseau."
+        },
+        {
+          "id": "fund-3",
+          "question": "Puis-je déposer des fonds pour sauter mes quotas quotidiens ?",
+          "answer": "Non. La fonction principale de notre activité est le traitement réel des données, et non le pur investissement de capital. Les dépôts sont strictement utilisés pour démarrer ou réinitialiser un nouveau cycle ou pour régler un déficit premium actif. Vous ne pouvez pas payer de l'argent pour contourner le travail de validation manuelle obligatoire."
+        }
+      ]
+    },
+    {
+      "category": "Gains, rendements et frais",
+      "items": [
+        {
+          "id": "earn-1",
+          "question": "Comment le rendement d'actif est-il calculé ?",
+          "answer": "Le rendement d'actif est calculé dynamiquement en fonction de la complexité du schéma et de la demande actuelle du marché des marchands. Pour chaque affectation standard que vous complétez et téléversez avec succès, le pourcentage de taux de rendement varie aléatoirement entre 1 % et 6 % de la valeur de base de l'actif."
+        },
+        {
+          "id": "earn-2",
+          "question": "Qu'est-ce qu'un cycle et combien de quotas contient-il ?",
+          "answer": "Un cycle de produit complet consiste en 40 quotas (affectations de données individuelles). Nous appliquons une limite stricte de 2 cycles complets par jour unique. Cette limitation empêche l'épuisement des utilisateurs, maintient une haute précision de validation des données et assure une distribution équitable du travail dans l'ensemble de notre réseau mondial."
+        },
+        {
+          "id": "earn-3",
+          "question": "Que se passe-t-il si je ne termine pas tous les 40 quotas en une seule fois ?",
+          "answer": "Vous n'êtes absolument pas obligé de compléter un cycle complet de 40 quotas en une seule séance. Vous pouvez mettre en pause votre travail et reprendre à votre convenance. Cependant, rappelez-vous la règle des 48 heures : vous ne devez pas conserver une affectation active et synchronisée plus de 48 heures pour éviter de retarder les pipelines de traitement des marchands."
+        },
+        {
+          "id": "earn-4",
+          "question": "Mes gains se composent-ils automatiquement ?",
+          "answer": "Non, vos gains ne se composent pas mathématiquement d'un cycle à l'autre. Chaque nouveau cycle réinitialise les métriques de base pour maintenir des coûts prévisibles pour nos marchands. Cependant, tous les rendements générés des cycles précédents resteront en toute sécurité accumulés dans votre solde total du registre jusqu'à ce que vous demandiez avec succès un versement final."
+        }
+      ]
+    },
+    {
+      "category": "Récompenses de performance et assiduité",
+      "items": [
+        {
+          "id": "reward-1",
+          "question": "Comment réclamer le bonus de bienvenue ?",
+          "answer": "Pour vous aider à couvrir plus rapidement vos seuils de cycle initiaux, un bonus de bienvenue de 20,00 $ est automatiquement crédité sur votre solde disponible du registre immédiatement après une inscription réussie. Il n'y a aucune étape supplémentaire, aucun formulaire caché ni aucun délai d'attente requis pour le réclamer."
+        },
+        {
+          "id": "reward-2",
+          "question": "Comment fonctionne le suivi des jalons d'assiduité ?",
+          "answer": "Nous valorisons hautement les processeurs de données constants. En complétant vos affectations quotidiennes chaque jour sans interruption, vous construisez une série d'assiduité ininterrompue. Lorsque vous atteignez des jalons spécifiques (comme le Jour 7, le Jour 14, etc.), le système débloque automatiquement des bonus de versement de base programmés qui sont crédités directement sur votre solde."
+        },
+        {
+          "id": "reward-3",
+          "question": "Qu'est-ce que l'indicateur clé de performance d'assiduité complète ?",
+          "answer": "Si vous atteignez une assiduité parfaite en complétant toutes les affectations quotidiennes sans manquer un seul jour au cours du mois en cours, vous débloquez l'indicateur clé de performance d'assiduité complète. Cela applique un multiplicateur massif et automatique à vos versements de base accumulés totaux pour ce cycle, récompensant nos utilisateurs les plus fiables. (Note : Ce multiplicateur s'applique uniquement aux versements de base, pas aux autres rendements variables)."
+        },
+        {
+          "id": "reward-4",
+          "question": "Que se passe-t-il si je manque un jour d'affectations ?",
+          "answer": "Parce que nos marchands comptent sur un volume quotidien constant, le fait de ne pas compléter votre quota pour la journée rompra votre série d'assiduité active. Cela signifie que vous manquerez le multiplicateur d'indicateur clé de performance d'assiduité complète pour ce mois et devrez recommencer votre progression vers le prochain jalon à partir du jour un."
+        },
+        {
+          "id": "reward-5",
+          "question": "Quels sont les événements bonus à durée limitée ?",
+          "answer": "Pendant les périodes de demande exceptionnellement élevée des marchands, nous organisons des événements promotionnels spéciaux offrant des récompenses exclusives et augmentées. Ces événements apparaissent dynamiquement sur votre tableau de bord pour une durée limitée. Vous devriez vérifier régulièrement la section Promotions avant qu'ils n'expirent pour ne pas manquer les fenêtres de gains maximales !"
+        }
+      ]
+    },
+    {
+      "category": "Programme de parrainage et affilié",
+      "items": [
+        {
+          "id": "ref-1",
+          "question": "Gagné-je une commission pour parrainer de nouveaux utilisateurs ?",
+          "answer": "Oui ! Nous préférons réinvestir notre budget publicitaire directement dans notre communauté. Si vous participez à notre programme de parrainage optionnel, vous gagnez un bonus à vie de 20 % basé sur les profits générés par votre parrainage direct. Ces 20 % sont entièrement subventionnés par les fonds de la Société, ce qui signifie que votre filleul conserve toujours 100 % de ses propres gains."
+        },
+        {
+          "id": "ref-2",
+          "question": "S'agit-il d'une structure de marketing à plusieurs niveaux (MLM) ?",
+          "answer": "Non, absolument pas. Notre structure de parrainage est strictement un-à-un (1 contre 1). Vous gagnez des bonus uniquement de l'utilisateur direct que vous avez parrainé et formé. Nous ne soutenons pas le marketing à plusieurs niveaux, les pyramides ou les structures de commission à niveaux car nous voulons encourager un mentorat direct et authentique."
+        },
+        {
+          "id": "ref-3",
+          "question": "Qui est admissible à participer au programme de parrainage ?",
+          "answer": "Pour garantir que nos parrains comprennent réellement la plateforme avant d'essayer d'enseigner aux autres, vous devez accumuler un total de 14 jours d'assiduité active avant d'être autorisé à générer un ID de parrainage. Pour maintenir un mentorat de haute qualité, il y a également une période de latence obligatoire de 14 jours entre chaque parrainage réussi que vous effectuez."
+        },
+        {
+          "id": "ref-4",
+          "question": "Pourquoi mon bonus de parrainage est-il suspendu ?",
+          "answer": "Les bonus de parrainage sont actifs uniquement lorsque le compte de votre Filleul est en bonne situation. Si votre filleul est bloqué et laisse une affectation dans un état « en attente », votre bonus de 20 % de son compte sera temporairement suspendu. Cette règle existe pour motiver les coachs à aider activement leurs filleuls à surmonter les obstacles. Une fois qu'ils téléversent l'affectation en attente, votre bonus reprend immédiatement."
+        }
+      ]
+    },
+    {
+      "category": "Versements et soldes du registre",
+      "items": [
+        {
+          "id": "pay-1",
+          "question": "Y a-t-il des conditions spécifiques avant de pouvoir demander un versement ?",
+          "answer": "Oui. Pour maintenir une stabilité stricte du registre et garantir que les quotas quotidiens des marchands sont remplis avant que le capital ne quitte l'écosystème, vous devez compléter toutes les affectations actives dans votre cycle en cours. Vous devez également vous assurer qu'il n'y a aucun solde en suspens ou déficit sur votre compte. Les versements ne peuvent strictement pas être traités au milieu d'un cycle."
+        },
+        {
+          "id": "pay-2",
+          "question": "Y a-t-il un montant minimum de versement ?",
+          "answer": "Oui, le montant minimum de versement est de 20 $. Ce minimum est appliqué car la plateforme absorbe le coût des frais de gaz du réseau et des frais bancaires administratifs pour vos transactions, ce qui est financièrement non viable pour les micro-transactions inférieures à 20 $."
+        },
+        {
+          "id": "pay-3",
+          "question": "Y a-t-il des limites de volume de transactions pour les versements standard ?",
+          "answer": "Pour maintenir la stabilité du registre et la liquidité du réseau, les capacités de versement sont alignées sur votre palier opérationnel actif. Les comptes Basic standard peuvent traiter en toute sécurité des versements jusqu'à 5 000 $ par transaction. Les utilisateurs qui traitent régulièrement des schémas premium et opèrent sur un palier Plus bénéficient de plafonds de versement illimités pour s'adapter à leur volume plus élevé. Vos limites de transaction actuelles peuvent être consultées à tout moment dans les paramètres de votre tableau de bord."
+        },
+        {
+          "id": "pay-4",
+          "question": "Y a-t-il des frais de versement ?",
+          "answer": "Nous ne facturons aucun frais interne de versement ni pourcentage sur vos soldes. De plus, nous couvrons les frais de gaz du réseau crypto pour les versements tokenisés afin de maximiser vos gains nets. Cependant, si vous choisissez des méthodes bancaires fiat traditionnelles, vous êtes responsable de tous les frais de transfert international appliqués par votre propre institution financière."
+        },
+        {
+          "id": "pay-5",
+          "question": "Combien de temps les versements prennent-ils généralement ?",
+          "answer": "Vous devriez soumettre votre demande de versement dans les 24 à 48 heures après avoir complété un cycle. Une fois soumise, les versements sont souvent traités en moins d'une heure, bien que les délais de règlement finaux dépendent de votre institution financière destinataire ou de la vitesse du réseau blockchain. Vous pouvez également informer notre équipe de support en direct après avoir soumis votre demande pour faciliter le traitement au plus tôt. Toutes les demandes restent soumises aux vérifications obligatoires anti-blanchiment (AML) et de rendement."
+        },
+        {
+          "id": "pay-6",
+          "question": "Quelles méthodes de versement sont prises en charge par la plateforme ?",
+          "answer": "Nous prenons en charge une gamme diversifiée de méthodes de règlement adaptées à votre région enregistrée pour assurer une flexibilité maximale. Les options incluent les virements bancaires fiat directs (tels que ACH, SEPA, BACS et Interac) ainsi que les Actifs Tokenisés (Cryptomonnaie via configuration manuelle du réseau)."
+        },
+        {
+          "id": "pay-7",
+          "question": "Que se passe-t-il si je dirige un versement vers une mauvaise adresse de portefeuille crypto ou un mauvais réseau ?",
+          "answer": "En raison de la nature décentralisée de la technologie blockchain, les transactions de cryptomonnaie sont strictement irréversibles. Si vous envoyez un versement à une adresse de portefeuille incorrecte ou sélectionnez le mauvais réseau, vos fonds seront perdus de manière permanente. Nous n'avons aucune capacité technique à récupérer les jetons envoyés, alors veuillez vérifier soigneusement vos détails de destination."
+        },
+        {
+          "id": "pay-8",
+          "question": "Ai-je besoin d'un portefeuille non custodial pour recevoir les versements tokenisés ?",
+          "answer": "Non, un portefeuille non custodial n'est pas strictement requis. Vous pouvez utiliser n'importe quel portefeuille qui prend en charge le jeton et le réseau spécifiques que vous sélectionnez sur la page de versement. Cela inclut les portefeuilles privés non custodial ainsi que les adresses de dépôt directes des principales bourses centralisées."
+        }
+      ]
+    },
+    {
+      "category": "Banque et règlements fiat",
+      "items": [
+        {
+          "id": "bank-1",
+          "question": "Puis-je demander un versement sur un compte bancaire au nom de quelqu'un d'autre ?",
+          "answer": "Non, en aucune circonstance. Pour respecter les réglementations internationales strictes anti-blanchiment (AML) et de connaissance du client (KYC), le nom légal sur votre compte bancaire de destination doit correspondre parfaitement à l'identité vérifiée sur votre compte de plateforme. Toute tentative de transfert à un tiers déclenchera un signal de sécurité et sera automatiquement rejetée."
+        },
+        {
+          "id": "bank-2",
+          "question": "Pourquoi mon virement bancaire a-t-il été rejeté ou retardé ?",
+          "answer": "Les systèmes bancaires fiat sont souvent plus lents et plus rigides que les réseaux crypto. Les virements bancaires sont généralement retardés en raison d'erreurs de saisie de l'utilisateur (numéros de routage ou de compte incorrects), de jours fériés bancaires régionaux ou de retenues de sécurité de routine placées par votre institution financière destinataire. Si un virement échoue définitivement, les fonds seront renvoyés en toute sécurité sur votre solde du registre."
+        },
+        {
+          "id": "bank-3",
+          "question": "Prenez-vous en charge les virements internationaux ?",
+          "answer": "Bien que nous prenions techniquement en charge les virements internationaux traditionnels pour certaines régions éloignées, veuillez noter que cette méthode est souvent indisponible ou soumise à une maintenance prolongée en raison de taux d'échec élevés. Lorsqu'elle est disponible, vous êtes entièrement responsable du paiement de tous les frais de virement international entrant facturés par les banques intermédiaires."
+        }
+      ]
+    },
+    {
+      "category": "Dépannage technique",
+      "items": [
+        {
+          "id": "tech-1",
+          "question": "Que dois-je faire si mon tableau de bord se fige pendant une affectation active ?",
+          "answer": "Ne paniquez pas. Si votre tableau de bord se fige, que votre navigateur plante ou que vous perdez la connexion Internet, rafraîchissez simplement la page ou reconnectez-vous. Votre progression, y compris votre schéma actif et votre solde du registre actuel, est enregistrée en toute sécurité sur nos serveurs cloud en temps réel, vous permettant de reprendre exactement là où vous vous étiez arrêté."
+        },
+        {
+          "id": "tech-2",
+          "question": "Serai-je compensé si une panne de serveur me fait manquer un cycle ?",
+          "answer": "Non. Bien que nous investissions massivement dans notre infrastructure pour viser un temps de disponibilité maximal absolu, nous ne fournissons pas de compensation financière pour les cycles manqués, les séries d'assiduité rompues ou les quotas expirés résultant de pannes de serveur temporaires et imprévues ou de fenêtres de maintenance système planifiées."
+        }
+      ]
+    }
+  ]
+}

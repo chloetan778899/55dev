@@ -1,0 +1,800 @@
+{
+  "nav": {
+    "signin": "Iniciar Sesión",
+    "signup": "Crear Cuenta"
+  },
+  "dashboard": {
+    "currency_format": "${amount}",
+    "meta_title": "Panel de Control",
+    "nav": {
+      "logo_alt": "Logotipo",
+      "overview": "Configuración de la Cuenta",
+      "assignments": "Operaciones Activas",
+      "payouts": "Gestionar Retiros",
+      "rewards": "Recompensas de Rendimiento",
+      "referrals": "Programa de Referidos",
+      "faq": "Preguntas Frecuentes",
+      "terms": "Términos de Servicio",
+      "privacy": "Política de Privacidad",
+      "cookies": "Política de Cookies",
+      "legal": "Aviso Legal y Registro",
+      "logout": "Cerrar Sesión",
+      "logout_confirm": "¿Está seguro de que desea cerrar la sesión de su cuenta?"
+    },
+    "modal": {
+      "verification_failed_title": "Verificación Fallida",
+      "success": "Éxito",
+      "error": "Error",
+      "warning": "Advertencia",
+      "notice": "Aviso",
+      "missing_fields": "Campos Faltantes",
+      "action_denied": "Acción Denegada",
+      "payout_requested": "Retiro Solicitado",
+      "funds_received": "Fondos Recibidos 🎉",
+      "funds_received_msg": "Ha recibido {amount}, por favor verifique el saldo contable.",
+      "network_error": "Se ha producido un error de red.",
+      "general_error": "Ocurrió un error. Por favor, inténtelo de nuevo más tarde.",
+      "verification_failed": "La verificación ha fallado."
+    },
+    "coach_account": "Esta es una cuenta de asesor para fines de formación.",
+    "coach_account_short": "Cuenta de Asesor",
+    "overview": {
+      "welcome": "Bienvenido, {name}",
+      "subtitle": "Gestione su perfil, preferencias de seguridad y configuraciones de retiro.",
+      "profile_title": "Perfil Público",
+      "upload_btn": "Subir Foto",
+      "upload_hint": "JPG o PNG.",
+      "avatar_success": "Foto de perfil actualizada.",
+      "upload_fail": "Error al subir la imagen.",
+      "auth_title": "Actualizar Contraseña",
+      "current_pass": "Contraseña Actual",
+      "new_pass": "Nueva Contraseña",
+      "confirm_pass": "Confirmar Nueva Contraseña",
+      "save_pass": "Guardar Contraseña",
+      "pass_update_success": "Contraseña actualizada con éxito.",
+      "pass_update_fail": "Error al actualizar la contraseña.",
+      "pass_incorrect": "Contraseña actual incorrecta.",
+      "passphrase_title": "Clave de Retiro",
+      "first_time_setup": "Se requiere configuración inicial",
+      "passphrase_desc": "Esta clave actúa como su firma financiera privada, necesaria para autorizar retiros en el portal de Gestión de Retiros. Para configurarla inicialmente, debe proporcionar el correo electrónico registrado en su cuenta.",
+      "passphrase_update_desc": "Actualice su clave financiera privada. Esta clave es necesaria por motivos de seguridad para autorizar todas sus solicitudes de retiro estándar.",
+      "account_region": "Región de la Cuenta",
+      "verify_email": "Correo de la Cuenta",
+      "new_passphrase": "Nueva Clave",
+      "confirm_passphrase": "Confirmar Clave",
+      "verify_btn": "Verificar y Configurar Clave",
+      "current_passphrase": "Clave Actual",
+      "update_btn": "Actualizar Clave",
+      "passphrase_length": "La clave debe tener al menos 6 caracteres.",
+      "passphrase_match": "Las claves no coinciden.",
+      "setup_success": "Clave configurada de forma segura.",
+      "email_mismatch": "El correo electrónico no coincide con nuestros registros.",
+      "update_success": "Clave actualizada con éxito.",
+      "passphrase_incorrect": "La clave actual es incorrecta.",
+      "loading": "Cargando..."
+    },
+    "referrals": {
+      "copy": "Copiar",
+      "title": "Programa de Referidos",
+      "optional": "Opcional",
+      "subtitle": "El programa de referidos es una función completamente opcional. Sus operaciones diarias, asistencia y retiros principales no se verán afectados independientemente de su participación.",
+      "your_id": "Su ID de Referido",
+      "id_desc": "Copie su ID de referido único a continuación. Compártalo con alguien que pueda beneficiarse de nuestra empresa y comience a ganar una bonificación vitalicia sobre los ingresos generados por ellos.",
+      "overview_title": "Resumen del Programa",
+      "overview_p1": "En lugar de la publicidad tradicional, elegimos reinvertir nuestro presupuesto directamente en nuestra comunidad. Cuando un usuario elegible (el \"Referidor\") refiere con éxito a un nuevo usuario (el \"Referido\"), el Referidor ganará una <strong>bonificación vitalicia del 20%</strong> basada en las ganancias generadas por el Referido.",
+      "overview_l1": "Esta bonificación del 20% está subvencionada íntegramente por la Compañía.",
+      "overview_l2": "El Referido conserva el 100% de sus ganancias originales.",
+      "overview_l3": "Todas las bonificaciones por referidos ganadas se acreditan directamente en el saldo contable del Referidor.",
+      "mlm_title": "Estrictamente Referencias Directas (Sin esquemas multinivel)",
+      "mlm_desc": "Nuestra estructura de referidos es estrictamente de uno a uno (1 a 1). No apoyamos el marketing multinivel o estructuras de comisiones escalonadas. El Referidor tiene derecho a bonificaciones únicamente del Referido directo que haya invitado con éxito. Si el Referido invita posteriormente a un tercero, el Referidor original no gana ninguna comisión de ese tercer usuario.",
+      "paused_title": "Operaciones Pendientes y Bonificaciones Pausadas",
+      "paused_desc": "Las bonificaciones por referidos están activas solo cuando la cuenta del Referido está al corriente. Si un Referido deja una operación en estado \"pendiente\", su bonificación del 20% de esa cuenta se pausará. Cualquier bonificación que se hubiera generado durante este estado de pausa se pierde y no se liberará con carácter retroactivo. Una vez que el Referido complete su operación pendiente, su bonificación del 20% se reanudará de inmediato para todas sus finalizaciones futuras.",
+      "eligibility_title": "Elegibilidad y Limitaciones",
+      "eligibility_l1": "<strong>Requisito de Asistencia:</strong> Para proteger la integridad de la empresa, un Referidor debe haber acumulado un total de 14 días de asistencia desde la creación de la cuenta antes de estar autorizado a generar o compartir un ID de referido.",
+      "eligibility_l2": "<strong>Período de Reflexión:</strong> Para garantizar referencias de alta calidad, los enlaces solo pueden compartirse con una persona a la vez. Al vincular con éxito a un nuevo Referido, el Referidor entra en un período de reflexión de 14 días antes de que se le permita referir a otro usuario.",
+      "eligibility_l3": "<strong>Fraude y Suspensión de Cuentas:</strong> El abuso del programa, incluida la creación de múltiples cuentas para autorreferencias o la utilización de métodos fraudulentos, está estrictamente prohibido. Las infracciones darán lugar a la pérdida inmediata de todas las ganancias por bonificaciones y a la suspensión permanente de todas las cuentas asociadas."
+    },
+    "rewards": {
+      "welcome_bonus": "Bonificación de Bienvenida",
+      "welcome_desc": "Como nuevo miembro, se ha acreditado automáticamente una <span class=\"font-semibold text-black dark:text-white\">Bonificación de Bienvenida de $20.00</span> en su saldo disponible tras el registro. Esta bonificación se proporciona para darle una ventaja en sus ganancias y se añade directamente a su saldo estándar.",
+      "salary_title": "Registro de Hitos de Asistencia",
+      "salary_desc": "Complete las operaciones diarias para alcanzar sus próximos hitos de retiro.",
+      "days": "Días",
+      "milestones": "Cronograma de Retiros",
+      "perfect_attendance": "KPI de Asistencia Perfecta",
+      "perfect_desc": "La constancia da sus frutos. Complete los {days} días de operaciones diarias dentro del mes actual para lograr el KPI de Asistencia Perfecta. Esto aplica automáticamente un <span class=\"font-semibold text-black dark:text-white\">Multiplicador Base del +15%</span> a sus ganancias del ciclo. <br><br><strong class=\"text-[#444] dark:text-[#ccc] font-medium\">Cómo funciona:</strong> El multiplicador se aplica exclusivamente a sus retiros base acumulados. Por ejemplo, si el total de sus retiros base asciende a $1,200, el multiplicador del +15% añadirá $180 adicionales, llevando su retiro base final a $1,380. (Nota: Otras ganancias se calculan por separado y no se ven afectadas por este multiplicador).",
+      "promotions": "Eventos de Bonificación por Tiempo Limitado",
+      "promo_desc": "Los eventos de bonificación son oportunidades especiales y temporales que ocurren ocasionalmente. Cuando están activos, aparecen aquí por un tiempo limitado para darle la oportunidad de ganar recompensas exclusivas. ¡Vuelva a consultar periódicamente antes de que expiren!",
+      "fetching_promos": "Buscando promociones activas...",
+      "no_promos": "No hay eventos activos en este momento.",
+      "full_attendance_kpi": "KPI de Asistencia Perfecta",
+      "milestone_day": "Hito: Día {day}",
+      "next_upcoming": "Próximo Retiro Programado",
+      "credited": "Acreditado al Saldo",
+      "scheduled": "Programado",
+      "base_multiplier": "+15% Multiplicador Base"
+    },
+    "assignments": {
+      "title": "Asignaciones Activas de Esquemas",
+      "product_visual": "Visualización del Producto",
+      "subtitle": "Procesamiento de Datos Automatizado y Libro Mayor",
+      "ledger_balance": "Saldo Total Contable",
+      "ledger_desc": "Fondos operativos principales, incluidas las ganancias.",
+      "outstanding": "Saldo Pendiente",
+      "outstanding_desc": "El déficit de fondos requerido para liquidar la operación pendiente.",
+      "current_balance": "Saldo Actual",
+      "current_balance_desc": "Saldo total contable proyectado con la asignación activa pendiente.",
+      "cycle_profit": "Beneficio del Ciclo Actual",
+      "cycle_profit_desc": "Este cálculo se actualiza al inicio de cada nuevo ciclo. Todos los beneficios se añaden luego al saldo total contable.",
+      "yield_rate": "Tasa de Rendimiento",
+      "schema_sync": "Sincronización de Esquemas",
+      "quota_remaining": "Cuota: {current} / {max} Restantes",
+      "sync_desc": "Establezca una conexión segura al grupo de asignación para sincronizar e inspeccionar el siguiente conjunto de datos estructurados disponible antes de la ejecución contable.",
+      "syncing": "Sincronizando Carga Útil...",
+      "sync_btn": "Sincronizar Siguiente Esquema",
+      "timestamp_id": "ID de Marca de Tiempo",
+      "reference": "Referencia",
+      "asset_value": "Valor del Activo",
+      "yield": "Rendimiento",
+      "verifying": "Verificando Libro Mayor...",
+      "proceed_btn": "Proceder a la Carga",
+      "idle": "Vista de datos inactiva. Por favor, sincronice un esquema estructural.",
+      "recent_activity": "Actividad Reciente",
+      "no_activity": "No hay actividad reciente.",
+      "asset": "Activo",
+      "collapse": "Colapsar",
+      "view_all": "Ver Toda la Actividad",
+      "pending_schema_error": "Por favor, cargue el esquema pendiente antes de continuar con el siguiente.",
+      "sync_error": "Error al sincronizar el siguiente esquema.",
+      "sync_network_error": "Se ha producido un error de red al sincronizar.",
+      "upload_outstanding_error": "Imposible realizar la carga.",
+      "corrupted_file": "Archivo dañado.",
+      "upload_error": "Error al cargar el esquema.",
+      "upload_network_error": "Se ha producido un error de red al realizar la carga.",
+      "status_success": "Completado",
+      "status_pending": "Pendiente",
+      "status_corrupted": "Dañado"
+    },
+    "payouts": {
+      "default_desc": "Retiro",
+      "title": "Gestionar Retiros",
+      "ledger_balance": "Saldo Contable",
+      "bank_country": "País / Región del Banco",
+      "available_methods": "Métodos de Retiro Disponibles",
+      "unavailable": "Actualmente no disponible",
+      "tokenized": "Activo Tokenizado",
+      "manual_config": "Configuración manual de red",
+      "token": "Token",
+      "token_placeholder": "Ej., ETH",
+      "network": "Red",
+      "network_placeholder": "Ej., ERC-20",
+      "wallet_address": "Dirección de Billetera",
+      "amount": "Monto",
+      "passphrase": "Clave de Retiro",
+      "processing": "Procesando...",
+      "withdraw_btn": "Solicitar Retiro",
+      "history_title": "Transacciones Recientes",
+      "th_date": "ID de Marca de Tiempo",
+      "th_method": "Descripción",
+      "th_amount": "Monto",
+      "th_status": "Estado",
+      "status_success": "Completado",
+      "status_pending": "Pendiente",
+      "status_declined": "Rechazado",
+      "welcome_bonus_desc": "Bonificación de Bienvenida",
+      "fill_required": "Por favor, complete todos los campos obligatorios para solicitar un retiro.",
+      "action_denied_quota": "Debe completar todas las asignaciones activas (Cuota: {current} / {max} restantes) antes de solicitar un retiro.",
+      "exceeds_balance": "El monto solicitado excede su saldo contable disponible.",
+      "request_success": "Solicitud de retiro por {amount} enviada con éxito. Ahora está pendiente de aprobación.",
+      "passphrase_error": "Clave de retiro incorrecta.",
+      "request_error": "Error al solicitar el retiro.",
+      "network_error": "Se ha producido un error de red al solicitar el retiro."
+    },
+    "regions": {
+      "us": "Estados Unidos",
+      "uk": "Reino Unido",
+      "ca": "Canadá",
+      "eu": "Europa (Eurozona)",
+      "es": "España",
+      "hk": "Hong Kong",
+      "jp": "Japón",
+      "kr": "Corea del Sur",
+      "sg": "Singapur",
+      "th": "Tailandia",
+      "wire_us": "Transferencia Bancaria / ACH",
+      "wire_uk": "BACS / Transferencia Bancaria",
+      "wire_ca": "Interac / Transferencia Bancaria",
+      "wire_eu": "Transferencia SEPA",
+      "bank_name": "Nombre del Banco",
+      "bank_name_jp": "Nombre del Banco (銀行名)",
+      "bank_code": "Código del Banco",
+      "branch_code": "Código de Sucursal",
+      "branch_code_jp": "Código de Sucursal (支店コード)",
+      "account_num": "Número de Cuenta",
+      "account_num_jp": "Número de Cuenta (口座番号)",
+      "account_type_jp": "Tipo de Cuenta (口座種別)",
+      "placeholder_hsbc": "Ej., HSBC, Hang Seng",
+      "placeholder_3digit": "Código de 3 dígitos",
+      "placeholder_4digit": "Código de 4 dígitos",
+      "placeholder_account": "Ingrese el número de cuenta",
+      "placeholder_mufg": "Ej., Mitsubishi UFJ",
+      "placeholder_futsu": "Ej., Futsu (Ordinaria)",
+      "placeholder_7digit": "Número de 7 dígitos",
+      "placeholder_nodash": "Ingrese sin guiones",
+      "placeholder_dbs": "Ej., DBS, UOB, OCBC",
+      "placeholder_kasikorn": "Ej., Kasikorn, SCB, Bangkok Bank"
+    }
+  },
+  "contact": {
+    "title": "Póngase en Contacto",
+    "subtitle": "Nos encantaría saber de usted.",
+    "name": "Nombre",
+    "email": "Correo Electrónico",
+    "message": "Mensaje",
+    "submit": "Enviar",
+    "success": "Mensaje enviado con éxito.",
+    "modal_title": "Mensaje Enviado",
+    "modal_msg": "Gracias por comunicarse con nosotros. Hemos recibido su mensaje.",
+    "btn_close": "Cerrar",
+    "error_title": "Fallo en el Envío",
+    "error_send": "No pudimos enviar su mensaje. Por favor, inténtelo de nuevo más tarde."
+  },
+  "home": {
+    "hero": {
+      "title": "Sin configuración previa<br>para datos estructurados. Mapee sus esquemas al instante.",
+      "subtitle": "Un centro de control para datos semánticos con validación de esquemas en tiempo real y análisis de entidades."
+    },
+    "meta": {
+      "title": "The Structured Data Company | La Plataforma de Infraestructura de Esquemas", 
+      "description": "La plataforma unificada para la gestión de esquemas y datos estructurados: aportando claridad y significado semántico a su interfaz."
+    },
+    "partners": {
+      "trusted_prefix": "Con la confianza de los mejores",
+      "trusted_suffix": "equipos.",
+      "typewriter": {
+        "web_apps": "grafos de conocimiento",
+        "ecommerce": "datos enlazados",
+        "marketing": "posicionamiento semántico",
+        "education": "catálogos de datos",
+        "security": "esquemas de identidad",
+        "finance": "ontologías financieras",
+        "healthcare": "datos clínicos",
+        "software": "esquemas de API",
+        "ai": "datos de entrenamiento LLM"
+      }
+    },
+    "workflow": {
+      "origin": "Origen",
+      "tracking": {
+        "eyebrow": "Validación",
+        "title": "Integridad del Esquema",
+        "desc": "Visualice la validación de datos en tiempo real y el estado del esquema a través de una vista clara e intuitiva. Detecte desviaciones rápidamente y manténgase informado con información estructural en vivo."
+      },
+      "processing": {
+        "eyebrow": "Integración",
+        "title": "Mapeo Semántico",
+        "desc": "Mantenga sus esquemas de datos sincronizados en tiempo real en todas las instancias globales. Garantice tipos consistentes, integración fluida y entrega de datos confiable en todas partes."
+      },
+      "unifying": {
+        "eyebrow": "Registro",
+        "title": "El Registro de Esquemas",
+        "desc": "Centralice esquemas, fragmentos JSON-LD y modelos de datos en un panel de control unificado. Reduzca la fragmentación y gestione todas las entidades relevantes desde un solo lugar."
+      }
+    },
+    "security": {
+      "main_title": "Seguridad de datos integrada. Incluida para todos.",
+      "main_subtitle": "Nuestro cortafuegos semántico ofrece protección en todo el sistema, salvaguardando sus estructuras de datos por defecto.",
+      "firewall": {
+        "title": "Cortafuegos de Datos",
+        "subtitle": "Protección resistente en la red perimetral",
+        "desc": "Nuestra red global absorbe ataques volumétricos al instante, asegurando que su origen de datos permanezca invisible e intacto ante el tráfico malicioso."
+      },
+      "waf": {
+        "title": "Guardia Semántica",
+        "subtitle": "Protege el tráfico de datos frente a amenazas",
+        "desc": "El filtrado inteligente analiza los paquetes entrantes en tiempo real, bloqueando la inyección y las entidades malformadas antes de que lleguen a su almacén de datos."
+      },
+      "workspace": {
+        "title": "Control de Acceso",
+        "subtitle": "Acceso seguro a esquemas para equipos",
+        "desc": "La arquitectura de confianza cero asegura que solo los usuarios autenticados y los dispositivos conformes puedan modificar sus herramientas internas y recursos de datos."
+      }
+    },
+    "code": {
+      "title": "La simplicidad primero, siempre.",
+      "desc": "Paneles de control intuitivos, constructores de esquemas visuales y guías completas para integrarse directamente en su flujo de trabajo existente sin escribir una sola línea de código."
+    },
+    "stats": {
+      "lines_code": "Entidades de datos mapeadas diariamente",
+      "languages": "Tipos de esquemas soportados y vocabularios semánticos",
+      "downloads": "Descargas de paquetes de esquemas"
+    },
+    "fluid": {
+      "title": "Operaciones de esquemas de autorreparación.",
+      "desc": "Automatice los metadatos. La inteligencia artificial sugiere y aplica proactivamente los tipos de esquemas, etiquetas de propiedades y mapeos de relaciones correctos.",
+      "ai_detection": "Detección de Entidades",
+      "assign": {
+        "header": "Tipo Detectado",
+        "sub": "Analizando propiedades...",
+        "action": "Sugerido: Schema.org/Person (98%)"
+      },
+      "label": {
+        "header": "Análisis de Contexto",
+        "sub": "Escaneando vocabulario...",
+        "action": "Aplicado: [Semántico] [Requerido]"
+      },
+      "route": {
+        "header": "Solicitud de Mapeo",
+        "sub": "Coincidiendo ontologías...",
+        "action": "Enviado a: Ingeniería de Datos"
+      }
+    },
+    "cta": "Construya algo significativo.",
+    "footer": {
+      "about_title": "Sobre Nosotros",
+      "sf_title": "Reino Unido",
+      "sf_address": "C/O Chalk Hill Barn Office 1 Upstairs<br>Yew Tree Farm, Stone Street, Stanford, Kent<br>Inglaterra, TN25 6DH",
+      "london_title": "",
+      "london_address": "",
+      "mission": "Proporcionamos la infraestructura semántica para definir, escalar y asegurar una red estructurada, haciendo que los datos sean universalmente comprensibles.",
+      "copyright": "&copy; 2026 The Structured Data Company Limited. Todos los derechos reservados.",
+      "status": "Todos los sistemas operan con normalidad.",
+      "links": {
+        "terms": "Términos de Servicio",
+        "privacy": "Política de Privacidad",
+        "cookies": "Política de Cookies",
+        "legal": "Aviso Legal y Registro"
+      }
+    }
+  },
+  "terms": {
+    "sidebar": {
+      "title": "Centro Legal",
+      "tos": "Términos de Servicio",
+      "privacy": "Política de Privacidad",
+      "cookies": "Política de Cookies",
+      "registration": "Aviso Legal y Registro"
+    },
+    "title": "Legal",
+    "tos": {
+      "title": "Términos de Servicio",
+      "last_updated": "Última revisión el 2 de mayo de 2024",
+      "content": "POR FAVOR, LEA ATENTAMENTE LOS SIGUIENTES TÉRMINOS DE SERVICIO DEL PORTAL ANTES DE UNIRSE A LA COMPAÑÍA O UTILIZAR LOS SERVICIOS DE LA MISMA. ESTOS TÉRMINOS DE SERVICIO CONSTITUYEN UN ACUERDO LEGAL ENTRE USTED Y LA COMPAÑÍA Y SON COMPLEMENTARIOS A LOS TÉRMINOS DEL ACUERDO (DEFINIDO A CONTINUACIÓN). SI NO ACEPTA O NO PUEDE ACEPTAR ESTOS TÉRMINOS DE SERVICIO, NO SE LE PERMITIRÁ UNIRSE A LA COMPAÑÍA. SI ACCEDE A ESTE ANEXO DE FORMA ELECTRÓNICA, INDIQUE SU CONFORMIDAD CON LOS TÉRMINOS DE ESTE ANEXO HACIENDO CLIC EN EL BOTÓN \"CREAR CUENTA\". SI NO ESTÁ DE ACUERDO CON ESTOS TÉRMINOS DE SERVICIO, NO CREE UNA CUENTA.<br><br>Estos Términos de Servicio (los \"Términos\") rigen su acceso y uso de nuestro sitio web y aplicación móvil (colectivamente, el \"Portal\"), y el contenido, características, software y aplicaciones asociadas en el Portal (colectivamente, el \"Servicio\"). El Portal y el Servicio son administrados y mantenidos por The Structured Data Company. Los términos \"nosotros\", \"nuestro\" y \"Compañía\" también se refieren a The Structured Data Company. El término \"usted\" se refiere a la persona que visita el Portal.<br><br>Por favor, lea estos Términos atentamente. Contienen información importante sobre sus derechos legales, incluidas las limitaciones de responsabilidad de la Compañía y de ciertos terceros, renuncias de garantías y sometimiento a jurisdicción. Cada vez que accede al Servicio por cualquier medio, acepta irrevocablemente cumplir con la versión de los Términos publicada en el Portal en el momento de su acceso. No puede utilizar el Portal ni el Servicio si no está de acuerdo con estos Términos.<br><br><strong>ELEGIBILIDAD</strong><br>Para ser elegible para utilizar cualquiera de los Servicios de la Compañía, debe tener al menos 23 años y residir en Reino Unido, Estados Unidos, Canadá, Europa, Japón, Corea del Sur, Singapur, España, Hong Kong o Tailandia. Hay ciertas funciones que pueden estar disponibles o no dependiendo de su ubicación y otros criterios. No debe usar software ni técnicas de red, incluido el uso de Redes Privadas Virtuales (VPN), para eludir esta prohibición.<br><br><strong>CAMBIOS</strong><br>Podemos modificar estos términos, nuestra política de privacidad y nuestra política de cookies ocasionalmente. Si realizamos cambios sustanciales, se lo notificaremos. El uso continuado de nuestros servicios tras la publicación o envío de una notificación sobre cambios en estos términos implica su consentimiento a los términos actualizados.<br><br><strong>DISPONIBILIDAD, ERRORES E INEXACTITUDES</strong><br>El acceso a los Servicios puede degradarse o no estar disponible durante épocas de alta volatilidad o volumen. No garantizamos que el Sitio u otros Servicios estén disponibles sin interrupciones ni que los pedidos se ejecuten o registren sin fallos. Nos reservamos el derecho de suspender los servicios por mantenimiento si es necesario.<br><br><strong>CUENTA</strong><br>Necesitará tener una cuenta con nosotros para utilizar parte del Servicio. Al crear una Cuenta, declara que es mayor de edad y capaz de celebrar contratos vinculantes. Usted es el único responsable de todas las actividades bajo su Cuenta. No se permite crear múltiples Cuentas a menos que lo autoricemos expresamente.<br><br>No puede cerrar o eliminar su cuenta mientras haya operaciones pendientes. La Compañía se reserva el derecho de desactivar la cuenta de un usuario en caso de actividad fraudulenta.<br><br><strong>ACTIVIDADES PROHIBIDAS</strong><br>Usted acepta que no copiará, modificará, comercializará ni usará técnicas de minería de datos en el Servicio. No introducirá virus, malware ni eludirá medidas de seguridad. El uso del Servicio para actividades ilegales está terminantemente prohibido.<br><br><strong>LIMITACIÓN DE RESPONSABILIDAD</strong><br>Los Servicios se proporcionan \"tal cual\" y \"según disponibilidad\". En la medida máxima permitida por la ley aplicable, la Compañía no asume responsabilidad por daños, interrupciones, errores u omisiones derivadas del uso del Servicio.<br><br><strong>COMPROMISO Y CUMPLIMIENTO</strong><br>Para garantizar la integridad de nuestras operaciones, se requiere que los usuarios completen todos los ciclos de operaciones antes de iniciar una solicitud de retiro. Los retiros no pueden procesarse a mitad del ciclo. Retener una asignación por un tiempo prolongado puede afectar negativamente a la red, y podríamos ajustar los calendarios de pago y aplicar tarifas administrativas nominales para cubrir dichos incumplimientos operativos.<br><br><strong>SUSPENSIÓN, TERMINACIÓN Y CANCELACIÓN</strong><br>Podemos suspender, restringir o terminar su acceso a los Servicios por motivos justificados, como incumplimiento de este Acuerdo, fraude, exigencia de autoridades gubernamentales o para proteger nuestra red.<br><br><strong>PROPIEDAD INTELECTUAL</strong><br>Todos los derechos de propiedad intelectual, marcas comerciales y logotipos son propiedad exclusiva de la Compañía. No está autorizado a reproducir ni distribuir el contenido sin permiso expreso.<br><br><strong>POLÍTICA DE CONFIDENCIALIDAD</strong><br>Todo usuario y empleado se obliga a mantener estricta confidencialidad sobre la información y datos patentados de la Compañía y de sus socios. La divulgación no autorizada dará lugar a recursos legales y compensación de daños."
+    },
+    "privacy": {
+      "title": "Política de Privacidad",
+      "last_updated": "Última revisión el 11 de enero de 2024",
+      "content": "En The Structured Data Company, estamos fuertemente comprometidos a proteger y respetar su privacidad. Esta Política de Privacidad explica cuándo, por qué y cómo recopilamos y usamos la información personal de quienes visitan nuestro Sitio Web o usan nuestros Servicios, y cómo mantenemos segura su información.<br><br><strong>CAMBIOS</strong><br>La Compañía puede modificar esta política de privacidad, y si realizamos cambios materiales, le avisaremos a través de nuestros servicios. Si se opone a cualquier cambio, puede cerrar su cuenta.<br><br><strong>CREAR CUENTA</strong><br>Para crear una cuenta, necesita proporcionar datos, incluyendo su dirección de correo electrónico, número de móvil y una contraseña. Recopilamos información de contacto, identidad, y otra necesaria según las leyes aplicables de prevención de riesgos (AML/KYC).<br><br><strong>PROTECCIÓN DE SU INFORMACIÓN PERSONAL</strong><br>Utilizamos medidas de seguridad técnicas, organizativas y administrativas apropiadas para proteger su información personal contra cualquier pérdida o acceso no autorizado. Limitamos el acceso a su información a aquellos que tienen una necesidad comercial genuina de conocerla.<br><br><strong>RETENCIÓN Y USO</strong><br>No mantendremos su información personal por más tiempo del razonablemente necesario. Utilizamos la información para proporcionar, personalizar y mejorar nuestros servicios operacionales e infraestructura de datos.<br><br><strong>SEGURIDAD Y COOKIES</strong><br>Implementamos salvaguardas como HTTPS y supervisamos regularmente nuestros sistemas. También utilizamos cookies para asegurar y comprender las interacciones con nuestros servicios."
+    },
+    "cookies": {
+      "title": "Política de Cookies",
+      "last_updated": "Vigente desde el 19 de noviembre de 2015",
+      "content": "En la Compañía, creemos en ser claros y abiertos sobre cómo recopilamos y usamos los datos relacionados con usted. Esta política de cookies se aplica a cualquier producto o servicio de la Compañía.<br><br><strong>QUÉ TECNOLOGÍAS SE UTILIZAN</strong><br>Utilizamos cookies (archivos de texto pequeños), píxeles y almacenamiento local para ofrecer, asegurar y comprender nuestros productos y servicios. Empleamos tanto cookies persistentes (que permanecen para reconocerlo en visitas futuras) como cookies de sesión (que duran solo durante la visita actual).<br><br><strong>PARA QUÉ SE UTILIZAN</strong><br>Las usamos para autenticación (verificar su cuenta), seguridad (detectar actividades maliciosas) y para recordar sus preferencias y agilizar el funcionamiento del sitio.<br><br><strong>CONTROLES DEL NAVEGADOR</strong><br>La mayoría de los navegadores le permiten controlar las cookies a través de su configuración. Tenga en cuenta que ciertas partes de los productos de la Compañía pueden no funcionar correctamente si deshabilita el uso de cookies en el navegador."
+    },
+    "registration": {
+      "certificate": "Certificado",
+      "title": "Aviso Legal y Registro",
+      "content": "<strong>1. Partes</strong><br>Las partes de estas Condiciones Generales de Uso son la Compañía y usted como usuario, que accede al Portal.<br><br><strong>2. Servicios</strong><br>Proporcionamos el Portal para difundir nuestra actividad y ofrecer infraestructura de información.<br><br><strong>3. Obligaciones del usuario</strong><br>Como usuario, acepta hacer un uso correcto y legal del Servicio, no modificar el Portal, no introducir virus informáticos y respetar los derechos de propiedad intelectual.<br><br><strong>4. Propiedad intelectual e industrial</strong><br>Los derechos de propiedad intelectual del Portal pertenecen exclusivamente a la Compañía. Cualquier reproducción o distribución está prohibida sin acuerdo expreso.<br><br><strong>5. Enlaces a sitios de terceros</strong><br>El Portal no asume responsabilidad por el contenido de sitios de terceros enlazados.<br><br><strong>6. Exclusión de Responsabilidad</strong><br>La Compañía no acepta ninguna responsabilidad por el mal uso del Portal ni garantiza la ausencia total de interrupciones o intrusiones de red.<br><br><strong>CERTIFICADO</strong><br>Nombre de la Entidad Registrada: The Structured Data Company Limited<br>Dirección Registrada: C/O Chalk Hill Barn Office 1 Upstairs, Yew Tree Farm, Stone Street, Stanford, Kent, Inglaterra, TN25 6DH<br>Número de Empresa: 16095340"
+    },
+    "footer": "&copy; <span id=\"year\">2026</span> The Structured Data Company. Todos los derechos reservados."
+  },
+  "auth": {
+    "footer": {
+      "terms": "Términos de Servicio",
+      "privacy": "Política de Privacidad",
+      "cookies": "Política de Cookies",
+      "legal": "Aviso Legal y Registro"
+    },
+    "form": {
+      "info_banner": "El dominio puede actualizarse de forma irregular para reflejar la información más reciente.",
+      "btn_try_again": "Intentar de nuevo",
+      "title_signin": "Iniciar Sesión",
+      "title_signup": "Crear Cuenta",
+      "label_display_name": "Nombre de Usuario",
+      "label_email_signin": "Nombre de Usuario o Correo",
+      "label_email_signup": "Correo Electrónico",
+      "label_referrer": "ID de Cuenta del Referidor",
+      "hint_referrer": "Ingrese el ID del referidor para garantizar la asignación correcta del asesor.",
+      "label_phone": "Número de Teléfono",
+      "label_password": "Contraseña",
+      "label_confirm_password": "Confirmar Contraseña",
+      "label_yob": "Año de Nacimiento",
+      "hint_yob": "Requerido para la verificación de edad.",
+      "alert_captcha": "Por favor, verifique que no es un robot.",
+      "agreement": "Al crear una cuenta, certifico que tengo 23 años o más, acepto los Términos de Servicio y he leído la Política de Privacidad y Cookies.",
+      "forgot_password": "¿Olvidó su contraseña? Contacte con soporte.",
+      "btn_signin": "Iniciar Sesión",
+      "btn_signup": "Crear Cuenta",
+      "btn_continue": "Continuar",
+      "btn_get_started": "Comenzar",
+      "toggle": {
+        "no_account": "¿No tiene una cuenta?",
+        "create": "Crear cuenta",
+        "has_account": "¿Ya tiene una cuenta?",
+        "signin": "Iniciar sesión"
+      },
+      "logs": {
+        "autologin_fail": "Registro exitoso, pero el inicio de sesión automático falló"
+      },
+      "errors": {
+        "email": "Por favor, introduzca una dirección de correo electrónico válida.",
+        "pass_length": "Use 6 caracteres o más para su contraseña.",
+        "pass_complex": "Elija una contraseña más segura usando letras, números y símbolos.",
+        "pass_match": "Las contraseñas no coinciden.",
+        "year_invalid": "Por favor, introduzca un año válido (1900-{year}).",
+        "phone_invalid": "Por favor, introduzca un número de teléfono válido.",
+        "verification_failed": "Ocurrió un error inesperado. Por favor, inténtelo de nuevo.",
+        "credentials_invalid": "Credenciales inválidas.",
+        "user_exists": "La dirección de correo electrónico ya está asociada a una cuenta.",
+        "display_name_taken": "El nombre de usuario ya está en uso. Por favor, elija otro.",
+        "phone_taken": "El número de teléfono ya está asociado a una cuenta.",
+        "referrer_invalid": "El ID de Referidor proporcionado no existe.",
+        "referrer_required": "Se requiere el ID de Referidor.",
+        "generic_error": "Ocurrió un error inesperado. Por favor, inténtelo de nuevo.",
+        "title_failed": "Acción Fallida",
+        "network_issue": "No se puede conectar al servidor. Por favor, compruebe su red.",
+        "general_error": "Ocurrió un error. Por favor, inténtelo de nuevo más tarde."
+      },
+      "success": {
+        "signin": "Sesión iniciada con éxito.",
+        "signup": "Cuenta creada con éxito.",
+        "signin_title": "¡Bienvenido!",
+        "signin_msg": "Ha iniciado sesión con éxito.",
+        "signup_title": "¡Cuenta Creada!",
+        "signup_msg": "Su cuenta ha sido creada con éxito."
+      }
+    }
+  },
+  "faqData": [
+    {
+      "category": "Características y Capacidades de la Plataforma",
+      "items": [
+        {
+          "id": "feat-1",
+          "question": "¿Necesito experiencia en programación para usar la plataforma?",
+          "answer": "No se requiere experiencia en programación. Hemos diseñado la plataforma con paneles de control intuitivos y constructores visuales que le permiten gestionar, sincronizar y procesar estructuras de datos complejas sin escribir una sola línea de código."
+        },
+        {
+          "id": "feat-2",
+          "question": "¿Cómo funciona la detección de entidades por IA?",
+          "answer": "Nuestro motor de inteligencia artificial analiza automáticamente las propiedades de los datos sin procesar entrantes y sugiere de manera proactiva los tipos de esquemas y mapeos correctos. Esto reduce significativamente la necesidad de entrada manual y acelera su capacidad para completar asignaciones diarias."
+        },
+        {
+          "id": "feat-3",
+          "question": "¿Existe una aplicación móvil disponible?",
+          "answer": "Si bien no tenemos una aplicación descargable independiente, nuestra plataforma está completamente basada en la web y altamente optimizada para navegadores de escritorio y móviles, asegurando la entrega instantánea de parches de seguridad a todos los usuarios."
+        }
+      ]
+    },
+    {
+      "category": "Tecnología e Infraestructura",
+      "items": [
+        {
+          "id": "infra-1",
+          "question": "¿Qué es exactamente un \"Esquema\" en el contexto de esta plataforma?",
+          "answer": "Un esquema es un marco estructurado que define cómo los datos no estructurados se organizan y conectan para ser comprendidos por las máquinas. Nuestra plataforma procesa estos esquemas semánticos para garantizar la integridad de los datos antes de validarlos en el libro mayor financiero."
+        },
+        {
+          "id": "infra-2",
+          "question": "¿Ofrecen una API pública para desarrolladores?",
+          "answer": "Actualmente, nuestra plataforma opera en su totalidad a través de nuestro panel web y no ofrecemos una API pública para cuentas de consumidores con el fin de mantener la integridad y evitar la extracción de datos no autorizada."
+        },
+        {
+          "id": "infra-3",
+          "question": "¿Puedo usar bots o scripts automatizados para completar mis asignaciones?",
+          "answer": "No. El uso de bots, macros o cualquier otro software automatizado está estrictamente prohibido. Nuestros comerciantes pagan por una supervisión humana auténtica durante el proceso de validación. La automatización resultará en la suspensión permanente de la cuenta."
+        },
+        {
+          "id": "infra-4",
+          "question": "¿Ofrecen webhooks para notificaciones de saldo contable en tiempo real?",
+          "answer": "No, actualmente no ofrecemos webhooks. Para garantizar la máxima seguridad, debe iniciar sesión directamente en su panel autenticado para supervisar su saldo, hitos y actividad transaccional."
+        }
+      ]
+    },
+    {
+      "category": "Cuenta y Elegibilidad",
+      "items": [
+        {
+          "id": "acc-1",
+          "question": "¿Quién es elegible para usar la plataforma?",
+          "answer": "Para cumplir con las estrictas regulaciones financieras internacionales, los usuarios deben tener al menos 23 años de edad y residir en una de nuestras regiones operativas compatibles, como Estados Unidos, Reino Unido, Canadá, Europa, Japón, España o Singapur, entre otros."
+        },
+        {
+          "id": "acc-2",
+          "question": "¿Hay tarifas iniciales para unirse?",
+          "answer": "No, crear una cuenta es completamente gratuito y no hay cargos ocultos de registro."
+        },
+        {
+          "id": "acc-3",
+          "question": "¿Qué es un ID de Cuenta de Referidor y por qué lo necesito?",
+          "answer": "Un ID de Referidor es un código único requerido durante el registro para garantizar que se le asigne al asesor de formación adecuado dentro de nuestra red, estableciendo un vínculo de tutoría directo."
+        },
+        {
+          "id": "acc-4",
+          "question": "¿Puedo crear múltiples cuentas?",
+          "answer": "No, la configuración de múltiples cuentas está estrictamente prohibida a menos que lo permita expresamente nuestro equipo de cumplimiento, de acuerdo con las regulaciones AML."
+        },
+        {
+          "id": "acc-5",
+          "question": "¿Puedo eliminar mi cuenta?",
+          "answer": "Sí, tiene derecho a cerrar su cuenta en cualquier momento. Sin embargo, no puede hacerlo si hay operaciones pendientes o saldos deudores activos. Todos los registros financieros deben estar completamente liquidados antes."
+        }
+      ]
+    },
+    {
+      "category": "Seguridad de la Cuenta y Privacidad",
+      "items": [
+        {
+          "id": "sec-1",
+          "question": "¿Están encriptados mis datos personales y mi actividad en la plataforma?",
+          "answer": "Sí. Todos los datos confidenciales y libros mayores financieros están asegurados mediante encriptación AES-256 de grado militar."
+        },
+        {
+          "id": "sec-2",
+          "question": "¿La plataforma cumple con las leyes de privacidad de datos GDPR y CCPA?",
+          "answer": "Sí. Cumplimos estrictamente con las principales normativas internacionales de privacidad de datos y solo recopilamos los datos mínimos necesarios para el cumplimiento legal y operativo."
+        },
+        {
+          "id": "sec-3",
+          "question": "¿A quién pertenece la propiedad intelectual de los esquemas estructurales que proceso?",
+          "answer": "Todos los derechos de propiedad intelectual siguen siendo propiedad exclusiva y confidencial de la Compañía y nuestros comerciantes asociados."
+        },
+        {
+          "id": "sec-4",
+          "question": "¿Puedo exportar mi historial de procesamiento de esquemas?",
+          "answer": "No. Debido a los estrictos Acuerdos de Confidencialidad (NDA), los usuarios tienen restringido técnicamente exportar o descargar su historial de procesamiento de datos."
+        },
+        {
+          "id": "sec-5",
+          "question": "¿Qué es una Clave de Retiro y por qué es necesaria?",
+          "answer": "Es su clave financiera privada, una capa obligatoria de autorización secundaria requerida para aprobar cualquier solicitud de retiro estándar, protegiendo sus fondos incluso si su contraseña principal se ve comprometida."
+        },
+        {
+          "id": "sec-6",
+          "question": "Olvidé mi contraseña, ¿cómo recupero mi cuenta?",
+          "answer": "Deberá comunicarse con nuestro equipo de soporte a través del portal seguro y se le requerirá que verifique su identidad antes de que podamos emitir un restablecimiento manual, previniendo así accesos no autorizados."
+        }
+      ]
+    },
+    {
+      "category": "Operaciones Generales",
+      "items": [
+        {
+          "id": "gen-1",
+          "question": "¿Qué son exactamente las \"Asignaciones\" activas?",
+          "answer": "Las asignaciones son el trabajo principal que realiza. Al iniciarlas, usted sincroniza, verifica y carga un esquema estructural en el libro mayor. Este proceso valida los datos y genera su rendimiento de activos."
+        },
+        {
+          "id": "gen-2",
+          "question": "¿Qué se requiere para iniciar o restablecer un ciclo?",
+          "answer": "Cada ciclo requiere un saldo contable mínimo para iniciarse. Para las cuentas nuevas, el ciclo más temprano comienza con un mínimo de $80. Para los ciclos siguientes, el saldo mínimo requerido es de $150."
+        },
+        {
+          "id": "gen-3",
+          "question": "¿Puedo omitir, eliminar o revertir una asignación de cuota activa?",
+          "answer": "No. Una vez que una asignación se sincroniza, está estrictamente vinculada a su ciclo y no se puede eludir bajo ninguna circunstancia. Debe completar el proceso de validación para avanzar."
+        },
+        {
+          "id": "gen-4",
+          "question": "¿Qué sucede si mantengo un esquema de producto por mucho tiempo?",
+          "answer": "Si una asignación se retiene sin ser procesada por más de 48 horas, retrasa el progreso de los comerciantes. En estos casos, se pueden aplicar tarifas nominales y ajustar los calendarios de pago."
+        },
+        {
+          "id": "gen-5",
+          "question": "¿Por qué a veces recibo archivos dañados?",
+          "answer": "Ocasionalmente, los datos sin procesar contienen fragmentos ilegibles. Estos archivos no generan rendimiento, pero como el sistema ya consumió recursos para asignárselo, contará como una de sus 40 cuotas disponibles para ese ciclo."
+        },
+        {
+          "id": "gen-6",
+          "question": "¿Cuáles son sus horas de operación estándar?",
+          "answer": "Nuestras operaciones principales, revisiones manuales de retiros y auditorías se ejecutan de lunes a viernes, de 10:00 a. m. a 10:00 p. m. EST, en línea con el horario bancario global."
+        },
+        {
+          "id": "gen-7",
+          "question": "¿Cómo me comunico con el equipo de atención al cliente?",
+          "answer": "Puede comunicarse con nuestro equipo de soporte directamente a través del widget de chat en vivo ubicado en su panel de control para una resolución rápida y segura."
+        }
+      ]
+    },
+    {
+      "category": "Asesoría y Tutoría",
+      "items": [
+        {
+          "id": "coach-1",
+          "question": "¿Cuál es el papel de mi asesor asignado?",
+          "answer": "Su asesor es un usuario experimentado encargado de brindarle orientación personalizada y enseñarle cómo optimizar sus operaciones diarias."
+        },
+        {
+          "id": "coach-2",
+          "question": "¿Cómo se me asigna mi asesor?",
+          "answer": "Su asesor se vincula automáticamente durante el proceso de registro basándose en el ID del Referidor que proporcionó."
+        },
+        {
+          "id": "coach-3",
+          "question": "¿Mi asesor es responsable del rendimiento o déficits financieros de mi cuenta?",
+          "answer": "No. Su cuenta es estrictamente individual. Usted mantiene total autonomía y responsabilidad sobre sus fondos, saldo contable y asignaciones diarias. Su asesor no tiene acceso a sus fondos."
+        }
+      ]
+    },
+    {
+      "category": "Financiación Contable y Depósitos",
+      "items": [
+        {
+          "id": "fund-1",
+          "question": "¿Qué es un Déficit y cómo lo resuelvo?",
+          "answer": "Un déficit ocurre cuando se le asigna un esquema de alto rendimiento que excede el valor actual de su nivel contable. Para resolverlo y procesar esta operación premium, debe depositar los fondos requeridos exactos comunicándose con el soporte en vivo."
+        },
+        {
+          "id": "fund-2",
+          "question": "¿Cuánto tardan los depósitos en reflejarse en mi cuenta?",
+          "answer": "Una vez completada la transferencia y proporcionado el comprobante al soporte en vivo, los fondos generalmente se reflejan en su saldo contable total en un plazo de 15 a 30 minutos, dependiendo de la velocidad de la red bancaria o blockchain."
+        },
+        {
+          "id": "fund-3",
+          "question": "¿Puedo depositar fondos para omitir mis cuotas diarias?",
+          "answer": "No. Los depósitos se utilizan estrictamente para iniciar un nuevo ciclo o liquidar un déficit premium. No puede pagar para eludir el trabajo de procesamiento y validación requerido."
+        }
+      ]
+    },
+    {
+      "category": "Ganancias, Rendimientos y Tarifas",
+      "items": [
+        {
+          "id": "earn-1",
+          "question": "¿Cómo se calcula el Rendimiento de los Activos?",
+          "answer": "El rendimiento se calcula dinámicamente según la complejidad del esquema. Por cada operación completada con éxito, la tasa de rendimiento varía aleatoriamente entre el 1% y el 6% del valor principal del activo."
+        },
+        {
+          "id": "earn-2",
+          "question": "¿Qué es un ciclo y cuántas cuotas tiene?",
+          "answer": "Un ciclo completo consta de 40 cuotas (asignaciones de datos individuales). Imponemos un límite estricto de 2 ciclos completos por día para garantizar una distribución justa del trabajo en nuestra red."
+        },
+        {
+          "id": "earn-3",
+          "question": "¿Qué pasa si no termino las 40 cuotas de una vez?",
+          "answer": "No está obligado a completar el ciclo en una sola sesión. Puede pausar su progreso, siempre que no retenga una asignación activa por más de 48 horas continuas."
+        },
+        {
+          "id": "earn-4",
+          "question": "¿Mis ganancias se acumulan automáticamente de forma compuesta?",
+          "answer": "No, las ganancias no se capitalizan ciclo tras ciclo. Sin embargo, todo el rendimiento generado permanecerá seguro en su saldo total contable hasta que solicite un retiro."
+        }
+      ]
+    },
+    {
+      "category": "Recompensas de Rendimiento y Asistencia",
+      "items": [
+        {
+          "id": "reward-1",
+          "question": "¿Cómo reclamo la Bonificación de Bienvenida?",
+          "answer": "Una bonificación de $20.00 se acredita automáticamente en su saldo disponible inmediatamente después de un registro exitoso. No se requieren pasos adicionales."
+        },
+        {
+          "id": "reward-2",
+          "question": "¿Cómo funciona el Registro de Hitos de Asistencia?",
+          "answer": "Valoramos la constancia. Al completar sus asignaciones diarias, construye una racha ininterrumpida que desbloquea bonificaciones automáticas programadas en ciertos hitos (Día 7, Día 14, etc.)."
+        },
+        {
+          "id": "reward-3",
+          "question": "¿Qué es el KPI de Asistencia Perfecta?",
+          "answer": "Si completa todas las asignaciones diarias de un mes sin fallar, desbloquea un multiplicador automático que aumenta masivamente sus retiros base acumulados."
+        },
+        {
+          "id": "reward-4",
+          "question": "¿Qué sucede si pierdo un día de operaciones?",
+          "answer": "Si no completa su cuota del día, romperá su racha de asistencia. Perderá el multiplicador del KPI de Asistencia Perfecta de ese mes y deberá reiniciar su progreso hacia el próximo hito."
+        },
+        {
+          "id": "reward-5",
+          "question": "¿Qué son los Eventos de Bonificación por Tiempo Limitado?",
+          "answer": "Durante períodos de alta demanda por parte de los comerciantes, organizamos eventos promocionales con recompensas mayores. Consulte la sección de Promociones regularmente antes de que expiren."
+        }
+      ]
+    },
+    {
+      "category": "Programa de Referidos y Afiliados",
+      "items": [
+        {
+          "id": "ref-1",
+          "question": "¿Gano una comisión por referir a nuevos usuarios?",
+          "answer": "¡Sí! Gana una bonificación vitalicia del 20% basada en las ganancias generadas por su referido directo. Esta cantidad es subvencionada enteramente por la Compañía, por lo que su referido conserva el 100% de sus ganancias."
+        },
+        {
+          "id": "ref-2",
+          "question": "¿Es esta una estructura de marketing multinivel (MLM)?",
+          "answer": "No, en absoluto. Nuestra estructura de referidos es estrictamente directa (1 a 1). No apoyamos comisiones escalonadas ni pirámides."
+        },
+        {
+          "id": "ref-3",
+          "question": "¿Quién es elegible para participar en el programa de referidos?",
+          "answer": "Debe acumular un total de 14 días de asistencia activa antes de estar autorizado a generar un ID de referido, y existe un período de reflexión obligatorio de 14 días entre cada referencia exitosa."
+        },
+        {
+          "id": "ref-4",
+          "question": "¿Por qué se pausa mi bonificación por referidos?",
+          "answer": "Las bonificaciones solo están activas cuando la cuenta de su Referido está en orden. Si este deja una operación \"pendiente\", su bonificación se pausará hasta que resuelva el obstáculo operativo."
+        }
+      ]
+    },
+    {
+      "category": "Retiros y Saldos Contables",
+      "items": [
+        {
+          "id": "pay-1",
+          "question": "¿Existen condiciones específicas antes de poder solicitar un retiro?",
+          "answer": "Sí. Debe completar todas las asignaciones activas dentro de su ciclo actual y asegurarse de que no haya saldos pendientes ni déficits. Los retiros no pueden procesarse a mitad del ciclo."
+        },
+        {
+          "id": "pay-2",
+          "question": "¿Hay un monto mínimo de retiro?",
+          "answer": "Sí, el monto mínimo es de $20. Este límite garantiza la viabilidad financiera para absorber las tarifas de red y gestión administrativa."
+        },
+        {
+          "id": "pay-3",
+          "question": "¿Existen límites en el volumen de transacciones para los retiros?",
+          "answer": "Sí, alineados con su nivel operativo. Las cuentas Básicas estándar pueden procesar retiros de hasta $5,000 por transacción, mientras que los niveles Plus tienen techos de pago sin restricciones."
+        },
+        {
+          "id": "pay-4",
+          "question": "¿Hay tarifas de retiro?",
+          "answer": "No cobramos tarifas internas de retiro ni porcentajes sobre sus saldos, y cubrimos las tarifas de gas de la red cripto. Sin embargo, para los métodos bancarios fiduciarios, usted es responsable de las tarifas de transferencias internacionales aplicadas por su banco."
+        },
+        {
+          "id": "pay-5",
+          "question": "¿Cuánto tardan normalmente los retiros?",
+          "answer": "Deben solicitarse dentro de las 24 a 48 horas posteriores a la finalización de un ciclo. Una vez enviados, a menudo se procesan en una hora, dependiendo de la institución receptora o la velocidad de la red blockchain."
+        },
+        {
+          "id": "pay-6",
+          "question": "¿Qué métodos de retiro admite la plataforma?",
+          "answer": "Admitimos Transferencias Bancarias fiduciarias directas (ACH, SEPA, BACS, Interac) y Activos Tokenizados (Criptomonedas mediante configuración de red)."
+        },
+        {
+          "id": "pay-7",
+          "question": "¿Qué sucede si envío un retiro a una dirección de billetera cripto o red incorrecta?",
+          "answer": "Las transacciones de criptomonedas son irreversibles. Si ingresa una dirección o red incorrecta, sus fondos se perderán permanentemente. Por favor, verifique siempre sus detalles de destino."
+        },
+        {
+          "id": "pay-8",
+          "question": "¿Necesito una billetera sin custodia para recibir retiros tokenizados?",
+          "answer": "No es estrictamente necesario. Puede usar cualquier billetera o cuenta de exchange que soporte el token y red específicos."
+        }
+      ]
+    },
+    {
+      "category": "Operaciones Bancarias y Fiduciarias",
+      "items": [
+        {
+          "id": "bank-1",
+          "question": "¿Puedo solicitar un retiro a una cuenta bancaria a nombre de otra persona?",
+          "answer": "No, bajo ninguna circunstancia. El nombre legal en la cuenta bancaria de destino debe coincidir perfectamente con la identidad verificada en su cuenta de la plataforma, de acuerdo con la regulación AML/KYC."
+        },
+        {
+          "id": "bank-2",
+          "question": "¿Por qué fue rechazada o retrasada mi transferencia bancaria?",
+          "answer": "Los retrasos suelen deberse a errores en el ingreso de datos, feriados bancarios o retenciones de seguridad rutinarias de su institución. Si una transferencia falla, los fondos se devolverán de manera segura a su saldo contable."
+        },
+        {
+          "id": "bank-3",
+          "question": "¿Admiten transferencias bancarias internacionales (wire transfers)?",
+          "answer": "Técnicamente admitimos transferencias internacionales para ciertas regiones, pero están sujetas a mantenimiento prolongado y el usuario debe cubrir las tarifas de los bancos intermediarios."
+        }
+      ]
+    },
+    {
+      "category": "Resolución de Problemas Técnicos",
+      "items": [
+        {
+          "id": "tech-1",
+          "question": "¿Qué debo hacer si mi panel de control se congela durante una asignación activa?",
+          "answer": "Si su panel se congela o pierde la conexión, simplemente actualice la página o vuelva a iniciar sesión. Su progreso y saldo actual están guardados de forma segura en la nube en tiempo real."
+        },
+        {
+          "id": "tech-2",
+          "question": "¿Se me compensará si una interrupción del servidor hace que me pierda un ciclo?",
+          "answer": "No. Aunque nos esforzamos por el máximo tiempo de actividad, no proporcionamos compensación financiera por ciclos perdidos, rachas de asistencia interrumpidas o interrupciones temporales no previstas del sistema."
+        }
+      ]
+    }
+  ]
+}
