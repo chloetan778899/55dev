@@ -310,16 +310,17 @@ const lockedInPackage = ref(0.00);
 const lockedInCurrent = ref(0.00);
 
 const displayTotalLedgerBalance = computed(() => {
-  return coreLedgerBalance.value;
+  return Number(coreLedgerBalance.value) + Number(lockedInPackage.value) + Number(lockedInCurrent.value);
 });
 
 const outstandingBalance = computed(() => {
-  return Math.max(0, (lockedInPackage.value + lockedInCurrent.value) - coreLedgerBalance.value);
+  return coreLedgerBalance.value < 0 ? Math.abs(coreLedgerBalance.value) : 0;
 });
 
 const displayCurrentBalance = computed(() => {
-  if (!currentSchema.value) return 0.00; 
-  return displayTotalLedgerBalance.value + outstandingBalance.value + currentSchema.value.yieldImpact + activePackage.value.accumulatedYield;
+  const yieldCurrent = currentSchema.value ? Number(currentSchema.value.yieldImpact) : 0;
+  const yieldPackage = activePackage.value ? Number(activePackage.value.accumulatedYield) : 0;
+  return displayTotalLedgerBalance.value + yieldCurrent + yieldPackage;
 });
 
 const schemaQuota = ref(40);
@@ -486,7 +487,6 @@ const proceedToNext = async () => {
       let shouldAutoSpawnNext = false;
 
       if (schema.isCorrupted) {
-        lockedInCurrent.value = 0; 
         if (txIndex !== -1) {
           recentActivity.value[txIndex].status = 'Corrupted';
           recentActivity.value[txIndex].yieldRate = '-';
@@ -495,43 +495,24 @@ const proceedToNext = async () => {
         openModal(t('dashboard.modal.notice', 'Notice'), t('dashboard.assignments.corrupted_file', 'Corrupted file.'), 'error');
       } 
       else if (schema.isHighYield) {
-        activePackage.value.accumulatedYield += schema.yieldImpact;
-        lockedInPackage.value += schema.value; 
-        lockedInCurrent.value = 0; 
         if (txIndex !== -1) recentActivity.value[txIndex].status = 'Success';
         
-        if (activePackage.value.currentIndex >= activePackage.value.size) {
-          coreLedgerBalance.value += (lockedInPackage.value + activePackage.value.accumulatedYield);
-          currentCycleProfit.value += activePackage.value.accumulatedYield;
-          lockedInPackage.value = 0; 
-          activePackage.value.isActive = false;
-          activePackage.value.accumulatedYield = 0;
-        } else {
+        if (activePackage.value.currentIndex < activePackage.value.size) {
           shouldAutoSpawnNext = true; 
         }
       } 
       else {
-        coreLedgerBalance.value += schema.yieldImpact;
-        currentCycleProfit.value += schema.yieldImpact;
-        lockedInCurrent.value = 0;
         if (txIndex !== -1) recentActivity.value[txIndex].status = 'Success';
       }
       
       currentSchema.value = null; 
 
+      await fetchAssignmentsState();
+
       if (shouldAutoSpawnNext) {
         await retrieveAssignment('auto-package');
       }
-    } else {
-      const err = await response.json();
-      openModal(t('dashboard.modal.error', 'Error'), err.msg || t('dashboard.assignments.upload_error', 'Failed to upload schema.'), 'error');
     }
-  } catch (error) {
-     openModal(t('dashboard.modal.error', 'Error'), t('dashboard.assignments.upload_network_error', 'Network error occurred while uploading.'), 'error');
-  } finally {
-    isProceeding.value = false;
-  }
-}
 
 const payoutRegions = computed<Record<string, { label: string, type: 'crypto_only' | 'bank', wireLabel?: string, fields?: { key: string, label: string, placeholder: string }[] }>>(() => ({
   US: { label: t('dashboard.regions.us', 'United States'), type: 'crypto_only', wireLabel: t('dashboard.regions.wire_us', 'Wire Transfer / ACH') },
