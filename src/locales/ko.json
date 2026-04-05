@@ -1,881 +1,881 @@
 {
   "app": {
-    "update_tip": "Update beschikbaar. Vernieuw de pagina.",
-    "refresh": "Vernieuwen",
-    "confirm": "Bevestigen",
-    "cancel": "Annuleren",
+    "update_tip": "업데이트가 있습니다. 페이지를 새로고침해 주세요.",
+    "refresh": "새로고침",
+    "confirm": "확인",
+    "cancel": "취소",
     "devtools": {
-      "title": "Ontwikkelaarsmodus Gedetecteerd",
-      "message": "Sluit de Ontwikkelaarstools om verder te bladeren"
+      "title": "개발자 모드 감지됨",
+      "message": "계속 탐색하려면 개발자 도구를 닫아주세요."
     }
   },
   "nav": {
-    "signin": "Inloggen",
-    "signup": "Account Aanmaken"
+    "signin": "로그인",
+    "signup": "계정 생성"
   },
   "dashboard": {
     "currency_format": "${amount}",
-    "meta_title": "Dashboard",
+    "meta_title": "대시보드",
     "nav": {
-      "logo_alt": "Logo",
-      "overview": "Accountinstellingen",
-      "assignments": "Actieve Opdrachten",
-      "payouts": "Uitbetalingen Beheren",
-      "rewards": "Aanwezigheid",
-      "coach_restricted": "Aanwezigheidsuitbetalingen zijn niet van toepassing op coachaccounts.",
-      "events": "Evenementen & Lidmaatschap",
-      "referrals": "Verwijzingsprogramma",
-      "faq": "Veelgestelde Vragen",
-      "terms": "Servicevoorwaarden",
-      "privacy": "Privacybeleid",
-      "cookies": "Cookiebeleid",
-      "legal": "Juridisch & Registratie",
-      "logout": "Uitloggen",
-      "logout_confirm": "Weet u zeker dat u wilt uitloggen?"
+      "logo_alt": "로고",
+      "overview": "계정 설정",
+      "assignments": "활성 배정",
+      "payouts": "지급 관리",
+      "rewards": "출석",
+      "coach_restricted": "코치 계정에는 출석 지급금이 적용되지 않습니다.",
+      "events": "이벤트 및 멤버십",
+      "referrals": "추천 프로그램",
+      "faq": "자주 묻는 질문(FAQ)",
+      "terms": "서비스 약관",
+      "privacy": "개인정보 처리방침",
+      "cookies": "쿠키 정책",
+      "legal": "법적 고지 및 등록",
+      "logout": "로그아웃",
+      "logout_confirm": "계정에서 로그아웃하시겠습니까?"
     },
     "events": {
-      "title": "Lidmaatschapsniveaus",
-      "subtitle": "Ontgrendel nieuwe niveaus, verhoog uw rang en vergroot uw verdienpotentieel.",
-      "loading": "Lidmaatschappen laden...",
-      "empty": "Er zijn momenteel geen lidmaatschapsniveaus beschikbaar.",
+      "title": "멤버십 등급",
+      "subtitle": "새로운 등급을 해제하고, 순위를 높이며, 수익 잠재력을 확장하세요.",
+      "loading": "멤버십 불러오는 중...",
+      "empty": "현재 이용 가능한 멤버십 등급이 없습니다.",
       "rank": "{rank}",
-      "default_desc": "Blijf opdrachten voltooien om dit niveau te bereiken."
+      "default_desc": "이 등급으로 승급하려면 배정 항목을 계속 완료하세요."
     },
     "modal": {
-      "verification_failed_title": "Verificatie Mislukt",
-      "success": "Geslaagd",
-      "error": "Fout",
-      "warning": "Waarschuwing",
-      "notice": "Kennisgeving",
-      "missing_fields": "Ontbrekende Velden",
-      "action_denied": "Actie Geweigerd",
-      "payout_requested": "Uitbetaling Aangevraagd",
-      "funds_received": "Speciale bonus 🎉",
-      "funds_received_msg": "U heeft een speciale bonus van {amount} ontvangen. Neem contact op met ons ondersteuningsteam om uw beloning te claimen.",
-      "network_error": "Er is een netwerkfout opgetreden.",
-      "general_error": "Er is een fout opgetreden. Probeer het later opnieuw.",
-      "verification_failed": "Verificatie mislukt.",
-      "processing": "Verwerken..."
+      "verification_failed_title": "인증 실패",
+      "success": "성공",
+      "error": "오류",
+      "warning": "경고",
+      "notice": "알림",
+      "missing_fields": "누락된 필드",
+      "action_denied": "작업 거부됨",
+      "payout_requested": "지급 요청됨",
+      "funds_received": "특별 보너스 🎉",
+      "funds_received_msg": "{amount}의 특별 보너스를 받으셨습니다. 보상을 받으시려면 지원팀에 문의해 주세요.",
+      "network_error": "네트워크 오류가 발생했습니다.",
+      "general_error": "오류가 발생했습니다. 나중에 다시 시도해 주세요.",
+      "verification_failed": "인증에 실패했습니다.",
+      "processing": "처리 중..."
     },
-    "coach_account": "Dit is een coachaccount voor trainingsdoeleinden.",
-    "coach_account_short": "Coachaccount",
+    "coach_account": "이것은 교육 목적의 코치 계정입니다.",
+    "coach_account_short": "코치 계정",
     "overview": {
-      "welcome": "Welkom, {name}",
-      "subtitle": "Beheer uw profiel, beveiligingsinstellingen en uitbetalingsconfiguraties.",
-      "credit_score": "Kredietscore",
-      "profile_title": "Profielfoto",
-      "upload_btn": "Foto Uploaden",
-      "upload_hint": "JPG of PNG.",
-      "avatar_success": "Profielfoto bijgewerkt.",
-      "upload_fail": "Uploaden van afbeelding mislukt.",
-      "auth_title": "Wachtwoord Bijwerken",
-      "current_pass": "Huidig Wachtwoord",
-      "new_pass": "Nieuw Wachtwoord",
-      "confirm_pass": "Nieuw Wachtwoord Bevestigen",
-      "save_pass": "Wachtwoord Opslaan",
-      "pass_update_success": "Wachtwoord succesvol bijgewerkt.",
-      "pass_update_fail": "Bijwerken van wachtwoord mislukt.",
-      "pass_incorrect": "Huidig wachtwoord onjuist.",
-      "passphrase_title": "Uitbetalingswachtzin",
-      "first_time_setup": "Eerste Installatie Vereist",
-      "passphrase_desc": "Deze wachtzin fungeert als uw privé financiële sleutel, vereist om uitbetalingen te autoriseren in het portaal Uitbetalingen Beheren. Om deze sleutel voor het eerst in te stellen, moet u uw geregistreerde e-mailadres opgeven.",
-      "passphrase_update_desc": "Werk uw privé financiële sleutel bij. Deze sleutel is vereist om al uw standaard uitbetalingsverzoeken te autoriseren.",
-      "account_region": "Accountregio",
-      "verify_email": "Account E-mailadres",
-      "new_passphrase": "Nieuwe Wachtzin",
-      "confirm_passphrase": "Wachtzin Bevestigen",
-      "verify_btn": "Configureren",
-      "current_passphrase": "Huidige Wachtzin",
-      "update_btn": "Wachtzin Bijwerken",
-      "passphrase_length": "De wachtzin moet minimaal 6 tekens bevatten.",
-      "passphrase_match": "Wachtzinnen komen niet overeen.",
-      "setup_success": "Wachtzin veilig ingesteld.",
-      "email_mismatch": "E-mailadres komt niet overeen met onze gegevens.",
-      "avatar_fail": "Bijwerken van profielfoto mislukt.",
-      "setup_fail": "Configureren van wachtwoordzin mislukt.",
-      "update_fail": "Huidige wachtzin onjuist.",
-      "update_success": "Wachtzin succesvol bijgewerkt.",
-      "passphrase_incorrect": "Huidige wachtzin onjuist.",
-      "loading": "Laden..."
+      "welcome": "환영합니다, {name}님",
+      "subtitle": "프로필, 보안 환경설정 및 지급 설정을 관리하세요.",
+      "credit_score": "신용 점수",
+      "profile_title": "프로필 사진",
+      "upload_btn": "사진 업로드",
+      "upload_hint": "JPG 또는 PNG.",
+      "avatar_success": "프로필 사진이 업데이트되었습니다.",
+      "upload_fail": "이미지 업로드에 실패했습니다.",
+      "auth_title": "비밀번호 업데이트",
+      "current_pass": "현재 비밀번호",
+      "new_pass": "새 비밀번호",
+      "confirm_pass": "새 비밀번호 확인",
+      "save_pass": "비밀번호 저장",
+      "pass_update_success": "비밀번호가 성공적으로 업데이트되었습니다.",
+      "pass_update_fail": "비밀번호 업데이트에 실패했습니다.",
+      "pass_incorrect": "현재 비밀번호가 올바르지 않습니다.",
+      "passphrase_title": "지급 패스프레이즈",
+      "first_time_setup": "최초 설정 필요",
+      "passphrase_desc": "이 패스프레이즈는 개인 금융 키 역할을 하며, 지급 관리 포털에서 지급을 승인하는 데 필요합니다. 이 키를 처음 구성하려면 등록된 계정 이메일을 제공해야 합니다.",
+      "passphrase_update_desc": "개인 금융 키를 업데이트하세요. 이 키는 모든 표준 지급 요청을 승인하는 데 안전하게 요구됩니다.",
+      "account_region": "계정 지역",
+      "verify_email": "계정 이메일",
+      "new_passphrase": "새 패스프레이즈",
+      "confirm_passphrase": "패스프레이즈 확인",
+      "verify_btn": "구성",
+      "current_passphrase": "현재 패스프레이즈",
+      "update_btn": "패스프레이즈 업데이트",
+      "passphrase_length": "패스프레이즈는 6자 이상이어야 합니다.",
+      "passphrase_match": "패스프레이즈가 일치하지 않습니다.",
+      "setup_success": "패스프레이즈가 안전하게 구성되었습니다.",
+      "email_mismatch": "이메일이 기록과 일치하지 않습니다.",
+      "avatar_fail": "프로필 사진 업데이트에 실패했습니다.",
+      "setup_fail": "암호문을 구성하지 못했습니다.",
+      "update_fail": "현재 패스프레이즈가 올바르지 않습니다.",
+      "update_success": "패스프레이즈가 성공적으로 업데이트되었습니다.",
+      "passphrase_incorrect": "현재 패스프레이즈가 올바르지 않습니다.",
+      "loading": "불러오는 중..."
     },
     "referrals": {
-      "copy": "Kopiëren",
-      "title": "Verwijzingsprogramma",
-      "optional": "Optioneel",
-      "subtitle": "Het verwijzingsprogramma is een volledig optionele functie. Uw dagelijkse werkzaamheden, aanwezigheid en primaire uitbetalingen worden niet beïnvloed, ongeacht of u deelneemt.",
-      "your_id": "Uw Verwijzings-ID",
-      "id_desc": "Kopieer uw unieke verwijzings-ID hieronder. Deel het met iemand die baat kan hebben bij ons bedrijf en begin een verwijzingscommissie te verdienen op hun gegenereerde inkomsten.",
-      "overview_title": "Programmaoverzicht",
-      "overview_p1": "In plaats van traditionele reclame kiezen wij ervoor ons budget rechtstreeks terug te investeren in onze gemeenschap. Wanneer een in aanmerking komende gebruiker (de \"Verwijzer\") een nieuwe gebruiker (de \"Verwezene\") succesvol doorverwijst, verdient de Verwijzer een <strong>20% verwijzingscommissie</strong> op basis van de winst gegenereerd door de Verwezene.",
-      "overview_l1": "Deze verwijzingscommissie van 20% wordt volledig gesubsidieerd door het Bedrijf.",
-      "overview_l2": "De Verwezene behoudt 100% van zijn oorspronkelijke commissies.",
-      "overview_l3": "Alle verdiende verwijzingscommissies worden direct bijgeschreven op het grootboeksaldo van de Verwijzer.",
-      "mlm_title": "Uitsluitend Directe Verwijzingen (Geen MLM)",
-      "mlm_desc": "Onze verwijzingsstructuur is strikt één-op-één (1-op-1). Wij ondersteunen geen multi-level marketing (MLM) of gelaagde commissiestructuren. De Verwijzer heeft uitsluitend recht op commissies van de directe Verwezene die hij of zij succesvol heeft doorverwezen. Als de Verwezene vervolgens een derde partij doorverwijst, ontvangt de oorspronkelijke Verwijzer geen commissie van die gebruiker.",
-      "paused_title": "Openstaande Opdrachten & Gepauzeerde Commissies",
-      "paused_desc": "Verwijzingscommissies zijn alleen actief wanneer het account van de Verwezene in goede staat verkeert. Als een Verwezene een opdracht in de status \"in behandeling\" laat staan, wordt uw verwijzingscommissie van 20% van dat account gepauzeerd. Commissies die tijdens deze gepauzeerde periode zouden zijn gegenereerd, worden verbeurd en worden niet met terugwerkende kracht vrijgegeven. Zodra de Verwezene de openstaande opdracht voltooit, hervat uw commissie van 20% onmiddellijk voor al hun toekomstige voltooiingen.",
-      "eligibility_title": "Geschiktheid & Beperkingen",
-      "eligibility_l1": "<strong>Aanwezigheidsvereiste:</strong> Om de integriteit van het bedrijf te beschermen, moet een Verwijzer in totaal 14 aanwezigheidsdagen hebben opgebouwd sinds de aanmaak van het account voordat hij of zij een verwijzings-ID mag genereren of delen.",
-      "eligibility_l2": "<strong>Wachttermijn:</strong> Om kwalitatief hoogwaardige verwijzingen te waarborgen, mogen links slechts met één persoon tegelijk worden gedeeld. Na het succesvol koppelen van een nieuwe Verwezene geldt voor de Verwijzer een wachttermijn van 14 dagen voordat een volgende gebruiker mag worden doorverwezen.",
-      "eligibility_l3": "<strong>Fraude & Accountverbanning:</strong> Misbruik van het programma, waaronder het aanmaken van meerdere accounts voor zelf-verwijzing of het gebruik van frauduleuze methoden, is strikt verboden. Overtredingen leiden tot onmiddellijke verbeurdverklaring van alle verdiende commissies en een permanente ban van alle gekoppelde accounts."
+      "copy": "복사",
+      "title": "추천 프로그램",
+      "optional": "선택 사항",
+      "subtitle": "추천 프로그램은 완전히 선택적인 기능입니다. 참여 여부와 관계없이 일일 배정, 출석 및 기본 지급금에는 영향을 미치지 않습니다.",
+      "your_id": "귀하의 추천 ID",
+      "id_desc": "아래의 고유 추천 ID를 복사하세요. 당사에서 혜택을 받을 수 있는 사람과 공유하고, 그들이 창출한 수익에 대한 추천 수수료를 받기 시작하세요.",
+      "overview_title": "프로그램 개요",
+      "overview_p1": "당사는 전통적인 광고 대신 예산을 커뮤니티에 직접 재투자하는 방식을 택하고 있습니다. 자격을 갖춘 사용자(\"추천인\")가 새 사용자(\"피추천인\")를 성공적으로 추천하면, 추천인은 피추천인이 창출한 수익을 바탕으로 <strong>20%의 추천 수수료</strong>를 받게 됩니다.",
+      "overview_l1": "이 20% 추천 수수료는 회사에서 전액 보조합니다.",
+      "overview_l2": "피추천인은 자신의 원래 수수료 100%를 유지합니다.",
+      "overview_l3": "획득한 모든 추천 수수료는 추천인의 원장 잔액에 직접 입금됩니다.",
+      "mlm_title": "엄격한 직접 추천 (다단계 금지)",
+      "mlm_desc": "당사의 추천 구조는 엄격하게 일대일(1:1)입니다. 다단계 마케팅(MLM)이나 계층형 수수료 구조를 지원하지 않습니다. 추천인은 성공적으로 추천한 직접 피추천인으로부터만 수수료를 받을 권리가 있습니다. 피추천인이 이후 제3자를 추천하더라도, 원래 추천인은 해당 제3자 사용자로부터 수수료를 받지 않습니다.",
+      "paused_title": "대기 중인 배정 및 일시 중지된 수수료",
+      "paused_desc": "추천 수수료는 피추천인의 계정이 양호한 상태일 때만 활성화됩니다. 피추천인이 배정을 \"대기\" 상태로 두면, 해당 계정에서의 20% 추천 수수료는 일시 중지됩니다. 이 일시 중지 상태 동안 발생했을 수수료는 소멸되며 소급하여 지급되지 않습니다. 피추천인이 대기 중인 배정을 완료하면, 이후의 모든 완료 건에 대해 20% 추천 수수료가 즉시 재개됩니다.",
+      "eligibility_title": "자격 요건 및 제한 사항",
+      "eligibility_l1": "<strong>출석 요건:</strong> 회사의 무결성을 보호하기 위해, 추천인은 추천 ID를 생성하거나 공유할 권한을 부여받기 전에 계정 생성 이후 총 14일의 출석을 누적해야 합니다.",
+      "eligibility_l2": "<strong>재사용 대기 시간(Cooldown):</strong> 고품질 추천을 보장하기 위해 링크는 한 번에 한 사람에게만 공유할 수 있습니다. 새 피추천인을 성공적으로 연결하면, 추천인은 다른 사용자를 추천하기 전 14일의 대기 기간을 가집니다.",
+      "eligibility_l3": "<strong>사기 및 계정 정지:</strong> 자체 추천을 위한 다중 계정 생성이나 사기성 방법을 사용하는 등 프로그램 남용은 엄격히 금지됩니다. 위반 시 모든 수수료 수익이 즉시 몰수되며 관련 계정은 영구 정지됩니다."
     },
     "rewards": {
-      "welcome_bonus": "Welkomstbonus",
-      "coach_restricted": "Aanwezigheidsuitbetalingen en lidmaatschapsbonussen zijn niet van toepassing op coachaccounts.",
-      "welcome_desc": "Als nieuw lid is er bij registratie automatisch een <span class=\"font-semibold text-black dark:text-white\">Welkomstbonus van $20,00</span> bijgeschreven op uw beschikbare saldo. Deze bonus geeft u een voorsprong op uw verdiensten en wordt direct aan uw standaardsaldo toegevoegd.",
-      "salary_title": "Aanwezigheidsmilestonetracker",
-      "salary_desc": "Voltooi dagelijkse werkzaamheden om uw komende uitbetalingsmijlpalen te bereiken.",
-      "days": "Dagen",
-      "milestones": "Uitbetalingstijdlijn",
-      "perfect_attendance": "Volledige Aanwezigheids-KPI",
-      "perfect_desc": "Consistentie loont. Voltooi alle {days} dagelijkse werkzaamheden binnen de huidige maand om de Volledige Aanwezigheids-KPI te behalen. Dit past automatisch een <span class=\"font-semibold text-black dark:text-white\">+15% Basis Uitbetalingsmultiplicator</span> toe op uw verdiensten voor de cyclus. <br><br><strong class=\"text-[#444] dark:text-[#ccc] font-medium\">Hoe het werkt:</strong> De multiplicator wordt uitsluitend toegepast op uw geaccumuleerde basisuitbetalingen. Als uw totale basisuitbetalingen bijvoorbeeld $1.200 bedragen, voegt de +15% multiplicator $180 extra toe, waardoor uw uiteindelijke basisuitbetaling uitkomt op $1.380. (Let op: Overige verdiensten worden afzonderlijk berekend en worden niet beïnvloed door deze multiplicator).",
-      "promotions": "Tijdelijk Bonusevenementen",
-      "promo_desc": "Bonusevenementen zijn speciale, tijdelijke kansen die af en toe voorkomen. Wanneer actief, verschijnen ze hier voor een beperkte duur om u de kans te geven exclusieve beloningen te verdienen. Kom regelmatig terug voordat ze verlopen!",
-      "fetching_promos": "Actieve promoties ophalen...",
-      "no_promos": "Er zijn momenteel geen actieve evenementen.",
-      "full_attendance_kpi": "Volledige Aanwezigheids-KPI",
-      "milestone_day": "Mijlpaal: Dag {day}",
-      "next_upcoming": "Volgende Komende Uitbetaling",
-      "credited": "Bijgeschreven op Saldo",
-      "scheduled": "Gepland",
-      "base_multiplier": "+15% Basismultiplicator",
-      "sign_success_title": "Inchecken geslaagd",
-      "sign_success_today": "Vandaag ingecheckt om",
-      "sign_success_streak": "Huidige reeks"
+      "welcome_bonus": "환영 보너스",
+      "coach_restricted": "출석 보상 및 멤버십 보너스는 코치 계정에는 적용되지 않습니다.",
+      "welcome_desc": "신규 회원으로서 등록 시 <span class=\"font-semibold text-black dark:text-white\">$20.00의 환영 보너스</span>가 사용 가능한 잔액으로 자동 입금되었습니다. 이 보너스는 수익 창출의 시작을 돕기 위해 제공되며 기본 잔액에 직접 추가됩니다.",
+      "salary_title": "출석 마일스톤 트래커",
+      "salary_desc": "다가오는 지급 마일스톤에 도달하려면 일일 배정을 완료하세요.",
+      "days": "일",
+      "milestones": "지급 타임라인",
+      "perfect_attendance": "만근 KPI",
+      "perfect_desc": "일관성은 보상을 가져옵니다. 이번 달 내에 {days}일의 일일 배정을 모두 완료하여 만근 KPI를 달성하세요. 그러면 해당 사이클의 수익에 자동으로 <span class=\"font-semibold text-black dark:text-white\">+15% 기본 지급 승수</span>가 적용됩니다. <br><br><strong class=\"text-[#444] dark:text-[#ccc] font-medium\">작동 방식:</strong> 이 승수는 누적된 기본 지급금에만 독점적으로 적용됩니다. 예를 들어, 총 기본 지급금이 $1,200인 경우 +15% 승수로 $180가 추가되어 최종 기본 지급금 총액은 $1,380가 됩니다. (참고: 기타 수익은 별도로 계산되며 이 승수의 영향을 받지 않습니다).",
+      "promotions": "기간 한정 보너스 이벤트",
+      "promo_desc": "보너스 이벤트는 가끔 발생하는 특별하고 일시적인 기회입니다. 활성화되면 한정된 기간 동안 여기에 표시되어 독점 보상을 얻을 기회를 제공합니다. 만료되기 전에 주기적으로 확인하세요!",
+      "fetching_promos": "활성 프로모션 불러오는 중...",
+      "no_promos": "현재 활성화된 이벤트가 없습니다.",
+      "full_attendance_kpi": "만근 KPI",
+      "milestone_day": "마일스톤: {day}일차",
+      "next_upcoming": "다음 예정된 지급",
+      "credited": "잔액에 입금됨",
+      "scheduled": "예정됨",
+      "base_multiplier": "+15% 기본 승수",
+      "sign_success_title": "체크인 성공",
+      "sign_success_today": "오늘 체크인 시간",
+      "sign_success_streak": "현재 연속 출석"
     },
     "assignments": {
-      "title": "Actieve Productallocaties",
-      "product_visual": "Productvisualisatie",
-      "subtitle": "Geautomatiseerde Gegevensverwerking & Financieel Grootboek",
-      "ledger_balance": "Totaal Grootboeksaldo",
-      "ledger_desc": "Kernoperationele middelen, inclusief winst.",
-      "outstanding": "Openstaand Saldo",
-      "outstanding_desc": "Het financieringstekort dat vereist is om de openstaande opdracht te vereffenen.",
-      "current_balance": "Huidige Accountwaarde",
-      "current_balance_desc": "Totaal grootboeksaldo geprojecteerd met de openstaande actieve opdracht.",
-      "cycle_profit": "Huidige Cycluswinst",
-      "cycle_profit_desc": "Deze berekening wordt bijgewerkt aan het begin van elke nieuwe cyclus. Alle winst wordt vervolgens aan het totale grootboeksaldo toegevoegd.",
-      "yield_rate": "Rendementspercentage",
-      "schema_sync": "Productgegevenssynchronisatie",
-      "quota_remaining": "{current} Resterend",
-      "sync_desc": "Maak een beveiligde verbinding met de allocatiepool om de volgende beschikbare gestructureerde dataset te synchroniseren en te inspecteren vóór grootboekverwerking.",
-      "syncing": "Synchroniseren...",
-      "sync_btn": "Volgend Product Synchroniseren",
-      "timestamp_id": "Tijdstempel-ID",
-      "reference": "Referentie",
-      "asset_value": "Activawaarde",
-      "yield": "Rendement",
-      "verifying": "Grootboek verifiëren...",
-      "proceed_btn": "Doorgaan naar Uploaden",
-      "idle": "Gegevensweergave inactief. Synchroniseer een structurele database.",
-      "recent_activity": "Recente Activiteit",
-      "no_activity": "Geen recente activiteit.",
-      "asset": "Activa",
-      "collapse": "Inklappen",
-      "view_all": "Alle Activiteit Bekijken",
-      "pending_schema_error": "Upload het openstaande product voordat u doorgaat naar het volgende.",
-      "sync_error": "De cyclus is voltooid.",
-      "sync_network_error": "Netwerkfout opgetreden tijdens synchronisatie.",
-      "upload_outstanding_error": "Uploaden niet mogelijk.",
-      "corrupted_file": "Beschadigd bestand.",
-      "upload_error": "Uploaden niet mogelijk.",
-      "upload_network_error": "Netwerkfout opgetreden tijdens uploaden.",
-      "status_success": "Geslaagd",
-      "status_pending": "In Behandeling",
-      "status_corrupted": "Beschadigd",
-      "submit_order": "Indienen",
-      "action": "Actie",
-      "unable_to_start": "Kan niet starten."
+      "title": "활성 제품 할당",
+      "product_visual": "제품 시각 자료",
+      "subtitle": "자동화된 데이터 처리 및 금융 원장",
+      "ledger_balance": "총 원장 잔액",
+      "ledger_desc": "수익을 포함한 핵심 운영 자금입니다.",
+      "outstanding": "미결제 잔액",
+      "outstanding_desc": "대기 중인 배정을 결제하는 데 필요한 부족 자금입니다.",
+      "current_balance": "현재 계정 가치",
+      "current_balance_desc": "대기 중인 활성 배정이 포함된 총 원장 잔액의 예상치입니다.",
+      "cycle_profit": "현재 사이클 수익",
+      "cycle_profit_desc": "이 계산은 각 새 사이클이 시작될 때 업데이트됩니다. 이후 모든 수익은 총 원장 잔액에 추가됩니다.",
+      "yield_rate": "수익률",
+      "schema_sync": "제품 데이터 동기화",
+      "quota_remaining": "남은 횟수: {current}",
+      "sync_desc": "원장 실행 전에 다음 사용 가능한 구조화된 데이터세트를 동기화하고 검사하기 위해 할당 풀에 대한 안전한 연결을 설정합니다.",
+      "syncing": "동기화 중...",
+      "sync_btn": "다음 제품 동기화",
+      "timestamp_id": "타임스탬프 ID",
+      "reference": "참조",
+      "asset_value": "자산 가치",
+      "yield": "수익",
+      "verifying": "원장 확인 중...",
+      "proceed_btn": "업로드 진행",
+      "idle": "데이터 보기 유휴 상태. 구조적 데이터베이스를 동기화해 주세요.",
+      "recent_activity": "최근 활동",
+      "no_activity": "최근 활동이 없습니다.",
+      "asset": "자산",
+      "collapse": "접기",
+      "view_all": "모든 활동 보기",
+      "pending_schema_error": "다음으로 진행하기 전에 대기 중인 제품을 업로드해 주세요.",
+      "sync_error": "사이클이 완료되었습니다.",
+      "sync_network_error": "동기화 중 네트워크 오류가 발생했습니다.",
+      "upload_outstanding_error": "업로드할 수 없습니다.",
+      "corrupted_file": "손상된 파일입니다.",
+      "upload_error": "업로드할 수 없습니다.",
+      "upload_network_error": "업로드 중 네트워크 오류가 발생했습니다.",
+      "status_success": "성공",
+      "status_pending": "대기 중",
+      "status_corrupted": "손상됨",
+      "submit_order": "제출",
+      "action": "작업",
+      "unable_to_start": "시작할 수 없습니다."
     },
     "payouts": {
-      "default_desc": "Uitbetaling",
-      "title": "Uitbetalingen Beheren",
-      "confirm_title": "Uitbetalingsgegevens bevestigen",
-      "review_desc": "Controleer uw bestemmingsgegevens zorgvuldig.",
-      "disclaimer": "Door door te gaan, bevestig ik dat de onderstaande gegevens strikt accuraat zijn en dat de ontvangende rekening/wallet volledig van mij is. Ik erken dat transacties definitief zijn en niet kunnen worden teruggedraaid zodra ze zijn verwerkt.",
-      "method": "Methode/Token",
-      "confirm_btn": "Ik ga akkoord & Verzenden",
-      "account_name": "Naam rekeninghouder",
-      "name_required": "Naam houder is verplicht.",
-      "crypto_required": "Vul a.u.b. de token en het wallet-adres in voor uitbetalingen van getokeniseerde activa.",
-      "invalid_wallet": "Ongeldig wallet-adresformaat voor het geselecteerde tokennetwerk.",
-      "wallet_saved": "Wallet-adres veilig opgeslagen.",
-      "saving": "Opslaan...",
-      "edit_address": "Adres bewerken",
-      "save_address": "Adres opslaan",
-      "invalid_btc": "Ongeldig Bitcoin-adresformaat.",
-      "invalid_erc20": "Ongeldig ERC20-adres. Moet beginnen met 0x en 42 tekens lang zijn.",
-      "wallet_save_failed": "Falha ao salvar o endereço da carteira. Por favor, tente novamente.",
-      "wallet_already_used": "Este endereço de carteira já está sendo usado por outra conta.",
-      "ledger_balance": "Grootboeksaldo",
-      "bank_country": "Bankland / Regio",
-      "available_methods": "Beschikbare Uitbetalingsmethoden",
-      "unavailable": "Momenteel niet beschikbaar",
-      "tokenized": "Getokeniseerd Actief",
-      "manual_config": "Handmatige netwerkconfiguratie",
-      "token": "Token",
-      "token_placeholder": "bijv. ETH",
-      "network": "Netwerk",
-      "network_placeholder": "bijv. ERC-20",
-      "wallet_address": "Portemonnee-adres",
-      "amount": "Bedrag",
-      "passphrase": "Uitbetalingswachtzin",
-      "processing": "Verwerken...",
-      "withdraw_btn": "Uitbetaling Aanvragen",
-      "history_title": "Recente Transacties",
-      "th_date": "Tijdstempel-ID",
-      "th_method": "Omschrijving",
-      "th_amount": "Bedrag",
-      "th_status": "Status",
-      "status_success": "Geslaagd",
-      "status_pending": "In Behandeling",
-      "status_declined": "Geweigerd",
-      "welcome_bonus_desc": "Welkomstbonus",
-      "fill_required": "Vul alle verplichte velden in om een uitbetaling aan te vragen.",
-      "exceeds_balance": "Het aangevraagde bedrag overschrijdt uw beschikbare grootboeksaldo.",
-      "request_success": "Uw uitbetalingsverzoek is succesvol ingediend. U kunt de status ervan volgen in uw recente transacties.",
-      "passphrase_error": "Onjuiste uitbetalingswachtzin.",
-      "request_error": "Uitbetaling aanvragen mislukt.",
-      "network_error": "Netwerkfout opgetreden bij het aanvragen van de uitbetaling.",
-      "action_denied_quota": "Uitbetalingsverzoeken kunnen alleen worden ingediend na volledige voltooiing van de cyclus.",
-      "min_withdrawal": "Er geldt een minimaal uitbetalingsbedrag van $10."
+      "default_desc": "지급",
+      "title": "지급 관리",
+      "confirm_title": "지급 세부 정보 확인",
+      "review_desc": "수취인 세부 정보를 주의 깊게 검토해 주세요.",
+      "disclaimer": "계속 진행함으로써, 본인은 아래 제공된 세부 정보가 정확하며 수취 계좌/지갑이 전적으로 본인 소유임을 확인합니다. 거래는 최종적이며 일단 처리되면 되돌릴 수 없음을 인정합니다.",
+      "method": "방법/토큰",
+      "confirm_btn": "동의 및 제출",
+      "account_name": "예금주명",
+      "name_required": "예금주명은 필수 항목입니다.",
+      "crypto_required": "토큰화된 자산 지급을 위해 토큰 및 지갑 주소를 작성해 주세요.",
+      "invalid_wallet": "선택한 토큰 네트워크의 지갑 주소 형식이 잘못되었습니다.",
+      "wallet_saved": "지갑 주소가 안전하게 저장되었습니다.",
+      "saving": "저장 중...",
+      "edit_address": "주소 편집",
+      "save_address": "주소 저장",
+      "invalid_btc": "잘못된 비트코인 주소 형식입니다.",
+      "invalid_erc20": "잘못된 ERC20 주소입니다. 0x로 시작해야 하며 길이가 42자여야 합니다.",
+      "wallet_save_failed": "지갑 주소를 저장하지 못했습니다. 다시 시도해 주세요.",
+      "wallet_already_used": "이 지갑 주소는 다른 계정에서 이미 사용 중입니다.",
+      "ledger_balance": "원장 잔액",
+      "bank_country": "은행 국가 / 지역",
+      "available_methods": "사용 가능한 지급 방법",
+      "unavailable": "현재 사용할 수 없음",
+      "tokenized": "토큰화된 자산",
+      "manual_config": "수동 네트워크 구성",
+      "token": "토큰",
+      "token_placeholder": "예: ETH",
+      "network": "네트워크",
+      "network_placeholder": "예: ERC-20",
+      "wallet_address": "지갑 주소",
+      "amount": "금액",
+      "passphrase": "지급 패스프레이즈",
+      "processing": "처리 중...",
+      "withdraw_btn": "지급 요청",
+      "history_title": "최근 거래",
+      "th_date": "타임스탬프 ID",
+      "th_method": "설명",
+      "th_amount": "금액",
+      "th_status": "상태",
+      "status_success": "성공",
+      "status_pending": "대기 중",
+      "status_declined": "거절됨",
+      "welcome_bonus_desc": "환영 보너스",
+      "fill_required": "지급을 요청하려면 모든 필수 필드를 작성해 주세요.",
+      "exceeds_balance": "요청한 금액이 사용 가능한 원장 잔액을 초과합니다.",
+      "request_success": "지급 요청이 성공적으로 제출되었습니다. 최근 거래에서 상태를 추적할 수 있습니다.",
+      "passphrase_error": "잘못된 지급 패스프레이즈입니다.",
+      "request_error": "지급 요청에 실패했습니다.",
+      "network_error": "지급 요청 중 네트워크 오류가 발생했습니다.",
+      "action_denied_quota": "지급 요청은 사이클을 완전히 완료한 후에만 제출할 수 있습니다.",
+      "min_withdrawal": "최소 지급 금액은 $10입니다."
     },
     "regions": {
-      "us": "Verenigde Staten",
-      "uk": "Verenigd Koninkrijk",
-      "ca": "Canada",
-      "eu": "Europa (Eurozone)",
-      "es": "Spanje",
-      "hk": "Hongkong",
-      "jp": "Japan",
-      "kr": "Zuid-Korea",
-      "sg": "Singapore",
-      "th": "Thailand",
-      "wire_us": "Overboeking / ACH",
-      "wire_uk": "BACS / Overboeking",
-      "wire_ca": "Interac / Overboeking",
-      "wire_eu": "SEPA-overboeking",
-      "bank_name": "Banknaam",
-      "bank_name_jp": "Banknaam",
-      "bank_code": "Bankcode",
-      "branch_code": "Filiaalcode",
-      "branch_code_jp": "Filiaalcode",
-      "account_num": "Rekeningnummer",
-      "account_num_jp": "Rekeningnummer",
-      "account_type_jp": "Rekeningtype",
-      "placeholder_hsbc": "bijv. HSBC, Hang Seng",
-      "placeholder_3digit": "3-cijferige code",
-      "placeholder_4digit": "4-cijferige code",
-      "placeholder_account": "Voer rekeningnummer in",
-      "placeholder_mufg": "bijv. Mitsubishi UFJ",
-      "placeholder_futsu": "bijv. Futsu (Gewoon)",
-      "placeholder_7digit": "7-cijferig nummer",
-      "placeholder_nodash": "Invoeren zonder streepjes",
-      "placeholder_dbs": "bijv. DBS, UOB, OCBC",
-      "placeholder_kasikorn": "bijv. Kasikorn, SCB, Bangkok Bank"
+      "us": "미국",
+      "uk": "영국",
+      "ca": "캐나다",
+      "eu": "유럽(유로존)",
+      "es": "스페인",
+      "hk": "홍콩",
+      "jp": "일본",
+      "kr": "대한민국",
+      "sg": "싱가포르",
+      "th": "태국",
+      "wire_us": "계좌 이체 / ACH",
+      "wire_uk": "BACS / 계좌 이체",
+      "wire_ca": "Interac / 계좌 이체",
+      "wire_eu": "SEPA 이체",
+      "bank_name": "은행 이름",
+      "bank_name_jp": "은행 이름",
+      "bank_code": "은행 코드",
+      "branch_code": "지점 코드",
+      "branch_code_jp": "지점 코드",
+      "account_num": "계좌 번호",
+      "account_num_jp": "계좌 번호",
+      "account_type_jp": "계좌 유형",
+      "placeholder_hsbc": "예: HSBC, Hang Seng",
+      "placeholder_3digit": "3자리 코드",
+      "placeholder_4digit": "4자리 코드",
+      "placeholder_account": "계좌 번호를 입력하세요",
+      "placeholder_mufg": "예: Mitsubishi UFJ",
+      "placeholder_futsu": "예: Futsu (Ordinary)",
+      "placeholder_7digit": "7자리 숫자",
+      "placeholder_nodash": "대시 없이 입력하세요",
+      "placeholder_dbs": "예: DBS, UOB, OCBC",
+      "placeholder_kasikorn": "예: Kasikorn, SCB, Bangkok Bank"
     }
   },
   "contact": {
-    "title": "Neem Contact Op",
-    "subtitle": "We horen graag van u.",
-    "fill_required": "Vul alle verplichte velden in.",
-    "name": "Naam",
-    "email": "E-mailadres",
-    "message": "Bericht",
-    "submit": "Verzenden",
-    "success": "Bericht succesvol verzonden.",
-    "modal_title": "Bericht Verzonden",
-    "modal_msg": "Bedankt voor uw bericht. We hebben uw bericht ontvangen.",
-    "btn_close": "Sluiten",
-    "error_title": "Verzenden Mislukt",
-    "error_send": "We konden uw bericht niet verzenden. Probeer het later opnieuw."
+    "title": "문의하기",
+    "subtitle": "여러분의 의견을 듣고 싶습니다.",
+    "fill_required": "모든 필수 필드를 작성해 주세요.",
+    "name": "이름",
+    "email": "이메일",
+    "message": "메시지",
+    "submit": "보내기",
+    "success": "메시지가 성공적으로 전송되었습니다.",
+    "modal_title": "메시지 전송됨",
+    "modal_msg": "문의해 주셔서 감사합니다. 귀하의 메시지가 접수되었습니다.",
+    "btn_close": "닫기",
+    "error_title": "전송 실패",
+    "error_send": "메시지를 보낼 수 없습니다. 나중에 다시 시도해 주세요."
   },
   "home": {
     "hero": {
-      "title": "Nul configuratie<br>voor gestructureerde data. Breng uw schema's direct in kaart.",
-      "subtitle": "Een besturingscentrum voor semantische data met realtime schemavalidatie en entiteitsinzichten."
+      "title": "구조화된 데이터를 위한<br>제로 구성. 스키마를 즉시 매핑하세요.",
+      "subtitle": "실시간 스키마 유효성 검사 및 엔터티 통찰력을 제공하는 시맨틱 데이터용 미션 컨트롤."
     },
     "meta": {
-      "title": "The Structured Data Company | Het Schema-Infrastructuurplatform",
-      "description": "Het uniforme platform voor gestructureerde data en schemabeheer — helderheid en semantische betekenis voor uw frontend."
+      "title": "The Structured Data Company | 스키마 인프라 플랫폼", 
+      "description": "프런트엔드에 명확성과 시맨틱 의미를 제공하는 구조화된 데이터 및 스키마 관리를 위한 통합 플랫폼."
     },
     "partners": {
-      "trusted_prefix": "Vertrouwd door de beste",
-      "trusted_suffix": "teams.",
+      "trusted_prefix": "최고의 팀들이 신뢰합니다.",
+      "trusted_suffix": "",
       "typewriter": {
-        "web_apps": "kennisgrafen",
-        "ecommerce": "gekoppelde data",
-        "marketing": "semantische SEO",
-        "education": "datacatalogi",
-        "security": "identiteitsschema's",
-        "finance": "financiële ontologieën",
-        "healthcare": "klinische data",
-        "software": "API-schema's",
-        "ai": "LLM-trainingsdata"
+        "web_apps": "지식 그래프",
+        "ecommerce": "연결된 데이터",
+        "marketing": "시맨틱 SEO",
+        "education": "데이터 카탈로그",
+        "security": "신원 스키마",
+        "finance": "금융 온톨로지",
+        "healthcare": "임상 데이터",
+        "software": "API 스키마",
+        "ai": "LLM 훈련 데이터"
       }
     },
     "workflow": {
-      "origin": "Oorsprong",
+      "origin": "오리진",
       "tracking": {
-        "eyebrow": "Validatie",
-        "title": "Schema-integriteit",
-        "desc": "Visualiseer realtime gegevensvalidatie en schemabetrouwbaarheid via een duidelijk, intuïtief overzicht. Detecteer afwijkingen snel en blijf geïnformeerd met live structurele inzichten."
+        "eyebrow": "유효성 검사",
+        "title": "스키마 무결성",
+        "desc": "직관적이고 명확한 보기를 통해 실시간 데이터 유효성 검사 및 스키마 상태를 시각화합니다. 드리프트를 신속하게 파악하고 실시간 구조적 통찰력으로 지속적으로 정보를 확인하세요."
       },
       "processing": {
-        "eyebrow": "Integratie",
-        "title": "Semantische Mapping",
-        "desc": "Houd uw dataschema's realtime gesynchroniseerd over alle wereldwijde instanties. Zorg voor consistente typen, soepele integratie en betrouwbare datalevering overal."
+        "eyebrow": "통합",
+        "title": "시맨틱 매핑",
+        "desc": "모든 글로벌 인스턴스에서 데이터 스키마를 실시간으로 동기화 상태로 유지합니다. 일관된 유형, 원활한 통합, 신뢰할 수 있는 데이터 전송을 보장합니다."
       },
       "unifying": {
-        "eyebrow": "Register",
-        "title": "Het Schemaregister",
-        "desc": "Centraliseer schema's, JSON-LD-fragmenten en datamodellen in één unified dashboard. Verminder fragmentatie en beheer elke relevante entiteit vanuit één plek."
+        "eyebrow": "레지스트리",
+        "title": "스키마 레지스트리",
+        "desc": "단일 통합 대시보드에서 스키마, JSON-LD 조각, 데이터 모델을 중앙 집중화합니다. 단편화를 줄이고 중요한 모든 엔터티를 한 곳에서 관리하세요."
       }
     },
     "security": {
-      "main_title": "Ingebouwde databeveiliging. Voor iedereen inbegrepen.",
-      "main_subtitle": "Onze semantische firewall biedt systeembrede bescherming en beveiligt standaard uw datastructuren.",
+      "main_title": "내장된 데이터 보안. 모두에게 포함되어 있습니다.",
+      "main_subtitle": "당사의 시맨틱 방화벽은 기본적으로 데이터 구조를 보호하는 시스템 전반의 보호 기능을 제공합니다.",
       "firewall": {
-        "title": "Datafirewall",
-        "subtitle": "Robuuste bescherming aan de rand",
-        "desc": "Ons wereldwijde randnetwerk absorbeert volumetrische aanvallen onmiddellijk, zodat uw dataoorsprong onzichtbaar en onberoerd blijft door kwaadaardig verkeer."
+        "title": "데이터 방화벽",
+        "subtitle": "엣지에서의 탄력적인 보호",
+        "desc": "글로벌 엣지 네트워크는 대용량 공격을 즉시 흡수하여 데이터 원본이 악성 트래픽으로부터 눈에 띄지 않고 그대로 유지되도록 합니다."
       },
       "waf": {
-        "title": "Semantische Bewaker",
-        "subtitle": "Beschermt dataverkeer tegen bedreigingen",
-        "desc": "Intelligente filtering analyseert inkomende pakketten in realtime en blokkeert injectie en misvormde entiteiten voordat ze uw dataopslag bereiken."
+        "title": "시맨틱 가드",
+        "subtitle": "위협으로부터 데이터 트래픽 보호",
+        "desc": "지능형 필터링은 수신되는 패킷을 실시간으로 분석하여 데이터 저장소에 도달하기 전에 주입 및 잘못된 엔터티를 차단합니다."
       },
       "workspace": {
-        "title": "Toegangsbeheer",
-        "subtitle": "Vertrouwde schematoegang voor teams",
-        "desc": "Zero-trust architectuur zorgt ervoor dat alleen geauthenticeerde gebruikers en conforme apparaten uw interne hulpmiddelen en databronnen kunnen aanpassen."
+        "title": "접근 제어",
+        "subtitle": "팀을 위한 신뢰할 수 있는 스키마 접근",
+        "desc": "제로 트러스트 아키텍처는 인증된 사용자와 규정을 준수하는 기기만이 내부 도구 및 데이터 리소스를 수정할 수 있도록 보장합니다."
       }
     },
     "code": {
-      "title": "Eenvoud voorop, altijd.",
-      "desc": "Intuïtieve dashboards, visuele schemabouwers en uitgebreide handleidingen die naadloos in uw bestaande werkproces passen zonder één regel code te schrijven."
+      "title": "항상 단순함을 최우선으로.",
+      "desc": "코드 한 줄 작성하지 않고도 기존 워크플로에 딱 맞는 직관적인 대시보드, 시각적 스키마 빌더, 포괄적인 가이드를 제공합니다."
     },
     "stats": {
-      "lines_code": "Dagelijks in kaart gebrachte data-entiteiten",
-      "languages": "Ondersteunde schematypes en semantische woordenschatten",
-      "downloads": "Downloads van schemapakketten"
+      "lines_code": "매일 매핑되는 데이터 엔터티",
+      "languages": "지원되는 스키마 유형 및 시맨틱 어휘",
+      "downloads": "스키마 패키지 다운로드 수"
     },
     "fluid": {
-      "title": "Zelfherstellende schemabewerkingen.",
-      "desc": "Automatiseer de metadata. Door AI aangedreven intelligentie suggereert en past proactief de juiste schematypes, eigenschapslabels en relatiekaarten toe.",
-      "ai_detection": "Entiteitsdetectie",
+      "title": "자가 치유 스키마 운영.",
+      "desc": "메타데이터를 자동화하세요. AI 기반 인텔리전스가 올바른 스키마 유형, 속성 레이블 및 관계 매핑을 선제적으로 제안하고 적용합니다.",
+      "ai_detection": "엔터티 감지",
       "assign": {
-        "header": "Type Gedetecteerd",
-        "sub": "Eigenschappen analyseren...",
-        "action": "Voorgesteld: Schema.org/Person (98%)"
+        "header": "유형 감지됨",
+        "sub": "속성 분석 중...",
+        "action": "권장: Schema.org/Person (98%)"
       },
       "label": {
-        "header": "Contextanalyse",
-        "sub": "Woordenschat scannen...",
-        "action": "Toegepast: [Semantisch] [Vereist]"
+        "header": "컨텍스트 분석",
+        "sub": "어휘 스캔 중...",
+        "action": "적용됨: [Semantic] [Required]"
       },
       "route": {
-        "header": "Verzoek Mappen",
-        "sub": "Ontologieën afstemmen...",
-        "action": "Verzonden naar: Data Engineering"
+        "header": "매핑 요청",
+        "sub": "온톨로지 매칭 중...",
+        "action": "데이터 엔지니어링으로 전송됨"
       }
     },
-    "cta": "Bouw iets zinvols.",
+    "cta": "의미 있는 것을 구축하세요.",
     "footer": {
-      "about_title": "Over Ons",
-      "sf_title": "Verenigd Koninkrijk",
+      "about_title": "회사 소개",
+      "sf_title": "영국",
       "sf_address": "C/O Chalk Hill Barn Office 1 Upstairs<br>Yew Tree Farm, Stone Street, Stanford, Kent<br>England, TN25 6DH",
       "london_title": "",
       "london_address": "",
-      "mission": "The Structured Data Company is op 22 november 2024 door Kelly Sheppard opgericht in Kent, VK, en is een van de weinige toegewijde bureaus voor schema-markup in het VK. Het is gespecialiseerd in op maat gemaakte, handgeschreven gestructureerde data-markup, die bedrijven helpt hun wereldwijde zichtbaarheid te vergroten en organisch verkeer te genereren door middel van entiteit-gebaseerde gestructureerde datastrategieën.",
-      "copyright": "&copy; 2026 The Structured Data Company Limited. Alle rechten voorbehouden.",
-      "status": "Alle systemen normaal.",
+      "mission": "The Structured Data Company는 2024년 11월 22일 영국 켄트에서 켈리 셰퍼드(Kelly Sheppard)에 의해 설립되었으며, 영국 내 유일한 스키마 마크업 전문 대행사 중 하나입니다. 맞춤형 수작업 구조화된 데이터 마크업을 전문으로 하며, 개체 기반 구조화된 데이터 전략을 통해 기업이 글로벌 가시성을 높이고 자연 트래픽을 유도할 수 있도록 지원합니다.",
+      "copyright": "&copy; 2026 The Structured Data Company Limited. 판권 소유.",
+      "status": "모든 시스템 정상.",
       "links": {
-        "terms": "Servicevoorwaarden",
-        "privacy": "Privacybeleid",
-        "cookies": "Cookiebeleid",
-        "legal": "Juridisch en Registratie"
+        "terms": "서비스 약관",
+        "privacy": "개인정보 처리방침",
+        "cookies": "쿠키 정책",
+        "legal": "법적 고지 및 등록"
       }
     }
   },
   "terms": {
     "sidebar": {
-      "title": "Juridisch Centrum",
-      "tos": "Servicevoorwaarden",
-      "privacy": "Privacybeleid",
-      "cookies": "Cookiebeleid",
-      "registration": "Juridisch & Registratie"
+      "title": "법무 센터",
+      "tos": "서비스 약관",
+      "privacy": "개인정보 처리방침",
+      "cookies": "쿠키 정책",
+      "registration": "법적 고지 및 등록"
     },
-    "title": "Juridisch",
+    "title": "법무",
     "tos": {
-      "title": "Servicevoorwaarden",
-      "last_updated": "Laatst herzien op 2 mei 2024",
-      "content": "Bij The Structured Data Company zetten wij ons sterk in voor de bescherming en het respecteren van uw privacy. Dit Privacybeleid (\"Privacybeleid\") is van toepassing op uw toegang tot en gebruik van deze website (de \"Website\") evenals de bijbehorende inhoud, software en mobiele applicaties (gezamenlijk de \"Dienst\"). Dit Privacybeleid legt uit wanneer, waarom en hoe we persoonlijke informatie verzamelen en gebruiken over de bedrijven en alledaagse gebruikers die onze Website bezoeken of onze Diensten gebruiken, de voorwaarden waaronder we uw persoonlijke informatie aan anderen kunnen verstrekken, en hoe we uw persoonlijke informatie veilig houden. We kunnen dit Privacybeleid van tijd tot tijd wijzigen. Door onze Website of onze Diensten te gebruiken, gaat u ermee akkoord gebonden te zijn aan dit Privacybeleid. Lees dit Beleid zorgvuldig door. Wij zijn toegewijd aan het beschermen van uw privacy door onze naleving van de voorwaarden van dit Beleid.<br><br><strong>WERELDWIJDE TOEPASSELIJKHEID & JURISDICTIES</strong><br>Wij opereren internationaal. Ongeacht waar ons hoofdkantoor is gevestigd, zijn wij toegewijd aan het naleven van de toepasselijke privacywetten en -regelgeving van het land of de regio van waaruit u toegang krijgt tot onze Diensten (zoals de AVG voor gebruikers in de Europese Economische Ruimte, of de CCPA voor gebruikers in Californië). Uw rechten met betrekking tot uw persoonlijke gegevens worden gerespecteerd in overeenstemming met uw lokale jurisdictie.<br><br><strong>WIJZIGINGEN</strong><br>Het Bedrijf (\"wij\" of \"ons\") kan dit privacybeleid wijzigen, en als we er wezenlijke wijzigingen in aanbrengen, zullen we dit via onze diensten of op andere manieren laten weten, om u de kans te geven de wijzigingen te bekijken voordat ze van kracht worden. Als u bezwaar heeft tegen eventuele wijzigingen, kunt u uw account sluiten. U erkent dat uw voortgezet gebruik van onze diensten nadat wij een kennisgeving over onze wijzigingen in dit privacybeleid hebben gepubliceerd of verzonden, betekent dat het verzamelen, gebruiken en delen van uw persoonlijke gegevens onderworpen is aan het bijgewerkte privacybeleid vanaf de ingangsdatum ervan.<br><br><strong>ACCOUNT AANMAKEN</strong><br>Om een account aan te maken als bedrijf of als alledaagse gebruiker, moet u gegevens verstrekken, waaronder uw e-mailadres en/of mobiele nummer, uw geboortejaar om uw leeftijd te verifiëren en een zelf ingesteld wachtwoord. Bij het verzamelen van persoonlijke informatie, verzamelen we deze binnen de noodzakelijke grenzen, en de verzameling zal worden uitgevoerd met prioriteit om wettigheid en eerlijkheid te waarborgen.<br><br><strong>INFORMATIE DIE WE VERZAMELEN</strong><br>We kunnen uw persoonlijke informatie direct van u verzamelen of van andere entiteiten waarmee wij samenwerken, zoals verkopers, gebruikers, overheidsinstanties, publieke of overheidsorganisaties, of ons eigen Bedrijf. Persoonlijke informatie die we verzamelen, gebruiken en openbaar maken, omvat:<br><br>a. Contactgegevens, zoals uw naam, e-mailadres en telefoonnummer;<br><br>b. Identiteitsgegevens zoals uw nationaliteit;<br><br>c. Geboortejaar, wat vereist is om uw leeftijd te verifiëren;<br><br>d. Informatie die vereist is onder toepasselijke wet- en regelgeving, professionele verplichtingen, intern beleid en risicobeheerprocedures, zoals verplichtingen tot het bijhouden van gegevens, fraudepreventie, auditdoeleinden, nalevingsscreening en due diligence, sanctieregimes en gerechtelijke bevelen, hetzij in daarvoor in aanmerking komende Regio's of elders;<br><br>e. Informatie met betrekking tot informatie- en communicatietechnologiesystemen en -processen, kantoorapparatuur en -faciliteiten; en<br><br>f. Foto's en andere audiovisuele informatie.<br><br>Als u de persoonlijke informatie van een ander individu aan ons verstrekt, bevestigt u dat deze waar en correct is, dat alle noodzakelijke toestemmingen zijn verkregen, of dat u anderszins bevoegd bent om dergelijke persoonlijke informatie aan ons te verstrekken.<br><br><strong>HOE WE UW PERSOONLIJKE INFORMATIE GEBRUIKEN</strong><br>Hoe we uw persoonlijke informatie gebruiken, hangt af van welke diensten u gebruikt, hoe u die diensten gebruikt en de keuzes die u maakt in uw instellingen. We gebruiken de informatie die we over u hebben om onze diensten aan te bieden en te personaliseren, inclusief met behulp van geautomatiseerde systemen en gevolgtrekkingen die we maken, zodat onze diensten (inclusief advertenties) relevanter en nuttiger kunnen zijn voor u en anderen. We kunnen uw informatie ook gebruiken om u af en toe productupdates te sturen om u op de hoogte te houden van wijzigingen of verbeteringen aan onze Diensten.<br><br><strong>GEGEVENSDELING EN HULPMIDDELEN VAN DERDEN</strong><br><strong>Wij zullen uw persoonlijke gegevens nooit verkopen.</strong> Om onze Diensten echter effectief te kunnen laten werken, delen we wel gegevens met geautoriseerde externe Dienstverleners die ons helpen ons platform te beheren. Deze providers zijn strikt beperkt tot het gebruik van uw gegevens alleen voor zover dat nodig is om hun diensten voor ons uit te voeren. Onze belangrijkste externe hulpmiddelen omvatten:<br><br>a. <strong>Google Analytics:</strong> Om te begrijpen hoe gebruikers omgaan met onze Website om de gebruikerservaring te verbeteren.<br><br>b. <strong>XE Currency Converter:</strong> Om nauwkeurige, realtime valutawisselkoersen binnen ons platform te bieden.<br><br>c. <strong>LiveChat:</strong> Om realtime gebruikersondersteuning en communicatie te vergemakkelijken.<br><br>d. <strong>Cloudflare:</strong> Voor websitebeveiliging, prestatie-optimalisatie en webanalyse.<br><br><strong>VERZAMELEN EN GEBRUIK VAN BETALINGSINFORMATIE VOOR UITBETALINGEN</strong><br><br><strong>1. Informatie die we verzamelen voor uitbetalingen</strong><br>Om gevraagde uitbetalingen aan u te verwerken en te leveren, verzamelen we noodzakelijke financiële en transactionele informatie. Afhankelijk van de door u gekozen uitbetalingsmethode kan dit het volgende omvatten:<br><br>a. Bankrekeninggegevens (bijv. rekeningnummer, routingnummer, IBAN, SWIFT-code).<br><br>b. Gegevens van externe betalingsdiensten (bijv. e-mailadres van PayPal).<br><br>c. Factuuradres en volledige wettelijke naam die is gekoppeld aan de financiële rekening.<br><br>d. Btw-identificatienummers of relevante documentatie, indien wettelijk vereist voor naleving en rapportage.<br><br><strong>2. Doel van de verzameling</strong><br>We verzamelen en verwerken deze informatie strikt voor de volgende doeleinden:<br><br>a. Om uw uitbetalingsverzoeken te voltooien en uit te voeren.<br><br>b. Om frauduleuze activiteiten, het witwassen van geld en ongeautoriseerde transacties te voorkomen.<br><br>c. Om te voldoen aan lokale en internationale financiële regelgeving, belastingwetten en boekhoudnormen.<br><br><strong>3. Gegevensdeling en externe verwerkers</strong><br><strong>Wij verkopen uw financiële informatie niet.</strong> Uw betalingsgegevens zijn strikt vertrouwelijk. We delen deze gegevens alleen met geautoriseerde, veilige externe betalingsgateways, bankinstellingen en financiële dienstverleners, uitsluitend met het doel de uitbetalingstransactie uit te voeren. Deze partners zijn wettelijk en contractueel verplicht om uw gegevens te beschermen en voldoen aan strikte financiële beveiligingsnormen (zoals PCI-DSS).<br><br><strong>4. Internationale gegevensoverdrachten (Wereldwijde & AVG-naleving)</strong><br>Omdat we internationaal opereren, kunnen uw betalingsgegevens worden overgedragen aan, verwerkt of opgeslagen in landen buiten uw land van verblijf, inclusief de Verenigde Staten. We implementeren passende wettelijke waarborgen, zoals Modelcontractbepalingen (SCC's) en robuuste codering, om ervoor te zorgen dat uw financiële gegevens wereldwijd hetzelfde niveau van bescherming krijgen als onder de Algemene Verordening Gegevensbescherming (AVG) of uw lokale jurisdictie.<br><br><strong>5. Privacyrechten in de Verenigde Staten (Inclusief CCPA/CPRA)</strong><br>Voor inwoners van de Verenigde Staten, waaronder Californië, respecteren wij uw rechten met betrekking tot uw persoonlijke en financiële gegevens. We bevestigen dat:<br><br>a. We uw financiële gegevens uitsluitend verzamelen voor het zakelijke doel om uw aangevraagde transacties te voltooien.<br><br>b. We uw financiële gegevens niet \"verkopen\" of \"delen\" voor cross-context gedragsgestuurde advertenties.<br><br>c. U heeft het recht om de verwijdering van uw betalingsgegevens aan te vragen; houd er echter rekening mee dat federale en statelijke financiële wetten van ons kunnen eisen dat we specifieke transactiegegevens gedurende een bepaalde periode veilig bewaren (bijv. voor belasting- en antifraudedoeleinden) voordat ze definitief kunnen worden verwijderd.<br><br><strong>BESCHERMING VAN UW PERSOONLIJKE INFORMATIE</strong><br>We gebruiken passende technische, organisatorische en administratieve beveiligingsmaatregelen om uw persoonlijke informatie te beschermen tegen verlies, misbruik of ongeautoriseerde toegang, openbaarmaking, wijziging of vernietiging. We beperken ook de toegang tot uw persoonlijke informatie tot degenen die een legitieme zakelijke noodzaak hebben om deze te kennen. Persoonlijke informatie wordt onder passend beheer geplaatst, waarbij de vereiste en redelijke beschermende maatregelen worden genomen om te waken tegen oneerlijke toegang, verlies, vervalsing, lekkage, enz., vanuit het perspectief van de juiste informatietechnologie en administratie. Er zijn echter altijd risico's verbonden aan het verstrekken van persoonlijke informatie, aangezien geen enkele technologie volledig zonder risico is of gegarandeerd 100% veilig is. Mocht er zich enige nalatigheid in het beheer voordoen, zoals het lekken van dergelijke gegevens, dan zouden wij in de positie zijn om voor zover mogelijk onmiddellijke en effectieve tegenmaatregelen te nemen.<br><br><strong>BEWARING VAN UW PERSOONLIJKE INFORMATIE</strong><br>We zullen uw persoonlijke informatie niet langer bewaren dan wij redelijkerwijs nodig achten voor de doeleinden waarvoor deze is verzameld, of voor een langere periode indien dit om zakelijke of wettelijke redenen vereist is. Bij het vernietigen van uw persoonlijke informatie zullen wij commercieel redelijke maatregelen nemen om uw persoonlijke informatie onherstelbaar of onreproduceerbaar te maken in overeenstemming met de toepasselijke wetgeving.<br><br><strong>COOKIES EN VERGELIJKBARE TECHNOLOGIEËN</strong><br>Zoals verder beschreven in ons Cookiebeleid, gebruiken we cookies en vergelijkbare technologieën (bijv. pixels en ad-tags) om gegevens (bijv. apparaat-ID's) te verzamelen om u en uw apparaat/apparaten te herkennen op, buiten en over verschillende diensten en apparaten waar u gebruik heeft gemaakt van onze diensten. We staan ook toe dat sommige anderen cookies gebruiken zoals beschreven in ons Cookiebeleid.<br><br><strong>BEVEILIGING</strong><br>We implementeren beveiligingsmaatregelen die zijn ontworpen om uw gegevens te beschermen, zoals HTTPS. We controleren onze systemen regelmatig op mogelijke kwetsbaarheden en aanvallen. We kunnen echter de veiligheid van de informatie die u ons stuurt niet garanderen. Er is geen garantie dat gegevens niet toegankelijk zijn, worden onthuld, gewijzigd of vernietigd door inbreuk op een van onze fysieke, technische of bestuurlijke veiligheidsmaatregelen.<br><br><strong>DO NOT TRACK-SIGNALEN</strong><br>Op dit moment delen wij geen persoonlijke gegevens met derden voor hun directmarketingdoeleinden zonder uw toestemming.<br><br><strong>BEOORDELING VAN HET PRIVACYBELEID</strong><br>Dit portaal zal niet publiekelijk worden erkend en zal strikt vertrouwelijk worden gehouden om lekken van vertrouwelijke informatie van verkopers te voorkomen."
+      "title": "서비스 약관",
+      "last_updated": "최종 수정일: 2024년 5월 2일",
+      "content": "회사에 가입하거나 회사 서비스를 이용하기 전에 아래 포털의 서비스 약관을 주의 깊게 읽어보시기 바랍니다. 이 서비스 약관은 귀하와 회사 간의 법적 합의를 구성하며 본 계약(아래 정의) 조건에 추가됩니다. 이 서비스 약관을 수락할 수 없거나 수락하지 않는 경우 회사 가입이 허용되지 않습니다. 본 부록에 전자적으로 접근하는 경우 \"계정 생성\" 버튼을 클릭하여 본 부록의 조건에 구속되는 데 동의함을 나타냅니다. 본 서비스 약관에 동의하지 않는 경우 계정을 생성하지 마십시오.<br><br>본 서비스 약관(이하 \"약관\")은 귀하의 웹사이트 및 모바일 애플리케이션(통칭하여 \"포털\") 및 포털 내의 관련 콘텐츠, 기능, 소프트웨어 및 애플리케이션(통칭하여 \"서비스\") 접속 및 사용을 규율합니다. 포털과 서비스는 The Structured Data Company가 관리 및 유지보수합니다. \"당사\", \"우리\" 및 \"회사\"라는 용어 역시 The Structured Data Company를 지칭합니다. \"귀하\"라는 용어는 포털을 방문하는 개인을 지칭합니다.<br><br>본 약관을 주의 깊게 읽어보시기 바랍니다. 회사 및 특정 제3자의 책임 제한, 보증의 부인, 관할권 합의를 포함하여 귀하의 법적 권리에 관한 중요한 정보가 포함되어 있습니다. 어떠한 방식(예: 인터넷 또는 모바일 장치)으로든 서비스에 접속할 때마다 귀하는 포털에 접속한 시점에 게시된 약관 버전을 준수하는 데 돌이킬 수 없이 동의하는 것입니다. 이 약관에 동의하지 않는 경우 포털이나 서비스를 이용할 수 없습니다. 서비스에 접속하거나 이를 사용함으로써 귀하는 본 약관에 구속됨에 동의하는 것입니다.<br><br><strong>해석 언어</strong><br>본 약관, 개인정보 처리방침, 사용자 인터페이스(UI), 계정 대시보드 및 화면의 모든 커뮤니케이션을 포함하되 이에 국한되지 않는 모든 회사 자료의 영어 버전은 유일한 공식적이고 구속력 있는 버전입니다. 사용자의 편의를 위해 자동 또는 수동 번역을 제공할 수 있으나, 이는 참조용일 뿐입니다. 서비스 이용 중 접하는 번역된 내용과 영어 버전 간에 충돌, 불일치 또는 모호함이 있는 경우 모든 측면에서 영어 버전을 우선으로 하며 최종적인 권한을 가집니다.<br><br><strong>자격</strong><br>회사 서비스 중 하나라도 이용하려면 만 18세 이상이어야 하며 영국, 미국, 캐나다, 유럽, 일본, 한국, 싱가포르, 스페인, 홍콩 또는 태국에 거주해야 합니다. 귀하의 위치 및 기타 자격 기준에 따라 사용할 수 있거나 없을 수 있는 특정 기능이 있습니다. 귀하는 IP 주소를 수정하거나 이 금지 조항을 우회하려고 시도하기 위해 가상 사설망(VPN) 사용을 포함한 소프트웨어 또는 네트워킹 기술을 사용해서는 안 됩니다.<br><br><strong>변경</strong><br>당사는 이 서비스 약관, 개인정보 처리방침 및 쿠키 정책을 수시로 수정할 수 있습니다. 당사가 이에 대해 중대한 변경을 가하는 경우, 당사는 귀하가 변경 내용이 효력을 발생하기 전에 변경 내용을 검토할 기회를 제공하기 위해 당사 서비스 또는 다른 수단을 통해 통지를 제공할 것입니다. 당사는 변경이 소급 적용될 수 없음에 동의합니다. 귀하가 변경 내용에 반대하는 경우 계정을 폐쇄할 수 있습니다. 당사가 본 약관에 대한 변경 사항에 대해 공지하거나 통지를 보낸 후에도 귀하가 당사 서비스를 계속 이용하는 것은 귀하가 발효일로부터 업데이트된 약관에 동의함을 의미합니다.<br><br><strong>가용성, 오류 및 부정확성</strong><br>서비스 접근은 상당한 변동성이나 규모가 있는 기간 동안 품질이 저하되거나 사용할 수 없게 될 수 있습니다. 이로 인해 귀하의 계정 또는 서비스에 대한 접근이 제한될 수 있으며(거래를 시작하거나 완료하지 못하는 상황 포함), 지원 응답 시간이 지연될 수도 있습니다.<br><br>a. 당사는 사이트나 기타 서비스가 중단 없이 이용 가능할 것이라고 보장하지 않으며, 주문이 실행, 수락, 기록되거나 열려 있는 상태로 유지되거나 귀하의 계정에 접근할 수 있을 것이라고 보장하지 않습니다.<br><br>b. 신뢰 및 안전 문제를 제외하고 상당한 변동성이나 규모가 있는 기간을 포함하여 지원 응답 시간이 지연될 수 있음에 유의하시기 바랍니다.<br><br>당사는 사이트에서 정확하고 시의적절한 정보를 제공하고자 의도하지만, 사이트(아래 정의된 콘텐츠 포함, 이에 국한되지 않음)가 항상 완전히 정확하거나 완전하거나 최신은 아닐 수 있으며 기술적인 부정확성이나 인쇄상의 오류도 포함될 수 있습니다. 귀하에게 가능한 한 완전하고 정확한 정보를 계속 제공하기 위한 노력의 일환으로, 관련 법률이 허용하는 범위 내에서 당사의 정책, 제품 및 서비스와 관련된 정보를 포함하되 이에 국한되지 않는 정보는 통지 없이 수시로 변경되거나 업데이트될 수 있습니다. 따라서 귀하는 정보를 신뢰하기 전에 모든 정보를 확인해야 하며, 사이트에 포함된 정보에 기반한 모든 결정은 귀하의 단독 책임이며 당사는 그러한 결정에 대해 어떠한 책임도 지지 않습니다.<br><br>당사는 서비스에서 제공되는 제품 및 서비스를 지속적으로 업데이트하고 있습니다. 당사 서비스에서 사용 가능한 제품 또는 서비스는 가격이 잘못 책정되거나 설명이 부정확하거나 사용할 수 없을 수 있으며, 당사는 서비스 및 다른 웹사이트의 광고 정보를 업데이트하는 데 지연을 겪을 수 있습니다. 당사는 제품 이미지, 사양, 재고 여부 및 서비스를 포함한 정보의 정확성이나 완전성을 보장할 수 없으며 보장하지 않습니다. 당사는 사전 통지 없이 언제든지 정보를 변경 또는 업데이트하고 오류, 부정확성 또는 누락을 수정할 권리를 보유합니다. 예기치 않은 사건이 발생하는 경우 회사는 서비스의 올바른 작동을 보장하기 위해 필요한 경우 유지 관리 또는 수리 목적으로 서비스를 중단할 권리가 있습니다.<br><br><strong>계정</strong><br>서비스의 일부를 사용하려면 당사에 계정(\"계정\")을 보유해야 합니다. 계정을 생성할 때 귀하는 해당 관할권의 법적 연령 이상이며 관련 법률에 따라 법적 구속력이 있는 계약을 체결하고 이행할 능력이 있으며 제공하는 모든 정보가 정확하고 최신이며 진실되고 완전함을 진술하고 보증합니다. 귀하는 계정 하의 모든 활동에 대해 단독으로 책임이 있습니다. 비밀번호 및/또는 계정이 도용되거나 제3자에 의해 사용되는 경우 당사는 어떠한 방식도 책임지지 않습니다. 따라서 귀하는 비밀번호를 안전하게 보관하고 계정 정보를 항상 최신 상태로 유지하는 데 동의합니다.<br><br>당사가 명시적으로 허용하지 않는 한 그리고 약관 및 회사가 단독으로 결정하는 기타 추가 조건에 따라 사용자는 다중 계정을 설정할 수 없습니다. 사용자는 계정 또는 계정 정보를 다른 당사자에게 빌려주거나 양도하거나 판매해서는 안 되며 서면 허가 없이 다른 사용자의 계정을 사용해서는 안 됩니다.<br><br>당사는 가끔 계정 등록 시 제공된 이메일 주소로 귀하에게 연락할 수 있습니다. 귀하는 그러한 연락 수신을 거부할 수 없으며 이메일 주소가 최신 상태인지 확인할 책임이 있습니다. 귀하가 부정확하거나 오래되었거나 불완전한 이메일 주소로 인해 커뮤니케이션을 놓친 경우 당사는 귀하가 커뮤니케이션을 놓침으로써 발생한 어떠한 손실이나 손해에 대해서도 책임을 지지 않습니다.<br><br>대기 중인 작업이 있는 경우 계정을 폐쇄하거나 삭제할 수 없습니다. 회사는 사용자가 회사 존속 기간 동안 수행한 사기 행위의 경우 사용자의 계정을 비활성화할 권리가 있습니다.<br><br>컴플라이언스 팀에서 서면으로 명시적으로 허용하지 않는 한 다중 계정 설정은 엄격히 금지됩니다. 당사 네트워크 전반에서 공정한 할당량 분배를 유지하고 자금세탁방지(AML) 규정을 준수하기 위해 사용자는 동일한 신원 하에 다중 계정을 생성하거나 일일 운영 한도를 우회하기 위해 가명을 사용할 수 없습니다.<br><br>각 계정은 100%의 기본 신뢰도 점수를 유지합니다. 포털에서 계정이 부적절하거나 사기적이거나 파괴적인 행동에 가담하는 경우 위반의 심각성과 빈도에 비례하여 신뢰도 점수가 차감될 수 있습니다. 이 점수는 계정 프로필 페이지에 활성화되어 표시됩니다. 계정의 신뢰도 점수가 허용 가능한 임계값 아래로 떨어지는 경우 회사는 운영 권한 제한, 또는 계정의 즉각적인 정지 또는 해지를 포함하되 이에 국한되지 않는 제한 조치를 시행할 권리를 보유합니다.<br><br>플랫폼에 참여하는 모든 사용자 또는 승인된 대리인(통칭하여 \"계정\")은 다른 계정과의 모든 형태의 자금 흐름이나 금융 거래를 시작하거나 참여하는 것이 엄격히 금지됩니다. 이 금지에는 은행 계좌, 디지털 지갑, 암호화폐 지갑, 제3자 서비스 또는 기타 금융 매체를 통해 플랫폼의 운영 또는 고객과 관련된 자금을 다른 계정과 수수, 보관, 이체, 송금 또는 지출하는 것이 포함됩니다. 이러한 승인되지 않은 송금은 자금의 혼합, 잠재적인 자금 세탁 또는 사기 노출, 분쟁 또는 지불 불능 절차 시 소유권 구분 어려움, 관련 미국 AML, 수탁 및 자산 보호 법률에 따른 플랫폼 의무 이행 능력 약화를 포함하여 용납할 수 없는 법적, 재정적, 규제적 위험을 초래합니다. 플랫폼은 이 정책을 위반하는 것으로 판명된 계정의 즉각적인 정지 또는 해지, 관련 자금의 동결 또는 회수, 필요한 법적 또는 규제적 구제책 추구를 포함하여 관련 법률이 허용하는 최대 한도 내에서 이 금지 조항을 시행할 모든 권리를 보유합니다.<br><br>사기 행위로 간주될 수 있는 조치:<br>a. 동일한 신원 하에 다른 계정 생성;<br>b. 회사 보너스를 여러 번 사용하기 위한 다른 계정 생성;<br>c. 도난당한 신용 카드 또는 기타 결제 방법의 사기;<br>d. 사기 행위의 징후가 있고 서비스에 위험이 되는 행동.<br><br><strong>금지된 활동</strong><br>귀하는 다음을 수행하지 않을 것에 동의합니다.<br><br>a. 서비스 또는 콘텐츠의 복사, 수정 또는 파생 작업 생성;<br><br>b. 제3자에게 제공할 목적으로 콘텐츠(데이터 포함) 복사, 조작 또는 집계;<br><br>c. 상업적으로든 무료로든 콘텐츠나 서비스 접근 권한의 거래, 판매, 임대, 대여, 리스 또는 라이선스 부여;<br><br>d. 서비스에 데이터 마이닝, 크롤링, \"스크래핑\", 로봇 또는 이와 유사한 자동화 또는 데이터 수집 또는 추출 방법 사용이나 도입, 서비스 일부의 수동 접근, 획득, 모니터링 또는 복사, 또는 콘텐츠의 다운로드 또는 저장 (당사가 명시적으로 승인한 경우 제외);<br><br>e. 서비스나 서비스에 연결된 모든 서버 또는 네트워크에 과도한 정보 요청, 서비스나 서버/네트워크를 간섭, 중단 또는 과도한 부담 부과, 콘텐츠의 품질이나 가용성, 서비스의 속도나 기능에 부정적 영향을 미치는 조치;<br><br>f. 서비스나 플랫폼에 바이러스, 트로이 목마, 웜, 논리 폭탄 또는 기타 악성 코드 도입, 대량의 정보 요청을 차단하는 소프트웨어 또는 하드웨어 우회를 위한 장치, 소프트웨어 또는 루틴 사용;<br><br>g. 플랫폼, 콘텐츠 또는 서비스 접근을 제한하거나 방지하기 위해 마련된 보안 조치의 위반, 우회 또는 회피;<br><br>h. 해킹, 비밀번호 마이닝, 다른 사람의 비밀번호/자격 증명의 무단 사용 또는 기타 방법을 통해 서비스, 콘텐츠 또는 서비스나 회사 서버에 연결된 컴퓨터 시스템 또는 네트워크에 대한 무단 액세스 시도;<br><br>i. 다른 사용자의 서비스 사용(포털 해킹 또는 훼손 포함) 제한, 억제 또는 방해;<br><br>j. 당사나 제3자의 시스템, 데이터 또는 개인 정보를 손상, 간섭, 가로채기, 수집, 방출 또는 공개하는 컴퓨터 프로그램을 포털을 통해 도입하거나 기타 방식으로 배포;<br><br>k. 플랫폼에 표시된 당사 또는 제3자의 상표, 서비스 마크, 상호 또는 로고 사용;<br><br>l. 콘텐츠의 저작권 또는 기타 독점권 고지 수정 또는 제거;<br><br>m. (i) 미국 재무부 해외자산통제국(OFAC)을 포함하되 이에 국한되지 않는 관련 법률, 법령, 조례 또는 규정을 위반하거나 (ii) 불법 활동의 수익이 관련된 활동을 위해 또는 그와 관련하여 웹사이트, 콘텐츠 또는 서비스를 사용하는 행위.<br><br>n. 소셜 미디어 네트워크나 공개 포럼에서 회사, 서비스 또는 가맹점 파트너에 관한 허위, 오도 또는 근거 없는 정보의 게시, 배포 또는 포스팅. 사용자는 공개 발언에 대해 전적인 책임을 지며 가맹점과 회사 모두의 운영 무결성과 평판을 보호하기 위해 기밀을 유지할 엄격한 의무를 집니다.<br><br>또한 귀하는 서비스에 접속하고 사용하는 데 필요한 모든 통신, 브로드밴드 및 컴퓨터 하드웨어, 장비, 소프트웨어 및 서비스를 확보하고 유지 관리하며 그와 관련된 모든 요금을 지불하는 데 귀하(당사가 아님)가 단독으로 책임이 있음을 인정하고 동의합니다.<br><br><strong>책임의 제한</strong><br>서비스, 포털 및 사이트는 \"있는 그대로\" 및 \"이용 가능한 대로\" 기반으로 제공되며 서비스의 이용 가능성과 관련하여 당사가 어떠한 보장도 하지 않습니다. 구체적으로, 당사는 소유권, 상품성, 특정 목적에의 적합성 및/또는 비침해에 대한 묵시적 보증을 제공하지 않습니다. 당사는 사이트, 서비스 중 어느 것이든, 또는 그 안에 포함된 자료에 대한 액세스가 지속적이거나 방해받지 않거나 시의적절하거나 오류가 없을 것이라고 보장하지 않습니다.<br><br>회사의 다른 사용자와 분쟁이 있는 경우 귀하는 당사, 당사 계열사 또는 서비스 제공자, 당사의 각 임원, 이사, 가맹점, 대리인, 합작 투자자, 직원 및 대표가 그러한 분쟁과 관련하여 발생하거나 어떤 방식으로든 이와 관련하여 제기되는 어떠한 청구, 요구 및 손해(실제 및 파생적, 직접적 또는 간접적)에 대해서도 책임지지 않는다는 점에 동의합니다.<br><br>당사는 지연, 성능 실패 또는 서비스 중단을 포함하여 본 계약 위반에 대해 당사의 통제를 벗어난 비정상적이고 예측할 수 없는 상황으로 직간접적으로 발생한 경우 그 결과를 피할 수 없는 경우, 의무적인 법적 규정의 적용으로 위반이 발생한 경우에 책임지지 않습니다.<br><br><strong>보증의 부인</strong><br>회사와 그 계열사는 서비스가 중단되지 않거나 오류가 없을 것이라는 진술을 포함하여 서비스에 대해 어떠한 진술이나 보증도 하지 않으며 서비스를 \"있는 그대로\" 및 \"이용 가능한 대로\" 기반으로 제공합니다. 관련 법률에 따라 허용되는 최대한의 범위 내에서 회사와 그 계열사는 소유권, 데이터의 정확성, 비침해 또는 특정 목적에 대한 상품성을 포함하여 모든 묵시적 또는 법적 보증을 부인합니다.<br><br>관련 법률에서 허용하는 최대 한도 내에서 회사는 (I) 콘텐츠의 오류, 실수 또는 부정확성; (II) 귀하의 서비스 접속 또는 사용으로 인해 발생하는 모든 성격의 재산 피해; (III) 당사 서버 및/또는 그 안에 저장된 모든 정보에 대한 무단 접속 또는 사용; (IV) 서비스로 또는 서비스로부터의 전송 중단 또는 중지; (V) 제3자가 서비스를 통해 전송할 수 있는 버그, 바이러스, 트로이 목마 등; (VI) 콘텐츠의 오류나 누락 또는 서비스를 통해 게시, 전송 또는 기타 방식으로 이용 가능한 콘텐츠의 사용으로 인해 발생한 손실이나 피해; 및/또는 (VII) 제3자의 명예 훼손, 불쾌감을 주거나 불법적인 행위에 대해 아무런 책임이나 의무를 지지 않습니다.<br><br><strong>참여 및 컴플라이언스</strong><br>당사 제품 및 서비스에 대한 사용자의 이해도와 참여도를 평가하고 향후 혁신에 대한 준비도를 가늠하기 위해, 사용자는 지급 요청을 시작하기 전에 모든 제품 사이클을 완료해야 합니다. 지급은 사이클 진행 중에 처리할 수 없으며 가맹점 파트너와의 구속력 있는 계약으로 인해 제품 상호 작용을 취소하거나 건너뛰거나 되돌릴 수 없습니다.<br><br>당사 시스템은 수시로 업데이트를 거치며 분마다 제품이 추가 및 제거되므로 사용자가 제품을 장기간 보유하는 것은 가맹점 진행에 부정적인 영향을 미칠 수 있습니다. 사용자는 24~48시간 내에 제품 사이클을 완료하고 지급 요청을 제출하는 것이 권장됩니다.<br><br>지정된 48시간 이상 제품이 보류되는 경우 서비스 약관은 사용자와 회사 간의 상호 합의에 따라 표준 지급 일정을 조정하도록 규정하고 있습니다. 이러한 조정이 발생하는 경우 이러한 변경과 관련된 관리 비용을 부담하고 지속적인 서비스 제공을 보장하기 위해 명목상의 수수료가 부과될 수 있습니다.<br><br>이러한 수수료에 대한 세부 정보는 사용자 계약의 청구 조정 섹션에 포함되어 투명성을 높이고 이해를 돕습니다. 이 접근 방식을 통해 가맹점 파트너의 효율성과 진행을 보호하면서 사용자의 다양한 재무 상황에 유연하게 대처할 수 있습니다.<br><br>또한 회사는 관련된 자금의 출처를 확인하기 위해 추가 문서를 요청할 수 있습니다. 사용자에게 자금의 출처를 입증하도록 요청할 수도 있습니다. 자금의 합법성에 대한 우려가 있는 경우 회사는 사용자 계정에 대한 감사를 수행할 권리를 보유합니다. 이 포괄적인 접근 방식은 당사 플랫폼 내의 모든 재무 상호 작용이 최고 수준의 보안 및 컴플라이언스를 준수하도록 보장합니다. 컴플라이언스를 유지하고 거래 흐름의 명확성을 보장하기 위해 코치 계정을 제외하고 각 계정은 고유한 지급인 정보로 운영되어야 합니다.<br><br>활성 사이클의 조기 종료는 가맹점 데이터 수집 파이프라인을 직접 방해하므로 엄격히 금지됩니다. 초기 운영 약속을 이행하기 위해 모든 계정은 계정 폐쇄 또는 사임을 시작하기 전에 연속 최소 10회의 제품 사이클(제품 400개에 해당)을 완료해야 합니다.<br><br>또한 계정은 실시간 데이터 수집의 효과를 보장하기 위해 배정된 제품 사이클을 48시간 이내에 완료하도록 규정되어 있습니다.<br><br>표준 사이클 동안 각 계정은 시스템에 의해 무작위로 할당된 0개에서 3개 사이의 통합 패키지를 수신합니다. 각 패키지 내에서 시스템은 동시에 처리되어야 하는 제품 1~3개를 무작위로 지정합니다. 어떠한 경우에도 분배된 제품은 취소, 삭제 또는 건너뛸 수 없습니다.<br><br>표준 제품에 적용되는 수수료 수익률은 계정의 활성 멤버십 등급에 따라 엄격히 1%, 1.5%, 2% 또는 2.5%로 계층화됩니다. 반대로 패키지 제품에 적용되는 수수료율은 5%로 고정됩니다. 특별 프리미엄 제품에 대한 접근은 Exclusive 및 VIP 계정 등급으로 엄격하게 제한됩니다.<br><br>제품 분배는 계정의 사용 가능한 자산 잔액을 기준으로 알고리즘 방식으로 무작위화됩니다. 자산 잔액이 높을수록 고가의 제품 할당을 받을 확률이 높아집니다. 제품을 활발하게 업로드하는 동안 계정이 단일 자격을 갖춘 예치금을 실행하고 활성 프로모션 이벤트의 전제 조건을 동시에 충족하는 경우 계정은 지정된 멤버십 등급으로 자동 업그레이드됩니다.<br><br>계정의 자산 잔액이 미결제(또는 부족) 상태로 장기간 유지되는 경우 회사는 수립된 내부 정책에 따라 계정을 정지할 권리가 있습니다. 수수료 정산은 잔액이 양수인 상태일 때만 계산되어 계정의 자산 잔액에 공식적으로 입금됩니다.<br><br>구체적으로 자산 잔액이 미결제이거나 음수 상태인 계정은 하위 계정 또는 직접 추천에서 생성된 20% 추천 수수료를 수령할 자격이 엄격하게 박탈됩니다. 잔액이 미결제 상태로 남아 있는 기간 동안에는 모든 수수료 정산이 일시적으로 중단됩니다. 계정 자산 잔액이 양수 상태로 성공적으로 복원되면 플랫폼의 표준 정산 절차에 따라 표준 수수료 지급이 재개됩니다.<br><br>이러한 복원 후에는 잔액이 정정된 후 생성된 수수료만 계산되며, 미결제 기간 동안 완료된 제품에서 발생한 수수료는 소멸되고 소급하여 입금되지 않음에 유의하시기 바랍니다.<br><br><strong>지급 정책 및 제한 사항</strong><br>지급 요청을 시작할 자격을 얻으려면 계정은 최소 한(1) 개의 현재 제품 사이클을 성공적으로 완료하고 $10.00 이상의 최소 지급 금액을 요청해야 합니다. 원장 안정성을 유지하기 위해 최대 지급 한도는 계정의 지정된 멤버십 등급에 따라 엄격히 제한됩니다.<br><br>a. Standard Basic 계정은 최대 $10,000까지의 지급을 안전하게 처리할 수 있습니다.<br><br>b. Premium 계정은 최대 $50,000까지의 지급을 처리할 수 있습니다.<br><br>c. Exclusive 계정은 최대 $100,000까지의 지급을 처리할 수 있습니다.<br><br>d. VIP 계정은 무제한 지급 한도로 운영됩니다.<br><br>승인된 지급 요청이 $100,000 한도를 초과하는 경우 계정은 거래 실행 전에 필수 보험료를 제출해야 합니다. 이 표준화된 보험료는 요청된 지급의 성공적인 정산 후 영업일 기준 7일 이내에 계정으로 전액 환불됩니다.<br><br><strong>정지, 해지 및 취소</strong><br>당사는 다음을 포함하되 이에 국한되지 않는 정당한 이유가 있는 경우: (a) 회사 서비스 일부 또는 전부에 대한 귀하의 접근을 정지, 제한 또는 해지할 수 있으며, (c) 즉시 효력이 발생하는 귀하의 계정을 비활성화하거나 취소할 수 있습니다.<br><br>a. 정부 기관이 이를 요구하는 경우<br><br>b. 귀하가 하나 이상의 의무에 관한 의무를 이행할 수 없거나 그럴 것으로 보이는 경우<br><br>c. 귀하가 모든 유형의 지불 불능 사건의 대상이 된 경우(당사의 절대적인 재량으로 결정)<br><br>d. 귀하에 대해 어떠한 성격의 조사, 청구, 소송 또는 절차가 시작된 경우(시장 남용, 조작 또는 기타 범죄 행위가 의심되는 조사 포함, 이에 국한되지 않음), 귀하가 관련 법률을 위반했거나 타인이 귀하에 대한 담보권을 집행하기 위해 조치를 취하는 경우<br><br>e. 귀하가 본 계약을 위반한 경우<br><br>f. 당사 또는 회사를 보호하기 위해 필요하다고 당사가 판단하는 경우<br><br>당사가 귀하의 계정을 정지, 제한 또는 폐쇄하거나 서비스 사용을 종료하는 경우, 당사는(불법적인 경우가 아닌 한) 귀하에게 조치 사실 및 거부, 정지 또는 폐쇄 사유를 통지하고 적절한 경우 계정 거부, 정지 또는 폐쇄로 이어진 사실적 오류를 정정하기 위한 절차를 제공할 것입니다.<br><br>당사는 귀하가 약관을 위반한 경우를 포함하되 이에 국한되지 않고 어떤 이유로든 사전 통지나 책임 없이 즉시 계정을 해지, 정지 또는 취소할 수 있습니다. 해지 시 서비스 사용 권리는 즉시 중단됩니다. 또한 사용자는 운영 과정에서 위법 행위, 사기 행위 또는 본 약관을 위반한 경우 관리 또는 벌금을 지불해야 합니다.<br><br><strong>소유권 및 지적 재산</strong><br>a. 본 약관의 적용을 받아 귀하는 개인적인 용도로만 콘텐츠를 보거나 인쇄하거나 사본을 만들 수 있습니다. 귀하는 약관을 준수하지 않는 방식의 어떠한 내용이든 전부든 일부든 간에 어떤 목적으로든 복사, 재생산, 다운로드, \"화면 스크랩\", 저장, 전송, 방송, 게시, 수정, 파생 작업 생성, 표시, 공연, 배포, 재배포, 판매, 라이선스 제공, 임대, 대여 또는 사용, 이전(인쇄, 전자 또는 기타 형식으로)하거나 활용해서는 안 됩니다.<br><br>b. 회사와 귀하 사이에서 모든 콘텐츠는 회사가 소유하거나 통제합니다. 서비스에 표시된 회사, 회사 로고 및 기타 제품 또는 서비스 이름이나 슬로건은 회사 또는 해당 공급업체나 라이선스 제공자의 등록 상표 및/또는 관습법상의 상표이며 회사 또는 해당 상표 소유자의 사전 서면 허가 없이 복사, 모방 또는 사용될 수 없습니다. 또한 모든 페이지 헤더, 맞춤 그래픽, 버튼 아이콘 및 스크립트를 포함한 서비스의 디자인은 회사의 서비스 마크, 상표 및/또는 트레이드 드레스이며 회사의 사전 서면 허가 없이 그 일부 또는 전부를 복사, 모방 또는 사용할 수 없습니다. 서비스에 언급된 다른 모든 상표, 등록 상표, 제품 이름 및 회사 이름이나 로고는 해당 소유자의 자산입니다. 상호, 상표, 제조업체, 공급업체 등에 의한 제품, 서비스, 프로세스 또는 기타 정보를 지칭한다고 해서 회사가 보증, 후원 또는 추천하는 것을 구성하거나 암시하는 것은 아닙니다.<br><br>c. 본 약관의 어떠한 내용도 귀하에게 회사 또는 제3자의 지적 재산에 대한 권리를 부여하지 않습니다.<br><br>d. 관련된 모든 로고, 상표, 서비스 마크 및 상호는 오로지 회사의 자산입니다. 본 문서에서 이름, 로고 또는 기타 표시가 누락된 경우 이는 회사가 확립한 모든 지적 재산권의 포기를 구성하지 않습니다. 웹사이트에서 사용되는 기타 상표, 이름 또는 로고는 해당 소유자의 재산입니다. 귀하는 전술한 내용을 사용할 권한이 없습니다.<br><br>e. 귀하는 회사 및/또는 해당 공급자가 해당 법률(저작권법 및 기타 지적 재산권 법률 포함)에 따라 모든 콘텐츠의 저작권을 소유하고 있으며 이러한 콘텐츠에 대한 모든 권리를 보유하고 있음을 인정합니다.<br><br><strong>다른 웹사이트에 대한 링크</strong><br>당사의 서비스에는 회사가 소유하거나 통제하지 않는 제3자 웹사이트 또는 서비스에 대한 링크가 포함될 수 있습니다. 회사는 통제권이 없으며 제3자 웹사이트 또는 서비스의 내용, 개인정보 처리방침 또는 관행에 대해 어떠한 책임도 지지 않습니다. 귀하는 회사가 그러한 웹사이트 또는 서비스를 통해 제공되는 그러한 콘텐츠, 상품 또는 서비스의 이용이나 이들에 대한 의존으로 인해 발생했거나 발생했다고 주장되는 손상 또는 손실에 대해 직간접적으로 어떠한 책임도 지지 않음을 인정하고 이에 동의합니다. 방문하는 제3자 웹사이트 또는 서비스의 서비스 약관 및 개인정보 처리방침을 읽어보실 것을 강력히 권장합니다.<br><br>귀하는 회사가 제3자 웹사이트 또는 서비스를 통해 제공되는 상품, 서비스, 정보, 자원 및/또는 콘텐츠, 제3자와의 거래 또는 커뮤니케이션, 전술한 내용 또는 귀하가 제3자의 자료나 콘텐츠 또는 사업 관행에 의존하거나 이용함으로 인해 직간접적으로 초래되거나 초래된 것으로 주장되는 모든 손상, 손해 또는 손실에 대해 책임을 지지 않는다는 점에 동의합니다.<br><br><strong>부정 행위 정책</strong><br>부정 행위를 감지, 억제 및 예방하기 위해 회사는 다음과 같은 원칙을 따릅니다.<br><br>a. 위험 민감도에 따라 법 집행, 재무 정보 및 감독 리소스를 할당합니다.<br><br>b. 정부 전반에 걸쳐 긴밀한 정책 및 운영 조정과 협력을 유지합니다.<br><br>c. 엄격한 라이선스 및 포괄적인 보고 요구 사항, 엄격한 부정 행위 방지 규정 및 관련 금융 및 비금융 부문의 위험 기반 감독을 결합하는 예방적 접근 방식을 취합니다.<br><br>d. 부정 행위 위험에 대한 민간 부문 이해관계자의 이해를 높이고 규정 준수 문화를 촉진합니다.<br><br>e. 해외 범죄 관련 행위를 포함한 부정 행위에 대해 단호하고 억제력 있는 법 집행 조치를 취합니다.<br><br>f. 공식 및 비공식 채널을 통해 자발적으로 또는 요청 시 다른 관할권에 지원을 제공합니다.<br><br><strong>협력 가맹점 기밀 정책</strong><br>A. 기밀 및 독점 정보<br>서비스 이용 과정에서 사용자는 회사 및 가맹점 파트너의 기밀 및 독점 정보에 노출됩니다. 기밀 및 독점 정보란 경쟁적으로 민감한 자료로서 일반적으로 대중에게 알려지지 않은 모든 데이터나 정보를 의미하며 여기에는 개발 및 계획, 마케팅 전략, 재무, 운영, 시스템, 독점 개념, 문서, 보고서, 데이터, 사양, 컴퓨터 소프트웨어, 소스 코드, 목적 코드, 흐름도, 데이터, 데이터베이스, 발명, 노하우, 영업 비밀, 고객 목록, 고객 관계, 고객 프로필, 공급업체 목록, 공급업체 관계, 공급업체 프로필, 가격 책정, 판매 추정치, 과거, 현재 또는 미래의 비즈니스 활동과 관련된 사업 계획 및 내부 성과 결과, 기술 정보, 디자인, 프로세스, 절차, 공식 또는 개선 사항이 포함되나 이에 국한되지 않으며, 회사가 기밀 및 독점 정보로 간주하는 정보를 말합니다. 사용자는 기밀 및 독점 정보가 회사의 소중한 자산이며 상당한 비용을 들여 장기간 개발되었으며 보호할 가치가 있음을 인정하고 이에 동의합니다.<br><br>B. 기밀 유지 의무<br>본 계약에서 달리 명시적으로 허용하지 않는 한 사용자는 본 계약 기간이나 그 이후 언제라도 직무 및 책임을 수행하는 데 필요한 경우나 회사의 사전 서면 동의가 있는 경우를 제외하고는 직간접적으로 어떤 방식으로든 기밀 및 독점 정보를 공개하거나 사용해서는 안 됩니다.<br><br>C. 기밀 및 독점 정보 권리<br>회사가 사용자에게 공개한 모든 아이디어, 개념, 작업 결과물, 정보, 서면 자료 또는 기타 기밀 및 독점 정보는 (i) 오로지 회사의 전유물로 남으며, (ii) 사용자가 회사의 사업 추진 목적 외에 다른 사람에게 사용하거나 공개하지 않고 기밀을 유지하겠다는 합의를 신뢰하여서만 사용자에게 공개되거나 취득이 허용됩니다. 본 문서에 명시된 사항을 제외하고 본 계약은 사용자에게 기밀 및 독점 정보에 대한 또는 그에 속한 어떤 권리, 라이선스, 소유권 또는 기타 이권이나 명의를 부여하지 않습니다.<br><br>D. 회복할 수 없는 손해<br>사용자는 본 계약과 일치하지 않는 방식으로 기밀 및 독점 정보를 사용하거나 공개하는 경우 금전적 손해배상만으로는 적절한 구제책이 될 수 없는 회복 불가능한 피해를 입힐 수 있음을 인정합니다. 따라서 회사는 법이나 형평법에서 활용할 수 있는 다른 법적 구제책에 추가하여 기밀 및 독점 정보의 무단 사용 또는 공개에 대한 형평성 또는 금지 명령에 의한 구제책을 받을 권리가 있습니다. 회사는 이러한 위반의 결과로 발생한 직접적이고 파생적인 모든 손해를 포함하여 합법적으로 허용 가능한 다른 구제책을 추구할 권리가 있습니다. 본 항에 의거해 제기된 모든 조치에서 회사는 사용자로부터 변호사 수임료와 비용을 회수할 권리가 있습니다."
     },
     "privacy": {
-      "title": "Privacybeleid",
-      "last_updated": "Laatst herzien op 11 januari 2024",
-      "content": "Bij The Structured Data Company zijn wij sterk toegewijd aan het beschermen en respecteren van uw privacy. Dit Privacybeleid (\"Privacybeleid\") heeft betrekking op uw toegang tot en gebruik van deze website (de \"Website\") evenals bijbehorende inhoud, software en mobiele applicaties (gezamenlijk de \"Dienst\"). Dit Privacybeleid legt uit wanneer, waarom en hoe wij persoonlijke informatie verzamelen en gebruiken over mensen die onze Website bezoeken of onze Diensten gebruiken, onder welke omstandigheden wij uw persoonlijke informatie aan anderen mogen bekendmaken, en hoe wij uw persoonlijke informatie veilig bewaren. Wij kunnen dit Privacybeleid van tijd tot tijd wijzigen. Door gebruik te maken van onze Website of onze Diensten, gaat u akkoord gebonden te zijn aan dit Privacybeleid. Lees dit Beleid zorgvuldig door. Wij zijn toegewijd aan het beschermen van uw privacy door naleving van de voorwaarden van dit Beleid.<br><br><strong>WIJZIGINGEN</strong><br>Het Bedrijf (\"wij\" of \"ons\") kan dit privacybeleid aanpassen, en als wij er materiële wijzigingen in aanbrengen, zullen wij u hiervan op de hoogte stellen via onze diensten, of op andere manieren, om u de gelegenheid te geven de wijzigingen te bekijken voordat ze van kracht worden. Als u bezwaar heeft tegen wijzigingen, kunt u uw account sluiten. U erkent dat uw voortgezet gebruik van onze diensten nadat wij een kennisgeving over onze wijzigingen in dit privacybeleid hebben gepubliceerd of verzonden, betekent dat het verzamelen, gebruiken en delen van uw persoonlijke gegevens onderworpen is aan het bijgewerkte privacybeleid vanaf de ingangsdatum.<br><br><strong>ACCOUNT AANMAKEN</strong><br>Om een account aan te maken, dient u gegevens te verstrekken, waaronder uw e-mailadres en/of mobiel nummer, en een zelf ingesteld wachtwoord. Bij het verzamelen van persoonlijke informatie verzamelen wij deze binnen de noodzakelijke grenzen, en de verzameling zal plaatsvinden met als prioriteit rechtmatigheid en eerlijkheid te waarborgen. Wij kunnen uw persoonlijke informatie rechtstreeks van u verzamelen of van andere entiteiten waarmee wij samenwerken, zoals merchants, gebruikers, overheidsinstanties, publieke of overheidsinstanties, of ons eigen bedrijf. Persoonlijke informatie die wij verzamelen, gebruiken en bekendmaken, omvat:<br><br>a. Contactinformatie, zoals uw naam, e-mailadres en contactnummer;<br><br>b. Identiteitsinformatie zoals uw nationaliteit;<br><br>c. Informatie vereist onder toepasselijke wet- en regelgeving, professionele verplichtingen, intern beleid en risicobeheersingsprocedures, zoals verplichtingen tot het bijhouden van gegevens, fraudepreventie, auditdoeleinden, nalevingsscreening en due diligence, sanctieregime en gerechtelijk bevel, al dan niet in aanmerking komende Regio's;<br><br>d. Informatie met betrekking tot informatie- en communicatietechnologiesystemen en -processen, kantoorapparatuur en -faciliteiten; en<br><br>e. Foto's en andere audiovisuele informatie.<br>Als u de persoonlijke informatie van een andere persoon aan ons verstrekt, bevestigt u dat deze juist en correct is, dat alle vereiste toestemmingen zijn verkregen, of dat u anderszins gerechtigd bent dergelijke persoonlijke informatie aan ons te verstrekken.<br><br><strong>BESCHERMING VAN UW PERSOONLIJKE INFORMATIE</strong><br>Wij gebruiken passende technische, organisatorische en administratieve beveiligingsmaatregelen om uw persoonlijke informatie te beschermen tegen verlies, misbruik of ongeautoriseerde toegang, openbaarmaking, wijziging of vernietiging. Wij beperken ook de toegang tot uw persoonlijke informatie tot degenen die een echte zakelijke noodzaak hebben om te weten. Persoonlijke informatie wordt onder passend beheer gesteld met vereiste en redelijke beschermende maatregelen om te beschermen tegen oneerlijke toegang, verlies, vervalsing, lekkage, enz. vanuit het perspectief van adequate informatietechnologie en -beheer. Er zijn echter altijd risico's verbonden aan het verstrekken van persoonlijke informatie, aangezien geen enkele technologie volledig risicovrij is of gegarandeerd 100% veilig kan worden. Als er nalatigheid in het beheer zou optreden, zoals lekkage van dergelijke gegevens, zouden wij zo snel mogelijk doeltreffende tegenmaatregelen nemen.<br><br><strong>BEWARING VAN UW PERSOONLIJKE INFORMATIE</strong><br>Wij bewaren uw persoonlijke informatie niet langer dan wij redelijkerwijs noodzakelijk achten voor de doeleinden waarvoor deze is verzameld, of voor een langere periode zoals vereist voor zakelijke of juridische doeleinden. Bij het vernietigen van uw persoonlijke informatie zullen wij commercieel redelijke maatregelen nemen om uw persoonlijke informatie onherstelbaar of onreproduceerbaar te maken in overeenstemming met toepasselijk recht.<br><br><strong>HOE WIJ UW PERSOONLIJKE INFORMATIE GEBRUIKEN</strong><br>Hoe wij uw persoonlijke informatie gebruiken, hangt af van welke diensten u gebruikt, hoe u die diensten gebruikt, en de keuzes die u maakt in uw instellingen. Wij gebruiken de informatie die wij over u hebben om onze diensten te leveren en te personaliseren, inclusief met behulp van geautomatiseerde systemen en gevolgtrekkingen die wij maken, zodat onze diensten (inclusief advertenties) relevanter en nuttiger voor u en anderen kunnen zijn.<br><br><strong>VERZAMELEN EN GEBRUIKEN VAN BETALINGSINFORMATIE VOOR UITBETALINGEN</strong><br><strong>1. Informatie die we verzamelen voor uitbetalingen</strong><br>Om aangevraagde uitbetalingen aan u te verwerken en te leveren, verzamelen we de nodige financiële en transactionele informatie. Afhankelijk van de door u gekozen uitbetalingsmethode kan dit het volgende omvatten:<br><br>a. Bankrekeninggegevens (bijv. rekeningnummer, routingnummer, IBAN, SWIFT-code).<br><br>b. Gegevens van externe betalingsdiensten (bijv. PayPal e-mailadres).<br><br>c. Factuuradres en volledige wettelijke naam gekoppeld aan de financiële rekening.<br><br>d. Btw-nummers of relevante documentatie, waar wettelijk vereist voor naleving en rapportage.<br><br><strong>2. Doel van het verzamelen</strong><br>We verzamelen en verwerken deze informatie uitsluitend voor de volgende doeleinden:<br><br>a. Om uw uitbetalingsverzoeken te vervullen en uit te voeren.<br><br>b. Om frauduleuze activiteiten, het witwassen van geld en ongeautoriseerde transacties te voorkomen.<br><br>c. Om te voldoen aan lokale en internationale financiële voorschriften, belastingwetten en boekhoudnormen.<br><br><strong>3. Gegevens delen en externe verwerkers</strong><br><strong>Wij verkopen uw financiële informatie niet.</strong> Uw betalingsgegevens zijn strikt vertrouwelijk. Wij delen deze gegevens alleen met geautoriseerde, veilige externe betalingsgateways, bankinstellingen en financiële dienstverleners uitsluitend met het doel de uitbetalingstransactie uit te voeren. Deze partners zijn wettelijk en contractueel verplicht om uw gegevens te beschermen en voldoen aan strikte financiële beveiligingsnormen (zoals PCI-DSS).<br><br><strong>4. Internationale gegevensoverdrachten (Wereldwijde & AVG-naleving)</strong><br>Omdat wij internationaal opereren, kunnen uw betalingsgegevens worden overgedragen naar, verwerkt in of opgeslagen in landen buiten uw land van verblijf, inclusief de Verenigde Staten. Wij implementeren passende wettelijke voorzorgsmaatregelen, zoals modelcontractbepalingen (SCC's) en robuuste codering, om ervoor te zorgen dat uw financiële gegevens wereldwijd hetzelfde beschermingsniveau krijgen als onder de Algemene Verordening Gegevensbescherming (AVG) of uw lokale wetgeving.<br><br><strong> 5. Privacyrechten van de Verenigde Staten (inclusief CCPA/CPRA)</strong><br>Voor inwoners van de Verenigde Staten, inclusief Californië, respecteren wij uw rechten met betrekking tot uw persoonlijke en financiële gegevens. Wij bevestigen dat:<br><br>a. Wij uw financiële gegevens uitsluitend verzamelen voor het zakelijke doel om uw aangevraagde transacties te voltooien.<br><br>b. Wij uw financiële gegevens niet \"verkopen\" of \"delen\" voor cross-context gedragsgerichte advertenties.<br><br>c. U het recht heeft om de verwijdering van uw betalingsgegevens aan te vragen; houd er echter rekening mee dat federale en staatsfinanciële wetten kunnen vereisen dat wij specifieke transactierecords voor een aangewezen periode veilig bewaren (bijv. voor belasting- en fraudebestrijdingsdoeleinden) voordat ze permanent kunnen worden verwijderd.<br><br><strong>COOKIE EN SOORTGELIJKE TECHNOLOGIEËN</strong><br>Zoals nader beschreven in ons Cookiebeleid, gebruiken wij cookies en soortgelijke technologieën (bijv. pixels en advertentietags) om gegevens te verzamelen (bijv. apparaat-ID's) om u en uw apparaat(en) te herkennen, op, buiten en via verschillende diensten en apparaten waarmee u onze diensten heeft gebruikt. Wij staan ook toe dat anderen cookies gebruiken zoals beschreven in ons Cookiebeleid.<br><br><strong>BEVEILIGING</strong><br>Wij implementeren beveiligingsmaatregelen die zijn ontworpen om uw gegevens te beschermen, zoals HTTPS. Wij bewaken onze systemen regelmatig op mogelijke kwetsbaarheden en aanvallen. Wij kunnen echter niet de veiligheid garanderen van informatie die u ons verzendt. Er is geen garantie dat gegevens niet kunnen worden geopend, bekendgemaakt, gewijzigd of vernietigd door schending van onze fysieke, technische of beheersmaatregelen.<br><br><strong>DO NOT TRACK SIGNALEN</strong><br>Wij delen momenteel geen persoonlijke gegevens met derden voor hun directe marketingdoeleinden zonder uw toestemming.<br><br><strong>BEOORDELING VAN PRIVACYBELEID</strong><br>Dit portaal zal niet publiekelijk worden erkend en zal strikt vertrouwelijk worden gehouden om lekkage van vertrouwelijke informatie van merchants te voorkomen."
+      "title": "개인정보 처리방침",
+      "last_updated": "최종 수정일: 2024년 1월 11일",
+      "content": "The Structured Data 소속인 당사는 귀하의 개인정보를 보호하고 존중하기 위해 최선을 다하고 있습니다. 본 개인정보 처리방침(이하 \"개인정보 처리방침\")은 귀하의 본 웹사이트(이하 \"웹사이트\") 및 관련 콘텐츠, 소프트웨어, 모바일 애플리케이션(통칭하여 \"서비스\")의 접속 및 이용에 적용됩니다. 본 개인정보 처리방침은 당사가 웹사이트를 방문하거나 서비스를 이용하는 기업 및 일반 사용자의 개인정보를 수집하고 사용하는 시기, 이유 및 방법, 귀하의 개인정보를 타인에게 공개할 수 있는 조건, 그리고 당사가 귀하의 개인정보를 안전하게 유지하는 방법을 설명합니다. 당사는 수시로 본 개인정보 처리방침을 변경할 수 있습니다. 당사의 웹사이트나 서비스를 이용함으로써 귀하는 본 개인정보 처리방침에 구속되는 데 동의하게 됩니다. 본 방침을 주의 깊게 읽어 주시기 바랍니다. 당사는 본 방침의 조항을 준수하여 귀하의 개인정보를 보호할 것을 약속합니다.<br><br><strong>글로벌 적용성 및 관할권</strong><br>당사는 국제적으로 운영됩니다. 당사 본사의 위치와 관계없이 당사는 귀하가 당사 서비스에 접속하는 국가 또는 지역의 적용 가능한 개인정보 보호법 및 규정(예: 유럽 경제 지역 사용자의 경우 GDPR, 캘리포니아 사용자의 경우 CCPA)을 준수할 것을 약속합니다. 귀하의 개인 데이터에 대한 귀하의 권리는 해당 지역 관할권에 따라 존중됩니다.<br><br><strong>변경 사항</strong><br>당사(\"당사\" 또는 \"우리\")는 본 개인정보 처리방침을 수정할 수 있으며, 당사가 중대한 변경을 가하는 경우 서비스 또는 기타 수단을 통해 통지를 제공하여 변경 사항이 발효되기 전에 귀하가 변경 사항을 검토할 기회를 제공합니다. 변경 사항에 이의가 있는 경우 귀하는 계정을 폐쇄할 수 있습니다. 당사가 본 개인정보 처리방침의 변경 사항에 대한 통지를 게시하거나 보낸 후에도 귀하가 당사 서비스를 계속 이용하는 것은 귀하의 개인 데이터 수집, 이용 및 공유가 발효일 기준으로 업데이트된 개인정보 처리방침의 적용을 받는다는 것을 인정하는 것을 의미합니다.<br><br><strong>계정 생성</strong><br>기업 또는 일반 사용자로 계정을 생성하려면 이메일 주소 및/또는 휴대폰 번호, 연령을 확인하기 위한 출생 연도, 본인이 설정한 비밀번호를 포함한 데이터를 제공해야 합니다. 개인정보를 수집할 때 당사는 필요한 한도 내에서 수집하며, 적법성과 공정성을 보장하는 것을 최우선으로 하여 수집을 수행합니다.<br><br><strong>수집하는 정보</strong><br>당사는 귀하로부터 직접 또는 판매자, 사용자, 정부 당국, 공공 또는 정부 기관, 혹은 당사 자체 등 당사와 협력하는 다른 기관으로부터 귀하의 개인정보를 수집할 수 있습니다. 당사가 수집, 이용 및 공개하는 개인정보에는 다음이 포함됩니다.<br><br>a. 이름, 이메일 주소 및 연락처 번호와 같은 연락처 정보<br><br>b. 국적과 같은 신원 정보<br><br>c. 연령을 확인하기 위해 필요한 출생 연도<br><br>d. 해당 지역이나 그 외의 지역을 불문하고 기록 보관 의무, 사기 방지, 감사 목적, 규정 준수 심사 및 실사, 제재 체제 및 법원 명령 등 관련 법률 및 규정, 직업적 의무, 내부 정책 및 위험 관리 절차에 따라 요구되는 정보<br><br>e. 정보 통신 기술 시스템 및 프로세스, 사무 기기 및 시설과 관련된 정보 및<br><br>f. 사진 및 기타 시청각 정보.<br><br>귀하가 다른 사람의 개인정보를 당사에 제출하는 경우, 귀하는 해당 정보가 사실이고 정확하며, 필요한 모든 동의를 얻었거나 당사에 해당 개인정보를 제공하도록 달리 허용되었음을 확인합니다.<br><br><strong>개인정보 이용 방법</strong><br>당사가 귀하의 개인정보를 이용하는 방법은 귀하가 어떤 서비스를 이용하는지, 해당 서비스를 어떻게 이용하는지, 설정에서 어떤 선택을 하는지에 따라 달라집니다. 당사는 자동화된 시스템 및 당사가 도출하는 추론의 도움을 받아 당사의 서비스(광고 포함)가 귀하 및 다른 사람들에게 더 관련성 있고 유용해질 수 있도록 귀하에 대해 보유하고 있는 정보를 사용하여 서비스를 제공하고 개인화합니다. 또한 당사는 귀하의 정보를 이용하여 당사 서비스의 변경 사항이나 개선 사항에 대해 알려드리기 위해 제품 업데이트를 가끔 보내드릴 수 있습니다.<br><br><strong>데이터 공유 및 타사 도구</strong><br><strong>당사는 귀하의 개인 데이터를 절대 판매하지 않습니다.</strong> 그러나 당사 서비스를 효과적으로 운영하기 위해 당사는 플랫폼을 운영하는 데 도움을 주는 인가된 타사 서비스 제공업체와 데이터를 공유합니다. 이러한 제공업체는 당사를 위해 서비스를 수행하는 데 필요한 범위 내에서만 귀하의 데이터를 이용하도록 엄격하게 제한됩니다. 당사의 핵심 타사 도구는 다음과 같습니다.<br><br>a. <strong>Google Analytics:</strong> 사용자 경험을 개선하기 위해 사용자가 당사 웹사이트와 상호 작용하는 방식을 이해하기 위함입니다.<br><br>b. <strong>XE Currency Converter:</strong> 플랫폼 내에서 정확한 실시간 통화 변환율을 제공하기 위함입니다.<br><br>c. <strong>LiveChat:</strong> 실시간 사용자 지원 및 커뮤니케이션을 원활하게 하기 위함입니다.<br><br>d. <strong>Cloudflare:</strong> 웹사이트 보안, 성능 최적화 및 웹 분석을 위함입니다.<br><br><strong>지급을 위한 결제 정보 수집 및 이용</strong><br><strong>1. 지급을 위해 수집하는 정보</strong><br>요청된 지급을 처리하고 귀하에게 전달하기 위해 당사는 필요한 금융 및 거래 정보를 수집합니다. 귀하가 선택한 지급 방법에 따라 여기에는 다음이 포함될 수 있습니다.<br><br>a. 은행 계좌 정보(예: 계좌 번호, 라우팅 번호, IBAN, SWIFT 코드).<br><br>b. 타사 결제 서비스 정보(예: PayPal 이메일 주소).<br><br>c. 금융 계좌와 관련된 청구서 수신 주소 및 전체 법적 이름.<br><br>d. 규정 준수 및 보고를 위해 법적으로 요구되는 경우 납세자 식별 번호 또는 관련 문서.<br><br><strong>2. 수집 목적</strong><br>당사는 다음 목적을 위해서만 이 정보를 엄격하게 수집하고 처리합니다.<br><br>a. 귀하의 지급 요청을 이행하고 실행하기 위함입니다.<br><br>b. 사기 행위, 자금 세탁 및 무단 거래를 방지하기 위함입니다.<br><br>c. 국내 및 국제 금융 규정, 세법 및 회계 기준을 준수하기 위함입니다.<br><br><strong>3. 데이터 공유 및 타사 처리자</strong><br><strong>당사는 귀하의 금융 정보를 판매하지 않습니다.</strong> 귀하의 결제 세부 정보는 엄격히 기밀로 유지됩니다. 당사는 지급 거래를 실행할 목적으로만 인가되고 안전한 타사 결제 게이트웨이, 금융 기관 및 금융 서비스 제공업체와 이 데이터를 공유합니다. 이러한 파트너는 귀하의 데이터를 보호할 법적, 계약적 의무가 있으며 엄격한 금융 보안 표준(예: PCI-DSS)을 준수합니다.<br><br><strong>4. 국제 데이터 전송(글로벌 및 GDPR 준수)</strong><br>당사는 국제적으로 운영되기 때문에 귀하의 결제 데이터는 미국을 포함하여 귀하의 거주 국가 이외의 국가로 전송, 처리 또는 저장될 수 있습니다. 당사는 표준 계약 조항(SCC) 및 강력한 암호화와 같은 적절한 법적 보호 장치를 구현하여 귀하의 금융 데이터가 일반 데이터 보호 규칙(GDPR) 또는 현지 관할권에서 적용되는 것과 동일한 수준의 보호를 전 세계적으로 받도록 보장합니다.<br><br><strong>5. 미국 개인정보 보호 권리(CCPA/CPRA 포함)</strong><br>캘리포니아를 포함한 미국 거주자의 경우 당사는 개인 및 금융 데이터에 관한 귀하의 권리를 존중합니다. 당사는 다음 사항을 확인합니다.<br><br>a. 당사는 귀하가 요청한 거래를 완료하려는 비즈니스 목적을 위해서만 귀하의 금융 데이터를 수집합니다.<br><br>b. 당사는 교차 문맥 행동 광고를 위해 귀하의 금융 데이터를 \"판매\"하거나 \"공유\"하지 않습니다.<br><br>c. 귀하는 결제 데이터의 삭제를 요청할 권리가 있습니다. 그러나 연방 및 주 금융법에 따라 당사가 데이터를 영구적으로 삭제하기 전에 지정된 기간 동안(예: 세무 및 사기 방지 목적) 특정 거래 기록을 안전하게 보존해야 할 수 있다는 점에 유의하시기 바랍니다.<br><br><strong>개인정보의 보호</strong><br>당사는 모든 손실, 오용 또는 무단 접근, 공개, 변경 또는 파기로부터 귀하의 개인정보를 보호하기 위해 적절한 기술적, 조직적 및 관리적 보안 조치를 사용합니다. 또한 당사는 귀하의 개인정보에 대한 접근 권한을 진정한 비즈니스상 알아야 할 필요가 있는 사람으로 제한합니다. 개인정보는 부당한 접근, 손실, 위조, 유출 등으로부터 보호하기 위해 적절한 정보 기술 및 관리의 관점에서 필요하고 합리적인 보호 조치를 시행하며 적절한 관리 하에 놓여 있습니다. 그러나 기술은 완전히 위험이 없거나 100% 안전하다고 보장될 수 없으므로 개인정보 제공에는 항상 위험이 따릅니다. 데이터 유출과 같은 관리상의 과실이 발생하는 경우 당사는 가능한 한 신속하고 효과적인 대응 조치를 취할 위치에 있을 것입니다.<br><br><strong>개인정보의 보관</strong><br>당사는 귀하의 개인정보를 수집된 목적에 합리적으로 필요하다고 판단되는 기간보다 길게, 또는 비즈니스나 법적 목적으로 요구되는 더 긴 기간 동안 보관하지 않습니다. 개인정보를 파기할 때 당사는 적용 법률에 따라 귀하의 개인정보를 복구할 수 없거나 재생산할 수 없도록 상업적으로 합리적인 조치를 취할 것입니다.<br><br><strong>쿠키 및 유사 기술</strong><br>당사의 쿠키 정책에 더 자세히 설명된 바와 같이, 당사는 쿠키 및 유사 기술(예: 픽셀 및 광고 태그)을 사용하여 데이터(예: 기기 ID)를 수집하여 귀하가 당사 서비스에 참여한 다양한 서비스 및 기기 안팎에서 귀하와 귀하의 기기를 인식합니다. 당사는 또한 당사의 쿠키 정책에 설명된 대로 다른 일부 기관이 쿠키를 사용하는 것을 허용합니다.<br><br><strong>보안</strong><br>당사는 HTTPS와 같이 귀하의 데이터를 보호하도록 설계된 보안 보호 장치를 구현합니다. 당사는 가능한 취약점과 공격에 대해 시스템을 정기적으로 모니터링합니다. 그러나 당사는 귀하가 당사에 보내는 어떠한 정보의 보안도 보장할 수 없습니다. 당사의 물리적, 기술적 또는 관리적 보호 장치의 위반으로 인해 데이터에 접근, 공개, 변경 또는 파기되지 않을 것이라는 보장은 없습니다.<br><br><strong>추적 방지(DO NOT TRACK) 신호</strong><br>당사는 현재 귀하의 허락 없이 직접 마케팅 목적으로 타사와 개인 데이터를 공유하지 않습니다.<br><br><strong>개인정보 처리방침 검토</strong><br>판매자의 기밀 정보 유출을 방지하기 위해 이 포털은 공개적으로 인정되지 않으며 엄격히 기밀로 유지됩니다."
     },
     "cookies": {
-      "title": "Cookiebeleid",
-      "last_updated": "Van kracht op 19 november 2015",
-      "content": "<strong>1. INLEIDING</strong><br>Bij the Company geloven we in het volledig duidelijk, transparant en open zijn over hoe we gegevens die op u betrekking hebben, verzamelen, gebruiken en beveiligen. Dit Cookiebeleid is van toepassing op elk the Company-product, elke website of elke dienst die naar dit beleid linkt of het door verwijzing opneemt. In de geest van transparantie biedt dit uitgebreide beleid gedetailleerde informatie over hoe, wanneer en waarom we cookies en vergelijkbare technologieën gebruiken.<br><br>Door onze diensten te blijven bezoeken of gebruiken, erkent en accepteert u het gebruik van cookies en vergelijkbare technologieën voor de strikt noodzakelijke, functionele en externe doeleinden die in dit beleid worden beschreven.<br><br><strong>2. WAT ZIJN COOKIES EN VERGELIJKBARE TECHNOLOGIEËN?</strong><br>Om een naadloze en veilige ervaring te bieden, maken we gebruik van specifieke webtechnologieën. Deze omvatten:<br><br><strong>Cookies:</strong> Cookies zijn kleine tekstbestanden die een unieke reeks tekens bevatten en die worden gedownload naar en opgeslagen op uw computer, tablet of mobiele apparaat wanneer u een website bezoekt. Ze identificeren uw browser of apparaat op unieke wijze, waardoor de website u kan herkennen bij uw terugkeer.<br><br><strong>Lokale opslag:</strong> Lokale opslag is een industriestandaardtechnologie waarmee een website of applicatie informatie lokaal in de browser van uw apparaat kan opslaan. We gebruiken lokale opslag om uw specifieke websitevoorkeuren naadloos toe te passen zonder afhankelijk te zijn van traditionele cookies.<br><br><strong>3. LEVENSDUUR VAN ONZE TECHNOLOGIEËN</strong><br>De tijdsduur dat een cookie of lokaal opslagtoken op uw apparaat blijft, hangt af van het feit of het een \"permanente\" of \"sessie\" -technologie is.<br><br><strong>Sessietechnologieën:</strong> Deze zijn tijdelijk en duren slechts zolang als uw huidige browsersessie. Ze verlopen en worden automatisch verwijderd wanneer u uw webbrowser sluit.<br><br><strong>Permanente technologieën:</strong> Deze duren langer dan de huidige sessie en blijven in uw browser totdat ze verlopen of totdat u ze handmatig verwijdert. Permanente technologieën worden gebruikt om u te herkennen als een bestaande gebruiker, waardoor het gemakkelijker wordt om terug te keren naar the Company en te communiceren met onze diensten zonder u opnieuw te hoeven aanmelden of uw voorkeuren opnieuw te hoeven instellen.<br><br><strong>4. HOE EN WAAROM WE DEZE TECHNOLOGIEËN GEBRUIKEN</strong><br>Ons gebruik van cookies en lokale opslag is erop gericht de website voor u goed te laten functioneren, uw account te beveiligen en essentiële klantenondersteuning te bieden. De technologieën die we gebruiken vallen in drie specifieke categorieën:<br><br><strong>A. Strikt Noodzakelijke Technologieën (Authenticatie & Beveiliging)</strong><br>Deze technologieën zijn essentieel voor de kernwerking van onze diensten. Zonder deze kan de website niet goed functioneren. We gebruiken deze technologieën om:<br>a. U te herkennen wanneer u onze diensten bezoekt.<br>b. Uw account te verifiëren en uw inlogsessie te authenticeren; u hoeft niet herhaaldelijk in te loggen terwijl u tussen verschillende pagina's navigeert.<br>c. Onze kernbeveiligingsfuncties in te schakelen en te ondersteunen.<br>d. Ons te helpen kwaadaardige activiteiten te detecteren, fraude te voorkomen en uw account veilig te houden.<br><br><strong>B. Functionele Technologieën (Gebruikersvoorkeuren)</strong><br>Deze technologieën stellen onze website in staat om keuzes die u maakt te onthouden en een verbeterde, meer gepersonaliseerde ervaring te bieden. We gebruiken lokale opslag en cookies specifiek om:<br>a. Uw interfacevoorkeuren te onthouden, zoals uw selectie van de Donkere modus of Lichte modus.<br>b. Uw taalselecties op te slaan.<br>c. De functionaliteit van de site te versnellen en ervoor te zorgen dat de website precies zo laadt als u verkiest, waardoor het niet nodig is om uw instellingen bij elk bezoek opnieuw aan te passen.<br><br><strong>C. Integraties van Derden</strong><br>Om de best mogelijke ervaring te bieden, integreren we specifieke tools die worden geleverd door vertrouwde externe bedrijven. Deze derde partijen kunnen hun eigen cookies op uw apparaat plaatsen wanneer u interactie heeft met hun functies op onze website. Deze omvatten:<br>a. <strong>LiveChat:</strong> We gebruiken LiveChat om realtime klantenondersteuning te bieden. LiveChat gebruikt cookies om uw chatsessie te behouden terwijl u over verschillende pagina's op onze website navigeert, zodat u uw gesprek met ons ondersteuningsteam niet kwijtraakt.<br>b. <strong>XE Currency Converter:</strong> We maken gebruik van XE om nauwkeurige, realtime valutaconversies te bieden. Deze tool kan tijdelijke sessiegegevens gebruiken om live wisselkoersen op te halen, maar gebruikt geen permanente cookies om uw valutavoorkeuren over browsersessies heen bij te houden of op te slaan.<br><br><strong>5. ONZE PRIVACYBELOFTE: GEEN MARKETING- OF ADVERTENTIETRACKERS</strong><br>Hoewel we externe tools gebruiken voor essentiële websitefunctionaliteit en klantenondersteuning, geloven we dat uw gegevens van u zijn. Zoals expliciet vermeld in ons Privacybeleid, verkopen we uw persoonlijke gegevens niet. Bovendien gebruiken we geen targetingcookies van derden, advertentiecookies of marketingpixels op onze website om uw gedrag te volgen voor advertentieretargeting.<br><br><strong>6. HOE U UW COOKIES KUNT BEHEREN EN CONTROLEREN</strong><br>U heeft het recht om te beslissen of u cookies accepteert of weigert. Bij de meeste webbrowsers kunt u standaard cookies beheren via hun instellingenvoorkeuren. Bovendien stellen de meeste browsers u in staat om cookies, inclusief the Company-cookies, op elk moment te bekijken en te wissen.<br><br>Omdat de manieren waarop u cookies kunt weigeren via de bedieningselementen van uw webbrowser per browser verschillen, dient u het helpmenu van uw browser te bezoeken voor meer informatie. Hier leest u hoe u cookies in populaire browsers kunt beheren:<br>a. <strong>Google Chrome:</strong> Ga naar Instellingen > Privacy en beveiliging > Cookies en andere sitegegevens.<br>b. <strong>Mozilla Firefox:</strong> Ga naar Instellingen > Privacy & Beveiliging > Cookies en sitegegevens.<br>c. <strong>Apple Safari:</strong> Ga naar Voorkeuren > Privacy > Cookies en websitegegevens.<br>d. <strong>Microsoft Edge:</strong> Ga naar Instellingen > Cookies en sitemachtigingen > Cookies en sitegegevens beheren en verwijderen.<br><br>Let op: Als u ervoor kiest om cookies te weigeren of uit te schakelen, werken bepaalde onderdelen van the Company-producten mogelijk niet goed. Concreet is het mogelijk dat u niet ingelogd kunt blijven op uw account, worden uw aangepaste weergavevoorkeuren niet opgeslagen en kunnen uw chatsessies met de klantenondersteuning worden onderbroken.<br><br><strong>7. WIJZIGINGEN IN DIT COOKIEBELEID</strong><br>We kunnen dit Cookiebeleid van tijd tot tijd bijwerken om bijvoorbeeld wijzigingen in de cookies die we gebruiken of voor andere operationele, wettelijke of regelgevende redenen weer te geven. Bezoek dit Cookiebeleid regelmatig om op de hoogte te blijven van ons gebruik van cookies en gerelateerde technologieën.<br><br><strong>8. NEEM CONTACT MET ONS OP</strong><br>Als u vragen heeft over ons gebruik van cookies of andere technologieën, raadpleeg dan ons belangrijkste Privacybeleid of neem contact op met ons ondersteuningsteam."
+      "title": "쿠키 정책",
+      "last_updated": "발효일: 2015년 11월 19일",
+      "content": "<strong>1. 소개</strong><br>the Company는 귀하와 관련된 데이터를 수집, 사용 및 보호하는 방법에 대해 완전히 명확하고 투명하며 개방적이어야 한다고 믿습니다. 이 쿠키 정책은 이 정책에 링크되거나 참조로 통합되는 모든 the Company 제품, 웹사이트 또는 서비스에 적용됩니다. 투명성의 정신에 따라, 이 포괄적인 정책은 우리가 쿠키 및 유사한 기술을 언제, 어떻게, 왜 사용하는지에 대한 자세한 정보를 제공합니다.<br><br>우리의 서비스를 계속 방문하거나 사용함으로써, 귀하는 이 정책에 설명된 엄격하게 필요한 목적, 기능적 목적 및 제3자 목적을 위해 쿠키 및 유사한 기술을 사용하는 것을 인정하고 동의하는 것입니다.<br><br><strong>2. 쿠키 및 유사한 기술이란 무엇입니까?</strong><br>원활하고 안전한 경험을 제공하기 위해 우리는 특정 웹 기술을 활용합니다. 여기에는 다음이 포함됩니다:<br><br><strong>쿠키:</strong> 쿠키는 웹사이트를 방문할 때 컴퓨터, 태블릿 또는 모바일 장치에 다운로드되어 저장되는 고유한 문자열이 포함된 작은 텍스트 파일입니다. 쿠키는 귀하의 브라우저나 장치를 고유하게 식별하여 웹사이트가 귀하가 재방문 시 귀하를 인식할 수 있도록 합니다.<br><br><strong>로컬 스토리지:</strong> 로컬 스토리지는 웹사이트나 애플리케이션이 장치의 브라우저에 정보를 로컬로 저장할 수 있게 해주는 업계 표준 기술입니다. 우리는 기존의 쿠키에 의존하지 않고 귀하의 특정 웹사이트 환경설정을 원활하게 적용하기 위해 로컬 스토리지를 사용합니다.<br><br><strong>3. 우리 기술의 수명</strong><br>쿠키 또는 로컬 스토리지 토큰이 장치에 유지되는 기간은 그것이 \"영구적인\" 기술인지 \"세션\" 기술인지에 따라 다릅니다.<br><br><strong>세션 기술:</strong> 이것들은 일시적이며 현재의 브라우징 세션 동안에만 지속됩니다. 웹 브라우저를 닫으면 만료되고 자동으로 삭제됩니다.<br><br><strong>영구적 기술:</strong> 이것들은 현재 세션 이후에도 지속되며 만료되거나 수동으로 삭제할 때까지 브라우저에 남아 있습니다. 영구적 기술은 귀하를 기존 사용자로 인식하는 데 사용되므로 다시 로그인하거나 환경설정을 초기화할 필요 없이 the Company로 돌아가 서비스를 쉽게 이용할 수 있습니다.<br><br><strong>4. 이러한 기술을 사용하는 방법 및 이유</strong><br>우리의 쿠키 및 로컬 스토리지 사용은 귀하를 위해 웹사이트가 제대로 기능하도록 만들고, 계정을 보호하며, 필수적인 고객 지원을 제공하는 데 중점을 둡니다. 우리가 사용하는 기술은 세 가지 특정 범주로 나뉩니다:<br><br><strong>A. 엄격하게 필요한 기술 (인증 및 보안)</strong><br>이러한 기술은 우리 서비스의 핵심 운영에 필수적입니다. 이 기술 없이는 웹사이트가 제대로 기능할 수 없습니다. 우리는 이러한 기술을 다음과 같은 용도로 사용합니다:<br>a. 귀하가 우리 서비스를 방문할 때 귀하를 인식합니다.<br>b. 계정을 확인하고 로그인 세션을 인증하여 다른 페이지 사이를 탐색할 때 반복해서 로그인할 필요가 없도록 합니다.<br>c. 우리의 핵심 보안 기능을 활성화하고 지원합니다.<br>d. 악의적인 활동을 감지하고, 사기를 방지하며, 계정을 안전하게 유지하도록 돕습니다.<br><br><strong>B. 기능적 기술 (사용자 환경설정)</strong><br>이러한 기술을 통해 우리 웹사이트는 귀하가 한 선택을 기억하고 향상되고 개인화된 경험을 제공할 수 있습니다. 우리는 로컬 스토리지와 쿠키를 구체적으로 다음과 같은 용도로 사용합니다:<br>a. 다크 모드 또는 라이트 모드 선택과 같은 인터페이스 환경설정을 기억합니다.<br>b. 언어 선택을 저장합니다.<br>c. 사이트 기능을 높이고 웹사이트가 귀하가 선호하는 방식대로 정확하게 로드되도록 보장하여 매 방문 시마다 설정을 다시 조정할 필요를 없앱니다.<br><br><strong>C. 제3자 통합</strong><br>가능한 최상의 경험을 제공하기 위해 우리는 신뢰할 수 있는 제3자 회사가 제공하는 특정 도구를 통합합니다. 이러한 제3자는 귀하가 우리 웹사이트에서 그들의 기능과 상호 작용할 때 귀하의 장치에 자체 쿠키를 설정할 수 있습니다. 여기에는 다음이 포함됩니다:<br>a. <strong>LiveChat:</strong> 우리는 실시간 고객 지원을 제공하기 위해 LiveChat을 사용합니다. LiveChat은 우리 웹사이트의 다른 페이지를 탐색할 때 채팅 세션을 유지하기 위해 쿠키를 사용하여 지원 팀과의 대화를 잃지 않도록 합니다.<br>b. <strong>XE Currency Converter:</strong> 우리는 정확한 실시간 통화 변환을 제공하기 위해 XE를 활용합니다. 이 도구는 실시간 환율을 가져오기 위해 임시 세션 데이터를 사용할 수 있지만, 브라우징 세션 전반에 걸쳐 통화 환경설정을 추적하거나 저장하기 위해 영구적인 쿠키를 사용하지는 않습니다.<br><br><strong>5. 우리의 개인정보 보호 약속: 마케팅 또는 광고 추적기 없음</strong><br>필수 웹사이트 기능 및 고객 지원을 위해 제3자 도구를 사용하지만, 우리는 귀하의 데이터가 귀하의 것이라고 믿습니다. 개인정보 처리방침에 명시적으로 명시된 바와 같이, 우리는 귀하의 개인 정보를 판매하지 않습니다. 또한 우리는 웹사이트에서 광고 리타겟팅을 위해 귀하의 행동을 추적하기 위해 제3자 타겟팅 쿠키, 광고 쿠키 또는 마케팅 픽셀을 사용하지 않습니다.<br><br><strong>6. 쿠키 관리 및 제어 방법</strong><br>귀하는 쿠키 허용 또는 거부 여부를 결정할 권리가 있습니다. 대부분의 웹 브라우저는 본질적으로 설정 환경설정을 통해 쿠키를 제어할 수 있도록 합니다. 또한 대부분의 브라우저는 귀하가 원할 때 언제든지 the Company 쿠키를 포함한 쿠키를 검토하고 지울 수 있도록 합니다.<br><br>웹 브라우저 제어를 통해 쿠키를 거부할 수 있는 방법은 브라우저마다 다르므로 자세한 내용은 브라우저의 도움말 메뉴를 방문해야 합니다. 다음은 널리 사용되는 브라우저에서 쿠키를 관리하는 방법입니다:<br>a. <strong>Google Chrome:</strong> 설정 > 개인정보 및 보안 > 쿠키 및 기타 사이트 데이터로 이동합니다.<br>b. <strong>Mozilla Firefox:</strong> 설정 > 개인정보 및 보안 > 쿠키 및 사이트 데이터로 이동합니다.<br>c. <strong>Apple Safari:</strong> 환경설정 > 개인정보 보호 > 쿠키 및 웹사이트 데이터로 이동합니다.<br>d. <strong>Microsoft Edge:</strong> 설정 > 쿠키 및 사이트 권한 > 쿠키 및 사이트 데이터 관리 및 삭제로 이동합니다.<br><br>참고: 쿠키를 거부하거나 비활성화하기로 선택한 경우, the Company 제품의 특정 부분이 제대로 작동하지 않을 수 있습니다. 구체적으로, 계정에 로그인한 상태를 유지할 수 없거나, 사용자 지정 디스플레이 환경설정이 저장되지 않거나, 고객 지원 채팅 세션이 중단될 수 있습니다.<br><br><strong>7. 이 쿠키 정책의 변경 사항</strong><br>우리는 예를 들어 우리가 사용하는 쿠키의 변경 사항을 반영하거나 기타 운영, 법률 또는 규제상의 이유로 이 쿠키 정책을 수시로 업데이트할 수 있습니다. 우리가 쿠키 및 관련 기술을 사용하는 방법에 대해 정보를 얻기 위해 이 쿠키 정책을 정기적으로 다시 방문해 주십시오.<br><br><strong>8. 문의하기</strong><br>쿠키 또는 기타 기술의 사용과 관련하여 질문이 있는 경우, 기본 개인정보 처리방침을 참조하거나 지원 팀에 문의하십시오."
     },
     "registration": {
-      "certificate": "Certificaat",
-      "title": "Juridische Kennisgeving en Registratie",
-      "content": "<strong>1. PARTIJEN</strong><br>De partijen bij deze Algemene Gebruiksvoorwaarden zijn het Bedrijf, en u als gebruiker, begrepen als elke natuurlijke of rechtspersoon die vrij, vrijwillig en kosteloos toegang heeft tot het Portaal, ongeacht of u gebruik maakt van de daar aangeboden diensten. Het enkele feit dat u het Portaal bezoekt, houdt in dat u zich zonder voorbehoud onderwerpt aan deze Algemene Gebruiksvoorwaarden.<br><br><strong>2. DIENSTEN</strong><br>Wij bieden het Portaal aan om onze activiteiten te verspreiden en zodat internetgebruikers specifieke informatie kunnen vinden over de diensten die wij aanbieden, met betrekking tot de zoekmachine of de positionering van producten op de markt.<br><br><strong>3. VERPLICHTING VAN DE GEBRUIKER</strong><br>Als gebruiker stemt u in met:<br><br>Het diligent, correct en wettelijk gebruik van de Dienst, met inachtneming van de geldende wetgeving (met name die met betrekking tot gegevensbescherming en intellectueel en industrieel eigendom), moraal en fatsoen, openbare orde, en deze Algemene Gebruiksvoorwaarden.<br><br>Periodiek herzien van deze Algemene Gebruiksvoorwaarden of andere toepasselijke voorwaarden, waarbij wordt gecontroleerd op wijzigingen die daarin kunnen zijn aangebracht.<br><br>Controleren van de kennisgevingen die wij u sturen, omdat ze belangrijke informatie kunnen bevatten.<br><br>Niet gebruiken van het Portaal voor commerciële doeleinden; bijvoorbeeld door informatie of inhoud te verzamelen om andere diensten te bieden die duidelijk concurreren met het Portaal.<br><br>Niet wijzigen of trachten het Portaal op enige wijze te wijzigen, of te handelen of middelen te gebruiken die zijn ontworpen om het uiterlijk of de functies van het Portaal te simuleren.<br><br>Geen acties uitvoeren die het introduceren van computervirussen, wormen, Trojanen of enige andere soort schadelijke code omvatten die zijn ontworpen om de functionaliteiten van het Portaal te onderbreken, vernietigen of beperken.<br><br>Geen gebruik maken van reverse engineering-technieken en/of het ontcijferen, decompileren of gebruiken van een ander systeem dat is ontworpen om de broncode van het Portaal of van enig ander element onder auteursrecht of onderliggende intellectuele eigendomsrechten te ontdekken.<br><br>Niet beschadigen, uitschakelen, overbelasten of verhinderen van de dienst (of een netwerk dat is verbonden met de dienst), of het genot ervan niet verstoren.<br><br>In ieder geval, geen acties uitvoeren die de rechten of belangen van het Portaal of derden kunnen schenden, zoals, bijvoorbeeld, intellectuele eigendom of industriële rechten (octrooien, merknamen, auteursrechten, commerciële geheimen, enz.).<br><br><strong>4. INTELLECTUEEL EN INDUSTRIEEL EIGENDOM</strong><br>De intellectuele eigendomsrechten op het Bedrijf en de elementen waaruit het bestaat, inclusief de programmering, het ontwerp, de applicaties, grafische elementen, codes, tekst of afbeeldingen daarin, behoren uitsluitend toe aan het Bedrijf, of het Bedrijf heeft de noodzakelijke rechten en/of autorisaties voor hun gebruik. De naam van het domein, de merken, handelsnamen en in het algemeen elk onderscheidend teken in het Bedrijf, zijn ook eigendom van het Bedrijf, en/of het Bedrijf heeft de noodzakelijke licenties om ze te gebruiken. Als gevolg van het bovenstaande is enige reproductie, distributie, openbare mededeling (inclusief beschikbaarstelling), transformatie of enige andere vorm van gebruik, zelfs als de bronnen worden opgegeven, verboden, zonder de uitdrukkelijke schriftelijke toestemming van het Bedrijf of de exclusieve eigenaar van de getroffen rechten. Als u een inbreuk op de intellectuele en/of industriële eigendomsrechten in het Bedrijf detecteert, meld dit dan zo snel mogelijk door contact op te nemen met de ondersteuning.<br><br><strong>5. LINK NAAR SITES VAN DERDEN</strong><br>Het Portaal kan links bevatten naar pagina's of websites van derden die niet gerelateerd zijn aan het Portaal. Het Portaal aanvaardt geen verantwoordelijkheid voor deze links of de inhoud die daardoor toegankelijk is, omdat het hun functies, reclame of in het algemeen de informatie op deze pagina's niet goedkeurt of beoordeelt, en aansprakelijkheid afwijst voor hun inhoud en correcte werking, of eventuele gevolgen of schade die kan optreden als gevolg van het raadplegen ervan. Gebruikers die een van deze links bezoeken, doen dit op eigen risico, waarbij de externe aard van deze inhoud en het onvermogen van het Bedrijf om te garanderen dat er geen bedreigingen, malware of virussen, illegale inhoud of andere links aanwezig zijn die op hun beurt leiden naar sites met een of meer van dergelijke kenmerken, worden aanvaard.<br><br><strong>6. UITSLUITING VAN AANSPRAKELIJKHEID</strong><br>Het Portaal werkt om ervoor te zorgen dat de diensten en functionaliteiten van het Portaal altijd beschikbaar zijn. Bij toegang tot het Portaal zal het echter worden weergegeven \"zoals het is\", overeenkomstig de beschikbaarheid en beperkingen die op enig moment van kracht zijn. Ondanks de continue inspanningen van het Bedrijf om de systemen en inhoud van het Portaal te beschermen, waarvoor het de gangbare beveiligingsnormen op het internet gebruikt, is het niet mogelijk volledige garanties te bieden over inbreuken of verlies van informatie die kunnen plaatsvinden. Evenzo is er geen garantie voor de afwezigheid van virussen of andere schadelijke elementen in het Portaal of op websites van derden die software- en hardwarewijzigingen in het computersysteem van de gebruiker kunnen veroorzaken. De gebruiker neemt daarom kennis van en begrijpt dat er situaties kunnen zijn die buiten de controle van het Bedrijf kunnen vallen. Het Bedrijf aanvaardt geen aansprakelijkheid die kan voortvloeien uit misbruik van het Portaal door de gebruiker, of wegens schending van verplichtingen of verbintenissen die zijn aangegaan onder deze Algemene Gebruiksvoorwaarden, of enige andere toepasselijke voorwaarden. In het algemeen kunnen noch het Bedrijf noch zijn medewerkers aansprakelijk worden gesteld in geval van winstderving of werkelijk verlies om welke reden dan ook.<br><br><strong>7. SCHADELOOSSTELLING</strong><br>Het Bedrijf lijdt enig soort schade, verliezen of kosten (inclusief honoraria van advocaten en gerechtelijke vertegenwoordigers) als gevolg van een schending door de gebruikers van deze Algemene Gebruiksvoorwaarden, of andere toepasselijke voorwaarden, dan is de gebruiker verplicht het Bedrijf te compenseren. Dit zal ook het geval zijn als als gevolg van een schending door de gebruiker claims worden ingediend door derden tegen het Bedrijf, in welk geval de derde partij het Bedrijf schadeloos stelt, en het Bedrijf alle kosten of schade die voortvloeien uit zijn acties op de gebruiker kan verhalen.<br><br><strong>8. GEGEVENSBESCHERMING EN BEVEILIGINGSRISICO'S</strong><br>Het verzamelen van persoonlijke gegevens via het Bedrijf en de verwerking ervan door het Bedrijf wordt geregeld door een specifiek Privacybeleid waartoe de kandidaten toegang kunnen hebben door te raadplegen.<br><br><strong>9. ALGEMENE ZAKEN</strong><br>9.1. Vrijwaring en interpretatie<br>Deze Algemene Gebruiksvoorwaarden vormen een overeenkomst tussen u als gebruiker en het Portaal. Als de bevoegde autoriteit een bepaling onwettig, ongeldig of niet-afdwingbaar verklaart, moet deze bepaling worden geïnterpreteerd op de manier die het dichtst bij de oorspronkelijke bedoeling ligt. Een dergelijke verklaring met betrekking tot een of meer van de clausules heeft geen invloed op de geldigheid van de overige clausules. Als het Bedrijf niet strikt voldoet aan een van de voorwaarden van deze Voorwaarden, vormt dit geen, noch mag het op enige wijze worden geïnterpreteerd als een afstand van een mogelijke eis tot naleving in de toekomst.<br><br>9.2. Wetgeving en jurisdictie<br>Relaties tussen het Portaal en de gebruiker worden beheerst door het recht van de Verenigde Staten, en in geval van onenigheid over de interpretatie van of naleving van deze Algemene Gebruiksvoorwaarden, doen zij uitdrukkelijk afstand van elke andere jurisdictie die hen mogelijk toekomt, en onderwerpen zij zich aan de rechtbanken, tenzij een andere jurisdictie wordt bepaald door dwingend recht.<br><br><strong>CERTIFICAAT</strong><br>Geregistreerde Entiteitsnaam: The Structured Data Company Limited<br>Geregistreerd Adres: C/O Chalk Hill Barn Office 1 Upstairs, Yew Tree Farm, Stone Street, Stanford, Kent, England, TN25 6DH<br>Bedrijfsnummer: 16095340"
+      "certificate": "인증서",
+      "title": "법적 고지 및 등록",
+      "content": "<strong>1. 당사자</strong><br>이 일반 사용 조건의 당사자는 회사, 그리고 여기에 제공된 서비스 사용 여부에 관계없이 자발적으로 자유롭게 포털에 액세스하는 개인 또는 법인을 의미하는 사용자인 귀하입니다. 포털을 단순히 방문하는 것만으로 사용자는 본 일반 사용 조건에 구속됨을 인정하는 것입니다.<br><br><strong>2. 서비스</strong><br>당사는 자사 활동을 알리고 인터넷 사용자가 검색 엔진 또는 시장 내 제품 포지셔닝과 관련해 제공되는 서비스에 대한 특정 정보를 얻을 수 있도록 포털을 제공합니다.<br><br><strong>3. 사용자의 의무</strong><br>사용자로서 다음 사항에 동의합니다.-<br><br>서비스를 신중하고 올바르고 합법적으로 사용하여 관련 법률(특히 데이터 보호 및 지적/산업 재산권 관련 법률), 도덕 및 미풍양속, 공공 질서 및 본 일반 사용 조건을 존중합니다.<br><br>본 일반 사용 조건 또는 적용 가능한 기타 조건을 주기적으로 검토하여 변경 사항이 없는지 확인합니다.<br><br>중요한 정보가 포함될 수 있으므로 당사가 보낸 알림을 확인합니다.<br><br>포털을 상업적 목적으로 사용하지 않습니다. 예를 들어, 포털의 명백한 경쟁이 될 수 있는 다른 서비스를 제공하기 위해 정보나 콘텐츠를 수집하는 행위.<br><br>어떤 방식으로든 포털을 수정하거나 수정하려 시도하지 않으며, 포털의 모양이나 기능을 흉내내기 위한 방법을 사용하지 않습니다.<br><br>컴퓨터 바이러스, 웜, 트로이 목마 또는 기타 악성 코드를 유입시켜 포털의 기능을 중단, 파괴 또는 제한하려는 어떠한 행위도 하지 않습니다.<br><br>역공학 기술을 사용하거나 포털의 소스 코드 또는 저작권이나 기타 기본 지적 재산권 보호를 받는 요소를 해독, 디컴파일 또는 발견하기 위해 설계된 시스템을 사용하지 않습니다.<br><br>서비스(또는 서비스에 연결된 네트워크)를 손상시키거나 비활성화, 과부하, 또는 방해하거나 사용을 저해하지 않습니다.<br><br>지적 재산권 또는 산업 재산권(특허, 상표명, 저작권, 영업 비밀 등)과 같이 회사 포털 또는 제3자의 권리나 이익을 침해하는 어떠한 행동도 하지 않습니다.<br><br><strong>4. 지적 및 산업 재산</strong><br>프로그래밍, 디자인, 애플리케이션, 그래픽, 코드, 텍스트 또는 이미지를 포함하여 포털 및 포털 구성 요소의 지적 재산권은 전적으로 회사에 속하며, 혹은 회사가 이러한 활용에 필요한 권리 및/또는 인가를 보유하고 있습니다. 도메인 이름, 브랜드, 상업적 명칭 및 일반적인 식별 표식 또한 회사 소유이며 회사가 이들을 사용할 적법한 라이선스를 보유하고 있습니다. 전술한 내용에 따라 회사의 명시적인 서면 동의나 해당 권리를 가진 독점 소유권자의 허락 없이 어떠한 형태로든 무단 복제, 유포, 공중 송신(이용 가능성 제공 포함), 변형 또는 기타 모든 이용 방식이 금지됩니다. 포털에서 지적 재산권 및/또는 산업 재산권 침해를 발견한 경우 지원 팀에 연락하여 조속히 신고해 주십시오.<br><br><strong>5. 제3자 사이트에 대한 링크</strong><br>포털에는 포털과 무관한 제3자의 웹페이지나 웹사이트 링크가 포함될 수 있습니다. 포털은 이러한 링크나 링크를 통해 접근 가능한 콘텐츠에 대해 어떠한 책임도 지지 않으며, 광고 및 정보 등에 대한 검토나 승인을 하지 않습니다. 내용이나 정상적 작동 여부, 방문으로 초래되는 결과나 피해에 대해서도 포털은 책임지지 않습니다. 이러한 링크에 접속하는 사용자는 본인의 책임하에 진행하며 회사는 보안 위협, 악성 코드, 바이러스, 불법 콘텐츠나 유해 사이트로 이어지는 추가 링크가 없음을 보장할 수 없음을 수용해야 합니다.<br><br><strong>6. 책임의 배제</strong><br>포털은 서비스와 기능이 항상 이용 가능하도록 보장하기 위해 노력합니다. 그러나 포털 접속 시 이는 그 시점에 제공되는 가용성과 제한 사항에 따른 \"있는 그대로\" 제공됩니다. 회사에서는 인터넷상의 공통 보안 표준을 활용해 시스템과 콘텐츠를 보호하기 위해 지속적인 노력을 기울이나 발생할 수 있는 데이터 손실이나 침해를 완전히 보장할 수는 없습니다. 유사하게, 사용자 시스템에 영향을 미칠 수 있는 포털이나 제3자 웹사이트 내 유해 요소(소프트웨어/하드웨어 변화를 야기하는 바이러스 등) 부재를 보장할 수 없습니다. 그러므로 사용자는 회사의 통제 범위를 벗어난 상황이 존재할 수 있음을 이해하고 동의합니다. 회사는 사용자의 포털 오남용, 일반 사용 조건 불이행, 그 외 적용되는 의무를 다하지 않아 발생한 일에 대해서 책임을 지지 않습니다. 전반적으로 회사 및 협력업체는 여하한 사유로 발생한 실질적 손해나 수익 손실에 책임지지 않습니다.<br><br><strong>7. 면책</strong><br>사용자가 본 일반 사용 조건이나 기타 적용되는 약관을 위반한 결과 회사가 모든 종류의 손상, 손실 또는 비용(변호사 및 대리인 수임료 포함)을 겪는 경우, 사용자는 회사에 이를 보상할 의무를 집니다. 사용자의 규정 위반 결과로 제3자가 회사에 항의나 이의를 제기하는 경우 사용자는 제3자에 대해 회사를 면책해야 하며 회사는 사용자 행위로 발생한 비용, 경비나 피해에 대하여 사용자에게 청구할 수 있습니다.<br><br><strong>8. 데이터 보호 및 보안 위험</strong><br>회사 포털을 통한 개인정보의 수집 및 처리는 회사의 구체적인 개인정보 처리방침의 규제를 받으며, 사용자는 열람을 통해 이를 조회할 수 있습니다.<br><br><strong>9. 일반 사항</strong><br>9.1. 보장 및 해석<br>본 일반 사용 조건은 사용자와 포털 사이의 계약을 구성합니다. 해당 당국이 어떠한 조항이 무효이거나 불법이거나 강제 불가능하다고 선언할 경우 이 조항은 원 취지에 가장 근접하게 해석되어야 합니다. 이러한 일부 조항에 대한 선고는 다른 남아있는 조항의 유효성에 영향을 미치지 않습니다. 회사가 조건의 엄격한 준수를 강제하지 않았다고 해서 차후 규정 준수를 요구할 권한을 포기했거나 포기한 것으로 해석되지 않습니다.<br><br>9.2. 준거법 및 관할권<br>사용자와 포털 간의 관계는 미국 법률을 준거법으로 하며, 본 일반 사용 조건의 해석 및 준수와 관련하여 이견이 있을 경우 사용자는 해당 사항과 관련된 일체의 타 관할권을 명시적으로 포기하고 명령적 법규에 의해 기타 관할이 규정되지 않는 이상 특정 법원의 관할에 복속하는 데 동의합니다.<br><br><strong>인증서</strong><br>등록 법인명: The Structured Data Company Limited<br>등록 주소: C/O Chalk Hill Barn Office 1 Upstairs, Yew Tree Farm, Stone Street, Stanford, Kent, England, TN25 6DH<br>회사 번호: 16095340"
     },
-    "footer": "&copy; <span id=\"year\">2026</span> The Structured Data Company. Alle rechten voorbehouden."
+    "footer": "&copy; <span id=\"year\">2026</span> The Structured Data Company. 판권 소유."
   },
   "auth": {
     "backend_errors": {
-      "User information reading failed, please log in again": "Sessie verlopen. Vernieuw de website.",
-      "Invalid Referral Code": "De opgegeven Verwijzings-ID bestaat niet.",
-      "Username already exists": "Weergavenaam is al in gebruik. Kies een andere.",
-      "Phone number already exists": "Telefoonnummer is al gekoppeld aan een account.",
-      "Your account has been banned": "Uw account is opgeschort.",
-      "Your account have been banned": "Uw account is opgeschort.",
-      "Your account has been banned!": "Uw account is opgeschort.",
-      "Your account have been banned!": "Uw account is opgeschort.",
-      "Withdrawal application successful": "Uitbetalingsverzoek succesvol ingediend. Het is nu in afwachting van goedkeuring.",
-      "Withdrawal failed, withdrawal password is wrong!": "Onjuiste uitbetalingswachtzin."
+      "User information reading failed, please log in again": "세션이 만료되었습니다. 웹사이트를 새로고침해 주세요.",
+      "Invalid Referral Code": "입력하신 추천인 ID가 존재하지 않습니다.",
+      "Username already exists": "이미 사용 중인 표시 이름입니다. 다른 이름을 선택하세요.",
+      "Phone number already exists": "전화번호가 이미 계정에 등록되어 있습니다.",
+      "Your account has been banned": "귀하의 계정이 정지되었습니다.",
+      "Your account have been banned": "귀하의 계정이 정지되었습니다.",
+      "Your account has been banned!": "귀하의 계정이 정지되었습니다.",
+      "Your account have been banned!": "귀하의 계정이 정지되었습니다.",
+      "Withdrawal application successful": "지급 요청이 성공적으로 제출되었습니다. 현재 승인 대기 중입니다.",
+      "Withdrawal failed, withdrawal password is wrong!": "잘못된 지급 패스프레이즈입니다."
     },
-    "session_expired_title": "Sessie Verlopen",
-    "session_expired_message": "Uw sessie is verlopen. Log opnieuw in.",
-    "session_ok": "OK",
+    "session_expired_title": "세션 만료",
+    "session_expired_message": "세션이 만료되었습니다. 다시 로그인해 주세요.",
+    "session_ok": "확인",
     "footer": {
-      "terms": "Servicevoorwaarden",
-      "privacy": "Privacybeleid",
-      "cookies": "Cookiebeleid",
-      "legal": "Juridisch en Registratie"
+      "terms": "서비스 약관",
+      "privacy": "개인정보 처리방침",
+      "cookies": "쿠키 정책",
+      "legal": "법적 고지 및 등록"
     },
     "form": {
-      "info_banner": "Het domein kan op onregelmatige basis worden bijgewerkt om de meest recente informatie weer te geven.",
-      "btn_try_again": "Opnieuw proberen",
-      "title_signin": "Inloggen",
-      "title_signup": "Account Aanmaken",
-      "label_display_name": "Weergavenaam",
-      "label_email_signin": "Weergavenaam of E-mailadres",
-      "label_email_signup": "E-mailadres",
-      "label_referrer": "Verwijzer Account-ID",
-      "hint_referrer": "Voer het ID van de verwijzer in om correcte coachtoewijzing te garanderen.",
-      "label_phone": "Telefoonnummer",
-      "label_password": "Wachtwoord",
-      "label_confirm_password": "Wachtwoord Bevestigen",
-      "label_yob": "Geboortejaar",
-      "hint_yob": "Vereist voor leeftijdsverificatie.",
-      "alert_captcha": "Verifieer dat u geen robot bent.",
-      "agreement": "Door een account aan te maken, verklaar ik dat ik 18 jaar of ouder ben, akkoord ga met de Servicevoorwaarden, en het Privacy- en Cookiebeleid heb gelezen.",
-      "forgot_password": "Wachtwoord vergeten? Neem contact op met ondersteuning.",
-      "btn_signin": "Inloggen",
-      "btn_signup": "Account Aanmaken",
-      "btn_continue": "Doorgaan",
-      "btn_get_started": "Aan de slag",
+      "info_banner": "도메인은 최신 정보를 반영하기 위해 비정기적으로 업데이트될 수 있습니다.",
+      "btn_try_again": "다시 시도",
+      "title_signin": "로그인",
+      "title_signup": "계정 생성",
+      "label_display_name": "표시 이름",
+      "label_email_signin": "표시 이름 또는 이메일",
+      "label_email_signup": "이메일",
+      "label_referrer": "추천인 계정 ID",
+      "hint_referrer": "올바른 코치 배정을 보장하기 위해 추천인의 ID를 입력하세요.",
+      "label_phone": "전화번호",
+      "label_password": "비밀번호",
+      "label_confirm_password": "비밀번호 확인",
+      "label_yob": "출생 연도",
+      "hint_yob": "연령 인증에 필요합니다.",
+      "alert_captcha": "로봇이 아님을 인증해 주세요.",
+      "agreement": "계정을 생성함으로써 본인이 만 18세 이상임을 증명하며, 서비스 약관에 동의하고 개인정보 처리방침 및 쿠키 정책을 읽었음을 확인합니다.",
+      "forgot_password": "비밀번호를 잊으셨나요? 고객 지원팀에 문의하세요.",
+      "btn_signin": "로그인",
+      "btn_signup": "계정 생성",
+      "btn_continue": "계속",
+      "btn_get_started": "시작하기",
       "toggle": {
-        "no_account": "Heeft u geen account?",
-        "create": "Account aanmaken",
-        "has_account": "Heeft u al een account?",
-        "signin": "Inloggen"
+        "no_account": "계정이 없으신가요?",
+        "create": "계정 생성",
+        "has_account": "이미 계정이 있으신가요?",
+        "signin": "로그인"
       },
       "logs": {
-        "autologin_fail": "Registratie geslaagd, maar automatisch inloggen mislukt"
+        "autologin_fail": "가입에 성공했으나 자동 로그인에 실패했습니다."
       },
       "errors": {
-        "fill_required": "Vul alle verplichte velden in.",
-        "session_expired_refresh": "Sessie verlopen. Vernieuw de website.",
-        "email": "Voer een geldig e-mailadres in.",
-        "pass_length": "Gebruik 6 of meer tekens voor uw wachtwoord.",
-        "pass_complex": "Kies een sterker wachtwoord met letters, cijfers en symbolen.",
-        "pass_match": "Wachtwoorden komen niet overeen.",
-        "year_invalid": "Buiten leeftijdsgeschiktheid",
-        "phone_invalid": "Voer een geldig telefoonnummer in.",
-        "verification_failed": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
-        "credentials_invalid": "Ongeldige inloggegevens.",
-        "user_exists": "E-mailadres is al gekoppeld aan een account.",
-        "display_name_taken": "Weergavenaam is al in gebruik. Kies een andere.",
-        "phone_taken": "Telefoonnummer is al gekoppeld aan een account.",
-        "referrer_invalid": "De opgegeven Verwijzings-ID bestaat niet.",
-        "referrer_required": "Verwijzings-ID is vereist.",
-        "generic_error": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
-        "title_failed": "Actie Mislukt",
-        "network_issue": "Kan geen verbinding maken met de server. Controleer uw netwerk.",
-        "general_error": "Er is een fout opgetreden. Probeer het later opnieuw."
+        "fill_required": "모든 필수 필드를 작성해 주세요.",
+        "session_expired_refresh": "세션이 만료되었습니다. 웹사이트를 새로고침해 주세요.",
+        "email": "유효한 이메일 주소를 입력해 주세요.",
+        "pass_length": "비밀번호는 6자 이상으로 설정해 주세요.",
+        "pass_complex": "문자, 숫자 및 기호를 사용하여 더 강력한 비밀번호를 선택하세요.",
+        "pass_match": "비밀번호가 일치하지 않습니다.",
+        "year_invalid": "연령 자격 요건을 벗어났습니다.",
+        "phone_invalid": "유효한 전화번호를 입력해 주세요.",
+        "verification_failed": "예상치 못한 오류가 발생했습니다. 다시 시도해 주세요.",
+        "credentials_invalid": "유효하지 않은 자격 증명입니다.",
+        "user_exists": "이메일 주소가 이미 계정에 등록되어 있습니다.",
+        "display_name_taken": "이미 사용 중인 표시 이름입니다. 다른 이름을 선택하세요.",
+        "phone_taken": "전화번호가 이미 계정에 등록되어 있습니다.",
+        "referrer_invalid": "제공된 추천인 ID가 존재하지 않습니다.",
+        "referrer_required": "추천인 ID가 필요합니다.",
+        "generic_error": "예상치 못한 오류가 발생했습니다. 다시 시도해 주세요.",
+        "title_failed": "작업 실패",
+        "network_issue": "서버에 연결할 수 없습니다. 네트워크를 확인해 주세요.",
+        "general_error": "오류가 발생했습니다. 나중에 다시 시도해 주세요."
       },
       "success": {
-        "signin": "Succesvol ingelogd.",
-        "signup": "Account succesvol aangemaakt.",
-        "signin_title": "Welkom!",
-        "signin_msg": "U bent succesvol ingelogd.",
-        "signup_title": "Account Aangemaakt!",
-        "signup_msg": "Uw account is succesvol aangemaakt."
+        "signin": "성공적으로 로그인되었습니다.",
+        "signup": "계정이 성공적으로 생성되었습니다.",
+        "signin_title": "환영합니다!",
+        "signin_msg": "성공적으로 로그인하셨습니다.",
+        "signup_title": "계정 생성 완료!",
+        "signup_msg": "귀하의 계정이 성공적으로 생성되었습니다."
       }
     }
   },
   "faqData": [
     {
-      "category": "Platformfuncties & Mogelijkheden",
+      "category": "플랫폼 기능 및 역량",
       "items": [
         {
           "id": "feat-1",
-          "question": "Heb ik programmeerervaring nodig om het platform te gebruiken?",
-          "answer": "Geen programmeerervaring vereist. We hebben het platform ontworpen met intuïtieve dashboards en visuele productbouwers waarmee u complexe datastructuren kunt beheren, synchroniseren en uploaden zonder één regel code te schrijven. Ons doel is geavanceerde gegevensverwerking toegankelijk te maken voor alledaagse gebruikers."
+          "question": "플랫폼을 사용하려면 코딩 경험이 필요합니까?",
+          "answer": "코딩 경험은 필요하지 않습니다. 사용자가 코드를 한 줄도 작성하지 않고도 복잡한 데이터 구조를 관리, 동기화 및 업로드할 수 있는 직관적인 대시보드와 시각적인 제품 빌더를 제공합니다. 고급 데이터 처리를 일반 사용자도 쉽게 이용할 수 있도록 하는 것이 당사의 목표입니다."
         },
         {
           "id": "feat-2",
-          "question": "Hoe werkt de AI-entiteitsdetectie?",
-          "answer": "Onze eigen door AI aangedreven intelligentie-engine analyseert automatisch inkomende ruwe data-eigenschappen en stelt proactief de juiste producttypen, relatiekaarten en eigenschapslabels voor. Dit vermindert aanzienlijk de behoefte aan handmatige gegevensinvoer, minimaliseert menselijke fouten en versnelt uw vermogen om dagelijkse werkzaamheden te voltooien."
+          "question": "AI 엔터티 감지는 어떻게 작동합니까?",
+          "answer": "당사의 독점적인 AI 기반 인텔리전스 엔진은 수신되는 원시 데이터 속성을 자동으로 분석하고 올바른 제품 유형, 관계 매핑 및 속성 레이블을 선제적으로 제안합니다. 이를 통해 수동 데이터 입력의 필요성을 크게 줄이고 인적 오류를 최소화하며 일일 배정 완료 속도를 높일 수 있습니다."
         },
         {
           "id": "feat-3",
-          "question": "Is er een mobiele app beschikbaar?",
-          "answer": "Hoewel we geen zelfstandige downloadbare app hebben, is ons platform volledig webgebaseerd en sterk geoptimaliseerd voor zowel desktop- als mobiele browsers. We kozen voor een web-first aanpak om ervoor te zorgen dat kritische beveiligingspatches en systeemupdates onmiddellijk voor alle gebruikers worden uitgerold, zodat u uw dashboard naadloos kunt beheren vanaf elk apparaat met een stabiele internetverbinding."
+          "question": "모바일 앱이 제공됩니까?",
+          "answer": "독립형 다운로드 앱은 없지만, 당사 플랫폼은 100% 웹 기반이며 데스크톱 및 모바일 브라우저 모두에 고도로 최적화되어 있습니다. 중요한 보안 패치와 시스템 업데이트가 모든 사용자에게 즉시 배포되도록 웹 우선 접근 방식을 선택하여, 사용자가 안정적인 인터넷 연결이 있는 곳이라면 어떤 기기에서든 대시보드를 원활하게 관리할 수 있도록 합니다."
         }
       ]
     },
     {
-      "category": "Technologie & Infrastructuur",
+      "category": "기술 및 인프라",
       "items": [
         {
           "id": "infra-1",
-          "question": "Wat is precies een \"Product\" in de context van dit platform?",
-          "answer": "Een product is een gestructureerd kader dat bepaalt hoe ruwe, ongestructureerde data wordt georganiseerd, verbonden en begrepen door machines. Onze merchantpartners hebben perfect gestructureerde data nodig om hun modellen te trainen en hun catalogi te organiseren. Ons platform verwerkt deze semantische producten om data-integriteit te waarborgen voordat ze worden gevalideerd en geüpload naar het financieel grootboek."
+          "question": "이 플랫폼에서 '제품'이란 정확히 무엇을 의미합니까?",
+          "answer": "제품은 기계가 가공되지 않은 데이터를 체계화하고 연결하며 이해하는 방식을 정의하는 구조화된 프레임워크입니다. 당사의 파트너 가맹점은 모델을 훈련하고 카탈로그를 정리하기 위해 완벽하게 구조화된 데이터를 필요로 합니다. 당사 플랫폼은 시맨틱 제품들을 처리하여 금융 원장에 유효성 검증 후 업로드되기 전까지의 데이터 무결성을 보장합니다."
         },
         {
           "id": "infra-2",
-          "question": "Biedt u een openbare API voor ontwikkelaars?",
-          "answer": "Momenteel werkt ons platform uitsluitend via ons visuele webdashboard en bieden we geen openbare API voor consumentenaccounts. Toegewijde API-integratie is strikt beperkt tot onze goedgekeurde institutionele en merchantpartners om de integriteit van onze allocatiepool te handhaven en ongeautoriseerde externe scraping te voorkomen."
+          "question": "개발자를 위한 공개 API를 제공합니까?",
+          "answer": "현재 당사 플랫폼은 전적으로 시각적 웹 대시보드를 통해서만 운영되며 소비자 계정을 위한 공개 API를 제공하지 않습니다. 전용 API 통합은 할당 풀의 무결성을 유지하고 무단 외부 스크래핑을 방지하기 위해 승인된 기관 및 가맹점 파트너에게만 엄격히 제한됩니다."
         },
         {
           "id": "infra-3",
-          "question": "Kan ik geautomatiseerde bots of scripts gebruiken om mijn werkzaamheden te voltooien?",
-          "answer": "Nee. Het gebruik van geautomatiseerde bots, scripts, macro's of andere ongeautoriseerde software om werkzaamheden te voltooien is strikt verboden. Onze merchants betalen voor authentiek menselijk toezicht tijdens het validatieproces. Geautomatiseerde activiteiten activeren onmiddellijk onze antifraudesystemen, wat resulteert in een permanente accountban en verbeurdverklaring van alle gegenereerde verdiensten."
+          "question": "자동화된 봇이나 스크립트를 사용하여 배정을 완료할 수 있습니까?",
+          "answer": "아니요. 배정을 완료하기 위해 자동화된 봇, 스크립트, 매크로 또는 승인되지 않은 기타 소프트웨어를 사용하는 것은 엄격히 금지됩니다. 당사 가맹점은 검증 과정 동안의 진정한 인적 감독에 비용을 지불합니다. 자동화된 활동에 참여하면 사기 방지 시스템이 즉시 작동하여 영구적인 계정 정지 및 획득한 모든 수익의 몰수로 이어집니다."
         },
         {
           "id": "infra-4",
-          "question": "Biedt u webhooks voor realtime grootboeksaldokennisgevingen?",
-          "answer": "Nee, we bieden momenteel geen webhooks of openbare API-eindpunten voor realtime grootboeknotificaties. Om maximale beveiliging van uw financiële gegevens te waarborgen, gebruiken wij een gesloten systeem. U moet rechtstreeks inloggen op uw geauthenticeerd dashboard om uw saldo, komende mijlpalen en recente transactie-activiteit te monitoren."
+          "question": "실시간 원장 잔액 알림을 위한 웹훅(Webhook)을 제공합니까?",
+          "answer": "아니요. 현재 당사는 실시간 원장 알림을 위한 웹훅이나 공개 API 엔드포인트를 제공하지 않습니다. 재무 데이터의 보안을 극대화하기 위해 당사는 폐쇄형 루프 시스템을 사용합니다. 잔액, 향후 마일스톤 및 최근 거래 활동을 모니터링하려면 인증된 대시보드에 직접 로그인해야 합니다."
         }
       ]
     },
     {
-      "category": "Account & Geschiktheid",
+      "category": "계정 및 자격 요건",
       "items": [
         {
           "id": "acc-1",
-          "question": "Wie komt in aanmerking om het platform te gebruiken?",
-          "answer": "Om te voldoen aan strikte internationale financiële regelgeving en anti-witwasbeleid (AML), moeten gebruikers minimaal 18 jaar oud zijn. Bovendien moet u wonen in een van onze ondersteunde operationele regio's, die momenteel het Verenigd Koninkrijk, de Verenigde Staten, Canada, Europa, Japan, Zuid-Korea, Singapore, Spanje, Hongkong of Thailand omvatten."
+          "question": "누가 플랫폼을 이용할 자격이 있습니까?",
+          "answer": "엄격한 국제 금융 규정 및 자금세탁방지(AML) 정책을 준수하기 위해 사용자는 만 18세 이상이어야 합니다. 또한 미국, 영국, 캐나다, 유럽, 일본, 한국, 싱가포르, 스페인, 홍콩 또는 태국 등 당사 지원 운영 지역 중 한 곳에 거주해야 합니다."
         },
         {
           "id": "acc-2",
-          "question": "Zijn er vooraf te betalen kosten om lid te worden?",
-          "answer": "Nee, het aanmaken van een account is volledig gratis en er zijn absoluut geen verborgen aanmeldingskosten. Ons platform genereert inkomsten door het succesvol verwerken van productdata voor onze merchantpartners, niet door onze gebruikers een toegangsvergoeding in rekening te brengen."
+          "question": "가입 시 초기 비용이 있습니까?",
+          "answer": "아니요. 계정 생성은 완전히 무료이며 숨겨진 가입 비용은 전혀 없습니다. 당사 플랫폼은 사용자에게 입장료를 청구하는 것이 아니라 파트너 가맹점들을 위한 제품 데이터의 성공적인 처리를 통해 수익을 창출합니다."
         },
         {
           "id": "acc-3",
-          "question": "Wat is een Verwijzer Account-ID en waarom heb ik er een nodig?",
-          "answer": "Een Verwijzings-ID is een unieke code die wordt gebruikt tijdens het registratieproces. Het is vereist om ervoor te zorgen dat u nauwkeurig wordt geplaatst binnen ons netwerk en wordt gekoppeld aan de juiste senior coach. Dit ID vestigt een directe mentorschapskoppeling zodat u vanaf dag één directe ondersteuning heeft van een ervaren gebruiker."
+          "question": "추천인 계정 ID란 무엇이며 왜 필요한가요?",
+          "answer": "추천인 ID는 가입 과정에서 사용되는 고유 코드입니다. 귀하가 당사 네트워크 내에 정확하게 배치되고 올바른 시니어 코치와 연결되도록 하기 위해 필요합니다. 이 ID는 첫날부터 경험 많은 사용자의 즉각적인 지원을 받을 수 있도록 직접적인 멘토십 링크를 설정합니다."
         },
         {
           "id": "acc-4",
-          "question": "Kan ik meerdere accounts aanmaken?",
-          "answer": "Nee, het aanmaken van meerdere accounts is strikt verboden tenzij uitdrukkelijk schriftelijk toegestaan door ons nalevingsteam. Om een eerlijke quotaverdeling over ons netwerk te handhaven en te voldoen aan AML-regelgeving, mogen gebruikers geen verschillende accounts aanmaken onder dezelfde identiteit of aliassen gebruiken om dagelijkse limieten te omzeilen."
+          "question": "여러 계정을 만들 수 있습니까?",
+          "answer": "아니요. 다중 계정 설정은 당사의 컴플라이언스 팀이 서면으로 명시적으로 승인하지 않는 한 엄격히 금지됩니다. 당사 네트워크 전반에서 공정한 할당량 분배를 유지하고 AML 규정을 준수하기 위해 사용자는 동일한 신원 하에 다중 계정을 생성하거나 일일 한도를 우회하기 위해 가명을 사용할 수 없습니다."
         },
         {
           "id": "acc-5",
-          "question": "Kan ik mijn account verwijderen?",
-          "answer": "Ja, u heeft het recht uw account op elk moment te sluiten. U kunt uw account echter niet sluiten of verwijderen als er openstaande transacties, actieve cycli of uitstaande tekorten zijn. Alle financiële grootboeken moeten volledig worden vereffend en afgesloten voordat een accountverwijderingsverzoek succesvol kan worden verwerkt."
+          "question": "계정을 삭제할 수 있습니까?",
+          "answer": "네, 언제든지 계정을 폐쇄할 권리가 있습니다. 단, 대기 중인 작업, 활성 사이클 또는 해결되지 않은 부족액이 있는 상태에서는 계정을 폐쇄하거나 삭제할 수 없습니다. 계정 삭제 요청이 성공적으로 처리되려면 모든 재무 원장이 완전히 정산되고 삭제되어야 합니다."
         }
       ]
     },
     {
-      "category": "Accountbeveiliging & Privacy",
+      "category": "계정 보안 및 개인정보 보호",
       "items": [
         {
           "id": "sec-1",
-          "question": "Zijn mijn persoonlijke gegevens en platformactiviteit versleuteld?",
-          "answer": "Ja. Strikte gegevensprivacy is onze absolute prioriteit. Alle gevoelige gebruikersgegevens, inclusief persoonlijke identificatoren, financiële grootboeken en uitbetalingsreferenties, zijn beveiligd met militaire AES-256-versleuteling, zowel tijdens overdracht als in opslag. Bovendien omvat onze architectuur een Datafirewall voor randbeveiliging en een Semantische Bewaker om netwerkbedreigingen proactief te filteren."
+          "question": "개인 데이터 및 플랫폼 활동은 암호화됩니까?",
+          "answer": "네, 엄격한 데이터 보호는 당사의 최우선 과제입니다. 개인 식별자, 재무 원장 및 지급 자격 증명을 포함한 모든 민감한 사용자 데이터는 전송 중이거나 저장되어 있을 때 군용 AES-256 암호화를 사용해 안전하게 보호됩니다. 더불어 당사 아키텍처는 엣지 보호를 위한 데이터 방화벽 및 네트워크 위협을 사전 필터링하기 위한 시맨틱 가드를 포함하고 있습니다."
         },
         {
           "id": "sec-2",
-          "question": "Voldoet het platform aan de AVG- en CCPA-gegevensprivacywetten?",
-          "answer": "Ja. Wij voldoen strikt aan de belangrijkste internationale gegevensprivacyregelgeving, waaronder de AVG (Europa) en CCPA (Californië). Wij verzamelen alleen de minimale gegevens die noodzakelijk zijn voor AML/KYC-juridische naleving en platformactiviteiten. Wij garanderen dat wij uw persoonlijke of financiële informatie nooit zullen verkopen aan externe gegevensmakelaars."
+          "question": "플랫폼은 GDPR 및 CCPA와 같은 데이터 보호법을 준수합니까?",
+          "answer": "네, 유럽의 GDPR, 캘리포니아의 CCPA를 포함하여 주요 국제 개인정보 보호 규정을 엄격하게 준수합니다. 우리는 AML/KYC 법적 준수 및 플랫폼 운영에 필요한 최소한의 데이터만 수집합니다. 개인 또는 재무 정보를 제3자 데이터 브로커에게 절대 판매하지 않을 것을 보장합니다."
         },
         {
           "id": "sec-3",
-          "question": "Wie bezit het intellectueel eigendom van de structurele producten die ik verwerk?",
-          "answer": "Alle intellectuele eigendomsrechten voor de structurele producten, verwerkte datasets en resulterende grootboeken blijven het exclusieve, vertrouwelijke eigendom van het Bedrijf en onze merchantpartners. Gebruikers worden royaal gecompenseerd voor hun verwerkings- en validatie-inspanningen, maar zij behouden geen eigendom, auteursrecht of licentierechten op de data zelf."
+          "question": "내가 처리하는 구조적 제품의 지적 재산권은 누구에게 있습니까?",
+          "answer": "구조적 제품, 처리된 데이터 세트 및 결과 원장에 대한 모든 지적 재산권은 오로지 회사 및 파트너 가맹점의 기밀 자산으로 남습니다. 사용자는 데이터 처리 및 검증에 대해 아낌없이 보상을 받지만 데이터 자체에 대한 소유권, 저작권 또는 라이선싱 권한은 부여받지 않습니다."
         },
         {
           "id": "sec-4",
-          "question": "Kan ik mijn verwerkte productgeschiedenis exporteren?",
-          "answer": "Nee. Vanwege strikte Geheimhoudingsovereenkomsten (NDA's) en vertrouwelijkheidscontracten met onze merchantpartners wordt de data die u verwerkt als sterk bedrijfseigen beschouwd. Om bedrijfsspionage of datalekken te voorkomen, zijn gebruikers technisch beperkt in het exporteren, downloaden of scrapen van hun productverwerkegeschiedenis."
+          "question": "처리된 제품 기록을 내보낼 수 있습니까?",
+          "answer": "아니요. 당사 파트너 가맹점과의 엄격한 비공개 계약(NDA) 및 기밀 유지 계약으로 인해 귀하가 처리하는 데이터는 고도로 독점적인 것으로 간주됩니다. 기업 스파이 활동이나 데이터 유출을 방지하기 위해 사용자는 제품 처리 이력을 내보내거나 다운로드하거나 스크래핑하는 것이 기술적으로 제한됩니다."
         },
         {
           "id": "sec-5",
-          "question": "Wat is een Uitbetalingswachtzin en waarom is deze vereist?",
-          "answer": "Uw Uitbetalingswachtzin fungeert als uw privé financiële sleutel. Het is een verplichte, secundaire autorisatielaag vereist om een standaard uitbetalingsverzoek goed te keuren. Dit zorgt ervoor dat zelfs in het hoogst onwaarschijnlijke geval dat uw hoofdaccountwachtwoord wordt gecompromitteerd, kwaadwillenden uw hard verdiende grootboekfondsen niet kunnen overdragen zonder deze secundaire sleutel."
+          "question": "지급 패스프레이즈란 무엇이며 왜 필수적입니까?",
+          "answer": "지급 패스프레이즈는 개인 금융 키 역할을 합니다. 표준 지급 요청을 승인하는 데 필요한 필수적인 2차 인증 계층입니다. 이를 통해 아주 드문 경우이긴 하지만 메인 계정 비밀번호가 유출되더라도, 악의적인 행위자가 이 2차 키 없이는 힘들게 얻은 원장 자금을 이체할 수 없도록 보장합니다."
         },
         {
           "id": "sec-6",
-          "question": "Ik ben mijn wachtwoord vergeten, hoe herstel ik mijn account?",
-          "answer": "Als u toegang tot uw account heeft verloren, moet u contact opnemen met ons ondersteuningsteam via het beveiligde portaal. Omdat we te maken hebben met financiële grootboeken, moet u uw identiteit verifiëren (vaak via KYC-documentindiening) voordat we een handmatige reset kunnen uitvoeren. Dit strikte proces voorkomt social engineering en ongeautoriseerde accountovernames."
+          "question": "비밀번호를 잊어버렸습니다. 어떻게 계정을 복구하나요?",
+          "answer": "계정 접속이 차단된 경우 보안 포털을 통해 당사 고객 지원팀에 문의해야 합니다. 재무 원장을 취급하므로 수동 초기화를 발행하기 전에 본인 확인(종종 KYC 문서 제출을 통해)을 거쳐야 합니다. 이 엄격한 프로세스는 사회 공학 공격 및 무단 계정 도용을 방지합니다."
         }
       ]
     },
     {
-      "category": "Algemene Activiteiten",
+      "category": "일반 운영",
       "items": [
         {
           "id": "gen-1",
-          "question": "Wat zijn de actieve \"Werkzaamheden\" precies?",
-          "answer": "Werkzaamheden zijn het kernwerk dat u op het platform uitvoert, bestaande uit Geautomatiseerde Gegevensverwerking en Financieel Grootboek productallocaties. Wanneer u een opdracht start, maakt u een beveiligde verbinding met onze allocatiepool om een structureel product te synchroniseren, de dataset op nauwkeurigheid te verifiëren en te uploaden naar het grootboek. Dit proces valideert merchantdata en genereert uw activarendement."
+          "question": "활성 '배정'이란 정확히 무엇입니까?",
+          "answer": "배정은 플랫폼에서 수행하는 핵심 업무로, 자동 데이터 처리 및 금융 원장 제품 할당으로 구성됩니다. 배정을 시작하면 구조적 제품을 동기화하고, 정확성을 위해 데이터 세트를 검증한 다음, 원장에 업로드하기 위해 할당 풀에 안전하게 연결합니다. 이 과정은 가맹점 데이터를 검증하고 자산 수익을 생성합니다."
         },
         {
           "id": "gen-2",
-          "question": "Wat is vereist om een cyclus te starten of te resetten?",
-          "answer": "Om ervoor te zorgen dat gebruikers voldoende liquiditeit hebben om hoogwaardige producten te verwerken, vereist elke cyclus een minimum grootboeksaldo van $ 100 om te starten. U kunt geen cyclusreset activeren terwijl u zich momenteel midden in een actieve cyclus bevindt."
-        },        
+          "question": "사이클을 시작하거나 재설정하려면 무엇이 필요합니까?",
+          "answer": "사용자가 고가 상품을 처리할 수 있는 충분한 유동성을 확보하기 위해, 각 사이클을 시작하려면 최소 100달러의 장부 잔고가 필요합니다. 현재 활성화된 사이클이 진행 중인 상태에서는 사이클 초기화를 트리거할 수 없습니다."
+        },
         {
           "id": "gen-3",
-          "question": "Kan ik een actieve productopdracht overslaan, verwijderen of terugdraaien?",
-          "answer": "Nee. Zodra een opdracht is gesynchroniseerd met uw dashboard, is het strikt gebonden aan uw huidige cyclus. Opdrachten kunnen onder geen enkele omstandigheid worden overgeslagen, verwijderd, teruggedraaid of omzeild. U moet het validatieproces voltooien om door te gaan naar het volgende product."
+          "question": "활성 제품 배정을 건너뛰거나, 제거하거나, 취소할 수 있습니까?",
+          "answer": "아니요. 일단 대시보드에 배정이 동기화되면 귀하의 현재 사이클과 엄격하게 결속됩니다. 배정은 어떠한 경우에도 건너뛰거나, 제거하거나, 취소하거나 우회할 수 없습니다. 다음 제품으로 진행하려면 반드시 검증 과정을 완료해야 합니다."
         },
         {
           "id": "gen-4",
-          "question": "Wat gebeurt er als ik een product te lang vasthoud?",
-          "answer": "Als een opdracht is gesynchroniseerd maar langer dan 48 uur niet is geüpload, verstopt het de allocatiepool en vertraagt het actief de voortgang van onze merchantpartners. In deze gevallen kunnen nominale vergoedingen van uw grootboek worden ingehouden ter dekking van administratieve kosten, en kunnen standaard betalingsschema's worden aangepast vanwege de schending van de operationele snelheid."
+          "question": "제품을 너무 오랫동안 보유하면 어떻게 됩니까?",
+          "answer": "배정이 동기화되었지만 48시간 이상 업로드되지 않고 유지되면 할당 풀을 막히게 하여 파트너 가맹점의 작업 진행을 늦춥니다. 이러한 경우 관리 비용 충당을 위해 계정에서 소정의 수수료가 청구될 수 있으며, 운영 속도 위반에 따라 표준 지급 일정이 조정될 수 있습니다."
         },
         {
           "id": "gen-5",
-          "question": "Waarom ontvang ik soms beschadigde bestanden?",
-          "answer": "Af en toe bevat de ruwe data van merchants onleesbare of gebroken fragmenten, wat resulteert in een beschadigd bestand. Deze bestanden komen niet in aanmerking voor rendementgeneratie. Omdat het systeem echter nog steeds serverresources moest toewijzen om de data te ophalen en aan u toe te wijzen, verbruikt het één van uw beschikbare producten voor die cyclus."
+          "question": "왜 가끔 손상된 파일을 받게 되나요?",
+          "answer": "때때로 가맹점이 제공한 원시 데이터에 읽을 수 없거나 깨진 조각이 포함되어 있어 파일이 손상될 수 있습니다. 이러한 파일은 수익을 창출할 수 없습니다. 하지만 시스템이 데이터를 가져와 귀하에게 할당하는 데 서버 자원을 이미 사용했기 때문에 해당 사이클의 사용 가능한 할당량 하나를 소비하게 됩니다."
         },
         {
           "id": "gen-6",
-          "question": "Wat zijn uw standaard openingstijden?",
-          "answer": "Onze primaire ondersteunings- en verwerkingsactiviteiten, inclusief handmatige uitbetalingsbeoordelingen en KYC-audits, lopen van maandag tot vrijdag, 10:00 tot 22:00 EST. Dit sluit aan bij de traditionele wereldwijde bankuren. Weekendbeschikbaarheid (zaterdag en zondag) kan variëren op basis van geplande systeemonderhoud en actieve wachtrijvolumes."
+          "question": "정규 영업 시간은 어떻게 됩니까?",
+          "answer": "수동 지급 검토 및 KYC 감사를 포함한 주요 지원 및 처리 작업은 월요일부터 금요일, 오전 10시부터 오후 10시(EST)까지 진행됩니다. 이는 전통적인 글로벌 은행 업무 시간과 일치합니다. 주말(토요일 및 일요일) 지원 여부는 예정된 시스템 유지 보수 및 활성 대기열 양에 따라 변동될 수 있습니다."
         },
         {
           "id": "gen-7",
-          "question": "Hoe neem ik contact op met het klantenserviceteam?",
-          "answer": "Voor de snelste en veiligste oplossing kunt u ons toegewijde ondersteuningsteam rechtstreeks bereiken via de live chat-widget op uw dashboard. Dit zorgt ervoor dat u communiceert vanuit een geauthenticeerde omgeving, waardoor onze medewerkers uw accountgegevens onmiddellijk kunnen ophalen."
+          "question": "고객 지원팀에 어떻게 연락할 수 있습니까?",
+          "answer": "가장 빠르고 안전한 문제 해결을 위해 대시보드의 실시간 채팅 위젯을 통해 전담 지원팀에 직접 연락할 수 있습니다. 이는 인증된 환경 내에서 소통하게 되므로 상담원이 고객님의 계정 세부 정보를 즉시 확인할 수 있습니다."
         },
         {
           "id": "gen-8",
-          "question": "Heeft mijn grootboeksaldo invloed op de opdrachten die ik ontvang?",
-          "answer": "Ja. Productdistributie is algoritmisch willekeurig gebaseerd op het beschikbare activasaldo van uw account. Een hoger activasaldo correleert met een verhoogde kans op het ontvangen van duurdere, hogere-rendement productallocaties."
+          "question": "내 원장 잔액이 할당받는 배정에 영향을 줍니까?",
+          "answer": "네. 제품 배포는 계정의 사용 가능한 자산 잔액을 기준으로 알고리즘 방식으로 무작위화됩니다. 자산 잔액을 높게 유지할수록 고가 및 고수익 제품이 배정될 확률이 높아집니다."
         }
       ]
     },
     {
-      "category": "Coaching & Mentorschap",
+      "category": "코칭 및 멘토링",
       "items": [
         {
           "id": "coach-1",
-          "question": "Wat is de rol van mijn toegewezen coach?",
-          "answer": "Uw toegewezen coach is een zeer ervaren, senior gebruiker van het platform. Hun rol is u één-op-één begeleiding te bieden, u te helpen de nuances van productactiviteiten te begrijpen, en u te leren hoe u uw dagelijkse werkzaamheden kunt verbeteren. Vanwege ons verwijzingsprogramma hebben zij een financiële prikkel om u te zien slagen."
+          "question": "배정된 코치의 역할은 무엇입니까?",
+          "answer": "코치는 경험이 풍부한 시니어 플랫폼 사용자입니다. 이들의 역할은 1:1 지도를 제공하고 제품 운영의 세부적인 사항을 이해하도록 도우며 일일 배정을 효율화하는 방법을 알려주는 것입니다. 추천 프로그램 덕분에 코치 역시 귀하의 성공에서 재정적인 인센티브를 받습니다."
         },
         {
           "id": "coach-2",
-          "question": "Hoe wordt mijn coach toegewezen?",
-          "answer": "Uw coach wordt automatisch gekoppeld aan uw account tijdens het registratieproces, uitsluitend op basis van het Verwijzer Account-ID dat u heeft opgegeven. Deze directe toewijzing zorgt ervoor dat u een toegewijd aanspreekpunt heeft dat al vertrouwd is met uw onboardingtijdlijn."
+          "question": "코치는 어떻게 배정됩니까?",
+          "answer": "코치는 등록 절차 중에 입력한 추천인 계정 ID를 기반으로 귀하의 계정에 자동으로 연결됩니다. 이러한 직접적인 배정을 통해 귀하의 초기 온보딩 일정에 이미 익숙한 전담 연락 창구를 확보할 수 있습니다."
         },
         {
           "id": "coach-3",
-          "question": "Is mijn coach verantwoordelijk voor de financiële prestaties of tekorten van mijn account?",
-          "answer": "Nee. Hoewel uw coach er is om training, operationele begeleiding en strategisch advies te bieden, is uw account strikt een individueel profiel. U heeft volledige autonomie en verantwoordelijkheid over uw eigen dagelijkse werkzaamheden, grootboeksaldo en eventuele tekorten. Uw coach heeft geen toegang tot uw persoonlijke middelen en kan geen werkzaamheden namens u uitvoeren."
+          "question": "코치가 내 계정의 재정 실적이나 잔액 부족에 대해 책임이 있습니까?",
+          "answer": "아니요. 코치가 교육, 운영 지침 및 전략적 조언을 제공하기 위해 존재하기는 하지만 계정은 엄격하게 개별 프로필입니다. 사용자는 일일 배정, 원장 잔액 및 잠재적 부족액에 대해 완전한 자율성과 책임을 갖습니다. 코치는 고객의 개인 자금에 접근할 수 없으며 대신 배정을 수행할 수도 없습니다."
         }
       ]
     },
     {
-      "category": "Grootboekfinanciering & Stortingen",
+      "category": "원장 충전 및 입금",
       "items": [
         {
           "id": "fund-1",
-          "question": "Wat is een Tekort en hoe los ik het op?",
-          "answer": "Een tekort treedt op wanneer u een premium, hoog-rendement product krijgt toegewezen dat de huidige waarde van uw grootboektier overschrijdt. Om deze hoogwaardige opdracht te verwerken en het bijbehorende premiumrendement te genereren, moet u tijdelijk het verschil overbruggen. Neem contact op met ons live ondersteuningsteam om instructies te ontvangen voor het storten van de exacte vereiste middelen. Stortingen kunnen veilig worden gedaan via traditionele fiat-kanalen of ondersteunde blockchain-netwerken."
+          "question": "잔액 부족(Shortfall)이란 무엇이며 어떻게 해결합니까?",
+          "answer": "잔액 부족은 현재 귀하의 원장 등급 가치를 초과하는 프리미엄, 고수익 제품이 배정되었을 때 발생합니다. 이 고가치 배정을 처리하고 연관된 프리미엄 수익을 발생시키기 위해 이 간극을 일시적으로 메워야 합니다. 부족액을 해결하려면 실시간 고객 지원팀에 연락해 정확한 필요 금액의 입금 안내를 받으시기 바랍니다. 입금은 기존 법정 화폐 수단 또는 지원되는 블록체인 네트워크를 통해 안전하게 수행될 수 있습니다."
         },
         {
           "id": "fund-2",
-          "question": "Hoe lang duurt het voordat stortingen op mijn account verschijnen?",
-          "answer": "Stortingstijden zijn sterk afhankelijk van de congestie van het blockchain-netwerk of de verwerkingssnelheid van banken. Zodra u de overdracht succesvol heeft voltooid en het transactiebewijs heeft verstrekt aan ons live ondersteuningsteam, worden de middelen doorgaans binnen 15 tot 30 minuten na standaard netwerkverificatie weergegeven in uw totale grootboeksaldo."
+          "question": "입금액이 내 계정에 반영되는 데 얼마나 걸립니까?",
+          "answer": "입금 시간은 블록체인 네트워크 정체 또는 은행 처리 속도에 크게 의존합니다. 하지만 이체를 성공적으로 완료하고 실시간 지원팀에 거래 영수증을 제공하면 자금은 일반적인 네트워크 검증 이후 15~30분 내에 총 원장 잔액에 반영됩니다."
         },
         {
           "id": "fund-3",
-          "question": "Kan ik middelen storten om mijn dagelijkse quota's over te slaan?",
-          "answer": "Nee. De kernfunctie van ons bedrijf is daadwerkelijke gegevensverwerking, geen puur kapitaalinvestering. Stortingen worden uitsluitend gebruikt voor het starten/resetten van een nieuwe cyclus of het vereffenen van een actief premium tekort. U kunt geen geld betalen om het verplichte handmatige validatiewerk te omzeilen."
+          "question": "일일 할당량을 건너뛰기 위해 자금을 예치할 수 있습니까?",
+          "answer": "아니요. 당사 비즈니스의 핵심 기능은 실제 데이터 처리이지 단순 자본 투자가 아닙니다. 예치금은 엄격하게 새로운 사이클을 시작/재설정하거나 활성 프리미엄 부족을 해소하는 용도로만 사용됩니다. 돈을 지불해 필수적인 수동 검증 업무를 우회할 수는 없습니다."
         }
       ]
     },
     {
-      "category": "Verdiensten, Rendementen & Vergoedingen",
+      "category": "수익, 수익률 및 수수료",
       "items": [
         {
           "id": "earn-1",
-          "question": "Hoe wordt het Activarendement berekend?",
-          "answer": "Activarendement is strikt getrapte op basis van uw actieve lidmaatschapsniveau. Voor standaard productopdrachten is het rendementspercentage 1%, 1,5%, 2% of 2,5%. Als u een geconsolideerde pakketzending ontvangt, is het rendement vastgesteld op een vast tarief van 5%."
+          "question": "자산 수익률은 어떻게 계산됩니까?",
+          "answer": "자산 수익률은 활성 멤버십 수준에 따라 엄격히 차등 적용됩니다. 표준 제품 배정의 경우 수익률은 1%, 1.5%, 2% 또는 2.5%입니다. 통합 패키지 배정을 받을 경우 수익률은 고정 5%입니다."
         },
         {
           "id": "earn-2",
-          "question": "Wat is een cyclus en hoeveel producten bevat deze?",
-          "answer": "Één volledige productcyclus bestaat uit 40/45/50/55 producten (afhankelijk van lidmaatschapsniveaus). Wij hanteren een strikte limiet van 2 volledige cycli per enkele dag. Deze beperking voorkomt gebruikersuitputting, handhaaft hoge data-validatienauwkeurigheid en zorgt voor een eerlijke verdeling van werk over ons gehele wereldwijde netwerk."
+          "question": "사이클이란 무엇이며 몇 개의 제품으로 구성되나요?",
+          "answer": "완전한 제품 사이클 하나는 멤버십 등급에 따라 40/45/50/55개의 제품으로 이루어집니다. 단일일에 엄격하게 최대 2번의 전체 사이클을 허용하고 있습니다. 이 제한은 사용자의 피로를 방지하고, 높은 데이터 검증 정확성을 유지하며 전 세계 글로벌 네트워크에 공정하게 작업을 분배하도록 보장합니다."
         },
         {
           "id": "earn-3",
-          "question": "Wat gebeurt er als ik niet alle 40 quota's in één zitting voltooi?",
-          "answer": "U bent absoluut niet verplicht een volledige 40-quota cyclus in één zitting te voltooien. U kunt uw werk pauzeren en op elk gewenst moment hervatten. Vergeet echter de 48-uursregel niet: u mag een actieve, gesynchroniseerde opdracht niet langer dan 48 uur vasthouden om ervoor te zorgen dat de verwerkingspijplijnen van merchants niet worden vertraagd."
+          "question": "한 번에 40개의 할당량을 다 끝내지 못하면 어떻게 되나요?",
+          "answer": "전체 40개의 할당량 사이클을 한 자리에서 마칠 필요는 전혀 없습니다. 업무를 중단했다가 편한 시간에 다시 재개할 수 있습니다. 그러나 48시간 규정을 기억해야 합니다. 가맹점의 처리 파이프라인이 지연되지 않도록 동기화된 활성 배정을 48시간 이상 보유해서는 안 됩니다."
         },
         {
           "id": "earn-4",
-          "question": "Groeien mijn verdiensten automatisch aan?",
-          "answer": "Nee, uw verdiensten groeien niet wiskundig aan van cyclus tot cyclus. Elke nieuwe cyclus reset de basisparameters om voorspelbare kosten voor onze merchants te handhaven. Echter, alle gegenereerde rendementen uit vorige cycli blijven veilig accumuleren in uw totale grootboeksaldo totdat u succesvol een definitieve uitbetaling aanvraagt."
+          "question": "내 수익은 자동으로 복리가 됩니까?",
+          "answer": "아니요, 귀하의 수익은 사이클마다 수학적으로 복리가 되지 않습니다. 각각의 새 사이클은 당사 가맹점들을 위한 예측 가능한 비용 유지를 위해 기본 매트릭스를 초기화합니다. 하지만 지난 사이클에서 발생한 모든 수익금은 고객님이 최종 지급금을 성공적으로 요청하기 전까지 총 원장 잔액에 안전하게 누적됩니다."
         },
         {
           "id": "earn-5",
-          "question": "Wat zijn pakketten?",
-          "answer": "Tijdens een standaardcyclus kan het systeem willekeurig 0 tot 3 geconsolideerde pakketten toewijzen. Binnen elk pakket ontvangt u 1 tot 3 producten die gelijktijdig moeten worden verwerkt. Omdat deze meer verwerkingsinspanning vereisen, bieden pakketopdrachten een vast 5% premiumrendement."
+          "question": "패키지란 무엇인가요?",
+          "answer": "표준 사이클 중 시스템은 0에서 3개의 통합 패키지를 무작위로 할당할 수 있습니다. 각 패키지 내부에는 동시에 처리해야 하는 1~3개의 제품이 들어있습니다. 더 많은 처리 노력을 요구하기 때문에 패키지 배정은 고정적으로 5%의 프리미엄 수익률을 지급합니다."
         }
       ]
     },
     {
-      "category": "Prestatiebonussen & Aanwezigheid",
+      "category": "성과 보상 및 출석",
       "items": [
         {
           "id": "reward-1",
-          "question": "Hoe claim ik de Welkomstbonus?",
-          "answer": "Om u te helpen uw initiële cyclusdrempels sneller te halen, wordt een Welkomstbonus van $20,00 automatisch bijgeschreven op uw beschikbare grootboeksaldo onmiddellijk na succesvolle registratie. Er zijn geen extra stappen, verborgen formulieren of wachttijden vereist om het te claimen."
+          "question": "환영 보너스는 어떻게 청구합니까?",
+          "answer": "초기 사이클 임계값을 더 빠르게 달성할 수 있도록 회원가입 성공 즉시 가용 원장 잔액에 $20.00 환영 보너스가 자동으로 입금됩니다. 이를 청구하기 위해 추가 단계, 숨겨진 양식이나 대기 시간은 필요하지 않습니다."
         },
         {
           "id": "reward-2",
-          "question": "Hoe werkt de Aanwezigheidsmilestonetrackers?",
-          "answer": "Wij waarderen consistente gegevensverwerkers zeer. Door elke dag uw dagelijkse werkzaamheden te voltooien, bouwt u een ononderbroken aanwezigheidsreeks op. Naarmate u specifieke mijlpalen bereikt (zoals Dag 7, Dag 14, enz.), ontgrendelt het systeem automatisch geplande basisuitbetalingen die direct aan uw saldo worden bijgeschreven."
+          "question": "출석 마일스톤 트래커는 어떻게 작동합니까?",
+          "answer": "당사는 꾸준하게 활동하는 데이터 처리자를 매우 소중하게 여깁니다. 매일 배정을 완료하면 끊기지 않는 연속 출석 기록이 구축됩니다. 7일, 14일 등과 같은 특정 마일스톤에 도달하면 시스템은 자동으로 예약된 기본 지급금을 잔액에 직접 입금합니다."
         },
         {
           "id": "reward-3",
-          "question": "Wat is de Volledige Aanwezigheids-KPI?",
-          "answer": "Als u volledige aanwezigheid bereikt door alle dagelijkse werkzaamheden te voltooien zonder ook maar één dag te missen binnen de huidige maand, ontgrendelt u de Volledige Aanwezigheids-KPI. Dit past een enorme, automatische multiplicator toe op uw totale geaccumuleerde basisuitbetalingen voor die cyclus, waarmee onze meest betrouwbare gebruikers worden beloond. (Let op: Deze multiplicator geldt uitsluitend voor basisuitbetalingen, niet voor andere variabele rendementen)."
+          "question": "만근 KPI란 무엇입니까?",
+          "answer": "이번 달 안에 단 하루도 빠짐없이 모든 일일 배정을 완료해 만근을 달성하면 만근 KPI가 해제됩니다. 이 기능은 가장 성실한 사용자에게 보상을 제공하기 위해 해당 사이클에 누적된 기본 지급액에 대해 거대한 자동 승수를 적용합니다. (참고: 이 승수는 오직 기본 지급액에만 적용되며 기타 변동 수익에는 적용되지 않습니다.)"
         },
         {
           "id": "reward-4",
-          "question": "Wat gebeurt er als ik een dag werkzaamheden mis?",
-          "answer": "Omdat onze merchants afhankelijk zijn van consistent dagelijks volume, zal het niet voltooien van uw cyclus voor de dag uw actieve aanwezigheidsreeks verbreken. Dit betekent dat u de Volledige Aanwezigheids-KPI multiplicator voor die maand mist en uw voortgang naar de volgende mijlpaal opnieuw moet beginnen vanaf dag één."
+          "question": "배정을 하루 놓치면 어떻게 되나요?",
+          "answer": "가맹점은 일관된 일일 거래량에 의존하기 때문에 일일 사이클을 완료하지 못하면 활성 출석 연속 기록이 끊어집니다. 즉, 해당 달의 만근 KPI 승수 혜택을 놓치게 되며 다음 마일스톤을 향한 진행을 처음부터 다시 시작해야 합니다."
         },
         {
           "id": "reward-5",
-          "question": "Wat zijn Tijdelijk Bonusevenementen?",
-          "answer": "Tijdens perioden van ongewoon hoge merchantvraag organiseren we speciale promotionele evenementen met exclusieve, verhoogde beloningen. Deze evenementen verschijnen dynamisch op uw dashboard voor een beperkte duur. Controleer de Promotierubriek regelmatig voordat ze verlopen zodat u geen piek-verdienperioden misloopt!"
+          "question": "기간 한정 보너스 이벤트란 무엇입니까?",
+          "answer": "가맹점의 수요가 비정상적으로 높은 기간에 당사는 독점적인 증대된 보상을 제공하는 특별 프로모션 이벤트를 운영합니다. 이러한 이벤트는 한정된 시간 동안 대시보드에 동적으로 나타납니다. 최대의 수익 창출 기회를 놓치지 않으려면 만료 전에 프로모션 섹션을 정기적으로 확인해야 합니다."
         },
         {
           "id": "reward-6",
-          "question": "Kan ik mijn lidmaatschapsniveau upgraden?",
-          "answer": "Ja. Als uw account een enkele kwalificerende storting uitvoert om een tekort te vereffenen terwijl u actief werkzaamheden verwerkt, en u tegelijkertijd voldoet aan de vereisten van een actief promotioneel evenement, wordt uw account automatisch geüpgraded naar een hoger lidmaatschapsniveau."
+          "question": "멤버십 등급을 업그레이드할 수 있습니까?",
+          "answer": "네, 배정을 활발하게 처리하는 도중에 부족액을 메우기 위해 한 번의 자격을 갖춘 예치금을 실행하고, 동시에 활성 프로모션 이벤트의 전제 조건을 충족하는 경우 귀하의 계정은 더 높은 멤버십 등급으로 자동 업그레이드됩니다."
         }
       ]
     },
     {
-      "category": "Verwijzings- & Affiliateprogramma",
+      "category": "추천 및 제휴 프로그램",
       "items": [
         {
           "id": "ref-1",
-          "question": "Verdien ik een commissie voor het verwijzen van nieuwe gebruikers?",
-          "answer": "Ja! Wij geven er de voorkeur aan ons advertentiebudget terug te investeren in onze gemeenschap. Als u deelneemt aan ons optionele verwijzingsprogramma, verdient u een verwijzingscommissie van 20% op basis van de winst gegenereerd door uw directe verwijzing. Deze 20% wordt volledig gesubsidieerd door het Bedrijf, wat betekent dat uw verwezene nog steeds 100% van hun eigen verdiensten behoudt."
+          "question": "새 사용자를 추천하면 수수료를 받나요?",
+          "answer": "네! 우리는 광고 예산을 커뮤니티에 환원하는 것을 선호합니다. 선택사항인 추천 프로그램에 참여하면 직접 추천한 피추천인이 창출한 수익을 기반으로 20%의 추천 수수료를 벌 수 있습니다. 이 20%는 온전히 회사의 자금으로 지원되므로 귀하의 피추천인은 여전히 자신의 수익 100%를 가져갑니다."
         },
         {
           "id": "ref-2",
-          "question": "Is dit een multi-level marketing (MLM) structuur?",
-          "answer": "Nee, absoluut niet. Onze verwijzingsstructuur is strikt één-op-één (1-op-1). U verdient alleen commissies van de directe gebruiker die u heeft doorverwezen en getraind. Wij ondersteunen geen multi-level marketing, piramides of gelaagde commissiestructuren omdat we echte, directe mentorschap willen aanmoedigen."
+          "question": "이것은 다단계 마케팅(MLM) 구조입니까?",
+          "answer": "아니요, 절대 그렇지 않습니다. 당사의 추천 구조는 엄격히 일대일(1:1) 방식입니다. 귀하가 직접 추천하고 교육한 사용자로부터만 수수료를 받습니다. 당사는 진정성 있고 직접적인 멘토십을 장려하고자 하므로 다단계, 피라미드 또는 계층화된 수수료 구조를 지원하지 않습니다."
         },
         {
           "id": "ref-3",
-          "question": "Wie komt in aanmerking om deel te nemen aan het verwijzingsprogramma?",
-          "answer": "Om ervoor te zorgen dat onze verwijzers het platform daadwerkelijk begrijpen voordat ze anderen proberen te onderwijzen, moet u in totaal 14 dagen actieve aanwezigheid hebben opgebouwd voordat u gemachtigd bent een verwijzings-ID te genereren. Om mentorschap van hoge kwaliteit te handhaven, geldt er ook een verplichte wachttermijn van 14 dagen tussen elke succesvolle verwijzing die u doet."
+          "question": "추천 프로그램에 참여할 자격은 누구에게 있습니까?",
+          "answer": "추천인이 다른 사람을 가르치기 전에 플랫폼을 실제로 이해하도록 보장하기 위해, 추천 ID 생성 권한을 부여받으려면 총 14일 동안 활성 출석을 쌓아야 합니다. 높은 품질의 멘토십 유지를 위해 성공적인 추천 사이에는 의무적으로 14일의 대기 기간이 존재합니다."
         },
         {
           "id": "ref-4",
-          "question": "Waarom is mijn verwijzingscommissie gepauzeerd?",
-          "answer": "Verwijzingscommissies zijn alleen actief wanneer het account van uw Verwezene in goede staat verkeert. Als uw verwezene vastloopt en een opdracht in de status \"in behandeling\" laat staan, wordt uw verwijzingscommissie van 20% van dat account tijdelijk gepauzeerd. Deze regel bestaat om coaches te motiveren hun verwezenen actief te helpen bij het oplossen van problemen. Zodra ze de openstaande opdracht uploaden, wordt uw commissie onmiddellijk hervat."
+          "question": "제 추천 수수료는 왜 일시 중지되었나요?",
+          "answer": "추천 수수료는 귀하의 피추천인 계정이 정상 상태일 때만 활성화됩니다. 만약 귀하의 피추천인이 진행을 멈추고 배정을 '대기' 상태로 두면, 해당 계정에서의 20% 추천 수수료가 일시적으로 중단됩니다. 이 규칙은 코치가 피추천인의 장애물을 극복하도록 적극적으로 돕도록 동기를 부여하기 위해 존재합니다. 그들이 대기 중인 배정을 업로드하면 귀하의 수수료는 즉시 재개됩니다."
         }
       ]
     },
     {
-      "category": "Uitbetalingen & Grootboeksaldi",
+      "category": "지급 및 원장 잔액",
       "items": [
         {
           "id": "pay-1",
-          "question": "Zijn er specifieke voorwaarden voordat ik een uitbetaling kan aanvragen?",
-          "answer": "Ja. Om strikte grootboekstabiliteit te handhaven en ervoor te zorgen dat de dagelijkse quota's van merchants worden vervuld voordat kapitaal het ecosysteem verlaat, moet u alle actieve werkzaamheden binnen uw huidige cyclus voltooien. U moet er ook voor zorgen dat er geen uitstaande saldi of tekorten op uw account zijn. Uitbetalingen kunnen strikt niet worden verwerkt midden in een cyclus."
+          "question": "지급을 요청하기 전에 특정 조건이 있습니까?",
+          "answer": "네. 엄격한 원장 안정성을 유지하고 자본이 생태계를 빠져나가기 전에 가맹점의 일일 할당량이 채워지도록 보장하기 위해, 현재 사이클 내의 모든 활성 배정을 완료해야 합니다. 또한 계정에 미결제 금액이나 잔액 부족이 없는지 확인해야 합니다. 지급은 사이클 진행 도중에는 절대 처리할 수 없습니다."
         },
         {
           "id": "pay-2",
-          "question": "Is er een minimaal uitbetalingsbedrag?",
-          "answer": "Ja, het minimale uitbetalingsbedrag is $10. Dit minimum wordt gehandhaafd omdat het platform de kosten van netwerk-gasvergoedingen en administratieve bankoverhead voor uw transacties absorbeert, wat financieel niet levensvatbaar is voor microtransacties onder $20."
+          "question": "최소 지급 금액이 있습니까?",
+          "answer": "네. 최소 지급 금액은 $10입니다. 이 최소 한도는 플랫폼이 네트워크 가스비와 거래에 수반되는 관리상 은행 간접비를 부담해야 하는데, $20 미만의 소액 거래의 경우 재정적으로 불합리하기 때문에 강제됩니다."
         },
         {
           "id": "pay-3",
-          "question": "Zijn er transactievolumebeperkingen voor standaard uitbetalingen?",
-          "answer": "Om grootboekstabiliteit te handhaven, zijn uitbetalingscapaciteiten afgestemd op uw actieve lidmaatschapstier. Standaard Basisaccounts kunnen tot $10.000 verwerken; Premiumaccounts tot $50.000; Exclusieve accounts tot $100.000; en VIP-accounts hebben een onbeperkte uitbetalingscapaciteit."
+          "question": "표준 지급에 대한 거래 한도가 있습니까?",
+          "answer": "원장 안정성 유지를 위해 지급 한도는 활성 멤버십 등급에 맞춰 조정됩니다. Standard Basic 계정은 최대 $10,000, Premium은 최대 $50,000, Exclusive는 최대 $100,000까지 처리할 수 있으며 VIP 계정은 무제한 지급 한도를 갖습니다."
         },
         {
           "id": "pay-4",
-          "question": "Zijn er uitbetalingsvergoedingen?",
-          "answer": "Wij rekenen geen interne uitbetalingsvergoedingen of percentages op uw saldi. Bovendien dekken wij de crypto-netwerk-gasvergoedingen voor getokeniseerde uitbetalingen om uw netto verdiensten te maximaliseren. Als u echter kiest voor traditionele fiat-bankmethoden, bent u verantwoordelijk voor eventuele internationale overschrijvingstarieven die worden toegepast door uw eigen financiële instelling."
+          "question": "지급 수수료가 있습니까?",
+          "answer": "당사는 내부 지급 수수료나 잔액에 대한 어떤 퍼센트의 차감도 청구하지 않습니다. 나아가 귀하의 최종 수익 극대화를 위해 토큰화된 지급의 경우 암호화폐 네트워크 가스 비용도 당사가 부담합니다. 다만, 전통적 방식인 법정 통화 송금 방식을 선택할 경우 사용자의 자체 금융기관에서 부과하는 해외 송금 수수료 등은 전적으로 사용자 부담입니다."
         },
         {
           "id": "pay-5",
-          "question": "Hoe lang duren uitbetalingen doorgaans?",
-          "answer": "U dient uw uitbetalingsverzoek in te dienen binnen 24 tot 48 uur na het voltooien van een cyclus. Eenmaal ingediend, worden uitbetalingen vaak binnen een uur verwerkt, hoewel definitieve afwikkelingstijden afhankelijk zijn van uw ontvangende financiële instelling of de snelheid van het blockchain-netwerk. U kunt ook ons live ondersteuningsteam informeren na het indienen van uw verzoek om verwerking op het vroegst mogelijke tijdstip te faciliteren. Alle verzoeken zijn onderworpen aan verplichte Anti-Witwas (AML)-controles en rendementsverificatie."
+          "question": "지급에 보통 얼마나 걸립니까?",
+          "answer": "사이클을 마친 후 24~48시간 이내에 지급 요청을 제출해야 합니다. 요청을 제출하면 대개 한 시간 내에 지급이 처리되지만, 최종 정산 시간은 해당 금액을 수령하는 금융기관이나 블록체인 네트워크 속도에 따라 달라집니다. 가급적 빠른 처리를 원한다면 지급 요청 제출 후 실시간 고객 지원팀에 이를 알릴 수 있습니다. 모든 요청은 필수 자금세탁방지(AML) 조사 및 수익 검증의 대상이 됩니다."
         },
         {
           "id": "pay-6",
-          "question": "Welke uitbetalingsmethoden worden door het platform ondersteund?",
-          "answer": "Wij ondersteunen een wereldwijd gediversifieerd aanbod van afwikkelingsmethoden afgestemd op uw geregistreerde regio om maximale flexibiliteit te garanderen. Opties omvatten directe fiat Bankoverschrijvingen (zoals ACH, SEPA, BACS en Interac) evenals Getokeniseerde Activa (Cryptocurrency via handmatige netwerkconfiguratie)."
+          "question": "플랫폼에서 지원하는 지급 수단은 무엇입니까?",
+          "answer": "당사는 최대한의 유연성을 보장하기 위해 등록된 지역에 맞춰 다각화된 글로벌 정산 방식들을 지원합니다. (ACH, SEPA, BACS 및 Interac 등) 직접적인 법정 화폐 은행 이체 방식과 더불어, 토큰화된 자산(수동 네트워크 구성을 통한 암호화폐)도 옵션에 포함되어 있습니다."
         },
         {
           "id": "pay-7",
-          "question": "Wat gebeurt er als ik een uitbetaling stuur naar het verkeerde crypto-portemonnee-adres of netwerk?",
-          "answer": "Vanwege de gedecentraliseerde aard van blockchain-technologie zijn cryptocurrency-transacties strikt onomkeerbaar. Als u een uitbetaling naar een onjuist portemonnee-adres stuurt of het verkeerde netwerk selecteert, worden uw fondsen permanent verloren. Wij hebben geen technische mogelijkheid om verzonden tokens te herstellen, dus controleer uw bestemmingsgegevens zorgvuldig."
+          "question": "잘못된 암호화폐 지갑 주소나 네트워크로 지급을 보내면 어떻게 됩니까?",
+          "answer": "블록체인 기술의 탈중앙화 특성으로 인해 암호화폐 거래는 철저히 되돌릴 수 없습니다. 잘못된 지갑 주소로 지급금을 보내거나 잘못된 네트워크를 선택할 경우 귀하의 자금은 영구적으로 분실됩니다. 당사에는 이미 전송된 토큰을 복구할 어떠한 기술적 수단도 없으므로 수취인의 상세 정보를 매우 신중하게 두 번 확인하시기 바랍니다."
         },
         {
           "id": "pay-8",
-          "question": "Heb ik een niet-bewarende portemonnee nodig om getokeniseerde uitbetalingen te ontvangen?",
-          "answer": "Nee, een niet-bewarende portemonnee is niet strikt vereist. U kunt elke portemonnee gebruiken die het specifieke token en netwerk ondersteunt dat u selecteert op de uitbetalingspagina. Dit omvat private niet-bewarende portemonnees evenals directe stortingsadressen van grote gecentraliseerde beurzen."
+          "question": "토큰화된 지급을 받으려면 논커스터디얼 지갑(비수탁형 지갑)이 필요합니까?",
+          "answer": "아니요. 논커스터디얼 지갑이 반드시 요구되지는 않습니다. 지급 페이지에서 선택한 특정 토큰 및 네트워크를 지원하는 모든 종류의 지갑을 사용할 수 있습니다. 여기에는 프라이빗 논커스터디얼 지갑뿐만 아니라 주요 중앙화 거래소의 직접 입금 주소도 포함됩니다."
         }
       ]
     },
     {
-      "category": "Bankieren & Fiat-Afwikkelingen",
+      "category": "은행 및 법정화폐 정산",
       "items": [
         {
           "id": "bank-1",
-          "question": "Kan ik een uitbetaling aanvragen naar een bankrekening op naam van iemand anders?",
-          "answer": "Nee, onder geen enkele omstandigheid. Om te voldoen aan strikte internationale Anti-Witwas (AML) en Know Your Customer (KYC) regelgeving, moet de wettelijke naam op uw bestemmingsbankrekening exact overeenkomen met de geverifieerde identiteit op uw platformaccount. Elke poging tot overdracht naar derden activeert een beveiligingsvlag en wordt automatisch afgewezen."
+          "question": "다른 사람 명의의 은행 계좌로 지급을 요청할 수 있나요?",
+          "answer": "아니요, 어떠한 상황에서도 불가합니다. 엄격한 국제 자금세탁방지(AML) 및 고객 확인 제도(KYC) 규정을 준수하기 위해 목적지 은행 계좌에 명시된 법적 이름이 귀하의 플랫폼 계정에 인증된 신원과 완벽하게 일치해야 합니다. 제3자 송금을 시도하는 경우 보안 플래그가 발생하고 시스템에 의해 자동 거절됩니다."
         },
         {
           "id": "bank-2",
-          "question": "Waarom werd mijn bankoverschrijving afgewezen of vertraagd?",
-          "answer": "Fiat-banksystemen zijn vaak trager en rigider dan crypto-netwerken. Bankoverschrijvingen worden doorgaans vertraagd door gebruikersinvoerfouten (onjuiste routing-/rekeningnummers), regionale bankholidays of routinematige beveiligingsblokkades van uw ontvangende financiële instelling. Als een overdracht definitief mislukt, worden de fondsen veilig teruggestort op uw grootboeksaldo."
+          "question": "내 은행 이체가 왜 거부되거나 지연되었나요?",
+          "answer": "법정화폐 은행 시스템은 암호화폐 네트워크보다 종종 더 느리고 엄격합니다. 은행 이체는 대개 사용자의 입력 오류(잘못된 라우팅/계좌 번호), 지역 은행 휴일 또는 수령 금융기관이 적용하는 일상적인 보안 보류 조치로 인해 지연됩니다. 이체가 완전히 실패할 경우 자금은 안전하게 원래의 원장 잔액으로 반환됩니다."
         },
         {
           "id": "bank-3",
-          "question": "Ondersteunt u internationale bankoverschrijvingen?",
-          "answer": "Hoewel wij technisch traditionele internationale bankoverschrijvingen ondersteunen voor bepaalde afgelegen regio's, dient u er rekening mee te houden dat deze methode vaak niet beschikbaar is of onderworpen is aan uitgebreid onderhoud vanwege hoge mislukkingspercentages. Wanneer het beschikbaar is, bent u volledig verantwoordelijk voor het betalen van eventuele inkomende internationale overboekingskosten die worden berekend door tussenliggende banken."
+          "question": "국제 송금(Wire Transfer)을 지원합니까?",
+          "answer": "특정 소외 지역을 위한 기존 방식의 국제 송금을 기술적으로는 지원하지만, 실패율이 높아 이 방식은 빈번히 이용할 수 없거나 기나긴 보수 작업 중일 가능성이 있습니다. 이용할 수 있는 경우에도 중간 매개 은행들이 부과하는 국제 송금 수신 수수료는 온전히 귀하의 부담이라는 점을 양지해 주시기 바랍니다."
         }
       ]
     },
     {
-      "category": "Technische Probleemoplossing",
+      "category": "기술 문제 해결",
       "items": [
         {
           "id": "tech-1",
-          "question": "Wat moet ik doen als mijn dashboard vastloopt tijdens een actieve opdracht?",
-          "answer": "Geen paniek. Als uw dashboard vastloopt, uw browser crasht of u de internetverbinding verliest, vernieuw dan eenvoudig de pagina of log opnieuw in. Uw voortgang, inclusief uw actieve product en huidig grootboeksaldo, wordt in realtime veilig opgeslagen op onze cloudservers, zodat u precies kunt hervatten waar u was gebleven."
+          "question": "활성 배정 중 대시보드가 멈추면 어떻게 해야 합니까?",
+          "answer": "당황하지 마세요. 대시보드가 멈추거나 브라우저의 충돌, 혹은 인터넷 연결이 유실된 경우 페이지를 새로고침하거나 다시 로그인하시기 바랍니다. 활성 제품 및 현재 원장 잔액을 포함한 모든 진행 상황이 실시간으로 당사 클라우드 서버에 안전하게 저장되므로 중단된 정확한 시점부터 다시 이어서 진행할 수 있습니다."
         },
         {
           "id": "tech-2",
-          "question": "Word ik gecompenseerd als een serveruitval ervoor zorgt dat ik een cyclus mis?",
-          "answer": "Nee. Hoewel we sterk investeren in onze infrastructuur om absolute maximale uptime na te streven, bieden we geen financiële compensatie voor gemiste cycli, verbroken aanwezigheidsreeksen of verlopen quota's als gevolg van tijdelijke, onvoorziene serveruitval of geplande systeemonderhoud."
+          "question": "서버 장애로 인해 사이클을 놓친 경우 보상을 받게 됩니까?",
+          "answer": "아니요. 당사는 완벽하고 지속적인 업타임을 달성하기 위해 인프라에 막대한 투자를 아끼지 않고 있으나, 예견치 못한 서버다운이나 스케줄화된 유지보수로 인해 고객님이 잃은 사이클이나 파손된 연속 출석 기록, 만료된 할당량에 대해서는 금전적 보상을 제공하지 않습니다."
         }
       ]
     }
