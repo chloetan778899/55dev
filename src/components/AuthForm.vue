@@ -143,10 +143,10 @@
 
 	const passwordError = computed(() => {
 		if (isLoginView.value || !registerPassword.value) return ''
-		if (registerPassword.value.length < 6) return t('auth.form.errors.pass_length')
-		if (!/[a-z]/.test(registerPassword.value) || !/[A-Z]/.test(registerPassword.value) || !/\d/.test(registerPassword.value)) {
-			return t('auth.form.errors.pass_complex')
-		}
+		// if (registerPassword.value.length < 6) return t('auth.form.errors.pass_length')
+		// if (!/[a-z]/.test(registerPassword.value) || !/[A-Z]/.test(registerPassword.value) || !/\d/.test(registerPassword.value)) {
+		//	return t('auth.form.errors.pass_complex')
+		// }
 		return ''
 	})
 
