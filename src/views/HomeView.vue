@@ -92,7 +92,7 @@ const onCardLeave = (index: number) => {
                     {{ $t('home.hero.subtitle') }}
                 </p>
             </div>
-            <div class="visual-section w-full h-[40vh] lg:h-150 flex items-center justify-center relative -order-1 lg:order-1 mb-5 lg:mb-0">
+            <div class="visual-section w-full h-[40vh] lg:h-150 flex items-center justify-center relative -order-1 lg:order-1 mb-32 lg:mb-0">
                 <div class="w-full h-full min-h-100 block outline-none [&_canvas]:scale-110 [&_canvas]:lg:scale-100">
                     <TheGlobe />
                 </div>
