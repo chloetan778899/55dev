@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { shallowRef, onMounted, onUnmounted } from 'vue'
+import { shallowRef, ref, onMounted, onUnmounted } from 'vue'
 import { useRenderLoop } from '@tresjs/core'
 import { 
   Vector3, 
@@ -11,6 +11,8 @@ import {
 
 const globeGroupRef = shallowRef<Group | null>(null)
 const orbitRef = shallowRef<Mesh | null>(null)
+
+const globePositionY = ref(0)
 
 const radius = 4
 const linePoints: Vector3[] = []
@@ -35,29 +37,22 @@ const onMouseMove = (event: MouseEvent) => {
   mouseY = (event.clientY - windowHalfY)
 }
 
-const onTouchMove = (event: TouchEvent) => {
-  if (event.touches.length > 0) {
-    mouseX = (event.touches[0].clientX - windowHalfX)
-    mouseY = (event.touches[0].clientY - windowHalfY)
-  }
-}
-
 const onWindowResize = () => {
   windowHalfX = window.innerWidth / 2
   windowHalfY = window.innerHeight / 2
+  
+  globePositionY.value = window.innerWidth < 768 ? -2.5 : 0
 }
 
 onMounted(() => {
   document.addEventListener('mousemove', onMouseMove)
-  document.addEventListener('touchmove', onTouchMove, { passive: true })
-  document.addEventListener('touchstart', onTouchMove, { passive: true }) 
   window.addEventListener('resize', onWindowResize)
+  
+  onWindowResize()
 })
 
 onUnmounted(() => {
   document.removeEventListener('mousemove', onMouseMove)
-  document.removeEventListener('touchmove', onTouchMove)
-  document.removeEventListener('touchstart', onTouchMove)
   window.removeEventListener('resize', onWindowResize)
 })
 
@@ -83,7 +78,7 @@ onLoop(({ elapsed }) => {
 <template>
   <TresPerspectiveCamera :position="[0, 0, 15.5]" :fov="45" />
   
-  <TresGroup ref="globeGroupRef">
+  <TresGroup ref="globeGroupRef" :position="[0, globePositionY, 0]">
     <TresPoints>
       <TresSphereGeometry :args="[4, 64, 64]" />
       <TresPointsMaterial color="#635bff" :size="0.08" transparent :opacity="0.8" />
