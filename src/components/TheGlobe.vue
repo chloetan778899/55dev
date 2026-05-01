@@ -29,7 +29,7 @@ extend({
 <template>
   <TresCanvas 
     alpha
-    class="w-full h-full block touch-pan-y"
+    class="w-full h-full block touch-pan-y pointer-events-none md:pointer-events-auto"
     :tone-mapping="NoToneMapping"
     :output-color-space="SRGBColorSpace"
   >
