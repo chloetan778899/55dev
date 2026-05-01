@@ -6,6 +6,7 @@ import { useI18n } from "vue-i18n";
 import ThemeLangSwitch from "../components/ui/ThemeLangSwitch.vue";
 import SuccessModal from "../components/ui/SuccessModal.vue";
 import FaqAccordion from "../components/ui/FaqAccordion.vue";
+import GlobalRadar from "../components/ui/GlobalRadar.vue";
 import { useUserStore } from "@/store/modules/user";
 import {
   getUserInfo,
@@ -41,9 +42,24 @@ const modalState = ref({
   onConfirm: () => {},
 });
 
+const mainScrollContainer = ref<HTMLElement | null>(null);
 const showGiftModal = ref(false);
 const giftModalAmount = ref("");
 const isSpecialBonusPending = ref(false);
+const isGlobeGolden = ref(false);
+const isInitialLoad = ref(true);
+
+watch(() => showGiftModal.value, (isOpen) => {
+  if (isOpen) {
+    isGlobeGolden.value = true;
+  }
+});
+
+watch(() => isSpecialBonusPending.value, (isPending) => {
+  if (!isPending) {
+    isGlobeGolden.value = false;
+  }
+});
 
 const checkAndBlockForBonus = () => {
   if (isSpecialBonusPending.value) {
@@ -152,6 +168,8 @@ const userData = ref({
   createdAt: "",
 });
 
+const isUserDataLoaded = ref(false);
+
 const level_info = ref<any>(null);
 const creditScoreDetails = computed(() => {
   const scoreStr = userData.value.creditScore;
@@ -165,7 +183,7 @@ const creditScoreDetails = computed(() => {
       barClass: "bg-[#ccc] dark:bg-[#444]",
     };
   }
-
+    
   const score = parseFloat(scoreStr);
   const clampedScore = Math.min(Math.max(score, 0), 100);
 
@@ -247,6 +265,8 @@ const fetchUserData = async () => {
       isCoachAccount: (d.account_type as number) === 2,
       createdAt: (d.create_time as string) ?? "",
     };
+    isUserDataLoaded.value = true;
+
     const region = d.region as string;
     if (region) {
       passphraseForm.value.country = region;
@@ -630,11 +650,11 @@ const passphraseForm = ref({
 const newPassphraseError = computed(() => {
   const pass = passphraseForm.value.passphrase;
   if (!pass) return "";
-  if (pass.length < 6)
-    return t(
-      "dashboard.overview.passphrase_length",
-      "Passphrase must be at least 6 characters."
-    );
+//  if (pass.length < 6)
+//    return t(
+//      "dashboard.overview.passphrase_length",
+//      "Passphrase must be at least 6 characters."
+//    );
   return "";
 });
 
@@ -648,7 +668,7 @@ const confirmPassphraseError = computed(() => {
 
 const isSetupValid = computed(() => {
   return (
-    passphraseForm.value.passphrase.length >= 6 &&
+    passphraseForm.value.passphrase.length >= 0 &&
     passphraseForm.value.passphrase === passphraseForm.value.confirmPassphrase
   );
 });
@@ -656,7 +676,7 @@ const isSetupValid = computed(() => {
 const isUpdateValid = computed(() => {
   return (
     passphraseForm.value.currentPassphrase.length > 0 &&
-    passphraseForm.value.passphrase.length >= 6 &&
+    passphraseForm.value.passphrase.length >= 0 &&
     passphraseForm.value.passphrase === passphraseForm.value.confirmPassphrase
   );
 });
@@ -677,6 +697,7 @@ const configurePassphrase = async () => {
         t("dashboard.overview.setup_success", "Passphrase securely configured.")
       );
       userData.value.hasPassphrase = true;
+      showSetupPassphraseModal.value = false;
       passphraseForm.value = {
         currentPassphrase: "",
         passphrase: "",
@@ -757,6 +778,7 @@ const copyReferralId = async () => {
 };
 
 const coreLedgerBalance = ref(0.0);
+const specialBonusBalance = ref(0.0);
 const currentCycleProfit = ref(0.0);
 
 const lockedInPackage = ref(0.0);
@@ -769,6 +791,10 @@ const expected_total_amount = ref(0.0);
 
 const displayTotalLedgerBalance = computed(() => {
   return coreLedgerBalance.value;
+});
+
+const grandTotalBalance = computed(() => {
+  return coreLedgerBalance.value + specialBonusBalance.value;
 });
 
 const outstandingBalance = computed(() => {
@@ -849,6 +875,8 @@ const isProceeding = ref(false);
 /** 连单自动拉下一单时沿用上一单的利率展示（与连单时利率一致） */
 const liandanYieldRateForNext = ref<string | null>(null);
 
+  const assignmentBannerText = ref('');
+  const payoutBannerText = ref('');
 /** 拉取任务/作业状态并更新 currentSchema、recentActivity 等 */
 const fetchAssignmentsState = async () => {
   try {
@@ -859,9 +887,14 @@ const fetchAssignmentsState = async () => {
     if (res.status !== 1 || !res.data) return;
 
     const d = res.data;
+
+    assignmentBannerText.value = (d.assignment_banner_msg as string) || "";
+    payoutBannerText.value = (d.payout_banner_msg as string) || "";
+
     const levelInfo = d.level_info as { task_num?: number } | undefined;
 
     coreLedgerBalance.value = Number(d.total_amount ?? 0);
+    specialBonusBalance.value = Number(d.special_bonus ?? 0);
     frozen_amount.value = Number(d.debt ?? 0);
     expected_total_amount.value = Number(d.expected_total_amount ?? 0);
     currentCycleProfit.value = Number(d.task_force_income ?? 0);
@@ -907,6 +940,10 @@ const fetchAssignmentsState = async () => {
     }
   } catch (error) {
     console.error("Failed to fetch assignments state:", error);
+  } finally {
+    if (isInitialLoad.value) {
+      isInitialLoad.value = false;
+    }
   }
 };
 
@@ -929,6 +966,27 @@ const readMessageFun = async () => {
     console.error("Failed to fetch records:", error);
   }
 };
+
+const globalRadarStatus = computed(() => {
+  if (isRetrievingAssignment.value || isProceeding.value || submittingRecordId.value) {
+    return 'Syncing'; 
+  }
+  
+  const hasPendingLedger = recentActivity.value.some((tx: any) => tx.statusCode === 0);
+  if (hasPendingLedger) {
+    return 'Pending';
+  }
+  
+  if (currentSchema.value) {
+    return 'Pending'; 
+  }
+
+  if (recentActivity.value.length > 0 && recentActivity.value[0].status === 'Success') {
+    return 'Success';
+  }
+
+  return 'Idle';
+});
 
 /** 任务记录中提交某条未完成订单时使用的 loading 状态（仅订单状态为 0/Pending 可提交） */
 const submittingRecordId = ref<string | null>(null);
@@ -974,10 +1032,7 @@ const fetchTaskRecords = async () => {
           status,
           statusCode,
           liandan_status: Number(item.liandan_status) ?? 0,
-          isHighYield:
-            (item.liandan_status as number) === 1 ||
-            Number(item.rate) >=
-              Number(level_info.value?.liandan_inc_reward_rate),
+          isHighYield: (item.liandan_status as number) >= 1,
         };
       }
     );
@@ -1071,12 +1126,22 @@ const submitOrderFromRecord = async (tx: {
 const retrieveAssignment = async (
   _forcedType: "auto" | "auto-package" = "auto"
 ) => {
-  if (checkAndBlockForBonus()) return;
   if (isRetrievingAssignment.value) return;
+
+  if (now_money.value < 0) {
+    openModal(
+      t(
+        "dashboard.assignments.pending_schema_error",
+        "Please complete the pending product before continuing to the next."
+      )
+    );
+    return;
+  }
 
   const hasPendingInList = recentActivity.value.some(
     (tx: any) => tx.statusCode === 0
   );
+
   if (currentSchema.value || hasPendingInList) {
     openModal(
       t(
@@ -1086,6 +1151,8 @@ const retrieveAssignment = async (
     );
     return;
   }
+
+  if (checkAndBlockForBonus()) return;
 
   if (schemaQuota.value <= 0) {
     openModal(
@@ -1515,6 +1582,17 @@ watch(
 const payoutTransactions = ref<any[]>([]);
 const isRequestingPayout = ref(false);
 
+// HELPER: Checks if the destination is set up so we can unlock Card 3
+const isDestinationReady = computed(() => {
+  const regionType = payoutRegions.value[withdrawalForm.value.country]?.type;
+  if (regionType === 'crypto_only') {
+    return savedWallet.value.isSaved; // Crypto needs the address saved first
+  } else {
+    // Bank details don't have a "save" button step in your current flow, so it's always ready
+    return true; 
+  }
+});
+
 /** 将提现状态码映射为展示文案（成功/拒绝/待处理） */
 const mapWithdrawStatus = (status: number) => {
   if (status === 1) return "Success";
@@ -1560,12 +1638,16 @@ const requestPayout = async () => {
     return;
   }
 
-  const amountToWithdraw = parseFloat(withdrawalForm.value.amount);
+    const amountToWithdraw = parseFloat(withdrawalForm.value.amount);
 
-  if (amountToWithdraw > displayTotalLedgerBalance.value) {
-    openModal(t("dashboard.payouts.exceeds_balance", "Requested amount exceeds your available ledger balance."));
-    return;
-  }
+    if (amountToWithdraw > grandTotalBalance.value) {
+      const errorMessage = specialBonusBalance.value > 0 
+        ? t("dashboard.payouts.exceeds_grand_total", "Requested amount exceeds your available grand total.") 
+        : t("dashboard.payouts.exceeds_balance", "Requested amount exceeds your available ledger balance.");
+        
+      openModal(errorMessage);
+      return;
+    }
 
   let dest = "";
   let methodStr = "";
@@ -1940,22 +2022,12 @@ const fetchLegalImages = async () => {
   }
 };
 
-const timer = ref<ReturnType<typeof setInterval> | null>(null);
+
 const certificateImg = ref<string[]>([]);
 
 /** 证书/活动图 */
 const articleImages = async () => {
-  if (timer.value) {
-    clearInterval(timer.value);
-  }
-
   try {
-    if (activeTab.value == "payouts") {
-      timer.value = setInterval(() => {
-        fetchPayoutHistory();
-      }, 5000);
-    }
-
     certificateImg.value = [];
 
     let aid = 157;
@@ -2057,41 +2129,81 @@ const membershipLevelsImages = async () => {
 };
 
 /** 每 5 秒轮询 api/index/initStartData，离开页面时清除 */
-const initStartDataTimer = ref<ReturnType<typeof setInterval> | null>(null);
+const initStartDataTimer = ref<ReturnType<typeof setTimeout> | null>(null);
+const isPollingActive = ref(true);
+const isRequestPending = ref(false)
+
+const startSmartPolling = async () => {
+  if (!isPollingActive.value || document.hidden || isRequestPending.value) return;
+
+  isRequestPending.value = true; 
+  
+  try {
+    await fetchAssignmentsState();
+  } catch (error) {
+    console.error("Polling error:", error);
+  } finally {
+    isRequestPending.value = false;
+    
+    if (isPollingActive.value && !document.hidden) {
+      initStartDataTimer.value = setTimeout(startSmartPolling, 3000);
+    }
+  }
+};
+
+const handleVisibilityChange = () => {
+  if (document.hidden) {
+    if (initStartDataTimer.value) {
+      clearTimeout(initStartDataTimer.value);
+      initStartDataTimer.value = null;
+    }
+  } else {
+    startSmartPolling();
+  }
+};
 
 onMounted(async () => {
+  window.scrollTo(0, 0);
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+  
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+    if (mainScrollContainer.value) {
+      mainScrollContainer.value.scrollTop = 0;
+    }
+  }, 100);
+  
   await fetchUserData();
   fetchAttendance();
   fetchPosters();
   fetchLegalImages();
   articleImages();
-
   fetchMembershipLevels();
-
-  fetchAssignmentsState();
 
   getCardInfoHandle();
   await fetchTaskRecords();
   fetchPayoutHistory();
 
-  if (timer.value) {
-    clearInterval(timer.value);
-  }
+  isPollingActive.value = true;
+  startSmartPolling();
 
-  initStartDataTimer.value = setInterval(() => {
-    fetchAssignmentsState();
-  }, 3000);
+  document.addEventListener("visibilitychange", handleVisibilityChange);
 });
 
 onUnmounted(() => {
+  isPollingActive.value = false;
   if (initStartDataTimer.value != null) {
-    clearInterval(initStartDataTimer.value);
+    clearTimeout(initStartDataTimer.value);
     initStartDataTimer.value = null;
   }
-  if (timer.value != null) {
-    clearInterval(timer.value);
-    timer.value = null;
+
+  if (payoutTimerId != null) {
+    clearInterval(payoutTimerId);
+    payoutTimerId = null;
   }
+  
+  document.removeEventListener("visibilitychange", handleVisibilityChange);
 });
 
 const currentCertificateIndex = ref(0);
@@ -2147,13 +2259,30 @@ const tabOrder = [
   "cookies",
   "legal",
 ];
+
 const transitionName = ref("slide-down");
+const previousActiveTab = ref<keyof typeof ui.value.sidebar>("assignments");
 
 watch(activeTab, (newTab: string, oldTab: string) => {
+  previousActiveTab.value = oldTab as keyof typeof ui.value.sidebar;
   const newIndex = tabOrder.indexOf(newTab);
   const oldIndex = tabOrder.indexOf(oldTab);
   transitionName.value = newIndex > oldIndex ? "slide-up" : "slide-down";
+
+  if (mainScrollContainer.value) {
+    mainScrollContainer.value.scrollTop = 0;
+  }
+  if (newTab === 'payouts' && !userData.value.hasPassphrase) {
+    showSetupPassphraseModal.value = true;
+  }
 });
+
+const handleCancelPassphraseSetup = () => {
+  showSetupPassphraseModal.value = false;
+  if (activeTab.value === 'payouts') {
+    activeTab.value = previousActiveTab.value;
+  }
+};
 
 const getTabIcon = (key: string) => {
   const icons: Record<string, string> = {
@@ -2180,6 +2309,8 @@ const payoutConfirmModal = ref({
   accountName: "",
   icon:""
 });
+
+const showSetupPassphraseModal = ref(false);
 
 const payoutCountdown = ref(0);
 let payoutTimerId: ReturnType<typeof setInterval> | null = null;
@@ -2267,7 +2398,7 @@ const closePayoutModal = () => {
           </span>
           {{ label }}
           <span
-            v-if="key === 'overview' && !userData.hasPassphrase"
+            v-if="key === 'overview' && isUserDataLoaded && !userData.hasPassphrase"
             class="absolute right-3 w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse shadow-[0_0_4px_rgba(239,68,68,0.5)]"
           ></span>
         </button>
@@ -2359,9 +2490,9 @@ const closePayoutModal = () => {
       </div>
     </aside>
 
-    <main class="flex-1 flex flex-col min-w-0 h-full overflow-y-auto relative">
-      <header
-        class="sticky top-0 z-30 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-black/10 dark:border-white/10 px-8 h-16 shrink-0 flex items-center justify-between box-border"
+    <main class="flex-1 flex flex-col min-w-0 h-full overflow-hidden relative">
+        <header
+        class="z-30 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-black/10 dark:border-white/10 px-8 h-16 shrink-0 flex items-center justify-between box-border"
       >
         <div class="flex items-center gap-4">
           <button
@@ -2390,11 +2521,12 @@ const closePayoutModal = () => {
         </div>
       </header>
 
-      <div class="p-6 lg:p-10 max-w-5xl mx-auto w-full pb-10 flex-1">
-        <Transition :name="transitionName" mode="out-in">
-          <div :key="activeTab" class="w-full">
+      <div ref="mainScrollContainer" class="flex-1 overflow-y-auto relative w-full">
+        <div class="p-6 lg:p-10 max-w-5xl mx-auto w-full pb-24 lg:pb-16">
+          <Transition :name="transitionName" mode="out-in">
+           <div :key="activeTab" class="w-full">
             <template v-if="activeTab === 'overview'">
-              <div class="max-w-3xl space-y-6">
+              <div class="w-full space-y-6">
                 <h2
                   class="text-xl font-semibold text-black dark:text-white tracking-tight mb-4"
                 >
@@ -2954,7 +3086,7 @@ const closePayoutModal = () => {
             </template>
 
             <template v-else-if="activeTab === 'referrals'">
-              <div class="max-w-3xl space-y-6">
+              <div class="w-full space-y-6">
                 <h2
                   class="text-xl font-semibold text-black dark:text-white tracking-tight flex items-center mb-4"
                 >
@@ -2973,7 +3105,15 @@ const closePayoutModal = () => {
                   }}
                 </p>
 
+              <div v-if="userData.isCoachAccount" class="px-4 py-2.5 rounded-md border flex items-center justify-center gap-2 bg-[#f8fafc] dark:bg-[#0f172a]/50 text-[#64748b] dark:text-[#94a3b8] border-[#e2e8f0] dark:border-[#1e293b]">
+                <span class="material-icons-round text-[16px]">visibility</span>
+                <span class="text-[13px] font-medium">
+                  {{ t("dashboard.rewards.coach_restricted", "Attendance payouts, membership bonuses and referral program are not applicable to coach accounts.") }}
+                </span>
+              </div>
+
                 <section
+                  v-if="!userData.isCoachAccount"
                   class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6"
                 >
                   <h3
@@ -3107,7 +3247,7 @@ const closePayoutModal = () => {
             </template>
 
             <template v-else-if="activeTab === 'rewards'">
-              <div class="space-y-6 max-w-4xl">
+              <div class="w-full space-y-6">
                 <!-- 签到成功效果：今日已签到时展示 -->
                 <section
                   v-if="attendance.todaySigned"
@@ -3221,7 +3361,7 @@ const closePayoutModal = () => {
                     <span class="text-[13px] font-medium">{{
                       t(
                         "dashboard.rewards.coach_restricted",
-                        "Attendance payouts and membership bonuses are not applicable to coach accounts."
+                        "Attendance payouts, membership bonuses and referral program are not applicable to coach accounts."
                       )
                     }}</span>
                   </div>
@@ -3422,7 +3562,7 @@ const closePayoutModal = () => {
             </template>
 
             <template v-else-if="activeTab === 'events'">
-              <div class="space-y-6 max-w-4xl">
+              <div class="w-full space-y-6">
                 <div
                   v-if="userData.isCoachAccount"
                   class="px-4 py-2.5 rounded-md border flex items-center justify-center gap-2 bg-[#f8fafc] dark:bg-[#0f172a]/50 text-[#64748b] dark:text-[#94a3b8] border-[#e2e8f0] dark:border-[#1e293b]"
@@ -3433,7 +3573,7 @@ const closePayoutModal = () => {
                   <span class="text-[13px] font-medium">{{
                     t(
                       "dashboard.rewards.coach_restricted",
-                      "Attendance payouts and membership bonuses are not applicable to coach accounts."
+                      "Attendance payouts, membership bonuses and referral program are not applicable to coach accounts."
                     )
                   }}</span>
                 </div>
@@ -3634,45 +3774,75 @@ const closePayoutModal = () => {
               </div>
             </template>
 
-            <template v-else-if="activeTab === 'assignments'">
-              <div class="max-w-6xl mx-auto">
-                <div
-                  class="mb-6 border-b border-black/10 dark:border-white/10 pb-4"
-                >
-                  <h2
-                    class="text-xl font-semibold text-black dark:text-white tracking-tight mb-1"
-                  >
-                    {{
-                      t(
-                        "dashboard.assignments.title",
-                        "Active Schema Allocations"
-                      )
-                    }}
-                  </h2>
-                  <p
-                    class="text-[14px] text-[#666] dark:text-[#a1a1a1] font-sans"
-                  >
-                    {{
-                      t(
-                        "dashboard.assignments.subtitle",
-                        "Automated Data Processing & Financial Ledger"
-                      )
-                    }}
-                  </p>
-                </div>
+              <template v-else-if="activeTab === 'assignments'">
+                <div class="w-full">
+                  
+                  <div v-if="assignmentBannerText" class="w-full bg-[#ffcc00] text-black px-5 py-3.5 rounded-md font-medium text-[13px] sm:text-[14px] leading-relaxed shadow-sm mb-6 text-left break-words whitespace-normal">
+                    {{ assignmentBannerText }}
+                  </div>
 
-                <div class="flex justify-center mb-8 mt-6 w-full">
-                  <div class="overflow-hidden h-85 w-85">
-                    <iframe
-                      height="410"
-                      width="340"
-                      src="https://www.xe.com/currencyconverter/fx-widget?amount=1&from=USD&to=EUR"
-                      frameborder="0"
-                      class="-mt-2.5"
-                    ></iframe>
+                  <div class="mb-6 border-b border-black/10 dark:border-white/10 pb-4">
+                    <h2 class="text-xl font-semibold text-black dark:text-white tracking-tight mb-1">
+                      {{ t("dashboard.assignments.title", "Active Schema Allocations") }}
+                    </h2>
+                    <p class="text-[14px] text-[#666] dark:text-[#a1a1a1] font-sans">
+                      {{ t("dashboard.assignments.subtitle", "Automated Data Processing & Financial Ledger") }}
+                    </p>
+                  </div>
+
+                  <div class="flex justify-center mb-8 mt-6 w-full">
+                  <div class="h-[410px] w-[410px] max-w-full flex items-center justify-center bg-transparent rounded-full relative">
+                  <GlobalRadar 
+                    :completed-tasks="maxSchemaQuota - schemaQuota" 
+                    :max-tasks="maxSchemaQuota" 
+                    :is-muted="schemaQuota <= 0 && !currentSchema && !recentActivity.some(tx => tx.statusCode === 0)"
+                    :task-status="globalRadarStatus"
+                    :is-special-bonus="isGlobeGolden" 
+                  />
+                </div>
+              </div>
+
+              <div v-if="specialBonusBalance > 0" class="mb-4 p-4 rounded-lg bg-amber-50 dark:bg-[#3d2a00]/40 border border-amber-200 dark:border-amber-900/50 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm">
+                
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                  <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
+                    <span class="material-icons-round text-xl">card_giftcard</span>
+                  </div>
+                  <div>
+                    <h3 class="text-[14px] font-bold text-amber-900 dark:text-amber-400 flex items-center gap-1.5">
+                      ✨ {{ t('dashboard.assignments.bonus_applied', 'Performance Bonus Awarded') }}
+                    </h3>
+                    <p class="text-[12px] text-amber-700/80 dark:text-amber-500/80 mt-0.5">
+                      {{ t('dashboard.assignments.bonus_desc', 'Your special bonus has been added to your grand total.') }}
+                    </p>
                   </div>
                 </div>
+                
+                <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-[13px] bg-white/60 dark:bg-black/40 px-4 py-3 sm:py-2.5 rounded-md border border-amber-200/50 dark:border-amber-900/30 w-full md:w-auto">
+                  
+                  <div class="flex flex-row sm:flex-col items-center sm:items-start justify-between w-full sm:w-auto">
+                    <span class="text-[10px] uppercase tracking-wider text-amber-700/70 dark:text-amber-500/70 font-semibold">{{ t('dashboard.assignments.ledger_balance', 'Total Ledger Balance') }}</span>
+                    <span class="font-sans font-medium text-amber-950 dark:text-amber-100">{{ formatCurrency(coreLedgerBalance) }}</span>
+                  </div>
+                  
+                  <div class="block sm:hidden w-full h-px bg-amber-200/50 dark:bg-amber-900/30"></div>
+                  <div class="hidden sm:block w-px h-6 bg-amber-200 dark:bg-amber-900/50"></div>
+                  
+                  <div class="flex flex-row sm:flex-col items-center sm:items-start justify-between w-full sm:w-auto">
+                    <span class="text-[10px] uppercase tracking-wider text-amber-700/70 dark:text-amber-500/70 font-semibold">{{ t('dashboard.assignments.special_bonus', 'Special Bonus') }}</span>
+                    <span class="font-sans font-medium text-amber-600 dark:text-amber-400">+{{ formatCurrency(specialBonusBalance) }}</span>
+                  </div>
+                  
+                  <div class="block sm:hidden w-full h-px bg-amber-200/50 dark:bg-amber-900/30"></div>
+                  <div class="hidden sm:block w-px h-6 bg-amber-200 dark:bg-amber-900/50"></div>
+                  
+                  <div class="flex flex-row sm:flex-col items-center sm:items-start justify-between w-full sm:w-auto">
+                    <span class="text-[10px] uppercase tracking-wider text-amber-700/70 dark:text-amber-500/70 font-bold">{{ t('dashboard.assignments.grand_total', 'Grand Total') }}</span>
+                    <span class="font-sans font-bold text-amber-900 dark:text-amber-300">{{ formatCurrency(grandTotalBalance) }}</span>
+                  </div>
 
+                </div>
+              </div>
                 <div
                   class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 mb-8 px-1"
                 >
@@ -3712,10 +3882,11 @@ const closePayoutModal = () => {
                         }}
                       </div>
                     </div>
-                    <div
-                      class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white mt-auto"
-                    >
-                      {{ formatCurrency(displayTotalLedgerBalance) }}
+                    <div class="mt-auto flex items-center h-[28px] md:h-[32px]">
+                      <div v-if="isInitialLoad" class="animate-pulse bg-gray-200 dark:bg-[#222] h-6 md:h-8 w-24 md:w-32 rounded"></div>
+                      <div v-else class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white">
+                        {{ formatCurrency(displayTotalLedgerBalance) }}
+                      </div>
                     </div>
                   </div>
 
@@ -3759,11 +3930,12 @@ const closePayoutModal = () => {
                         }}
                       </div>
                     </div>
-                    <div
-                      class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white mt-auto"
-                    >
-                      {{ formatCurrency(outstandingBalance) }}
-                    </div>
+                      <div class="mt-auto flex items-center h-[28px] md:h-[32px]">
+                        <div v-if="isInitialLoad" class="animate-pulse bg-gray-200 dark:bg-[#222] h-6 md:h-8 w-24 md:w-32 rounded"></div>
+                        <div v-else class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white">
+                          {{ formatCurrency(outstandingBalance) }}
+                        </div>
+                      </div>
                   </div>
 
                   <div class="flex flex-col justify-between h-full">
@@ -3802,10 +3974,11 @@ const closePayoutModal = () => {
                         }}
                       </div>
                     </div>
-                    <div
-                      class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white mt-auto"
-                    >
-                      {{ formatCurrency(displayCurrentBalance) }}
+                    <div class="mt-auto flex items-center h-[28px] md:h-[32px]">
+                      <div v-if="isInitialLoad" class="animate-pulse bg-gray-200 dark:bg-[#222] h-6 md:h-8 w-24 md:w-32 rounded"></div>
+                      <div v-else class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white">
+                        {{ formatCurrency(displayCurrentBalance) }}
+                      </div>
                     </div>
                   </div>
 
@@ -3845,11 +4018,12 @@ const closePayoutModal = () => {
                         }}
                       </div>
                     </div>
-                    <div
-                      class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white mt-auto"
-                    >
-                      {{ formatCurrency(currentCycleProfit) }}
-                    </div>
+                      <div class="mt-auto flex items-center h-[28px] md:h-[32px]">
+                        <div v-if="isInitialLoad" class="animate-pulse bg-gray-200 dark:bg-[#222] h-6 md:h-8 w-24 md:w-32 rounded"></div>
+                        <div v-else class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white">
+                          {{ formatCurrency(currentCycleProfit) }}
+                        </div>
+                      </div>
                   </div>
 
                   <div class="flex flex-col justify-between h-full">
@@ -3861,19 +4035,20 @@ const closePayoutModal = () => {
                         }}</span
                       >
                     </div>
-                    <div
-                      class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white mt-auto"
-                    >
-                      {{ reward_rate }} %
+                    <div class="mt-auto flex items-center h-[28px] md:h-[32px]">
+                      <div v-if="isInitialLoad" class="animate-pulse bg-gray-200 dark:bg-[#222] h-6 md:h-8 w-16 md:w-24 rounded"></div>
+                      <div v-else class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white">
+                        {{ reward_rate }} %
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
                   <div
-                    class="p-6 bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg flex flex-col justify-between min-h-55"
+                    class="p-6 bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg flex flex-col justify-between min-h-[14rem]"
                   >
-                    <div>
+                      <div>
                       <div class="flex items-center justify-between mb-4">
                         <h3
                           class="text-[15px] font-semibold text-black dark:text-white font-sans"
@@ -3954,10 +4129,10 @@ const closePayoutModal = () => {
                       class="absolute inset-0 rounded-lg bg-[linear-gradient(90deg,#ff9a9e,#d4bbf9,#a1c4fd,#bbf0f3,#ff9a9e)] bg-size-[200%_200%] animate-rainbow-glow-spin z-0"
                     ></div>
 
-                    <div
-                      v-if="currentSchema"
-                      class="relative p-6 md:p-8 rounded-[calc(0.5rem-1px)] z-10 flex flex-col justify-between h-full w-full"
-                      :class="[
+                  <div
+                    v-if="currentSchema"
+                    class="relative p-6 md:p-8 rounded-[calc(0.5rem-1px)] z-10 flex flex-col justify-between min-h-full w-full"
+                    :class="[
                         currentSchema.isHighYield
                           ? 'bg-amber-50 dark:bg-[#3d2a00] border-amber-300 dark:border-[#5c4000]'
                           : 'bg-white dark:bg-[#0a0a0a] border-black/10 dark:border-white/10',
@@ -3996,28 +4171,23 @@ const closePayoutModal = () => {
                               {{ currentSchema.timestamp }}
                             </p>
                           </div>
-                          <div class="col-span-2 sm:col-span-1">
-                            <p
-                              class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold"
-                            >
-                              {{
-                                t(
-                                  "dashboard.assignments.reference",
-                                  "Reference"
-                                )
-                              }}
-                            </p>
-                            <p
-                              class="font-mono text-black dark:text-white font-medium break-all whitespace-normal leading-relaxed"
-                            >
-                              {{ currentSchema.reference }}
-                            </p>
-                          </div>
-                          <div class="hidden sm:block"></div>
+                        <div class="col-span-2 min-w-0">
+                          <p class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold">
+                            {{
+                              t(
+                                "dashboard.assignments.reference",
+                                "Reference"
+                              )
+                            }}
+                          </p>
+                          <p class="font-mono text-black dark:text-white font-medium break-words whitespace-normal leading-relaxed">
+                            {{ currentSchema.reference }}
+                          </p>
+                        </div>
+
                           <div>
                             <p
-                              class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold"
-                            >
+                              class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold">
                               {{
                                 t(
                                   "dashboard.assignments.asset_value",
@@ -4026,15 +4196,13 @@ const closePayoutModal = () => {
                               }}
                             </p>
                             <p
-                              class="font-sans text-black dark:text-white font-bold"
-                            >
+                              class="font-sans text-black dark:text-white font-bold">
                               {{ formatCurrency(currentSchema.value) }}
                             </p>
                           </div>
                           <div>
                             <p
-                              class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold"
-                            >
+                              class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold">
                               {{
                                 t(
                                   "dashboard.assignments.yield_rate",
@@ -4094,10 +4262,10 @@ const closePayoutModal = () => {
                       </div>
                     </div>
 
-                    <div
-                      v-else
-                      class="relative p-6 bg-white dark:bg-[#0a0a0a] rounded-[calc(0.5rem-1px)] z-10 flex items-center justify-center min-h-55 w-full border border-black/10 dark:border-white/10 border-dashed"
-                    >
+                      <div
+                        v-else
+                        class="relative p-6 bg-white dark:bg-[#0a0a0a] rounded-[calc(0.5rem-1px)] z-10 flex items-center justify-center min-h-[14rem] w-full border border-black/10 dark:border-white/10 border-dashed"
+                      >
                       <span class="text-[13px] text-[#888] dark:text-[#666]">{{
                         t(
                           "dashboard.assignments.idle",
@@ -4420,694 +4588,321 @@ const closePayoutModal = () => {
             </template>
 
             <template v-else-if="activeTab === 'payouts'">
-              <div class="max-w-5xl space-y-6">
-                <h2
-                  class="text-xl font-semibold text-black dark:text-white tracking-tight mb-4"
-                >
-                  {{ t("dashboard.payouts.title", "Manage Payouts") }}
-                </h2>
+              <div class="w-full space-y-6"> 
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                  <div
-                    class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6 lg:col-span-1 flex flex-col"
-                  >
-                    <p
-                      class="text-[12px] font-medium text-[#666] dark:text-[#a1a1a1] mb-1"
-                    >
-                      {{
-                        t("dashboard.payouts.ledger_balance", "Ledger Balance")
-                      }}
-                    </p>
-                    <div
-                      class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white mb-6"
-                    >
-                      {{ formatCurrency(displayTotalLedgerBalance) }}
+                <div v-if="payoutBannerText" class="w-full bg-[#ffcc00] text-black px-5 py-3.5 rounded-md font-medium text-[13px] sm:text-[14px] leading-relaxed shadow-sm mb-6 text-left break-words whitespace-normal">
+                  {{ payoutBannerText }}
+                </div>
+
+                <div class="mb-2">
+                  <h2 class="text-xl font-semibold text-black dark:text-white tracking-tight mb-1">
+                    {{ t("dashboard.payouts.title", "Manage Payouts") }}
+                  </h2>
+                  <p class="text-[14px] text-[#666] dark:text-[#a1a1a1] font-sans">
+                    {{ t("dashboard.payouts.subtitle", "Set up where to send your funds and request your payout securely.") }}
+                  </p>
+                </div>
+
+          <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6">
+              <div class="flex items-center justify-between mb-5">
+                <h3 class="text-[15px] font-semibold text-black dark:text-white">
+                  {{ t("dashboard.payouts.funds_breakdown", "Available Funds Breakdown") }}
+                </h3>
+              </div>
+
+              <div class="space-y-3 font-sans text-[14px]">
+                <div class="flex items-center justify-between text-[#666] dark:text-[#a1a1a1]">
+                  <span>{{ t("dashboard.assignments.ledger_balance", "Total Ledger Balance") }}</span>
+                  <div v-if="isInitialLoad" class="animate-pulse bg-gray-200 dark:bg-[#222] h-5 w-20 rounded"></div>
+                  <span v-else class="font-medium text-black dark:text-white">{{ formatCurrency(coreLedgerBalance) }}</span>
+                </div>
+                
+                <div v-if="specialBonusBalance > 0" class="flex items-center justify-between text-[#666] dark:text-[#a1a1a1]">
+                  <span class="text-amber-600 dark:text-amber-500">
+                    {{ t("dashboard.assignments.special_bonus", "Special Bonus") }}
+                  </span>
+                  <div v-if="isInitialLoad" class="animate-pulse bg-amber-200/50 dark:bg-amber-900/50 h-5 w-20 rounded"></div>
+                  <span v-else class="font-medium text-amber-600 dark:text-amber-500">+ {{ formatCurrency(specialBonusBalance) }}</span>
+                </div>
+
+                <div class="pt-4 mt-2 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
+                  <span class="text-[14px] text-black dark:text-white">{{ t("dashboard.assignments.grand_total", "Grand Total") }}</span>
+                  <div v-if="isInitialLoad" class="animate-pulse bg-gray-200 dark:bg-[#222] h-7 md:h-8 w-28 rounded"></div>
+                  <span v-else class="text-xl md:text-2xl font-medium text-black dark:text-white">{{ formatCurrency(grandTotalBalance) }}</span>
+                </div>
+              </div>
+            </div>
+              
+              <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6">
+                <h3 class="text-[15px] font-semibold text-black dark:text-white mb-5 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-full bg-black text-white dark:bg-white dark:text-black flex items-center justify-center text-[12px]">1</span>
+                  {{ t("dashboard.payouts.step1_title", "Send Funds To") }}
+                </h3>
+
+                <div class="space-y-5">
+                  <div class="relative w-full" v-click-outside="() => (isCountryDropdownOpen = false)">
+                    <div @click="isCountryDropdownOpen = !isCountryDropdownOpen" tabindex="0"
+                      class="peer w-full p-[14px_16px] text-[14px] min-h-[50px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] cursor-pointer flex items-center justify-between transition-all">
+                      <span>{{ payoutRegions[withdrawalForm.country]?.label }}</span>
+                      <span class="material-icons-round text-[#666] dark:text-[#a1a1a1] text-[18px] transition-transform duration-200" :class="{ 'rotate-180': isCountryDropdownOpen }">expand_more</span>
                     </div>
-
-                    <div class="space-y-4 flex-1">
-                      <div
-                        class="relative w-full"
-                        v-click-outside="() => (isCountryDropdownOpen = false)"
-                      >
-                        <div
-                          @click="
-                            isCountryDropdownOpen = !isCountryDropdownOpen
-                          "
-                          tabindex="0"
-                          class="peer w-full p-[14px_16px] text-[14px] min-h-[50px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] cursor-pointer flex items-center justify-between transition-all"
-                        >
-                          <span>{{
-                            payoutRegions[withdrawalForm.country]?.label
-                          }}</span>
-                          <span
-                            class="material-icons-round text-[#666] dark:text-[#a1a1a1] text-[18px] transition-transform duration-200"
-                            :class="{ 'rotate-180': isCountryDropdownOpen }"
-                            >expand_more</span
-                          >
-                        </div>
-
-                        <label
-                          class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]"
-                        >
-                          {{
-                            t(
-                              "dashboard.payouts.bank_country",
-                              "Bank Country / Region"
-                            )
-                          }}
-                        </label>
-
-                        <transition name="slide-down">
-                          <div
-                            v-if="isCountryDropdownOpen"
-                            class="absolute left-0 top-[calc(100%+4px)] w-full bg-white dark:bg-[#111] border border-black/10 dark:border-white/10 rounded-md shadow-[0_8px_32px_rgba(0,0,0,0.1)] z-50 max-h-60 overflow-y-auto backdrop-blur-xl"
-                          >
-                            <div
-                              v-for="region in sortedRegions"
-                              :key="region.code"
-                              @click="
-                                withdrawalForm.country = region.code;
-                                isCountryDropdownOpen = false;
-                              "
-                              class="px-4 py-3 text-[14px] text-black dark:text-white hover:bg-[#fafafa] dark:hover:bg-[#222] cursor-pointer transition-colors"
-                              :class="{
-                                'bg-[#f0f0f0] dark:bg-[#222] font-medium':
-                                  withdrawalForm.country === region.code,
-                              }"
-                            >
-                              {{ region.label }}
-                            </div>
-                          </div>
-                        </transition>
-                      </div>
-
-                      <div
-                        v-if="
-                          payoutRegions[withdrawalForm.country].type ===
-                          'crypto_only'
-                        "
-                        class="space-y-4 pt-2"
-                      >
-                        <div class="space-y-2">
-                          <label
-                            class="text-[13px] font-medium text-[#666] dark:text-[#a1a1a1]"
-                            >{{
-                              t(
-                                "dashboard.payouts.available_methods",
-                                "Available Payout Methods"
-                              )
-                            }}</label
-                          >
-                          <div class="grid grid-cols-1 gap-2">
-                            <div
-                              class="border border-black/5 dark:border-white/5 rounded-md p-3 flex items-start gap-3 bg-[#f5f5f5] dark:bg-[#080808] cursor-not-allowed"
-                            >
-                              <input
-                                type="radio"
-                                disabled
-                                class="mt-0.5 cursor-not-allowed"
-                              />
-                              <div>
-                                <p
-                                  class="text-[13px] font-medium text-[#888] dark:text-[#666]"
-                                >
-                                  {{
-                                    payoutRegions[withdrawalForm.country]
-                                      .wireLabel
-                                  }}
-                                </p>
-                                <p
-                                  class="text-[11px] text-[#aaa] dark:text-[#555] mt-0.5 leading-[1.2]"
-                                >
-                                  {{
-                                    t(
-                                      "dashboard.payouts.unavailable",
-                                      "Currently unavailable"
-                                    )
-                                  }}
-                                </p>
-                              </div>
-                            </div>
-                            <div
-                              class="border border-[#0070f3] dark:border-[#3291ff] rounded-md p-3 flex items-start gap-3 bg-[#0070f3]/5 dark:bg-[#3291ff]/5"
-                            >
-                              <input
-                                type="radio"
-                                checked
-                                readonly
-                                class="mt-0.5 accent-[#0070f3]"
-                              />
-                              <div>
-                                <p
-                                  class="text-[13px] font-medium text-black dark:text-white"
-                                >
-                                  {{
-                                    t(
-                                      "dashboard.payouts.tokenized",
-                                      "Tokenized Asset"
-                                    )
-                                  }}
-                                </p>
-                                <p
-                                  class="text-[11px] text-[#0070f3] dark:text-[#3291ff] mt-0.5 leading-[1.2]"
-                                >
-                                  {{
-                                    t(
-                                      "dashboard.payouts.manual_config",
-                                      "Manual network configuration"
-                                    )
-                                  }}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div
-                          class="relative w-full mt-4"
-                          v-click-outside="() => (isTokenDropdownOpen = false)"
-                        >
-                        <div
-                          @click="
-                            !savedWallet.isSaved &&
-                              (isTokenDropdownOpen = !isTokenDropdownOpen)
-                          "
-                          tabindex="0"
-                          class="peer w-full p-[10px_16px] min-h-[50px] rounded-md outline-none z-1 focus:border-2 focus:p-[9px_15px] flex items-center justify-between transition-[border-color,box-shadow] duration-200 ease-in-out"
-                          :class="
-                            savedWallet.isSaved
-                              ? 'opacity-70 cursor-not-allowed bg-[#f5f5f5] dark:bg-[#111] text-[#888] dark:text-[#666] border border-black/10 dark:border-white/10'
-                              : 'bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] cursor-pointer'
-                          "
-                        >
-                          <div
-                            v-if="selectedTokenDetails"
-                            class="flex items-center gap-3"
-                            :class="
-                              savedWallet.isSaved
-                                ? 'opacity-80 grayscale-[20%]'
-                                : ''
-                            "
-                          >
-                            <img
-                              :src="selectedTokenDetails.icon"
-                              class="w-6 h-6 object-contain drop-shadow-sm"
-                              :alt="selectedTokenDetails.name"
-                            />
-                            <div class="flex flex-col leading-none">
-                              <span
-                                class="text-[14px] font-medium"
-                                :class="
-                                  savedWallet.isSaved
-                                    ? 'text-[#888] dark:text-[#666]'
-                                    : ''
-                                "
-                                >{{ selectedTokenDetails.name }}</span
-                              >
-                              <span
-                                class="text-[11px] text-[#666] dark:text-[#a1a1a1] mt-0.5"
-                                >{{ selectedTokenDetails.networkText }}</span
-                              >
-                            </div>
-                          </div>
-                          <span v-else class="text-transparent">{{
-                            t(
-                              "dashboard.payouts.select_token",
-                              "Select Token"
-                            )
-                          }}</span>
-
-                          <span
-                            class="material-icons-round text-[#666] dark:text-[#a1a1a1] text-[18px] transition-transform duration-200"
-                            :class="{ 'rotate-180': isTokenDropdownOpen }"
-                            >expand_more</span
-                          >
-                        </div>
-
-                        <label
-                          :class="[
-                            'absolute left-3 px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out',
-                            isTokenDropdownOpen || withdrawalForm.token
-                              ? 'top-0 -translate-y-1/2 scale-75 text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]'
-                              : 'top-1/2 -translate-y-1/2 scale-100 text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]',
-                            savedWallet.isSaved
-                              ? 'bg-gradient-to-b from-white to-[#f5f5f5] dark:from-[#0a0a0a] dark:to-[#111]'
-                              : 'bg-white dark:bg-[#0a0a0a]'
-                          ]"
-                        >
-                          {{ t("dashboard.payouts.token", "Token") }}
-                        </label>
-                          <transition name="slide-down">
-                            <div
-                              v-if="isTokenDropdownOpen"
-                              class="absolute left-0 top-[calc(100%+4px)] w-full bg-white dark:bg-[#111] border border-black/10 dark:border-white/10 rounded-md shadow-[0_8px_32px_rgba(0,0,0,0.1)] z-50 overflow-hidden backdrop-blur-xl"
-                            >
-                              <div
-                                v-for="token in cryptoOptions"
-                                :key="token.value"
-                                @click="
-                                  withdrawalForm.token = token.value;
-                                  isTokenDropdownOpen = false;
-                                "
-                                class="px-4 py-3 flex items-center gap-3 hover:bg-[#fafafa] dark:hover:bg-[#222] cursor-pointer transition-colors border-b border-black/5 dark:border-white/5 last:border-none"
-                                :class="{
-                                  'bg-[#f0f0f0] dark:bg-[#222]':
-                                    withdrawalForm.token === token.value,
-                                }"
-                              >
-                                <img
-                                  :src="token.icon"
-                                  class="w-7 h-7 object-contain drop-shadow-sm"
-                                  :alt="token.name"
-                                />
-                                <div class="flex flex-col leading-tight">
-                                  <span
-                                    class="text-[14px] text-black dark:text-white font-medium"
-                                    >{{ token.name }}</span
-                                  >
-                                  <span
-                                    class="text-[11px] text-[#666] dark:text-[#a1a1a1] mt-0.5"
-                                    >{{ token.networkText }}</span
-                                  >
-                                </div>
-                              </div>
-                            </div>
-                          </transition>
-                        </div>
-
-                        <div class="mt-4">
-                          <div class="relative w-full">
-                            <input
-                              @keydown.space.prevent
-                              v-model="displayedDestination"
-                              type="text"
-                              placeholder=" "
-                              :readonly="savedWallet.isSaved"
-                              class="peer w-full p-[14px_16px] text-[14px] rounded-md outline-none z-1 focus:border-2 focus:p-[13px_15px] transition-[border-color,box-shadow] duration-200 ease-in-out"
-                              :class="[
-                                savedWallet.isSaved
-                                  ? 'opacity-70 cursor-not-allowed bg-[#f5f5f5] dark:bg-[#111] text-[#888] dark:text-[#666] border border-black/10 dark:border-white/10'
-                                  : 'bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20',
-                                withdrawalForm.destination &&
-                                walletAddressError &&
-                                !savedWallet.isSaved
-                                  ? '!border-[#d32f2f] !text-[#d32f2f] focus:!border-[#d32f2f] placeholder-shown:!border-[#d32f2f]'
-                                  : '',
-                              ]"
-                            />
-                            <label
-                              class="absolute left-3 top-0 -translate-y-1/2 scale-75 px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100"
-                              :class="[
-                                savedWallet.isSaved
-                                  ? 'text-[#888] dark:text-[#666] bg-gradient-to-b from-white to-[#f5f5f5] dark:from-[#0a0a0a] dark:to-[#111]'
-                                  : withdrawalForm.destination && walletAddressError
-                                  ? 'text-[#d32f2f] peer-focus:text-[#d32f2f] peer-placeholder-shown:text-[#d32f2f] bg-white dark:bg-[#0a0a0a]'
-                                  : 'text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff] bg-white dark:bg-[#0a0a0a]',
-                              ]"
-                            >
-                              {{
-                                t(
-                                  "dashboard.payouts.wallet_address",
-                                  "Wallet Address"
-                                )
-                              }}
-                            </label>
-                          </div>
-                          <div
-                            v-if="
-                              withdrawalForm.destination && walletAddressError
-                            "
-                            class="text-[#d32f2f] text-xs font-medium mt-1 ml-1 flex items-center gap-1"
-                          >
-                            <span
-                              class="material-icons-round text-[1em] leading-none"
-                              style="font-size: inherit"
-                              >error</span
-                            >
-                            <span>{{ walletAddressError }}</span>
-                          </div>
+                    <label class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]">
+                      {{ t("dashboard.payouts.bank_country", "Bank Country / Region") }}
+                    </label>
+                    <transition name="slide-down">
+                      <div v-if="isCountryDropdownOpen" class="absolute left-0 top-[calc(100%+4px)] w-full bg-white dark:bg-[#111] border border-black/10 dark:border-white/10 rounded-md shadow-[0_8px_32px_rgba(0,0,0,0.1)] z-50 max-h-60 overflow-y-auto backdrop-blur-xl">
+                        <div v-for="region in sortedRegions" :key="region.code" @click="withdrawalForm.country = region.code; isCountryDropdownOpen = false;" class="px-4 py-3 text-[14px] text-black dark:text-white hover:bg-[#fafafa] dark:hover:bg-[#222] cursor-pointer transition-colors" :class="{ 'bg-[#f0f0f0] dark:bg-[#222] font-medium': withdrawalForm.country === region.code }">
+                          {{ region.label }}
                         </div>
                       </div>
-                      <template
-                        v-else-if="
-                          payoutRegions[withdrawalForm.country].type === 'bank'
-                        "
-                      >
-                        <div class="pt-4 space-y-4">
-                          <div
-                            v-for="field in payoutRegions[
-                              withdrawalForm.country
-                            ].fields"
-                            :key="field.key"
-                            class="w-full"
-                          >
-                            <div class="relative w-full">
-                              <input
-                                v-model="withdrawalForm.bankDetails[field.key]"
-                                type="text"
-                                placeholder=" "
-                                class="peer w-full p-[14px_16px] text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20"
-                              />
-                              <label
-                                class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]"
-                              >
-                                {{ field.label }}
-                              </label>
-                            </div>
-                            <p
-                              class="text-[11px] text-[#666] dark:text-[#a1a1a1] mt-1 ml-1"
-                            >
-                              {{ field.placeholder }}
-                            </p>
+                    </transition>
+                  </div>
+
+                  <div v-if="payoutRegions[withdrawalForm.country].type === 'crypto_only'" class="space-y-4 pt-2">
+                    <div class="space-y-2">
+                      <label class="text-[13px] font-medium text-[#666] dark:text-[#a1a1a1]">
+                        {{ t("dashboard.payouts.available_methods", "Via") }}
+                      </label>
+                      <div class="grid grid-cols-1 gap-2">
+                        <div class="border border-black/5 dark:border-white/5 rounded-md p-3 flex items-start gap-3 bg-[#f5f5f5] dark:bg-[#080808] cursor-not-allowed">
+                          <input type="radio" disabled class="mt-0.5 cursor-not-allowed" />
+                          <div>
+                            <p class="text-[13px] font-medium text-[#888] dark:text-[#666]">{{ payoutRegions[withdrawalForm.country].wireLabel }}</p>
+                            <p class="text-[11px] text-[#aaa] dark:text-[#555] mt-0.5 leading-[1.2]">{{ t("dashboard.payouts.unavailable", "Currently unavailable") }}</p>
                           </div>
                         </div>
-                      </template>
-
-                      <div class="mt-4">
-                        <div class="relative w-full">
-                          <input
-                            v-model="withdrawalForm.accountName"
-                            type="text"
-                            placeholder=" "
-                            :readonly="savedWallet.isSaved && payoutRegions[withdrawalForm.country].type === 'crypto_only'"
-                            class="peer w-full p-[14px_16px] text-[14px] rounded-md outline-none z-1 focus:border-2 focus:p-[13px_15px] transition-[border-color,box-shadow] duration-200 ease-in-out"
-                            :class="[
-                              savedWallet.isSaved && payoutRegions[withdrawalForm.country].type === 'crypto_only'
-                                ? 'opacity-70 cursor-not-allowed bg-[#f5f5f5] dark:bg-[#111] text-[#888] dark:text-[#666] border border-black/10 dark:border-white/10'
-                                : 'bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20',
-                              showPayoutErrors && !withdrawalForm.accountName.trim()
-                                ? '!border-[#d32f2f] !text-[#d32f2f] focus:!border-[#d32f2f] placeholder-shown:!border-[#d32f2f]'
-                                : ''
-                            ]"
-                          />
-                          <label
-                            class="absolute left-3 top-0 -translate-y-1/2 scale-75 px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100"
-                            :class="[
-                              savedWallet.isSaved && payoutRegions[withdrawalForm.country].type === 'crypto_only'
-                                ? 'text-[#888] dark:text-[#666] bg-gradient-to-b from-white to-[#f5f5f5] dark:from-[#0a0a0a] dark:to-[#111]'
-                                : showPayoutErrors && !withdrawalForm.accountName.trim()
-                                ? 'text-[#d32f2f] peer-focus:text-[#d32f2f] peer-placeholder-shown:text-[#d32f2f] bg-white dark:bg-[#0a0a0a]'
-                                : 'text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff] bg-white dark:bg-[#0a0a0a]'
-                            ]"
-                          >
-                            {{ t("dashboard.payouts.account_name", "Account Holder Name") }}
-                          </label>
+                        <div class="border border-[#0070f3] dark:border-[#3291ff] rounded-md p-3 flex items-start gap-3 bg-[#0070f3]/5 dark:bg-[#3291ff]/5">
+                          <input type="radio" checked readonly class="mt-0.5 accent-[#0070f3]" />
+                          <div>
+                            <p class="text-[13px] font-medium text-black dark:text-white">{{ t("dashboard.payouts.tokenized", "Tokenized Asset") }}</p>
+                            <p class="text-[11px] text-[#0070f3] dark:text-[#3291ff] mt-0.5 leading-[1.2]">{{ t("dashboard.payouts.manual_config", "Manual network configuration") }}</p>
+                          </div>
                         </div>
-                        <div
-                          v-if="showPayoutErrors && !withdrawalForm.accountName.trim()"
-                          class="text-[#d32f2f] text-xs font-medium mt-1 ml-1 flex items-center gap-1"
-                        >
-                          <span class="material-icons-round text-[1em] leading-none" style="font-size: inherit">error</span>
-                          <span>{{ t("dashboard.payouts.name_required", "Account holder name is required.") }}</span>
-                        </div>
-                      </div>
-
-                      <div class="mt-6 pt-4 border-t border-black/10 dark:border-white/10">
-                        <div class="relative w-full">
-                          <input
-                            @keydown.space.prevent
-                            :value="withdrawalForm.amount"
-                            @input="handleAmountInput"
-                            type="text"
-                            inputmode="decimal"
-                            min="0"
-                            step="0.01"
-                            placeholder=" "
-                            class="peer w-full p-[14px_16px] text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20"
-                          />
-                          <label
-                            class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]"
-                          >
-                            {{ t("dashboard.payouts.amount", "Amount") }}
-                          </label>
-                        </div>
-                      </div>
-
-                      <div class="relative w-full mt-4">
-                        <input
-                          @keydown.space.prevent
-                          v-model="withdrawalForm.passphrase"
-                          :type="
-                            passwordVisible.withdrawal ? 'text' : 'password'
-                          "
-                          placeholder=" "
-                          class="peer w-full p-[14px_16px] pr-12 text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] focus:pr-11.75 border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20"
-                        />
-                        <label
-                          class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]"
-                        >
-                          {{
-                            t(
-                              "dashboard.payouts.passphrase",
-                              "Payout Passphrase"
-                            )
-                          }}
-                        </label>
-                        <button
-                          @click="togglePasswordVisible('withdrawal')"
-                          type="button"
-                          class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-[#333] dark:text-[#666] dark:hover:text-[#ccc] transition-colors z-10"
-                          tabindex="-1"
-                        >
-                          <span class="material-icons-round text-[20px]">{{
-                            passwordVisible.withdrawal
-                              ? "visibility_off"
-                              : "visibility"
-                          }}</span>
-                        </button>
                       </div>
                     </div>
 
-                    <template
-                      v-if="
-                        payoutRegions[withdrawalForm.country].type ===
-                        'crypto_only'
-                      "
-                    >
-                      <button
-                        v-if="!savedWallet.isSaved"
-                        @click="saveWalletAddress"
-                        :disabled="
-                          isSavingWallet ||
-                          !withdrawalForm.token ||
-                          !withdrawalForm.destination ||
-                          walletAddressError !== ''
-                        "
-                        class="w-full mt-6 bg-black text-white dark:bg-white dark:text-black px-4 py-2.5 rounded-md text-[13px] font-medium border border-transparent disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-800 dark:hover:bg-gray-200 flex items-center justify-center gap-2 transition-opacity"
-                      >
-                        <span
-                          v-if="isSavingWallet"
-                          class="material-icons-round animate-spin text-[16px]"
-                          >autorenew</span
-                        >
-                        <span v-else class="material-icons-round text-[16px]"
-                          >save</span
-                        >
-                        {{
-                          isSavingWallet
-                            ? t("dashboard.payouts.saving", "Saving...")
-                            : t(
-                                "dashboard.payouts.save_address",
-                                "Save Address"
-                              )
-                        }}
+                    <div class="relative w-full mt-4" v-click-outside="() => (isTokenDropdownOpen = false)">
+                      <div @click="!savedWallet.isSaved && (isTokenDropdownOpen = !isTokenDropdownOpen)" tabindex="0" class="peer w-full p-[10px_16px] min-h-[50px] rounded-md outline-none z-1 focus:border-2 focus:p-[9px_15px] flex items-center justify-between transition-[border-color,box-shadow] duration-200 ease-in-out" :class="savedWallet.isSaved ? 'opacity-70 cursor-not-allowed bg-[#f5f5f5] dark:bg-[#111] text-[#888] dark:text-[#666] border border-black/10 dark:border-white/10' : 'bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] cursor-pointer'">
+                        <div v-if="selectedTokenDetails" class="flex items-center gap-3" :class="savedWallet.isSaved ? 'opacity-80 grayscale-[20%]' : ''">
+                          <img :src="selectedTokenDetails.icon" class="w-6 h-6 object-contain drop-shadow-sm" :alt="selectedTokenDetails.name" />
+                          <div class="flex flex-col leading-none">
+                            <span class="text-[14px] font-medium" :class="savedWallet.isSaved ? 'text-[#888] dark:text-[#666]' : ''">{{ selectedTokenDetails.name }}</span>
+                            <span class="text-[11px] text-[#666] dark:text-[#a1a1a1] mt-0.5">{{ selectedTokenDetails.networkText }}</span>
+                          </div>
+                        </div>
+                        <span v-else class="text-transparent">{{ t("dashboard.payouts.select_token", "Select Token") }}</span>
+                        <span class="material-icons-round text-[#666] dark:text-[#a1a1a1] text-[18px] transition-transform duration-200" :class="{ 'rotate-180': isTokenDropdownOpen }">expand_more</span>
+                      </div>
+                      <label :class="['absolute left-3 px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out', isTokenDropdownOpen || withdrawalForm.token ? 'top-0 -translate-y-1/2 scale-75 text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]' : 'top-1/2 -translate-y-1/2 scale-100 text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]', savedWallet.isSaved ? 'bg-gradient-to-b from-white to-[#f5f5f5] dark:from-[#0a0a0a] dark:to-[#111]' : 'bg-white dark:bg-[#0a0a0a]']">
+                        {{ t("dashboard.payouts.token", "Token") }}
+                      </label>
+                      <transition name="slide-down">
+                        <div v-if="isTokenDropdownOpen" class="absolute left-0 top-[calc(100%+4px)] w-full bg-white dark:bg-[#111] border border-black/10 dark:border-white/10 rounded-md shadow-[0_8px_32px_rgba(0,0,0,0.1)] z-50 overflow-hidden backdrop-blur-xl">
+                          <div v-for="token in cryptoOptions" :key="token.value" @click="withdrawalForm.token = token.value; isTokenDropdownOpen = false;" class="px-4 py-3 flex items-center gap-3 hover:bg-[#fafafa] dark:hover:bg-[#222] cursor-pointer transition-colors border-b border-black/5 dark:border-white/5 last:border-none" :class="{ 'bg-[#f0f0f0] dark:bg-[#222]': withdrawalForm.token === token.value }">
+                            <img :src="token.icon" class="w-7 h-7 object-contain drop-shadow-sm" :alt="token.name" />
+                            <div class="flex flex-col leading-tight"><span class="text-[14px] text-black dark:text-white font-medium">{{ token.name }}</span><span class="text-[11px] text-[#666] dark:text-[#a1a1a1] mt-0.5">{{ token.networkText }}</span></div>
+                          </div>
+                        </div>
+                      </transition>
+                    </div>
+
+                    <div class="mt-4">
+                      <div class="relative w-full">
+                        <input @keydown.space.prevent v-model="displayedDestination" type="text" placeholder=" " :readonly="savedWallet.isSaved" class="peer w-full p-[14px_16px] text-[14px] rounded-md outline-none z-1 focus:border-2 focus:p-[13px_15px] transition-[border-color,box-shadow] duration-200 ease-in-out" :class="[savedWallet.isSaved ? 'opacity-70 cursor-not-allowed bg-[#f5f5f5] dark:bg-[#111] text-[#888] dark:text-[#666] border border-black/10 dark:border-white/10' : 'bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20', withdrawalForm.destination && walletAddressError && !savedWallet.isSaved ? '!border-[#d32f2f] !text-[#d32f2f] focus:!border-[#d32f2f] placeholder-shown:!border-[#d32f2f]' : '']" />
+                        <label class="absolute left-3 top-0 -translate-y-1/2 scale-75 px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100" :class="[savedWallet.isSaved ? 'text-[#888] dark:text-[#666] bg-gradient-to-b from-white to-[#f5f5f5] dark:from-[#0a0a0a] dark:to-[#111]' : withdrawalForm.destination && walletAddressError ? 'text-[#d32f2f] peer-focus:text-[#d32f2f] peer-placeholder-shown:text-[#d32f2f] bg-white dark:bg-[#0a0a0a]' : 'text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff] bg-white dark:bg-[#0a0a0a]']">
+                          {{ t("dashboard.payouts.wallet_address", "Wallet Address") }}
+                        </label>
+                      </div>
+                      <div v-if="withdrawalForm.destination && walletAddressError" class="text-[#d32f2f] text-xs font-medium mt-1 ml-1 flex items-center gap-1">
+                        <span class="material-icons-round text-[1em] leading-none" style="font-size: inherit">error</span>
+                        <span>{{ walletAddressError }}</span>
+                      </div>
+                    </div>
+
+                  </div> 
+                  
+                  <template v-else-if="payoutRegions[withdrawalForm.country].type === 'bank'">
+                    <div class="pt-4 space-y-4">
+                      <div v-for="field in payoutRegions[withdrawalForm.country].fields" :key="field.key" class="w-full">
+                        <div class="relative w-full">
+                          <input v-model="withdrawalForm.bankDetails[field.key]" type="text" placeholder=" " class="peer w-full p-[14px_16px] text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20" />
+                          <label class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]">
+                            {{ field.label }}
+                          </label>
+                        </div>
+                        <p class="text-[11px] text-[#666] dark:text-[#a1a1a1] mt-1 ml-1">{{ field.placeholder }}</p>
+                      </div>
+                    </div>
+                  </template>
+
+                <div class="mt-4">
+                  <div class="relative w-full">
+                    <input v-model="withdrawalForm.accountName" type="text" placeholder=" " :readonly="savedWallet.isSaved && payoutRegions[withdrawalForm.country].type === 'crypto_only'" class="peer w-full p-[14px_16px] text-[14px] rounded-md outline-none z-1 focus:border-2 focus:p-[13px_15px] transition-[border-color,box-shadow] duration-200 ease-in-out" :class="[savedWallet.isSaved && payoutRegions[withdrawalForm.country].type === 'crypto_only' ? 'opacity-70 cursor-not-allowed bg-[#f5f5f5] dark:bg-[#111] text-[#888] dark:text-[#666] border border-black/10 dark:border-white/10' : 'bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20', showPayoutErrors && !withdrawalForm.accountName.trim() ? '!border-[#d32f2f] !text-[#d32f2f] focus:!border-[#d32f2f] placeholder-shown:!border-[#d32f2f]' : '']" />
+                    <label class="absolute left-3 top-0 -translate-y-1/2 scale-75 px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100" :class="[savedWallet.isSaved && payoutRegions[withdrawalForm.country].type === 'crypto_only' ? 'text-[#888] dark:text-[#666] bg-gradient-to-b from-white to-[#f5f5f5] dark:from-[#0a0a0a] dark:to-[#111]' : showPayoutErrors && !withdrawalForm.accountName.trim() ? 'text-[#d32f2f] peer-focus:text-[#d32f2f] peer-placeholder-shown:text-[#d32f2f] bg-white dark:bg-[#0a0a0a]' : 'text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff] bg-white dark:bg-[#0a0a0a]']">
+                      {{ t("dashboard.payouts.account_name", "Account Holder Name") }}
+                    </label>
+                  </div>
+                  <div v-if="showPayoutErrors && !withdrawalForm.accountName.trim()" class="text-[#d32f2f] text-xs font-medium mt-1 ml-1 flex items-center gap-1">
+                    <span class="material-icons-round text-[1em] leading-none" style="font-size: inherit">error</span>
+                    <span>{{ t("dashboard.payouts.name_required", "Account holder name is required.") }}</span>
+                  </div>
+                </div>
+
+                  <template v-if="payoutRegions[withdrawalForm.country].type === 'crypto_only'">
+                    <div class="pt-4 border-t border-black/5 dark:border-white/5">
+                      <button v-if="!savedWallet.isSaved" @click="saveWalletAddress" :disabled="isSavingWallet || !withdrawalForm.token || !withdrawalForm.destination" class="w-full bg-[#f0f0f0] text-black dark:bg-[#222] dark:text-white px-4 py-3 rounded-md text-[13px] font-semibold border border-transparent disabled:opacity-50 hover:bg-[#e0e0e0] dark:hover:bg-[#333] transition-colors flex items-center justify-center gap-2">
+                        <span v-if="isSavingWallet" class="material-icons-round animate-spin text-[16px]">autorenew</span>
+                        <span v-else class="material-icons-round text-[16px]">save</span>
+                        {{ isSavingWallet ? t("dashboard.payouts.saving", "Saving...") : t("dashboard.payouts.save_address", "Save Address") }}
                       </button>
 
-                      <button
-                        v-else
-                        @click="editWalletAddress"
-                        class="w-full mt-6 bg-transparent text-black dark:text-white border border-black/20 dark:border-white/20 px-4 py-2.5 rounded-md text-[13px] font-medium hover:bg-[#fafafa] dark:hover:bg-[#111] flex items-center justify-center gap-2 transition-colors"
-                      >
-                        <span class="material-icons-round text-[16px]"
-                          >edit</span
-                        >
-                        {{
-                          t("dashboard.payouts.edit_address", "Edit Address")
-                        }}
+                      <button v-else @click="editWalletAddress" class="w-full bg-transparent text-black dark:text-white border border-black/20 dark:border-white/20 px-4 py-3 rounded-md text-[13px] font-semibold hover:bg-[#fafafa] dark:hover:bg-[#111] flex items-center justify-center gap-2 transition-colors">
+                        <span class="material-icons-round text-[16px]">edit</span>
+                        {{ t("dashboard.payouts.edit_address", "Edit Address") }}
                       </button>
-                    </template>
+                    </div>
+                  </template>
+                </div>
+              </div>
 
-                    <button
-                      @click="requestPayout"
-                      :disabled="
-                        isRequestingPayout ||
-                        !withdrawalForm.amount ||
-                        !withdrawalForm.passphrase ||
-                        (payoutRegions[withdrawalForm.country].type ===
-                          'crypto_only' &&
-                          !savedWallet.isSaved)
-                      "
-                      class="w-full mt-4 bg-black text-white dark:bg-white dark:text-black px-4 py-2.5 rounded-md text-[13px] font-medium border border-transparent disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-800 dark:hover:bg-gray-200 flex items-center justify-center gap-2"
-                    >
-                      <span
-                        v-if="isRequestingPayout"
-                        class="material-icons-round animate-spin text-[16px]"
-                        >autorenew</span
-                      >
-                      {{
-                        isRequestingPayout
-                          ? t("dashboard.payouts.processing", "Processing...")
-                          : t(
-                              "dashboard.payouts.withdraw_btn",
-                              "Request Payout"
-                            )
-                      }}
+                <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6"
+                  :class="!isDestinationReady ? 'opacity-50 grayscale-[30%] pointer-events-none' : 'opacity-100'">
+                
+                <div class="flex items-center justify-between mb-5">
+                  <h3 class="text-[15px] font-semibold text-black dark:text-white flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-full flex items-center justify-center text-[12px]" :class="!isDestinationReady ? 'bg-gray-300 text-gray-600 dark:bg-gray-800 dark:text-gray-400' : 'bg-black text-white dark:bg-white dark:text-black'">2</span>
+                    {{ t("dashboard.payouts.step2_title", "Submit Payout") }}
+                  </h3>
+                <span v-if="!isDestinationReady" class="text-[11px] text-[#0070f3] dark:text-[#3291ff] font-medium flex items-center gap-1">
+                  {{ t("dashboard.payouts.lock_hint", "Please save your address above to proceed.") }}
+                </span>
+                </div>
+
+                <div class="space-y-5">
+                  <div class="relative w-full">
+                    <input @keydown.space.prevent :value="withdrawalForm.amount" @input="handleAmountInput" type="text" inputmode="decimal" placeholder=" " class="peer w-full p-[14px_16px] text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20" />
+                    <label class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]">
+                      {{ t("dashboard.payouts.amount", "Amount") }}
+                    </label>
+                  </div>
+
+                  <div class="relative w-full">
+                    <input @keydown.space.prevent v-model="withdrawalForm.passphrase" :type="passwordVisible.withdrawal ? 'text' : 'password'" placeholder=" " class="peer w-full p-[14px_16px] pr-12 text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] focus:pr-11.75 border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20" />
+                    <label class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]">
+                      {{ t("dashboard.payouts.passphrase", "Payout Passphrase") }}
+                    </label>
+                    <button @click="togglePasswordVisible('withdrawal')" type="button" class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10" tabindex="-1">
+                      <span class="material-icons-round text-[20px]">{{ passwordVisible.withdrawal ? "visibility_off" : "visibility" }}</span>
                     </button>
                   </div>
 
-                  <div
-                    class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6 lg:col-span-2"
-                  >
-                    <h3
-                      class="text-[15px] font-semibold text-black dark:text-white mb-4"
-                    >
-                      {{
-                        t(
-                          "dashboard.payouts.history_title",
-                          "Recent Transactions"
-                        )
-                      }}
-                    </h3>
-                    <div
-                      class="border border-black/10 dark:border-white/10 rounded-md overflow-hidden overflow-x-auto"
-                    >
-                      <table class="w-full min-w-125 text-left border-collapse">
-                        <thead>
-                          <tr
-                            class="bg-[#fafafa] dark:bg-[#111] border-b border-black/10 dark:border-white/10 text-[12px] text-[#666] dark:text-[#a1a1a1]"
-                          >
-                            <th class="py-2.5 px-4 font-medium">
-                              {{
-                                t("dashboard.payouts.th_date", "Timestamp ID")
-                              }}
-                            </th>
-                            <th class="py-2.5 px-4 font-medium">
-                              {{
-                                t("dashboard.payouts.th_method", "Description")
-                              }}
-                            </th>
-                            <th class="py-2.5 px-4 font-medium">
-                              {{ t("dashboard.payouts.th_amount", "Amount") }}
-                            </th>
-                            <th class="py-2.5 px-4 font-medium">
-                              {{ t("dashboard.payouts.th_status", "Status") }}
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody class="text-[13px]">
-                          <tr
-                            v-for="tx in payoutTransactions"
-                            :key="tx.id"
-                            class="border-b border-black/5 dark:border-white/5 hover:bg-[#fafafa] dark:hover:bg-[#0a0a0a]"
-                          >
-                            <td
-                              class="py-3 px-4 text-[#666] dark:text-[#a1a1a1] whitespace-nowrap font-mono text-[11px]"
-                            >
-                              {{ tx.timestamp }}
-                            </td>
-                            <td class="py-3 px-4 text-black dark:text-white">
-                              <!-- tx.description || -->
-                              {{
-                                t("dashboard.payouts.default_desc", "Payout")
-                              }}
-                            </td>
-                            <td
-                              class="py-3 px-4 text-black dark:text-white font-medium"
-                            >
-                              -{{ formatCurrency(tx.amount) }}
-                            </td>
-                            <td class="py-3 px-4">
-                              <span
-                                v-if="
-                                  tx.status === 'Success' ||
-                                  tx.status === 'Approved'
-                                "
-                                class="px-2 py-1 text-[10px] uppercase tracking-wider font-sans font-semibold rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10"
-                                >{{
-                                  t(
-                                    "dashboard.payouts.status_success",
-                                    "Success"
-                                  )
-                                }}</span
-                              >
-                              <span
-                                v-else-if="tx.status === 'Pending'"
-                                class="px-2 py-1 text-[10px] uppercase tracking-wider font-sans font-semibold rounded-sm border border-yellow-200 text-yellow-600 bg-yellow-50 dark:border-yellow-900/30 dark:text-yellow-400 dark:bg-yellow-900/10"
-                                >{{
-                                  t(
-                                    "dashboard.payouts.status_pending",
-                                    "Pending"
-                                  )
-                                }}</span
-                              >
-                              <span
-                                v-else-if="
-                                  tx.status === 'Declined' ||
-                                  tx.status === 'Rejected'
-                                "
-                                class="px-2 py-1 text-[10px] uppercase tracking-wider font-sans font-semibold rounded-sm border border-red-200 text-red-600 bg-red-50 dark:border-red-900/30 dark:text-red-400 dark:bg-red-900/10"
-                                >{{
-                                  t(
-                                    "dashboard.payouts.status_declined",
-                                    "Declined"
-                                  )
-                                }}</span
-                              >
-                              <span
-                                v-else
-                                class="px-2 py-1 text-[10px] uppercase tracking-wider font-sans font-semibold rounded-sm border border-gray-200 text-gray-600 bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"
-                                >{{ tx.status }}</span
-                              >
-                            </td>
-                          </tr>
-
-                          <tr
-                            class="hover:bg-[#fafafa] dark:hover:bg-[#0a0a0a]"
-                          >
-                            <td
-                              class="py-3 px-4 text-[#666] dark:text-[#a1a1a1] whitespace-nowrap font-mono text-[11px]"
-                            >
-                              {{ welcomeBonusTimestamp }}
-                            </td>
-                            <td class="py-3 px-4 text-black dark:text-white">
-                              {{
-                                t(
-                                  "dashboard.payouts.welcome_bonus_desc",
-                                  "Welcome Bonus"
-                                )
-                              }}
-                            </td>
-                            <td
-                              class="py-3 px-4 text-black dark:text-white font-medium"
-                            >
-                              +{{ formatCurrency(20) }}
-                            </td>
-                            <td class="py-3 px-4">
-                              <span
-                                class="px-2 py-1 text-[10px] uppercase tracking-wider font-sans font-semibold rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10"
-                                >{{
-                                  t(
-                                    "dashboard.payouts.status_success",
-                                    "Success"
-                                  )
-                                }}</span
-                              >
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                  <div class="pt-4 border-t border-black/5 dark:border-white/5">
+                    <button @click="requestPayout" :disabled="isRequestingPayout || !withdrawalForm.amount || !withdrawalForm.passphrase" class="w-full bg-black text-white dark:bg-white dark:text-black px-4 py-2.5 rounded-md text-[13px] font-medium border border-transparent disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-800 dark:hover:bg-gray-200 flex items-center justify-center gap-2">
+                      <span v-if="isRequestingPayout" class="material-icons-round animate-spin text-[16px]">autorenew</span>
+                      {{ isRequestingPayout ? t("dashboard.payouts.processing", "Processing...") : t("dashboard.payouts.withdraw_btn", "Request Payout") }}
+                    </button>
                   </div>
                 </div>
               </div>
-            </template>
 
-            <template
-              v-else-if="['terms', 'privacy', 'cookies', 'legal', 'faq'].includes(activeTab as string)"
+              <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6">
+                <h3 class="text-[15px] font-semibold text-black dark:text-white mb-4">
+                  {{ t("dashboard.payouts.history_title", "Recent Transactions") }}
+                </h3>
+                <div class="block md:hidden divide-y divide-black/5 dark:divide-white/5 border-t border-black/5 dark:border-white/5 mt-2">
+                  
+                  <div v-for="tx in payoutTransactions" :key="tx.id" class="py-4 flex items-center justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                      <span class="font-medium text-black dark:text-white text-[13px] leading-tight">
+                        {{ t("dashboard.payouts.default_desc", "Payout") }}
+                      </span>
+                      <span class="font-mono text-[11px] text-[#888] dark:text-[#666] leading-none">
+                        {{ tx.timestamp }}
+                      </span>
+                    </div>
+                    
+                    <div class="flex flex-col items-end gap-1.5">
+                      <span class="font-semibold text-black dark:text-white text-[14px]">
+                        -{{ formatCurrency(tx.amount) }}
+                      </span>
+                      <span v-if="tx.status === 'Success' || tx.status === 'Approved'" class="px-2 py-0.5 text-[10px] uppercase font-semibold rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10">
+                        {{ t("dashboard.payouts.status_success", "Success") }}
+                      </span>
+                      <span v-else-if="tx.status === 'Pending'" class="px-2 py-0.5 text-[10px] uppercase font-semibold rounded-sm border border-yellow-200 text-yellow-600 bg-yellow-50 dark:border-yellow-900/30 dark:text-yellow-400 dark:bg-yellow-900/10">
+                        {{ t("dashboard.payouts.status_pending", "Pending") }}
+                      </span>
+                      <span v-else-if="tx.status === 'Declined' || tx.status === 'Rejected'" class="px-2 py-0.5 text-[10px] uppercase font-semibold rounded-sm border border-red-200 text-red-600 bg-red-50 dark:border-red-900/30 dark:text-red-400 dark:bg-red-900/10">
+                        {{ t("dashboard.payouts.status_declined", "Declined") }}
+                      </span>
+                    <span v-else class="px-2 py-0.5 text-[10px] uppercase font-semibold rounded-sm border border-gray-200 text-gray-600 bg-gray-50">
+                        {{ tx.status }}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="py-4 flex items-center justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                      <span class="font-medium text-black dark:text-white text-[13px] leading-tight">
+                        {{ t("dashboard.payouts.welcome_bonus_desc", "Welcome Bonus") }}
+                      </span>
+                      <span class="font-mono text-[11px] text-[#888] dark:text-[#666] leading-none">
+                        {{ welcomeBonusTimestamp }}
+                      </span>
+                    </div>
+                    <div class="flex flex-col items-end gap-1.5">
+                      <span class="font-semibold text-black dark:text-white text-[14px]">
+                        +{{ formatCurrency(20) }}
+                      </span>
+                      <span class="px-2 py-0.5 text-[10px] uppercase font-semibold rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10">
+                        {{ t("dashboard.payouts.status_success", "Success") }}
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+                
+                <div class="hidden md:block border border-black/10 dark:border-white/10 rounded-md overflow-hidden overflow-x-auto mt-4">
+                  <table class="w-full min-w-125 text-left border-collapse">
+                    <thead>
+                      <tr class="bg-[#fafafa] dark:bg-[#111] border-b border-black/10 dark:border-white/10 text-[12px] text-[#666] dark:text-[#a1a1a1]">
+                        <th class="py-2.5 px-4 font-medium">{{ t("dashboard.payouts.th_date", "Timestamp ID") }}</th>
+                        <th class="py-2.5 px-4 font-medium">{{ t("dashboard.payouts.th_method", "Description") }}</th>
+                        <th class="py-2.5 px-4 font-medium">{{ t("dashboard.payouts.th_amount", "Amount") }}</th>
+                        <th class="py-2.5 px-4 font-medium">{{ t("dashboard.payouts.th_status", "Status") }}</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-[13px]">
+                      <tr v-for="tx in payoutTransactions" :key="tx.id" class="border-b border-black/5 dark:border-white/5 hover:bg-[#fafafa] dark:hover:bg-[#0a0a0a]">
+                        <td class="py-3 px-4 text-[#666] font-mono text-[11px]">{{ tx.timestamp }}</td>
+                        <td class="py-3 px-4 text-black dark:text-white">{{ t("dashboard.payouts.default_desc", "Payout") }}</td>
+                        <td class="py-3 px-4 font-medium">-{{ formatCurrency(tx.amount) }}</td>
+                        <td class="py-3 px-4">
+                          <span v-if="tx.status === 'Success' || tx.status === 'Approved'" class="px-2 py-1 text-[10px] uppercase font-semibold rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10">{{ t("dashboard.payouts.status_success", "Success") }}</span>
+                          <span v-else-if="tx.status === 'Pending'" class="px-2 py-1 text-[10px] uppercase font-semibold rounded-sm border border-yellow-200 text-yellow-600 bg-yellow-50 dark:border-yellow-900/30 dark:text-yellow-400 dark:bg-yellow-900/10">{{ t("dashboard.payouts.status_pending", "Pending") }}</span>
+                          <span v-else-if="tx.status === 'Declined' || tx.status === 'Rejected'" class="px-2 py-1 text-[10px] uppercase font-semibold rounded-sm border border-red-200 text-red-600 bg-red-50 dark:border-red-900/30 dark:text-red-400 dark:bg-red-900/10">{{ t("dashboard.payouts.status_declined", "Declined") }}</span>
+                      <span v-else class="px-2 py-1 text-[10px] uppercase font-semibold rounded-sm border border-gray-200 text-gray-600 bg-gray-50">{{ tx.status }}</span>
+                        </td>
+                      </tr>
+
+                      <tr class="hover:bg-[#fafafa] dark:hover:bg-[#0a0a0a]">
+                        <td class="py-3 px-4 text-[#666] dark:text-[#a1a1a1] whitespace-nowrap font-mono text-[11px]">{{ welcomeBonusTimestamp }}</td>
+                        <td class="py-3 px-4 text-black dark:text-white">{{ t("dashboard.payouts.welcome_bonus_desc", "Welcome Bonus") }}</td>
+                        <td class="py-3 px-4 text-black dark:text-white font-medium">+{{ formatCurrency(20) }}</td>
+                        <td class="py-3 px-4"><span class="px-2 py-1 text-[10px] uppercase font-semibold rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10">{{ t("dashboard.payouts.status_success", "Success") }}</span></td>
+                      </tr>
+
+                    </tbody>
+                  
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </template>
+
+            <template v-else-if="['terms', 'privacy', 'cookies', 'legal', 'faq'].includes(activeTab as string)"
             >
-              <div
-                class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-8 max-w-3xl"
-              >
+              <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-8 w-full">
                 <div
                   class="prose dark:prose-invert max-w-none text-[14px] text-[#444] dark:text-[#ccc] leading-relaxed space-y-6"
                 >
@@ -5225,17 +5020,18 @@ const closePayoutModal = () => {
         </Transition>
       </div>
 
-      <div
+    </div> <div
         v-if="showGiftModal"
-        class="fixed inset-0 z-[99] bg-black/80 flex items-center justify-center p-4"
+        class="fixed inset-0 z-[99] bg-black/80 flex flex-col items-center justify-start sm:justify-center p-4 overflow-y-auto"
         @click.self="
           showGiftModal = false;
           showConfetti = false;
         "
       >
         <div
-          class="relative w-full max-w-sm flex flex-col items-center justify-center animate-slide-up"
+          class="relative w-full max-w-sm flex flex-col items-center justify-center animate-slide-up my-auto py-8"
         >
+
           <div
             class="absolute w-64 h-64 bg-[#ffcc00] rounded-full blur-[80px] opacity-20 pointer-events-none"
           ></div>
@@ -5313,9 +5109,9 @@ const closePayoutModal = () => {
                 leave-from-class="opacity-100 scale-100 translate-y-0"
                 leave-to-class="opacity-0 scale-90 translate-y-4"
               >
-                <div v-if="payoutConfirmModal.show" class="bg-white dark:bg-[#111] border border-black/10 dark:border-white/10 rounded-lg w-full max-w-md overflow-hidden shadow-2xl">
+              <div v-if="payoutConfirmModal.show" class="bg-white dark:bg-[#111] border border-black/10 dark:border-white/10 rounded-lg w-full max-w-md overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
                   
-                  <div class="px-6 py-5 border-b border-black/10 dark:border-white/10 flex items-center gap-3">
+                  <div class="px-6 py-5 border-b border-black/10 dark:border-white/10 flex items-center gap-3 shrink-0">
                     <div class="w-10 h-10 rounded-full bg-amber-50 dark:bg-amber-900/20 text-amber-500 flex items-center justify-center shrink-0">
                       <span class="material-icons-round text-[22px]">priority_high</span>
                     </div>
@@ -5329,7 +5125,7 @@ const closePayoutModal = () => {
                     </div>
                   </div>
                   
-                  <div class="p-6 space-y-5">
+                  <div class="p-6 space-y-5 overflow-y-auto flex-1">
                     <div class="p-4 bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/30 rounded-md">
                       <p class="text-[13px] text-red-800 dark:text-red-400 leading-relaxed font-medium">
                         {{ t('dashboard.payouts.disclaimer', 'By proceeding, I confirm that the details provided below are strictly accurate and that the receiving account/wallet belongs entirely to me. I acknowledge that transactions are final and cannot be reversed once processed.') }}
@@ -5359,7 +5155,7 @@ const closePayoutModal = () => {
                     </div>
                   </div>
 
-                  <div class="px-6 py-4 border-t border-black/10 dark:border-white/10 bg-[#fafafa] dark:bg-[#0a0a0a] flex flex-col sm:flex-row items-center justify-end gap-3">
+                    <div class="px-6 py-4 border-t border-black/10 dark:border-white/10 bg-[#fafafa] dark:bg-[#0a0a0a] flex flex-col sm:flex-row items-center justify-end gap-3 shrink-0">
                     <button
                       @click="closePayoutModal"
                       class="w-full sm:w-auto px-5 py-2.5 rounded-md text-[13px] font-medium border border-black/20 dark:border-white/20 text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
@@ -5392,6 +5188,126 @@ const closePayoutModal = () => {
       />
 
       <ImagePopup v-model="showAlertPopup" :images="alertImages" />
+      <Transition
+      enter-active-class="transition duration-200 ease-out"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="transition duration-150 ease-in"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <div
+        v-if="showSetupPassphraseModal"
+        class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+        @click.self="handleCancelPassphraseSetup"
+      >
+        <Transition
+          enter-active-class="transition duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+          enter-from-class="opacity-0 scale-90 translate-y-4"
+          enter-to-class="opacity-100 scale-100 translate-y-0"
+          leave-active-class="transition duration-150 ease-in"
+          leave-from-class="opacity-100 scale-100 translate-y-0"
+          leave-to-class="opacity-0 scale-90 translate-y-4"
+        >
+          <div v-if="showSetupPassphraseModal" class="bg-white dark:bg-[#111] border border-black/10 dark:border-white/10 rounded-lg w-full max-w-md overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+            
+            <div class="px-6 py-5 border-b border-black/10 dark:border-white/10 flex items-start gap-3 shrink-0">
+              <div class="w-10 h-10 rounded-full bg-amber-50 dark:bg-amber-900/20 text-amber-500 flex items-center justify-center shrink-0 mt-0.5">
+                <span class="material-icons-round text-[22px]">priority_high</span>
+              </div>
+              <div>
+                <h3 class="text-[16px] font-semibold text-black dark:text-white leading-tight flex flex-wrap items-center gap-2">
+                  {{ t("dashboard.overview.passphrase_title", "Payout Passphrase") }}
+                  <span class="bg-red-500/10 text-red-600 dark:text-red-400 text-[10px] font-bold px-2 py-0.5 rounded tracking-wider uppercase border border-red-500/20">
+                    {{ t("dashboard.overview.first_time_setup", "First Time Setup Required") }}
+                  </span>
+                </h3>
+                <p class="text-[12px] text-[#666] dark:text-[#a1a1a1] mt-1.5 leading-relaxed">
+                  {{ t("dashboard.overview.passphrase_desc", "This passphrase acts as your private financial key, required to authorize payouts in the Manage Payouts portal. To configure this key initially, you must provide your registered account email.") }}
+                </p>
+              </div>
+            </div>
+            
+            <div class="p-6 space-y-5 overflow-y-auto flex-1">
+              <div class="relative w-full">
+                <input
+                  @keydown.space.prevent
+                  v-model="passphraseForm.passphrase"
+                  :type="passwordVisible.phraseSetup ? 'text' : 'password'"
+                  placeholder=" "
+                  class="peer w-full p-[14px_16px] pr-12 text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] focus:pr-11.75 border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20"
+                  :class="{'border-red-500 text-red-500 focus:border-red-500': newPassphraseError && passphraseForm.passphrase}"
+                />
+                <label
+                  class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#111] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]"
+                  :class="{'text-red-500 peer-focus:text-red-500': newPassphraseError && passphraseForm.passphrase}"
+                >
+                  {{ t("dashboard.overview.new_passphrase", "New Passphrase") }}
+                </label>
+                <button
+                  @click="togglePasswordVisible('phraseSetup')"
+                  type="button"
+                  class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10"
+                  tabindex="-1"
+                >
+                  <span class="material-icons-round text-[20px]">{{ passwordVisible.phraseSetup ? "visibility_off" : "visibility" }}</span>
+                </button>
+              </div>
+              <div v-if="passphraseForm.passphrase && newPassphraseError" class="text-red-500 text-xs mt-[-12px] ml-1">
+                {{ newPassphraseError }}
+              </div>
+
+              <div class="relative w-full">
+                <input
+                  @keydown.space.prevent
+                  v-model="passphraseForm.confirmPassphrase"
+                  :type="passwordVisible.phraseSetupConfirm ? 'text' : 'password'"
+                  placeholder=" "
+                  class="peer w-full p-[14px_16px] pr-12 text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] focus:pr-11.75 border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20"
+                  :class="{'border-red-500 text-red-500 focus:border-red-500': confirmPassphraseError && passphraseForm.confirmPassphrase}"
+                />
+                <label
+                  class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#111] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]"
+                  :class="{'text-red-500 peer-focus:text-red-500': confirmPassphraseError && passphraseForm.confirmPassphrase}"
+                >
+                  {{ t("dashboard.overview.confirm_passphrase", "Confirm Passphrase") }}
+                </label>
+                <button
+                  @click="togglePasswordVisible('phraseSetupConfirm')"
+                  type="button"
+                  class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10"
+                  tabindex="-1"
+                >
+                  <span class="material-icons-round text-[20px]">{{ passwordVisible.phraseSetupConfirm ? "visibility_off" : "visibility" }}</span>
+                </button>
+              </div>
+              <div v-if="passphraseForm.confirmPassphrase && confirmPassphraseError" class="text-red-500 text-xs mt-[-12px] ml-1">
+                {{ confirmPassphraseError }}
+              </div>
+            </div>
+
+              <div class="px-6 py-4 border-t border-black/10 dark:border-white/10 bg-[#fafafa] dark:bg-[#0a0a0a] flex flex-col sm:flex-row items-center justify-end gap-3 shrink-0">
+              <button
+                @click="handleCancelPassphraseSetup"
+                class="w-full sm:w-auto px-5 py-2.5 rounded-md text-[13px] font-medium border border-black/20 dark:border-white/20 text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+              >
+                {{ t('app.cancel', 'Cancel') }}
+              </button>
+              
+              <button
+                @click="configurePassphrase"
+                :disabled="isConfiguringPassphrase || !isSetupValid"
+                class="w-full sm:w-auto px-5 py-2.5 rounded-md text-[13px] font-medium bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                <span v-if="isConfiguringPassphrase" class="material-icons-round animate-spin text-[16px] mr-2">autorenew</span>
+                {{ isConfiguringPassphrase ? t("dashboard.modal.processing", "Processing...") : t("dashboard.overview.verify_btn", "Configure Key") }}
+              </button>
+            </div>
+            
+          </div>
+        </Transition>
+      </div>
+    </Transition>
     </main>
   </div>
 </template>
