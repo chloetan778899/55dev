@@ -1,13 +1,23 @@
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted, onUnmounted, watch } from "vue";
+import { ref, reactive, computed, onMounted, onUnmounted, watch, defineAsyncComponent, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import { useHead } from "@vueuse/head";
 import { useI18n } from "vue-i18n";
+
 import ThemeLangSwitch from "../components/ui/ThemeLangSwitch.vue";
 import SuccessModal from "../components/ui/SuccessModal.vue";
-import FaqAccordion from "../components/ui/FaqAccordion.vue";
 import GlobalRadar from "../components/ui/GlobalRadar.vue";
 import { useUserStore } from "@/store/modules/user";
+import RewardsDialog from "../components/ui/RewardsDialog.vue";
+
+const FaqAccordion = defineAsyncComponent(() => import('../components/ui/FaqAccordion.vue'));
+const ReceiptModal = defineAsyncComponent(() => import('../components/ui/ReceiptModal.vue'));
+
+// import ReceiptModal from "../components/ui/ReceiptModal.vue";
+// import FaqAccordion from "../components/ui/FaqAccordion.vue";
+// import { DotLottieVue } from '@lottiefiles/dotlottie-vue';
+// import ImagePopup from "@/components/ImagePopup.vue";
+
 import {
   getUserInfo,
   initStartDataApi,
@@ -29,7 +39,6 @@ import {
   cardBindApi,
   getCardInfo,
 } from "@/api";
-import ImagePopup from "@/components/ImagePopup.vue";
 
 const { t, te, locale } = useI18n();
 const router = useRouter();
@@ -43,28 +52,43 @@ const modalState = ref({
 });
 
 const mainScrollContainer = ref<HTMLElement | null>(null);
-const showGiftModal = ref(false);
+const bonusPhase = ref(0);
 const giftModalAmount = ref("");
+const displayedBonusAmount = ref(""); //lottery animation
+let amountAnimInterval: ReturnType<typeof setInterval> | null = null; //lottery animation
 const isSpecialBonusPending = ref(false);
-const isGlobeGolden = ref(false);
 const isInitialLoad = ref(true);
 
-watch(() => showGiftModal.value, (isOpen) => {
-  if (isOpen) {
-    isGlobeGolden.value = true;
-  }
-});
+const lightLottieRef = ref();
+const darkLottieRef = ref();
 
-watch(() => isSpecialBonusPending.value, (isPending) => {
-  if (!isPending) {
-    isGlobeGolden.value = false;
+const attachLottieListener = (playerRef: any) => {
+  if (playerRef) {
+    const dotLottie = playerRef.getDotLottieInstance();
+    if (dotLottie) {
+      dotLottie.addEventListener('complete', onBonusLottieComplete);
+    }
   }
-});
+};
+
+watch(lightLottieRef, (newRef) => attachLottieListener(newRef));
+watch(darkLottieRef, (newRef) => attachLottieListener(newRef));
+
+const onBonusLottieComplete = () => {
+  if (bonusPhase.value === 1) {
+    bonusPhase.value = 2;
+    showConfetti.value = true;
+  }
+};
+
+const closeSpecialBonus = () => {
+  bonusPhase.value = 0;
+  showConfetti.value = false;
+};
 
 const checkAndBlockForBonus = () => {
   if (isSpecialBonusPending.value) {
-    showConfetti.value = true;
-    showGiftModal.value = true;
+    bonusPhase.value = 1;
     return true;
   }
   return false;
@@ -298,6 +322,17 @@ const vClickOutside = {
 const savedWallet = ref({ isSaved: false, token: "", destination: "", accountName: "" });
 const showPayoutErrors = ref(false);
 const isSavingWallet = ref(false);
+
+const withdrawalForm = ref({
+  country: "US",
+  token: "",
+  destination: "",
+  accountName: "",
+  bankDetails: {} as Record<string, string>,
+  amount: "",
+  passphrase: "",
+  network: "",
+});
 
 const editWalletAddress = () => {
   savedWallet.value.isSaved = false;
@@ -875,8 +910,29 @@ const isProceeding = ref(false);
 /** 连单自动拉下一单时沿用上一单的利率展示（与连单时利率一致） */
 const liandanYieldRateForNext = ref<string | null>(null);
 
-  const assignmentBannerText = ref('');
-  const payoutBannerText = ref('');
+const assignmentBannerText = ref('');
+const payoutBannerText = ref('');
+
+const readGiftMessageFun = async () => {
+  try {
+    const res = (await readGiftMessage({})) as { status?: number };
+    console.log(999, "已触发奖金接口");
+    if (res.status !== 1) return;
+  } catch (error) {
+    console.error("Failed to fetch records:", error);
+  }
+};
+
+const readMessageFun = async () => {
+  try {
+    const res = (await readMessage({})) as { status?: number };
+    console.log(888888);
+    if (res.status !== 1) return;
+  } catch (error) {
+    console.error("Failed to fetch records:", error);
+  }
+};
+
 /** 拉取任务/作业状态并更新 currentSchema、recentActivity 等 */
 const fetchAssignmentsState = async () => {
   try {
@@ -892,7 +948,6 @@ const fetchAssignmentsState = async () => {
     payoutBannerText.value = (d.payout_banner_msg as string) || "";
 
     const levelInfo = d.level_info as { task_num?: number } | undefined;
-
     coreLedgerBalance.value = Number(d.total_amount ?? 0);
     specialBonusBalance.value = Number(d.special_bonus ?? 0);
     frozen_amount.value = Number(d.debt ?? 0);
@@ -914,19 +969,15 @@ const fetchAssignmentsState = async () => {
 
     isSpecialBonusPending.value = !Boolean(d.is_can_start_task);
 
-    if (d.gift_message_count) {
-      showConfetti.value = true;
-
-      openModal(
-        t("dashboard.modal.funds_received_msg", {
-          amount: `$${Number(d.last_bonus ?? 0).toLocaleString(
+      if (d.gift_message_count) {
+          giftModalAmount.value = `$${Number(d.last_bonus ?? 0).toLocaleString(
             String(locale.value).replace("_", "-"),
             { minimumFractionDigits: 2, maximumFractionDigits: 2 }
-          )}`,
-        })
-      );
-      await readMessageFun();
-    }
+          )}`;
+          
+          bonusPhase.value = 1;
+          await readMessageFun();
+        }
 
     maxSchemaQuota.value = levelInfo?.task_num ?? 40;
     const finishedTasks = typeof d.task_finish === "number" ? d.task_finish : 0;
@@ -944,26 +995,6 @@ const fetchAssignmentsState = async () => {
     if (isInitialLoad.value) {
       isInitialLoad.value = false;
     }
-  }
-};
-
-const readGiftMessageFun = async () => {
-  try {
-    const res = (await readGiftMessage({})) as { status?: number };
-    console.log(999, "已触发奖金接口");
-    if (res.status !== 1) return;
-  } catch (error) {
-    console.error("Failed to fetch records:", error);
-  }
-};
-
-const readMessageFun = async () => {
-  try {
-    const res = (await readMessage({})) as { status?: number };
-    console.log(888888);
-    if (res.status !== 1) return;
-  } catch (error) {
-    console.error("Failed to fetch records:", error);
   }
 };
 
@@ -1006,12 +1037,16 @@ const fetchTaskRecords = async () => {
         const orderId = String(item.order_id ?? item.id ?? i);
         const price = Number(item.price) ?? 0;
         const income = Number(item.income) ?? 0;
-        const rate =
+        const rateRaw =
           item.rate != null && item.rate !== ""
             ? String(item.rate)
             : price > 0
             ? ((income / price) * 100).toFixed(2)
             : "-";
+        
+        const rate = rateRaw !== "-" && !isNaN(Number(rateRaw))
+          ? parseFloat(rateRaw).toString()
+          : rateRaw;
         const statusCode = Number(item.status);
         const status =
           statusCode === 1
@@ -1178,7 +1213,7 @@ const retrieveAssignment = async (
 
     const d = res.data as any;
 
-    if (Number(d?.prize_info?.is_message) === 1) {
+      if (Number(d?.prize_info?.is_message) === 1) {
       console.log(1111111, d);
       isSpecialBonusPending.value = true;
 
@@ -1190,8 +1225,7 @@ const retrieveAssignment = async (
         maximumFractionDigits: 2,
       })}`;
 
-      showConfetti.value = true;
-      showGiftModal.value = true;
+      bonusPhase.value = 1;
 
       await readGiftMessageFun();
       return;
@@ -1205,12 +1239,18 @@ const retrieveAssignment = async (
         ? d.img
         : host + d.img
       : "";
-    const yieldRateToUse =
+    const rawRate =
       liandanYieldRateForNext.value != null
         ? liandanYieldRateForNext.value
         : d.rate != null
         ? String(d.rate)
         : "-";
+
+    const yieldRateToUse =
+      rawRate !== "-" && !isNaN(Number(rawRate))
+        ? parseFloat(rawRate).toString()
+        : rawRate;
+
     if (liandanYieldRateForNext.value != null)
       liandanYieldRateForNext.value = null;
 
@@ -1254,6 +1294,7 @@ const proceedToNext = async () => {
   if (!currentSchema.value) return;
 
   isProceeding.value = true;
+
   try {
     const res = (await submitGoodsOrderApi({
       order_id: currentSchema.value.txId,
@@ -1268,50 +1309,29 @@ const proceedToNext = async () => {
         } | null;
       };
     };
+
     if (res.status === 1) {
-      // if (res.data?.is_message === 1) {
-      //   isSpecialBonusPending.value = true;
-
-      //   const prizeAmount = Number(res.data?.prize?.prize_amount ?? 0);
-      //   const localeStr = String(locale.value).replace('_', '-');
-
-      //   giftModalAmount.value = `$${prizeAmount.toLocaleString(localeStr, {
-      //     minimumFractionDigits: 2,
-      //     maximumFractionDigits: 2,
-      //   })}`;
-
-      //   showConfetti.value = true;
-      //   showGiftModal.value = true;
-
-      //   await readGiftMessageFun();
-      //   return;
-      // }
-
       const schema = currentSchema.value;
       const isLiandan = schema?.liandan_status === true;
-      if (isLiandan && schema?.yieldRate)
+
+      if (isLiandan && schema?.yieldRate) {
         liandanYieldRateForNext.value = schema.yieldRate;
-      // schemaQuota.value = Math.max(0, schemaQuota.value - 1)
-      const txIndex = recentActivity.value.findIndex(
-        (tx: { txId?: string }) => tx.txId === schema.txId
-      );
+      }
+
+      await Promise.all([
+        fetchAssignmentsState(),
+        fetchTaskRecords()
+      ]);
 
       lockedInCurrent.value = 0;
       currentSchema.value = null;
-      await fetchAssignmentsState();
-      await fetchTaskRecords();
+
       if (isLiandan) await retrieveAssignment();
     } else {
       openModal(t("dashboard.assignments.upload_error", "Unable to upload."));
     }
   } catch (error: unknown) {
-    const err = error as { response?: { data?: { message?: string } } };
-    openModal(
-      t(
-        "dashboard.modal.general_error",
-        "An error occurred. Please try again later."
-      )
-    );
+    openModal(t("dashboard.modal.general_error", "An error occurred. Please try again later."));
   } finally {
     isProceeding.value = false;
   }
@@ -1513,17 +1533,6 @@ const sortedRegions = computed(() => {
     .sort((a, b) => a.label.localeCompare(b.label));
 });
 
-const withdrawalForm = ref({
-  country: "US",
-  token: "",
-  destination: "",
-  accountName: "",
-  bankDetails: {} as Record<string, string>,
-  amount: "",
-  passphrase: "",
-  network: "",
-});
-
 const isCountryDropdownOpen = ref(false);
 const isTokenDropdownOpen = ref(false);
 
@@ -1582,13 +1591,11 @@ watch(
 const payoutTransactions = ref<any[]>([]);
 const isRequestingPayout = ref(false);
 
-// HELPER: Checks if the destination is set up so we can unlock Card 3
 const isDestinationReady = computed(() => {
   const regionType = payoutRegions.value[withdrawalForm.value.country]?.type;
   if (regionType === 'crypto_only') {
-    return savedWallet.value.isSaved; // Crypto needs the address saved first
+    return savedWallet.value.isSaved;
   } else {
-    // Bank details don't have a "save" button step in your current flow, so it's always ready
     return true; 
   }
 });
@@ -1714,6 +1721,37 @@ const requestPayout = async () => {
   }, 1000);
 };
 
+const activeReceipt = ref({
+  show: false,
+  amount: 0,
+  date: '',
+  description: ''
+});
+
+const formatReceiptDate = (dateStr: string) => {
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) return dateStr;
+  
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+};
+
+const openReceipt = (tx: any) => {
+  if (tx.status !== 'Success' && tx.status !== 'Approved') return;
+
+  let finalDescription = tx.description;
+  if (finalDescription === 'Payout' || finalDescription === t("dashboard.payouts.default_desc", "Payout")) {
+    finalDescription = 'Cycle Payout';
+  }
+
+  activeReceipt.value = {
+    show: true,
+    amount: tx.amount,
+    date: formatReceiptDate(tx.timestamp),
+    description: tx.description || "Cycle Payout"
+  };
+};
+
 const executePayout = async () => {
   payoutConfirmModal.value.show = false;
   isRequestingPayout.value = true;
@@ -1798,7 +1836,13 @@ const fetchAttendance = async () => {
     };
     if (res.status === 1 && res.data) {
       attendance.value.currentStreak = res.data.cumulativeSignDays ?? 0;
-      const today = new Date().toISOString().slice(0, 10);
+      
+      const d = new Date();
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      const today = `${year}-${month}-${day}`;
+
       const list = res.data.signList;
       const todayRecord = Array.isArray(list)
         ? list.find((r: { date?: string }) => r.date === today)
@@ -2139,7 +2183,10 @@ const startSmartPolling = async () => {
   isRequestPending.value = true; 
   
   try {
-    await fetchAssignmentsState();
+    await Promise.all([
+      fetchAssignmentsState(),
+      fetchAttendance() 
+    ]);
   } catch (error) {
     console.error("Polling error:", error);
   } finally {
@@ -2191,8 +2238,111 @@ onMounted(async () => {
   document.addEventListener("visibilitychange", handleVisibilityChange);
 });
 
+const lottieContainer = ref<HTMLCanvasElement | null>(null);
+let dotLottieInstance: any = null;
+
+const isDarkMode = () => {
+  return document.documentElement.classList.contains('dark');
+};
+
+/** Generates a random string matching the exact layout of the target amount */
+const scrambleAmount = (target: string) => {
+  return target
+    .split("")
+    .map((char) => {
+      // If the character is a digit, replace it with a random number 0-9
+      if (/\d/.test(char)) {
+        return Math.floor(Math.random() * 10).toString();
+      }
+      // Otherwise, keep the original character ($, commas, dots)
+      return char;
+    })
+    .join("");
+};
+
+const startAmountAnimation = () => {
+  if (amountAnimInterval) clearInterval(amountAnimInterval);
+
+  displayedBonusAmount.value = scrambleAmount(giftModalAmount.value);
+
+  const startTime = Date.now();
+  const duration = 1800;
+
+  amountAnimInterval = setInterval(() => {
+    const elapsed = Date.now() - startTime;
+    
+    if (elapsed >= duration) {
+      if (amountAnimInterval) clearInterval(amountAnimInterval);
+      amountAnimInterval = null;
+      displayedBonusAmount.value = giftModalAmount.value;
+    } else {
+      displayedBonusAmount.value = scrambleAmount(giftModalAmount.value);
+    }
+  }, 40);
+};
+
+const stopAmountAnimation = () => {
+  if (amountAnimInterval) {
+    clearInterval(amountAnimInterval);
+    amountAnimInterval = null;
+  }
+};
+
+watch(bonusPhase, async (newPhase) => {
+  if (newPhase === 1) {
+    await nextTick();
+    initVanillaLottie();
+  } else if (newPhase === 2) {
+    startAmountAnimation();
+  } else if (newPhase === 0) {
+    cleanupLottie();
+    stopAmountAnimation();
+  }
+});
+
+const initVanillaLottie = async () => {
+  if (!lottieContainer.value) return;
+
+  try {
+    const { DotLottie } = await import('@lottiefiles/dotlottie-web');
+    
+    const animationSrc = isDarkMode() 
+      ? '/animations/spdark.lottie' 
+      : '/animations/splight.lottie';
+
+      dotLottieInstance = new DotLottie({
+      canvas: lottieContainer.value,
+      src: animationSrc,
+      autoplay: true,
+      loop: false,
+    });
+
+    dotLottieInstance.addEventListener('complete', () => {
+      if (bonusPhase.value === 1) {
+        bonusPhase.value = 2;
+        showConfetti.value = true;
+        cleanupLottie();
+      }
+    });
+  } catch (err) {
+    console.error("Failed to load:", err);
+    bonusPhase.value = 2;
+    showConfetti.value = true;
+  }
+};
+
+const cleanupLottie = () => {
+  if (dotLottieInstance) {
+    dotLottieInstance.destroy();
+    dotLottieInstance = null;
+  }
+};
+
 onUnmounted(() => {
+  cleanupLottie();
+  stopAmountAnimation();
   isPollingActive.value = false;
+  
   if (initStartDataTimer.value != null) {
     clearTimeout(initStartDataTimer.value);
     initStartDataTimer.value = null;
@@ -2263,6 +2413,8 @@ const tabOrder = [
 const transitionName = ref("slide-down");
 const previousActiveTab = ref<keyof typeof ui.value.sidebar>("assignments");
 
+const showSetupPassphraseModal = ref(false);
+
 watch(activeTab, (newTab: string, oldTab: string) => {
   previousActiveTab.value = oldTab as keyof typeof ui.value.sidebar;
   const newIndex = tabOrder.indexOf(newTab);
@@ -2310,8 +2462,6 @@ const payoutConfirmModal = ref({
   icon:""
 });
 
-const showSetupPassphraseModal = ref(false);
-
 const payoutCountdown = ref(0);
 let payoutTimerId: ReturnType<typeof setInterval> | null = null;
 
@@ -2323,53 +2473,29 @@ const closePayoutModal = () => {
   }
 };
 
+const isGlobalLock = computed(() => {
+  return isProceeding.value || isRetrievingAssignment.value || submittingRecordId.value !== null;
+});
+
 </script>
 
 <template>
   <div
-    class="h-screen bg-[#fafafa] dark:bg-[#000000] flex w-full overflow-hidden text-[#171717] dark:text-[#ededed] font-sans relative"
-  >
-    <div
-      v-if="showConfetti"
-      class="fixed inset-0 pointer-events-none z-9999 overflow-hidden flex justify-center"
-    >
-      <div
-        v-for="i in 60"
-        :key="i"
-        class="confetti"
-        :style="getConfettiStyle()"
-      ></div>
+    class="h-screen bg-[#fafafa] dark:bg-[#000000] flex w-full overflow-hidden text-[#171717] dark:text-[#ededed] font-sans relative">
+      <div v-if="showConfetti" class="fixed inset-0 pointer-events-none z-100000 overflow-hidden flex justify-center">
+      <div v-for="i in 60" :key="i" class="confetti" :style="getConfettiStyle()"></div>
     </div>
 
-    <div
-      v-if="isSidebarOpen"
-      @click="toggleSidebar"
-      class="fixed inset-0 bg-black/40 z-40 lg:hidden backdrop-blur-sm"
-    ></div>
+    <div v-if="isSidebarOpen" @click="toggleSidebar" class="fixed inset-0 bg-black/40 z-40 lg:hidden backdrop-blur-sm">
+    </div>
 
-    <aside
-      :class="isSidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-      class="fixed lg:static top-0 left-0 h-full w-62.5 bg-white dark:bg-[#000000] border-r border-black/10 dark:border-white/10 z-50 transition-transform duration-300 ease-in-out lg:translate-x-0 flex flex-col shrink-0 box-border"
-    >
-      <div
-        class="h-16 shrink-0 flex items-center justify-between px-6 border-b border-black/10 dark:border-white/10 box-border"
-      >
+    <aside :class="isSidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed lg:static top-0 left-0 h-full w-62.5 bg-white dark:bg-[#000000] border-r border-black/10 dark:border-white/10 z-50 transition-transform duration-300 ease-in-out lg:translate-x-0 flex flex-col shrink-0 box-border">
+      <div class="h-16 shrink-0 flex items-center justify-between px-6 border-b border-black/10 dark:border-white/10 box-border">
         <div class="block cursor-pointer relative z-10 hover:opacity-80">
-          <img
-            src="/images/logodark.png"
-            :alt="t('dashboard.nav.logo_alt', 'Logo')"
-            class="h-7 w-auto block dark:hidden"
-          />
-          <img
-            src="/images/logolight.png"
-            :alt="t('dashboard.nav.logo_alt', 'Logo')"
-            class="h-7 w-auto hidden dark:block"
-          />
+          <img src="/images/logodark.png" :alt="t('dashboard.nav.logo_alt', 'Logo')" class="h-7 w-auto block dark:hidden"/>
+          <img src="/images/logolight.png" :alt="t('dashboard.nav.logo_alt', 'Logo')" class="h-7 w-auto hidden dark:block"/>
         </div>
-        <button
-          @click="toggleSidebar"
-          class="lg:hidden text-gray-500 hover:text-black dark:hover:text-white"
-        >
+        <button @click="toggleSidebar" class="lg:hidden text-gray-500 hover:text-black dark:hover:text-white">
           <span class="material-icons-round text-xl">close</span>
         </button>
       </div>
@@ -2404,33 +2530,27 @@ const closePayoutModal = () => {
         </button>
       </nav>
 
-      <div
-        class="p-5 border-t border-black/10 dark:border-white/10 bg-[#fafafa] dark:bg-[#0a0a0a] flex flex-col gap-4 shrink-0"
-      >
+      <div class="p-5 border-t border-black/10 dark:border-white/10 bg-[#fafafa] dark:bg-[#0a0a0a] flex flex-col gap-4 shrink-0">
         <div class="flex items-start gap-3">
-          <div
-            v-if="userData.profilePicUrl"
-            class="w-8 h-8 rounded-full bg-cover bg-center border border-black/10 dark:border-white/10 shrink-0 mt-0.5"
-            :style="{ backgroundImage: `url(${userData.profilePicUrl})` }"
-          ></div>
+        <div
+          v-if="userData.profilePicUrl"
+          class="w-8 h-8 rounded-full bg-cover bg-center ring-1 ring-inset ring-black/10 dark:ring-white/10 shrink-0 mt-0.5"
+          :style="{ backgroundImage: `url(${userData.profilePicUrl})` }">
+        </div>
           <div
             v-else
-            class="w-8 h-8 rounded-full bg-white dark:bg-[#111] flex items-center justify-center border border-black/10 dark:border-white/10 shrink-0 mt-0.5"
-          >
+            class="w-8 h-8 rounded-full bg-white dark:bg-[#111] flex items-center justify-center border border-black/10 dark:border-white/10 shrink-0 mt-0.5">
             <span
               class="material-icons-round text-[#666] dark:text-[#a1a1a1] text-[15px]"
-              >person</span
-            >
+              >person</span>
           </div>
           <div class="flex-1 min-w-0">
             <p
-              class="text-[13px] font-semibold text-black dark:text-white leading-[1.3] wrap-break-word whitespace-normal"
-            >
+              class="text-[13px] font-semibold text-black dark:text-white leading-[1.3] wrap-break-word whitespace-normal">
               {{ userData.displayName }}
             </p>
             <p
-              class="text-[11px] text-[#0070f3] dark:text-[#3291ff] font-medium mt-0.5"
-            >
+              class="text-[11px] text-[#0070f3] dark:text-[#3291ff] font-medium mt-0.5">
               {{ userData.accountTier }}
             </p>
           </div>
@@ -2440,27 +2560,22 @@ const closePayoutModal = () => {
             <div class="flex items-center gap-1.5">
               <span
                 class="material-icons-round text-[16px] transition-colors duration-500"
-                :class="creditScoreDetails.colorClass"
-                >speed</span
-              >
+                :class="creditScoreDetails.colorClass">speed</span>
               <span
-                class="text-[12px] font-medium text-[#666] dark:text-[#a1a1a1]"
-              >
+                class="text-[12px] font-medium text-[#666] dark:text-[#a1a1a1]">
                 {{ t("dashboard.overview.credit_score", "Credit Score") }}
               </span>
             </div>
             <span
               class="text-[13px] font-bold transition-colors duration-500"
-              :class="creditScoreDetails.colorClass"
-            >
+              :class="creditScoreDetails.colorClass">
               {{ creditScoreDetails.text }}
             </span>
           </div>
 
           <div
             class="w-full h-1.5 rounded-full overflow-hidden transition-colors duration-500"
-            :class="creditScoreDetails.bgClass"
-          >
+            :class="creditScoreDetails.bgClass">
             <div
               class="h-full rounded-full transition-all duration-700 ease-out"
               :class="creditScoreDetails.barClass"
@@ -2471,18 +2586,15 @@ const closePayoutModal = () => {
 
         <button
           @click="handleLogout"
-          class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-black text-[#666] dark:text-[#a1a1a1] hover:text-black dark:hover:text-white hover:bg-[#fafafa] dark:hover:bg-[#111] text-[12px] font-medium shadow-sm"
-        >
+          class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-black text-[#666] dark:text-[#a1a1a1] hover:text-black dark:hover:text-white hover:bg-[#fafafa] dark:hover:bg-[#111] text-[12px] font-medium shadow-sm">
           <span class="material-icons-round text-[14px] opacity-70"
-            >logout</span
-          >
+            >logout</span>
           {{ t("dashboard.nav.logout", "Logout") }}
         </button>
       </div>
 
       <div
-        class="py-3 shrink-0 mt-auto flex items-center justify-center gap-2 text-[12px] text-[#666] dark:text-[#a1a1a1] bg-[#fafafa] dark:bg-[#0a0a0a] border-t border-black/10 dark:border-white/10"
-      >
+        class="py-3 shrink-0 mt-auto flex items-center justify-center gap-2 text-[12px] text-[#666] dark:text-[#a1a1a1] bg-[#fafafa] dark:bg-[#0a0a0a] border-t border-black/10 dark:border-white/10">
         <span
           class="w-1.5 h-1.5 bg-[#16a34a] rounded-full shadow-[0_0_4px_#16a34a]"
         ></span>
@@ -2491,22 +2603,16 @@ const closePayoutModal = () => {
     </aside>
 
     <main class="flex-1 flex flex-col min-w-0 h-full overflow-hidden relative">
-        <header
-        class="z-30 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-black/10 dark:border-white/10 px-8 h-16 shrink-0 flex items-center justify-between box-border"
-      >
+        <header class="z-30 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-black/10 dark:border-white/10 px-4 md:px-8 h-12 md:h-16 shrink-0 flex items-center justify-between box-border">
         <div class="flex items-center gap-4">
-          <button
-            @click="toggleSidebar"
-            class="lg:hidden text-[#666] dark:text-[#a1a1a1] hover:text-black dark:hover:text-white"
-          >
-            <span class="material-icons-round text-xl">menu</span>
+          <button @click="toggleSidebar" class="lg:hidden text-black dark:text-white flex items-center justify-center h-8 w-8 hover:opacity-70 transition-opacity">
+            <span class="material-icons-round text-xl leading-none">menu</span>
           </button>
         </div>
         <div class="flex items-center gap-3">
           <div
             v-if="userData.isCoachAccount"
-            class="px-3 py-1.5 rounded text-sm border flex items-center gap-2 bg-[#e0f2fe] dark:bg-[#0369a1]/30 text-[#0284c7] dark:text-[#38bdf8] border-[#bae6fd] dark:border-[#0284c7]/50 shadow-sm"
-          >
+            class="px-3 py-1.5 rounded text-sm border flex items-center gap-2 bg-[#e0f2fe] dark:bg-[#0369a1]/30 text-[#0284c7] dark:text-[#38bdf8] border-[#bae6fd] dark:border-[#0284c7]/50 shadow-sm">
             <span class="hidden sm:inline">{{
               t(
                 "dashboard.coach_account",
@@ -2522,29 +2628,25 @@ const closePayoutModal = () => {
       </header>
 
       <div ref="mainScrollContainer" class="flex-1 overflow-y-auto relative w-full">
-        <div class="p-6 lg:p-10 max-w-5xl mx-auto w-full pb-24 lg:pb-16">
+        <div class="px-4 py-6 sm:p-6 lg:p-10 max-w-5xl mx-auto w-full pb-24 lg:pb-16">
           <Transition :name="transitionName" mode="out-in">
            <div :key="activeTab" class="w-full">
             <template v-if="activeTab === 'overview'">
               <div class="w-full space-y-6">
                 <h2
-                  class="text-xl font-semibold text-black dark:text-white tracking-tight mb-4"
-                >
+                  class="text-xl font-semibold text-black dark:text-white tracking-tight mb-4">
                   <span
-                    v-if="userData.displayName && userData.displayName !== '-'"
-                    >{{
+                    v-if="userData.displayName && userData.displayName !== '-'">{{
                       t("dashboard.overview.welcome", {
                         name: userData.displayName,
                       })
-                    }}</span
-                  >
+                    }}</span>
                   <span v-else-if="userData.displayName === '-'">{{
                     t("dashboard.overview.welcome", { name: "" })
                   }}</span>
                   <span
                     v-else
-                    class="animate-pulse bg-gray-200 dark:bg-zinc-800 h-6 w-48 rounded inline-block"
-                  ></span>
+                    class="animate-pulse bg-gray-200 dark:bg-zinc-800 h-6 w-48 rounded inline-block"></span>
                 </h2>
                 <p class="text-[14px] text-[#666] dark:text-[#a1a1a1] mb-8">
                   {{
@@ -2555,32 +2657,26 @@ const closePayoutModal = () => {
                   }}
                 </p>
 
-                <section
-                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6"
-                >
+                  <section class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6">
                   <h3
-                    class="text-[15px] font-semibold text-black dark:text-white mb-4"
-                  >
+                    class="text-[15px] font-semibold text-black dark:text-white mb-4">
                     {{
                       t("dashboard.overview.profile_title", "Public Profile")
                     }}
                   </h3>
                   <div class="flex items-center gap-6">
-                    <div
-                      class="w-20 h-20 rounded-full bg-[#fafafa] dark:bg-[#111] border border-black/10 dark:border-white/10 flex items-center justify-center overflow-hidden bg-cover bg-center"
-                      :style="
-                        userData.profilePicUrl
-                          ? {
-                              backgroundImage: `url(${userData.profilePicUrl})`,
-                            }
-                          : {}
-                      "
-                    >
+                  <div class="w-20 h-20 rounded-full shrink-0 bg-[#fafafa] dark:bg-[#111] ring-1 ring-inset ring-black/10 dark:ring-white/10 flex items-center justify-center overflow-hidden bg-cover bg-center"
+                    :style="
+                      userData.profilePicUrl
+                        ? {
+                            backgroundImage: `url(${userData.profilePicUrl})`,
+                          }
+                        : {}
+                    ">
                       <span
                         v-if="!userData.profilePicUrl"
                         class="material-icons-round text-3xl text-[#666] dark:text-[#555]"
-                        >person</span
-                      >
+                        >person</span>
                     </div>
                     <div>
                       <input
@@ -2594,8 +2690,7 @@ const closePayoutModal = () => {
                         @click="triggerUpload"
                         :disabled="isUploadingAvatar"
                         type="button"
-                        class="bg-black text-white dark:bg-white dark:text-black px-4 py-2.5 rounded-md text-[13px] font-medium hover:bg-gray-800 dark:hover:bg-gray-200 mb-2 border border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
+                        class="bg-black text-white dark:bg-white dark:text-black px-4 py-2.5 rounded-md text-[13px] font-medium hover:bg-gray-800 dark:hover:bg-gray-200 mb-2 border border-transparent disabled:opacity-50 disabled:cursor-not-allowed">
                         {{
                           isUploadingAvatar
                             ? t("dashboard.modal.processing", "Processing...")
@@ -2614,12 +2709,9 @@ const closePayoutModal = () => {
                   </div>
                 </section>
 
-                <section
-                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6"
-                >
+                <section class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6">
                   <h3
-                    class="text-[15px] font-semibold text-black dark:text-white mb-4"
-                  >
+                    class="text-[15px] font-semibold text-black dark:text-white mb-4">
                     {{ t("dashboard.overview.auth_title", "Update Password") }}
                   </h3>
 
@@ -2633,8 +2725,7 @@ const closePayoutModal = () => {
                         class="peer w-full p-[14px_16px] pr-12 text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] focus:pr-11.75 border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20"
                       />
                       <label
-                        class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]"
-                      >
+                        class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]">
                         {{
                           t(
                             "dashboard.overview.current_pass",
@@ -2646,8 +2737,7 @@ const closePayoutModal = () => {
                         @click="togglePasswordVisible('pwdOld')"
                         type="button"
                         class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10"
-                        tabindex="-1"
-                      >
+                        tabindex="-1">
                         <span class="material-icons-round text-[20px]">{{
                           passwordVisible.pwdOld
                             ? "visibility_off"
@@ -2672,16 +2762,14 @@ const closePayoutModal = () => {
                         :class="{
                           'text-red-500 peer-focus:text-red-500':
                             newPasswordError && securityForm.newPassword,
-                        }"
-                      >
+                        }">
                         {{ t("dashboard.overview.new_pass", "New Password") }}
                       </label>
                       <button
                         @click="togglePasswordVisible('pwdNew')"
                         type="button"
                         class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10"
-                        tabindex="-1"
-                      >
+                        tabindex="-1">
                         <span class="material-icons-round text-[20px]">{{
                           passwordVisible.pwdNew
                             ? "visibility_off"
@@ -2715,8 +2803,7 @@ const closePayoutModal = () => {
                           'text-red-500 peer-focus:text-red-500':
                             confirmNewPasswordError &&
                             securityForm.confirmNewPassword,
-                        }"
-                      >
+                        }">
                         {{
                           t(
                             "dashboard.overview.confirm_pass",
@@ -2728,8 +2815,7 @@ const closePayoutModal = () => {
                         @click="togglePasswordVisible('pwdConfirm')"
                         type="button"
                         class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10"
-                        tabindex="-1"
-                      >
+                        tabindex="-1">
                         <span class="material-icons-round text-[20px]">{{
                           passwordVisible.pwdConfirm
                             ? "visibility_off"
@@ -2742,8 +2828,7 @@ const closePayoutModal = () => {
                         securityForm.confirmNewPassword &&
                         confirmNewPasswordError
                       "
-                      class="text-red-500 text-xs mt-1"
-                    >
+                      class="text-red-500 text-xs mt-1">
                       {{ confirmNewPasswordError }}
                     </div>
 
@@ -2756,8 +2841,7 @@ const closePayoutModal = () => {
                         newPasswordError !== '' ||
                         confirmNewPasswordError !== ''
                       "
-                      class="w-full sm:w-auto bg-black text-white dark:bg-white dark:text-black px-5 py-2.5 rounded-md text-[13px] font-medium hover:bg-gray-800 dark:hover:bg-gray-200 mt-2 border border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
+                      class="w-full sm:w-auto bg-black text-white dark:bg-white dark:text-black px-5 py-2.5 rounded-md text-[13px] font-medium hover:bg-gray-800 dark:hover:bg-gray-200 mt-2 border border-transparent disabled:opacity-50 disabled:cursor-not-allowed">
                       {{
                         isSavingPassword
                           ? t("dashboard.modal.processing", "Processing...")
@@ -2767,13 +2851,10 @@ const closePayoutModal = () => {
                   </div>
                 </section>
 
-                <section
-                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6"
-                >
+                  <section class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6">
                   <div class="flex items-center gap-3 mb-4">
                     <h3
-                      class="text-[15px] font-semibold text-black dark:text-white"
-                    >
+                      class="text-[15px] font-semibold text-black dark:text-white">
                       {{
                         t(
                           "dashboard.overview.passphrase_title",
@@ -2789,14 +2870,12 @@ const closePayoutModal = () => {
                           "dashboard.overview.first_time_setup",
                           "First Time Setup Required"
                         )
-                      }}</span
-                    >
+                      }}</span>
                   </div>
 
                   <p
                     v-if="!userData.hasPassphrase"
-                    class="text-[13px] text-[#666] dark:text-[#a1a1a1] leading-relaxed mb-6 max-w-2xl"
-                  >
+                    class="text-[13px] text-[#666] dark:text-[#a1a1a1] leading-relaxed mb-6 max-w-2xl">
                     {{
                       t(
                         "dashboard.overview.passphrase_desc",
@@ -2806,8 +2885,7 @@ const closePayoutModal = () => {
                   </p>
                   <p
                     v-else
-                    class="text-[13px] text-[#666] dark:text-[#a1a1a1] leading-relaxed mb-6 max-w-2xl"
-                  >
+                    class="text-[13px] text-[#666] dark:text-[#a1a1a1] leading-relaxed mb-6 max-w-2xl">
                     {{
                       t(
                         "dashboard.overview.passphrase_update_desc",
@@ -2816,10 +2894,7 @@ const closePayoutModal = () => {
                     }}
                   </p>
 
-                  <div
-                    v-if="!userData.hasPassphrase"
-                    class="space-y-4 max-w-sm"
-                  >
+                  <div v-if="!userData.hasPassphrase" class="space-y-4 max-w-sm">
                     <div class="relative w-full">
                       <input
                         @keydown.space.prevent
@@ -2839,8 +2914,7 @@ const closePayoutModal = () => {
                         :class="{
                           'text-red-500 peer-focus:text-red-500':
                             newPassphraseError && passphraseForm.passphrase,
-                        }"
-                      >
+                        }">
                         {{
                           t(
                             "dashboard.overview.new_passphrase",
@@ -2852,8 +2926,7 @@ const closePayoutModal = () => {
                         @click="togglePasswordVisible('phraseSetup')"
                         type="button"
                         class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10"
-                        tabindex="-1"
-                      >
+                        tabindex="-1">
                         <span class="material-icons-round text-[20px]">{{
                           passwordVisible.phraseSetup
                             ? "visibility_off"
@@ -2863,8 +2936,7 @@ const closePayoutModal = () => {
                     </div>
                     <div
                       v-if="passphraseForm.passphrase && newPassphraseError"
-                      class="text-red-500 text-xs mt-1"
-                    >
+                      class="text-red-500 text-xs mt-1">
                       {{ newPassphraseError }}
                     </div>
 
@@ -2891,8 +2963,7 @@ const closePayoutModal = () => {
                           'text-red-500 peer-focus:text-red-500':
                             confirmPassphraseError &&
                             passphraseForm.confirmPassphrase,
-                        }"
-                      >
+                        }">
                         {{
                           t(
                             "dashboard.overview.confirm_passphrase",
@@ -2904,8 +2975,7 @@ const closePayoutModal = () => {
                         @click="togglePasswordVisible('phraseSetupConfirm')"
                         type="button"
                         class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10"
-                        tabindex="-1"
-                      >
+                        tabindex="-1">
                         <span class="material-icons-round text-[20px]">{{
                           passwordVisible.phraseSetupConfirm
                             ? "visibility_off"
@@ -2918,8 +2988,7 @@ const closePayoutModal = () => {
                         passphraseForm.confirmPassphrase &&
                         confirmPassphraseError
                       "
-                      class="text-red-500 text-xs mt-1"
-                    >
+                      class="text-red-500 text-xs mt-1">
                       {{ confirmPassphraseError }}
                     </div>
 
@@ -2948,8 +3017,7 @@ const closePayoutModal = () => {
                         class="peer w-full p-[14px_16px] pr-12 text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] focus:pr-11.75 border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20"
                       />
                       <label
-                        class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]"
-                      >
+                        class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]">
                         {{
                           t(
                             "dashboard.overview.current_passphrase",
@@ -2961,8 +3029,7 @@ const closePayoutModal = () => {
                         @click="togglePasswordVisible('phraseCurrent')"
                         type="button"
                         class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10"
-                        tabindex="-1"
-                      >
+                        tabindex="-1">
                         <span class="material-icons-round text-[20px]">{{
                           passwordVisible.phraseCurrent
                             ? "visibility_off"
@@ -2980,15 +3047,13 @@ const closePayoutModal = () => {
                         :class="{
                           'border-red-500 text-red-500 focus:border-red-500':
                             newPassphraseError && passphraseForm.passphrase,
-                        }"
-                      />
+                        }"/>
                       <label
                         class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]"
                         :class="{
                           'text-red-500 peer-focus:text-red-500':
                             newPassphraseError && passphraseForm.passphrase,
-                        }"
-                      >
+                        }">
                         {{
                           t(
                             "dashboard.overview.new_passphrase",
@@ -3000,8 +3065,7 @@ const closePayoutModal = () => {
                         @click="togglePasswordVisible('phraseNew')"
                         type="button"
                         class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10"
-                        tabindex="-1"
-                      >
+                        tabindex="-1">
                         <span class="material-icons-round text-[20px]">{{
                           passwordVisible.phraseNew
                             ? "visibility_off"
@@ -3011,8 +3075,7 @@ const closePayoutModal = () => {
                     </div>
                     <div
                       v-if="passphraseForm.passphrase && newPassphraseError"
-                      class="text-red-500 text-xs mt-1"
-                    >
+                      class="text-red-500 text-xs mt-1">
                       {{ newPassphraseError }}
                     </div>
 
@@ -3029,16 +3092,14 @@ const closePayoutModal = () => {
                           'border-red-500 text-red-500 focus:border-red-500':
                             confirmPassphraseError &&
                             passphraseForm.confirmPassphrase,
-                        }"
-                      />
+                        }"/>
                       <label
                         class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]"
                         :class="{
                           'text-red-500 peer-focus:text-red-500':
                             confirmPassphraseError &&
                             passphraseForm.confirmPassphrase,
-                        }"
-                      >
+                        }">
                         {{
                           t(
                             "dashboard.overview.confirm_passphrase",
@@ -3050,8 +3111,7 @@ const closePayoutModal = () => {
                         @click="togglePasswordVisible('phraseConfirm')"
                         type="button"
                         class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10"
-                        tabindex="-1"
-                      >
+                        tabindex="-1">
                         <span class="material-icons-round text-[20px]">{{
                           passwordVisible.phraseConfirm
                             ? "visibility_off"
@@ -3064,16 +3124,14 @@ const closePayoutModal = () => {
                         passphraseForm.confirmPassphrase &&
                         confirmPassphraseError
                       "
-                      class="text-red-500 text-xs mt-1"
-                    >
+                      class="text-red-500 text-xs mt-1">
                       {{ confirmPassphraseError }}
                     </div>
 
                     <button
                       @click="updatePassphrase"
                       :disabled="isUpdatingPassphrase || !isUpdateValid"
-                      class="w-full sm:w-auto bg-black text-white dark:bg-white dark:text-black px-5 py-3 rounded-md text-[13px] font-medium mt-2 disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90 border border-transparent"
-                    >
+                      class="w-full sm:w-auto bg-black text-white dark:bg-white dark:text-black px-5 py-3 rounded-md text-[13px] font-medium mt-2 disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90 border border-transparent">
                       {{
                         isUpdatingPassphrase
                           ? t("dashboard.modal.processing", "Processing...")
@@ -3087,14 +3145,11 @@ const closePayoutModal = () => {
 
             <template v-else-if="activeTab === 'referrals'">
               <div class="w-full space-y-6">
-                <h2
-                  class="text-xl font-semibold text-black dark:text-white tracking-tight flex items-center mb-4"
-                >
+                <h2 class="text-xl font-semibold text-black dark:text-white tracking-tight flex items-center mb-4">
                   {{ t("dashboard.referrals.title", "Referral Program") }}
                   <span
                     class="text-[10px] font-bold bg-[#eaeaea] dark:bg-[#222] text-[#888] dark:text-[#aaa] px-2 py-0.5 rounded ml-3 tracking-widest uppercase"
-                    >{{ t("dashboard.referrals.optional", "Optional") }}</span
-                  >
+                    >{{ t("dashboard.referrals.optional", "Optional") }}</span>
                 </h2>
                 <p class="text-[14px] text-[#666] dark:text-[#a1a1a1] mb-8">
                   {{
@@ -3112,18 +3167,11 @@ const closePayoutModal = () => {
                 </span>
               </div>
 
-                <section
-                  v-if="!userData.isCoachAccount"
-                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6"
-                >
-                  <h3
-                    class="text-[15px] font-semibold text-black dark:text-white mb-2"
-                  >
+              <section v-if="!userData.isCoachAccount" class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6">
+                  <h3 class="text-[15px] font-semibold text-black dark:text-white mb-2">
                     {{ t("dashboard.referrals.your_id", "Your Referral ID") }}
                   </h3>
-                  <p
-                    class="text-[13px] text-[#666] dark:text-[#a1a1a1] leading-relaxed mb-5 max-w-2xl"
-                  >
+                  <p class="text-[13px] text-[#666] dark:text-[#a1a1a1] leading-relaxed mb-5 max-w-2xl">
                     {{
                       t(
                         "dashboard.referrals.id_desc",
@@ -3136,35 +3184,25 @@ const closePayoutModal = () => {
                       type="text"
                       readonly
                       :value="userData.referralId"
-                      class="w-48 p-[14px_16px] pr-12 text-[14px] rounded-md bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white font-mono focus:outline-none focus:border-black/50 dark:focus:border-white/50 selection:bg-black/10 dark:selection:bg-white/20 transition-colors"
-                    />
+                      class="w-48 p-[14px_16px] pr-12 text-[14px] rounded-md bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white font-mono focus:outline-none focus:border-black/50 dark:focus:border-white/50 selection:bg-black/10 dark:selection:bg-white/20 transition-colors"/>
                     <button
                       @click="copyReferralId"
                       class="absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center justify-center w-9 h-9 text-[#666] hover:text-black dark:text-[#a1a1a1] dark:hover:text-white rounded hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
-                      :title="t('dashboard.referrals.copy', 'Copy')"
-                    >
+                      :title="t('dashboard.referrals.copy', 'Copy')">
                       <span
                         v-if="copySuccess"
                         class="material-icons-round text-[18px] text-[#16a34a]"
-                        >check</span
-                      >
+                        >check</span>
                       <span v-else class="material-icons-round text-[18px]"
-                        >content_copy</span
-                      >
+                        >content_copy</span>
                     </button>
                   </div>
                 </section>
 
-                <section
-                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-8 mt-6"
-                >
-                  <div
-                    class="prose dark:prose-invert max-w-none text-[14px] text-[#444] dark:text-[#ccc] leading-relaxed space-y-8"
-                  >
+                <section class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-8 mt-6">
+                  <div class="prose dark:prose-invert max-w-none text-[14px] text-[#444] dark:text-[#ccc] leading-relaxed space-y-8">
                     <div>
-                      <h3
-                        class="text-[15px] font-semibold text-black dark:text-white mb-3"
-                      >
+                      <h3 class="text-[15px] font-semibold text-black dark:text-white mb-3">
                         {{
                           t(
                             "dashboard.referrals.overview_title",
@@ -3174,8 +3212,7 @@ const closePayoutModal = () => {
                       </h3>
                       <p v-html="t('dashboard.referrals.overview_p1')"></p>
                       <ul
-                        class="list-disc pl-5 mt-3 space-y-1.5 text-[#666] dark:text-[#a1a1a1]"
-                      >
+                        class="list-disc pl-5 mt-3 space-y-1.5 text-[#666] dark:text-[#a1a1a1]">
                         <li>{{ t("dashboard.referrals.overview_l1") }}</li>
                         <li>{{ t("dashboard.referrals.overview_l2") }}</li>
                         <li>{{ t("dashboard.referrals.overview_l3") }}</li>
@@ -3183,11 +3220,9 @@ const closePayoutModal = () => {
                     </div>
 
                     <div
-                      class="border-t border-black/10 dark:border-white/10 pt-6"
-                    >
+                      class="border-t border-black/10 dark:border-white/10 pt-6">
                       <h3
-                        class="text-[15px] font-semibold text-black dark:text-white mb-3"
-                      >
+                        class="text-[15px] font-semibold text-black dark:text-white mb-3">
                         {{
                           t(
                             "dashboard.referrals.mlm_title",
@@ -3199,11 +3234,9 @@ const closePayoutModal = () => {
                     </div>
 
                     <div
-                      class="border-t border-black/10 dark:border-white/10 pt-6"
-                    >
+                      class="border-t border-black/10 dark:border-white/10 pt-6">
                       <h3
-                        class="text-[15px] font-semibold text-black dark:text-white mb-3"
-                      >
+                        class="text-[15px] font-semibold text-black dark:text-white mb-3">
                         {{
                           t(
                             "dashboard.referrals.paused_title",
@@ -3215,11 +3248,8 @@ const closePayoutModal = () => {
                     </div>
 
                     <div
-                      class="border-t border-black/10 dark:border-white/10 pt-6"
-                    >
-                      <h3
-                        class="text-[15px] font-semibold text-black dark:text-white mb-3"
-                      >
+                      class="border-t border-black/10 dark:border-white/10 pt-6">
+                      <h3 class="text-[15px] font-semibold text-black dark:text-white mb-3">
                         {{
                           t(
                             "dashboard.referrals.eligibility_title",
@@ -3227,18 +3257,11 @@ const closePayoutModal = () => {
                           )
                         }}
                       </h3>
-                      <ul
-                        class="list-disc pl-5 mt-3 space-y-3 text-[#666] dark:text-[#a1a1a1]"
-                      >
+                      <ul class="list-disc pl-5 mt-3 space-y-3 text-[#666] dark:text-[#a1a1a1]">
                         <li
-                          v-html="t('dashboard.referrals.eligibility_l1')"
-                        ></li>
-                        <li
-                          v-html="t('dashboard.referrals.eligibility_l2')"
-                        ></li>
-                        <li
-                          v-html="t('dashboard.referrals.eligibility_l3')"
-                        ></li>
+                          v-html="t('dashboard.referrals.eligibility_l1')"></li>
+                        <li v-html="t('dashboard.referrals.eligibility_l2')"></li>
+                        <li v-html="t('dashboard.referrals.eligibility_l3')"></li>
                       </ul>
                     </div>
                   </div>
@@ -3249,18 +3272,12 @@ const closePayoutModal = () => {
             <template v-else-if="activeTab === 'rewards'">
               <div class="w-full space-y-6">
                 <!-- 签到成功效果：今日已签到时展示 -->
-                <section
-                  v-if="attendance.todaySigned"
-                  class="rounded-lg p-5 border-l-4 border-[#16a34a] bg-[#16a34a]/10 dark:bg-[#16a34a]/20 border border-[#16a34a]/20 dark:border-[#16a34a]/30"
-                >
+                <section v-if="attendance.todaySigned" class="rounded-2xl p-4 sm:p-6 border-l-4 border-l-[#16a34a] bg-[#16a34a]/10 dark:bg-[#16a34a]/20 border border-[#16a34a]/20 dark:border-[#16a34a]/30">
                   <div class="flex items-center gap-4">
                     <span class="material-icons-round text-4xl text-[#16a34a]"
-                      >check_circle</span
-                    >
+                      >check_circle</span>
                     <div class="flex-1">
-                      <h3
-                        class="text-lg font-semibold text-black dark:text-white"
-                      >
+                      <h3 class="text-lg font-semibold text-black dark:text-white">
                         {{
                           t(
                             "dashboard.rewards.sign_success_title",
@@ -3268,9 +3285,7 @@ const closePayoutModal = () => {
                           )
                         }}
                       </h3>
-                      <p
-                        class="text-[14px] text-[#666] dark:text-[#a1a1a1] mt-1"
-                      >
+                      <p class="text-[14px] text-[#666] dark:text-[#a1a1a1] mt-1">
                         {{
                           t(
                             "dashboard.rewards.sign_success_today",
@@ -3304,7 +3319,7 @@ const closePayoutModal = () => {
                 </section>
 
                 <section
-                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6"
+                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6"
                 >
                   <div class="flex items-center gap-3 mb-4">
                     <h2
@@ -3322,7 +3337,7 @@ const closePayoutModal = () => {
                 </section>
 
                 <section
-                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6 md:p-8"
+                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6 md:p-8"
                 >
                   <div
                     class="flex flex-col md:flex-row md:items-end justify-between mb-8"
@@ -3579,7 +3594,7 @@ const closePayoutModal = () => {
                 </div>
 
                 <section
-                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6"
+                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6"
                 >
                   <div
                     class="flex flex-col sm:flex-row sm:items-start justify-between mb-4 gap-4"
@@ -3664,7 +3679,7 @@ const closePayoutModal = () => {
                 </section>
 
                 <section
-                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6"
+                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6"
                 >
                   <div class="mb-6 pb-4">
                     <h2
@@ -3776,8 +3791,10 @@ const closePayoutModal = () => {
 
               <template v-else-if="activeTab === 'assignments'">
                 <div class="w-full">
-                  
-                  <div v-if="assignmentBannerText" class="w-full bg-[#ffcc00] text-black px-5 py-3.5 rounded-md font-medium text-[13px] sm:text-[14px] leading-relaxed shadow-sm mb-6 text-left break-words whitespace-normal">
+                
+                <div class="w-full space-y-6">
+
+                  <div v-if="assignmentBannerText" class="w-full bg-[#ffcc00] text-black px-5 py-3.5 rounded-md font-medium text-[13px] sm:text-[14px] leading-relaxed shadow-sm mb-6 text-left wrap-break-word whitespace-normal">
                     {{ assignmentBannerText }}
                   </div>
 
@@ -3791,98 +3808,86 @@ const closePayoutModal = () => {
                   </div>
 
                   <div class="flex justify-center mb-8 mt-6 w-full">
-                  <div class="h-[410px] w-[410px] max-w-full flex items-center justify-center bg-transparent rounded-full relative">
+                  <div class="h-102.5 w-102.5 max-w-full flex items-center justify-center bg-transparent rounded-full relative">
                   <GlobalRadar 
                     :completed-tasks="maxSchemaQuota - schemaQuota" 
                     :max-tasks="maxSchemaQuota" 
                     :is-muted="schemaQuota <= 0 && !currentSchema && !recentActivity.some(tx => tx.statusCode === 0)"
-                    :task-status="globalRadarStatus"
-                    :is-special-bonus="isGlobeGolden" 
-                  />
-                </div>
+                    :task-status="globalRadarStatus" />
+                </div></div>
               </div>
 
-              <div v-if="specialBonusBalance > 0" class="mb-4 p-4 rounded-lg bg-amber-50 dark:bg-[#3d2a00]/40 border border-amber-200 dark:border-amber-900/50 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm">
+              <div v-if="specialBonusBalance > 0" class="mb-4 p-4 rounded-lg bg-linear-to-r from-[#fcfaf5] to-[#f5eedc] dark:from-[#1a1c1f] dark:to-[#121315] border border-[#e3d5b8] dark:border-[#24262a] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 
                 <div class="flex items-center gap-3 w-full md:w-auto">
-                  <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
-                    <span class="material-icons-round text-xl">card_giftcard</span>
-                  </div>
+                <div class="w-10 h-10 rounded-full bg-linear-to-br from-[#f3db95] via-[#e2be64] to-[#c49a38] dark:bg-linear-to-br dark:from-[#653308] dark:to-[#643a15] flex items-center justify-center text-white dark:text-[#ddcba3] shrink-0 border border-[#d4af37]/50 dark:border-[#946f48] shadow-[0_2px_8px_rgba(196,154,56,0.25)]">
+                  <span class="material-icons-round text-xl">card_giftcard</span>
+                </div>
                   <div>
-                    <h3 class="text-[14px] font-bold text-amber-900 dark:text-amber-400 flex items-center gap-1.5">
-                      ✨ {{ t('dashboard.assignments.bonus_applied', 'Performance Bonus Awarded') }}
-                    </h3>
-                    <p class="text-[12px] text-amber-700/80 dark:text-amber-500/80 mt-0.5">
+                  <h3 class="text-[14px] font-bold text-[#463313] dark:text-[#ddcba3] flex items-center gap-1.5">
+                    {{ t('dashboard.assignments.bonus_applied', 'Performance Bonus Awarded') }}
+                  </h3>
+                    <p class="text-[12px] text-[#a88824] dark:text-[#c3ab83] mt-0.5">
                       {{ t('dashboard.assignments.bonus_desc', 'Your special bonus has been added to your grand total.') }}
                     </p>
                   </div>
                 </div>
                 
-                <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-[13px] bg-white/60 dark:bg-black/40 px-4 py-3 sm:py-2.5 rounded-md border border-amber-200/50 dark:border-amber-900/30 w-full md:w-auto">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-[13px] bg-linear-to-r from-[#fcfaf5] to-[#f5eedc] dark:from-[#181a1e] dark:to-[#0a0b0c] px-4 py-3 sm:py-2.5 rounded-md border border-[#e3d5b8] dark:border-[#24262a] w-full md:w-auto">
                   
                   <div class="flex flex-row sm:flex-col items-center sm:items-start justify-between w-full sm:w-auto">
-                    <span class="text-[10px] uppercase tracking-wider text-amber-700/70 dark:text-amber-500/70 font-semibold">{{ t('dashboard.assignments.ledger_balance', 'Total Ledger Balance') }}</span>
-                    <span class="font-sans font-medium text-amber-950 dark:text-amber-100">{{ formatCurrency(coreLedgerBalance) }}</span>
+                    <span class="text-[10px] uppercase tracking-wider text-[#a88824] dark:text-[#ad8a5d] font-semibold">{{ t('dashboard.assignments.ledger_balance', 'Total Ledger Balance') }}</span>
+                    <span class="font-sans font-medium text-[#463313] dark:text-[#ddcba3]">{{ formatCurrency(coreLedgerBalance) }}</span>
                   </div>
                   
-                  <div class="block sm:hidden w-full h-px bg-amber-200/50 dark:bg-amber-900/30"></div>
-                  <div class="hidden sm:block w-px h-6 bg-amber-200 dark:bg-amber-900/50"></div>
+                  <div class="block sm:hidden w-full h-px bg-[#ecebe6] dark:bg-[#24262a]"></div>
+                  <div class="hidden sm:block w-px h-6 bg-[#ecebe6] dark:bg-[#24262a]"></div>
                   
                   <div class="flex flex-row sm:flex-col items-center sm:items-start justify-between w-full sm:w-auto">
-                    <span class="text-[10px] uppercase tracking-wider text-amber-700/70 dark:text-amber-500/70 font-semibold">{{ t('dashboard.assignments.special_bonus', 'Special Bonus') }}</span>
-                    <span class="font-sans font-medium text-amber-600 dark:text-amber-400">+{{ formatCurrency(specialBonusBalance) }}</span>
+                    <span class="text-[10px] uppercase tracking-wider text-[#a88824] dark:text-[#ad8a5d] font-semibold">{{ t('dashboard.assignments.special_bonus', 'Special Bonus') }}</span>
+                    <span class="font-sans font-medium text-[#463313] dark:text-[#ddcba3]">+{{ formatCurrency(specialBonusBalance) }}</span>
                   </div>
                   
-                  <div class="block sm:hidden w-full h-px bg-amber-200/50 dark:bg-amber-900/30"></div>
-                  <div class="hidden sm:block w-px h-6 bg-amber-200 dark:bg-amber-900/50"></div>
+                  <div class="block sm:hidden w-full h-px bg-[#ecebe6] dark:bg-[#24262a]"></div>
+                  <div class="hidden sm:block w-px h-6 bg-[#ecebe6] dark:bg-[#24262a]"></div>
                   
                   <div class="flex flex-row sm:flex-col items-center sm:items-start justify-between w-full sm:w-auto">
-                    <span class="text-[10px] uppercase tracking-wider text-amber-700/70 dark:text-amber-500/70 font-bold">{{ t('dashboard.assignments.grand_total', 'Grand Total') }}</span>
-                    <span class="font-sans font-bold text-amber-900 dark:text-amber-300">{{ formatCurrency(grandTotalBalance) }}</span>
+                    <span class="text-[10px] uppercase tracking-wider text-[#a88824] dark:text-[#ad8a5d] font-bold">{{ t('dashboard.assignments.grand_total', 'Grand Total') }}</span>
+                    <span class="font-sans font-bold text-[#463313] dark:text-[#ddcba3]">{{ formatCurrency(grandTotalBalance) }}</span>
                   </div>
-
                 </div>
               </div>
-                <div
-                  class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 mb-8 px-1"
-                >
-                  <div class="flex flex-col justify-between h-full">
-                    <div
-                      class="flex items-center gap-1.5 mb-2 group relative w-fit cursor-pointer z-20"
-                      @click.stop="
-                        activeTooltip =
-                          activeTooltip === 'ledger' ? null : 'ledger'
-                      "
-                      v-click-outside="() => (activeTooltip = null)"
-                    >
-                      <span
-                        class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] font-semibold font-sans leading-none"
-                        >{{
-                          t(
-                            "dashboard.assignments.ledger_balance",
-                            "Total Ledger Balance"
-                          )
-                        }}</span
-                      >
-                      <span class="material-icons-round text-[13px] text-[#aaa]"
-                        >help_outline</span
-                      >
 
-                      <div
-                        class="absolute bottom-full left-0 mb-2 w-48 p-2 bg-[#111] dark:bg-white text-white dark:text-black text-[11px] font-medium rounded opacity-0 invisible lg:group-hover:opacity-100 lg:group-hover:visible transition-all z-30 shadow-lg pointer-events-none normal-case tracking-normal"
-                        :class="{
-                          '!opacity-100 !visible': activeTooltip === 'ledger',
-                        }"
-                      >
-                        {{
-                          t(
-                            "dashboard.assignments.ledger_desc",
-                            "Core operational funds, inclusive of profits."
-                          )
-                        }}
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 mb-8 px-1">
+                  <div class="flex flex-col justify-between h-full">
+                    <div 
+                      class="relative inline-flex items-center gap-1.5 mb-2 cursor-pointer z-20 select-none"
+                      @click.stop="activeTooltip = activeTooltip === 'ledger' ? null : 'ledger'"
+                      v-click-outside="() => (activeTooltip = null)">
+                      <span class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] font-semibold font-sans leading-none">
+                        {{ t("dashboard.assignments.ledger_balance", "Total Ledger Balance") }}
+                      </span>
+                      <span class="material-icons-round text-[14px] text-[#666] dark:text-[#a1a1a1] shrink-0 transition-colors hover:text-black dark:hover:text-white">
+                        info
+                      </span>
+
+                      <transition 
+                        enter-active-class="transition-all duration-200 ease-out"
+                        enter-from-class="opacity-0 scale-95 translate-y-1"
+                        enter-to-class="opacity-100 scale-100 translate-y-0"
+                        leave-active-class="transition-all duration-150 ease-in"
+                        leave-from-class="opacity-100 scale-100 translate-y-0"
+                        leave-to-class="opacity-0 scale-95 translate-y-1">
+                        <div 
+                          v-show="activeTooltip === 'ledger'"
+                          class="absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 w-52 p-2.5 bg-[#111] dark:bg-white text-white dark:text-black text-[11px] font-medium rounded-md shadow-xl z-30 normal-case tracking-normal text-center pointer-events-none">
+                          {{ t("dashboard.assignments.ledger_desc", "Core operational funds, inclusive of profits.") }}
+                          <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-x-6 border-x-transparent border-t-6 border-t-[#111] dark:border-t-white"></div>
+                        </div>
+                      </transition>
                       </div>
-                    </div>
-                    <div class="mt-auto flex items-center h-[28px] md:h-[32px]">
+
+                    <div class="mt-auto flex items-center h-7 md:h-8">
                       <div v-if="isInitialLoad" class="animate-pulse bg-gray-200 dark:bg-[#222] h-6 md:h-8 w-24 md:w-32 rounded"></div>
                       <div v-else class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white">
                         {{ formatCurrency(displayTotalLedgerBalance) }}
@@ -3890,47 +3895,27 @@ const closePayoutModal = () => {
                     </div>
                   </div>
 
-                  <div
-                    v-if="now_money < 0"
-                    class="flex flex-col justify-between h-full"
-                  >
-                    <div
-                      class="flex items-center gap-1.5 mb-2 group relative w-fit cursor-pointer z-20"
-                      @click.stop="
-                        activeTooltip =
-                          activeTooltip === 'outstanding' ? null : 'outstanding'
-                      "
-                      v-click-outside="() => (activeTooltip = null)"
-                    >
-                      <span
-                        class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] font-semibold font-sans leading-none"
-                        >{{
-                          t(
-                            "dashboard.assignments.outstanding",
-                            "Outstanding Balance"
-                          )
-                        }}</span
-                      >
-                      <span class="material-icons-round text-[13px] text-[#aaa]"
-                        >help_outline</span
-                      >
+                  <div v-if="now_money < 0" class="flex flex-col justify-between h-full">
+                  <div 
+                    class="relative inline-flex items-center gap-1.5 mb-2 cursor-pointer z-20 select-none"
+                    @click.stop="activeTooltip = activeTooltip === 'outstanding' ? null : 'outstanding'"
+                    v-click-outside="() => (activeTooltip = null)">
+                    <span class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] font-semibold font-sans leading-none">
+                      {{ t("dashboard.assignments.outstanding", "Outstanding Balance") }}
+                    </span>
+                    <span class="material-icons-round text-[14px] text-[#666] dark:text-[#a1a1a1] shrink-0 transition-colors hover:text-black dark:hover:text-white">
+                      info
+                    </span>
 
-                      <div
-                        class="absolute bottom-full left-0 mb-2 w-48 p-2 bg-[#111] dark:bg-white text-white dark:text-black text-[11px] font-medium rounded opacity-0 invisible lg:group-hover:opacity-100 lg:group-hover:visible transition-all z-30 shadow-lg pointer-events-none normal-case tracking-normal"
-                        :class="{
-                          '!opacity-100 !visible':
-                            activeTooltip === 'outstanding',
-                        }"
-                      >
-                        {{
-                          t(
-                            "dashboard.assignments.outstanding_desc",
-                            "The funding shortfall required to settle the pending assignment."
-                          )
-                        }}
+                    <transition enter-active-class="transition-all duration-200 ease-out" enter-from-class="opacity-0 scale-95 translate-y-1" enter-to-class="opacity-100 scale-100 translate-y-0" leave-active-class="transition-all duration-150 ease-in" leave-from-class="opacity-100 scale-100 translate-y-0" leave-to-class="opacity-0 scale-95 translate-y-1">
+                      <div v-show="activeTooltip === 'outstanding'" class="absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 w-52 p-2.5 bg-[#111] dark:bg-white text-white dark:text-black text-[11px] font-medium rounded-md shadow-xl z-30 normal-case tracking-normal text-center pointer-events-none">
+                        {{ t("dashboard.assignments.outstanding_desc", "The funding shortfall required to settle the pending assignment.") }}
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-x-6 border-x-transparent border-t-6 border-t-[#111] dark:border-t-white"></div>
                       </div>
-                    </div>
-                      <div class="mt-auto flex items-center h-[28px] md:h-[32px]">
+                    </transition>
+                  </div>
+
+                      <div class="mt-auto flex items-center h-7 md:h-8">
                         <div v-if="isInitialLoad" class="animate-pulse bg-gray-200 dark:bg-[#222] h-6 md:h-8 w-24 md:w-32 rounded"></div>
                         <div v-else class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white">
                           {{ formatCurrency(outstandingBalance) }}
@@ -3939,42 +3924,26 @@ const closePayoutModal = () => {
                   </div>
 
                   <div class="flex flex-col justify-between h-full">
-                    <div
-                      class="flex items-center gap-1.5 mb-2 group relative w-fit cursor-pointer z-20"
-                      @click.stop="
-                        activeTooltip =
-                          activeTooltip === 'current' ? null : 'current'
-                      "
-                      v-click-outside="() => (activeTooltip = null)"
-                    >
-                      <span
-                        class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] font-semibold font-sans leading-none"
-                        >{{
-                          t(
-                            "dashboard.assignments.current_balance",
-                            "Current Account Value"
-                          )
-                        }}</span
-                      >
-                      <span class="material-icons-round text-[13px] text-[#aaa]"
-                        >help_outline</span
-                      >
+                  <div 
+                    class="relative inline-flex items-center gap-1.5 mb-2 cursor-pointer z-20 select-none"
+                    @click.stop="activeTooltip = activeTooltip === 'current' ? null : 'current'"
+                    v-click-outside="() => (activeTooltip = null)"
+                  >
+                    <span class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] font-semibold font-sans leading-none">
+                      {{ t("dashboard.assignments.current_balance", "Current Account Value") }}
+                    </span>
+                    <span class="material-icons-round text-[14px] text-[#666] dark:text-[#a1a1a1] shrink-0 transition-colors hover:text-black dark:hover:text-white">
+                      info
+                    </span>
 
-                      <div
-                        class="absolute bottom-full left-0 mb-2 w-48 p-2 bg-[#111] dark:bg-white text-white dark:text-black text-[11px] font-medium rounded opacity-0 invisible lg:group-hover:opacity-100 lg:group-hover:visible transition-all z-30 shadow-lg pointer-events-none normal-case tracking-normal"
-                        :class="{
-                          '!opacity-100 !visible': activeTooltip === 'current',
-                        }"
-                      >
-                        {{
-                          t(
-                            "dashboard.assignments.current_balance_desc",
-                            "Total ledger balance projected with the pending active assignment."
-                          )
-                        }}
+                    <transition enter-active-class="transition-all duration-200 ease-out" enter-from-class="opacity-0 scale-95 translate-y-1" enter-to-class="opacity-100 scale-100 translate-y-0" leave-active-class="transition-all duration-150 ease-in" leave-from-class="opacity-100 scale-100 translate-y-0" leave-to-class="opacity-0 scale-95 translate-y-1">
+                      <div v-show="activeTooltip === 'current'" class="absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 w-52 p-2.5 bg-[#111] dark:bg-white text-white dark:text-black text-[11px] font-medium rounded-md shadow-xl z-30 normal-case tracking-normal text-center pointer-events-none">
+                        {{ t("dashboard.assignments.current_balance_desc", "Total ledger balance projected with the pending active assignment.") }}
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-x-6 border-x-transparent border-t-6 border-t-[#111] dark:border-t-white"></div>
                       </div>
+                    </transition>
                     </div>
-                    <div class="mt-auto flex items-center h-[28px] md:h-[32px]">
+                    <div class="mt-auto flex items-center h-7 md:h-8">
                       <div v-if="isInitialLoad" class="animate-pulse bg-gray-200 dark:bg-[#222] h-6 md:h-8 w-24 md:w-32 rounded"></div>
                       <div v-else class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white">
                         {{ formatCurrency(displayCurrentBalance) }}
@@ -3983,42 +3952,26 @@ const closePayoutModal = () => {
                   </div>
 
                   <div class="flex flex-col justify-between h-full">
-                    <div
-                      class="flex items-center gap-1.5 mb-2 group relative w-fit cursor-pointer z-20"
-                      @click.stop="
-                        activeTooltip =
-                          activeTooltip === 'profit' ? null : 'profit'
-                      "
-                      v-click-outside="() => (activeTooltip = null)"
-                    >
-                      <span
-                        class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] font-semibold font-sans leading-none"
-                        >{{
-                          t(
-                            "dashboard.assignments.cycle_profit",
-                            "Current Cycle Profit"
-                          )
-                        }}</span
-                      >
-                      <span class="material-icons-round text-[13px] text-[#aaa]"
-                        >help_outline</span
-                      >
+                  <div 
+                    class="relative inline-flex items-center gap-1.5 mb-2 cursor-pointer z-20 select-none"
+                    @click.stop="activeTooltip = activeTooltip === 'profit' ? null : 'profit'"
+                    v-click-outside="() => (activeTooltip = null)"
+                  >
+                    <span class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] font-semibold font-sans leading-none">
+                      {{ t("dashboard.assignments.cycle_profit", "Current Cycle Profit") }}
+                    </span>
+                    <span class="material-icons-round text-[14px] text-[#666] dark:text-[#a1a1a1] shrink-0 transition-colors hover:text-black dark:hover:text-white">
+                      info
+                    </span>
 
-                      <div
-                        class="absolute bottom-full left-0 mb-2 w-48 p-2 bg-[#111] dark:bg-white text-white dark:text-black text-[11px] font-medium rounded opacity-0 invisible lg:group-hover:opacity-100 lg:group-hover:visible transition-all z-30 shadow-lg pointer-events-none normal-case tracking-normal"
-                        :class="{
-                          '!opacity-100 !visible': activeTooltip === 'profit',
-                        }"
-                      >
-                        {{
-                          t(
-                            "dashboard.assignments.cycle_profit_desc",
-                            "This calculation updates at the start of each new cycle. All profits are then added to the total ledger balance."
-                          )
-                        }}
+                    <transition enter-active-class="transition-all duration-200 ease-out" enter-from-class="opacity-0 scale-95 translate-y-1" enter-to-class="opacity-100 scale-100 translate-y-0" leave-active-class="transition-all duration-150 ease-in" leave-from-class="opacity-100 scale-100 translate-y-0" leave-to-class="opacity-0 scale-95 translate-y-1">
+                      <div v-show="activeTooltip === 'profit'" class="absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 w-52 p-2.5 bg-[#111] dark:bg-white text-white dark:text-black text-[11px] font-medium rounded-md shadow-xl z-30 normal-case tracking-normal text-center pointer-events-none">
+                        {{ t("dashboard.assignments.cycle_profit_desc", "This calculation updates at the start of each new cycle. All profits are then added to the total ledger balance.") }}
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-x-6 border-x-transparent border-t-6 border-t-[#111] dark:border-t-white"></div>
                       </div>
-                    </div>
-                      <div class="mt-auto flex items-center h-[28px] md:h-[32px]">
+                    </transition>
+                  </div>
+                      <div class="mt-auto flex items-center h-7 md:h-8">
                         <div v-if="isInitialLoad" class="animate-pulse bg-gray-200 dark:bg-[#222] h-6 md:h-8 w-24 md:w-32 rounded"></div>
                         <div v-else class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white">
                           {{ formatCurrency(currentCycleProfit) }}
@@ -4035,523 +3988,310 @@ const closePayoutModal = () => {
                         }}</span
                       >
                     </div>
-                    <div class="mt-auto flex items-center h-[28px] md:h-[32px]">
+                    <div class="mt-auto flex items-center h-7 md:h-8">
                       <div v-if="isInitialLoad" class="animate-pulse bg-gray-200 dark:bg-[#222] h-6 md:h-8 w-16 md:w-24 rounded"></div>
                       <div v-else class="text-xl md:text-2xl font-sans font-medium text-black dark:text-white">
-                        {{ reward_rate }} %
+                        {{ Number(reward_rate) }}%
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
-                  <div
-                    class="p-6 bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg flex flex-col justify-between min-h-[14rem]"
-                  >
-                      <div>
-                      <div class="flex items-center justify-between mb-4">
-                        <h3
-                          class="text-[15px] font-semibold text-black dark:text-white font-sans"
-                        >
-                          {{
-                            t(
-                              "dashboard.assignments.schema_sync",
-                              "Schema Synchronization"
-                            )
-                          }}
-                        </h3>
-                        <span
-                          class="text-[11px] font-medium px-2 py-0.5 rounded bg-[#fafafa] dark:bg-[#111] border border-black/5 dark:border-white/5 text-[#666] dark:text-[#a1a1a1]"
-                        >
-                          {{
-                            t("dashboard.assignments.quota_remaining", {
-                              current: schemaQuota,
-                              max: maxSchemaQuota,
-                            })
-                          }}
-                        </span>
-                      </div>
-                      <p
-                        class="text-[13px] text-[#666] dark:text-[#a1a1a1] leading-relaxed mb-6"
-                      >
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="p-4 sm:p-6 bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl flex flex-col justify-between min-h-56">
+                  <div>
+                    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2.5 mb-4">
+                      <h3 class="text-[15px] font-semibold text-black dark:text-white font-sans wrap-break-word whitespace-normal leading-snug">
                         {{
                           t(
-                            "dashboard.assignments.sync_desc",
-                            "Establish a secure connection to the allocation pool to sync and inspect the next available structured dataset prior to ledger execution."
+                            "dashboard.assignments.schema_sync",
+                            "Schema Synchronization"
                           )
                         }}
-                      </p>
-                    </div>
-
-                    <div
-                      class="mt-auto pt-6 border-t border-black/5 dark:border-white/5"
-                    >
-                      <button
-                        @click="retrieveAssignment('auto')"
-                        :disabled="
-                          isRetrievingAssignment || currentSchema !== null
-                        "
-                        class="w-full px-6 py-3 bg-black dark:bg-white text-white dark:text-black text-[13px] font-medium rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 border border-transparent"
-                      >
-                        <span
-                          v-if="isRetrievingAssignment"
-                          class="material-icons-round animate-spin text-[16px]"
-                          >autorenew</span
-                        >
-                        <span v-else class="material-icons-round text-[16px]"
-                          >sync</span
-                        >
+                      </h3>
+                      <span class="text-[11px] font-medium px-2.5 py-1 rounded-md bg-[#365ef8]/10 border border-[#365ef8]/20 text-[#365ef8] dark:bg-[#365ef8]/20 dark:border-[#365ef8]/30 dark:text-[#6080f8] self-start sm:self-auto text-left sm:text-right max-w-full wrap-break-word whitespace-normal shrink-0 leading-normal">
                         {{
-                          isRetrievingAssignment
-                            ? t(
-                                "dashboard.assignments.syncing",
-                                "Syncing Payload..."
-                              )
-                            : t(
-                                "dashboard.assignments.sync_btn",
-                                "Sync Next Schema"
-                              )
+                          t("dashboard.assignments.quota_remaining", {
+                            current: schemaQuota,
+                            max: maxSchemaQuota,
+                          })
                         }}
-                      </button>
+                      </span>
                     </div>
+                    <p class="text-[13px] text-[#666] dark:text-[#a1a1a1] leading-relaxed mb-6">
+                      {{
+                        t(
+                          "dashboard.assignments.sync_desc",
+                          "Establish a secure connection to the allocation pool to sync and inspect the next available structured dataset prior to ledger execution."
+                        )
+                      }}
+                    </p>
                   </div>
 
-                  <div
-                    class="lg:col-span-2 relative rounded-lg"
-                    :class="isProceeding ? 'p-0.5 z-10' : 'p-px'"
-                  >
-                    <div
-                      v-if="isProceeding"
-                      class="absolute inset-0 rounded-lg bg-[linear-gradient(90deg,#ff9a9e,#d4bbf9,#a1c4fd,#bbf0f3,#ff9a9e)] bg-size-[200%_200%] animate-rainbow-glow-spin z-0 filter blur-xs opacity-60"
-                    ></div>
-                    <div
-                      v-if="isProceeding"
-                      class="absolute inset-0 rounded-lg bg-[linear-gradient(90deg,#ff9a9e,#d4bbf9,#a1c4fd,#bbf0f3,#ff9a9e)] bg-size-[200%_200%] animate-rainbow-glow-spin z-0"
-                    ></div>
-
-                  <div
-                    v-if="currentSchema"
-                    class="relative p-6 md:p-8 rounded-[calc(0.5rem-1px)] z-10 flex flex-col justify-between min-h-full w-full"
-                    :class="[
-                        currentSchema.isHighYield
-                          ? 'bg-amber-50 dark:bg-[#3d2a00] border-amber-300 dark:border-[#5c4000]'
-                          : 'bg-white dark:bg-[#0a0a0a] border-black/10 dark:border-white/10',
-                        !isProceeding ? 'border shadow-sm' : '',
+                  <div class="mt-auto pt-6 border-t border-black/5 dark:border-white/5">
+                    <button
+                      @click="retrieveAssignment('auto')"
+                      :disabled="isGlobalLock || currentSchema !== null"
+                      :class="[
+                        (isGlobalLock || currentSchema !== null)
+                          ? 'opacity-50 grayscale cursor-not-allowed bg-black dark:bg-white text-white dark:text-black' 
+                          : 'bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200'
                       ]"
+                      class="w-full px-6 py-3 text-[13px] font-medium rounded-md transition-all duration-300 flex items-center justify-center gap-2 border border-transparent"
                     >
-                      <div
-                        class="flex flex-col sm:flex-row items-center sm:items-start gap-6 flex-1 w-full"
-                      >
-                        <img
-                          :src="currentSchema.image"
-                          class="w-24 h-24 rounded-lg border border-black/10 dark:border-white/10 object-cover shadow-sm bg-[#fafafa] dark:bg-[#111] shrink-0"
-                          :alt="
-                            t(
-                              'dashboard.assignments.product_visual',
-                              'Product Visual'
-                            )
-                          "
-                        />
-
-                        <div
-                          class="flex-1 w-full grid grid-cols-2 gap-y-5 gap-x-4 text-[13px] pt-1"
-                        >
-                          <div class="col-span-2">
-                            <p
-                              class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold"
-                            >
-                              {{
-                                t(
-                                  "dashboard.assignments.timestamp_id",
-                                  "Timestamp ID"
-                                )
-                              }}
-                            </p>
-                            <p class="font-mono text-black dark:text-white">
-                              {{ currentSchema.timestamp }}
-                            </p>
-                          </div>
-                        <div class="col-span-2 min-w-0">
-                          <p class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold">
-                            {{
-                              t(
-                                "dashboard.assignments.reference",
-                                "Reference"
-                              )
-                            }}
-                          </p>
-                          <p class="font-mono text-black dark:text-white font-medium break-words whitespace-normal leading-relaxed">
-                            {{ currentSchema.reference }}
-                          </p>
-                        </div>
-
-                          <div>
-                            <p
-                              class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold">
-                              {{
-                                t(
-                                  "dashboard.assignments.asset_value",
-                                  "Asset Value"
-                                )
-                              }}
-                            </p>
-                            <p
-                              class="font-sans text-black dark:text-white font-bold">
-                              {{ formatCurrency(currentSchema.value) }}
-                            </p>
-                          </div>
-                          <div>
-                            <p
-                              class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold">
-                              {{
-                                t(
-                                  "dashboard.assignments.yield_rate",
-                                  "Yield Rate"
-                                )
-                              }}
-                            </p>
-                            <p class="font-sans text-black dark:text-white">
-                              {{ currentSchema.yieldRate }}%
-                            </p>
-                          </div>
-                          <div class="col-span-2 sm:col-span-1">
-                            <p
-                              class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold"
-                            >
-                              {{ t("dashboard.assignments.yield", "Yield") }}
-                            </p>
-                            <p
-                              class="font-sans text-black dark:text-white font-medium"
-                            >
-                              {{ formatCurrency(currentSchema.yieldImpact) }}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div
-                        class="mt-6 pt-5 border-t border-black/5 dark:border-white/5 flex items-center justify-end w-full"
-                      >
-                        <button
-                          @click="proceedToNext"
-                          :disabled="isProceeding || now_money < 0"
-                          :class="
-                            now_money < 0
-                              ? 'opacity-50 bg-black dark:bg-white text-white dark:text-black cursor-not-allowed'
-                              : 'bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200'
-                          "
-                          class="w-full px-6 py-3 text-[13px] font-medium rounded-md transition-colors flex items-center justify-center gap-2 border border-transparent"
-                        >
-                          <span
-                            v-if="isProceeding"
-                            class="material-icons-round animate-spin text-[16px]"
-                            >autorenew</span
-                          >
-                          {{
-                            isProceeding
-                              ? t(
-                                  "dashboard.assignments.verifying",
-                                  "Verifying Ledger..."
-                                )
-                              : t(
-                                  "dashboard.assignments.proceed_btn",
-                                  "Proceed to Upload"
-                                )
-                          }}
-                        </button>
-                      </div>
-                    </div>
-
-                      <div
-                        v-else
-                        class="relative p-6 bg-white dark:bg-[#0a0a0a] rounded-[calc(0.5rem-1px)] z-10 flex items-center justify-center min-h-[14rem] w-full border border-black/10 dark:border-white/10 border-dashed"
-                      >
-                      <span class="text-[13px] text-[#888] dark:text-[#666]">{{
-                        t(
-                          "dashboard.assignments.idle",
-                          "Data view idle. Please sync a structural schema."
-                        )
-                      }}</span>
-                    </div>
+                      <span v-if="isRetrievingAssignment" class="material-icons-round animate-spin text-[16px]">autorenew</span>
+                      <span v-else class="material-icons-round text-[16px]">sync</span>
+                      {{ isRetrievingAssignment ? t("dashboard.assignments.syncing", "Syncing Payload...") : t("dashboard.assignments.sync_btn", "Sync Next Schema") }}
+                    </button>
                   </div>
                 </div>
 
-                <div
-                  class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg overflow-hidden w-full"
-                >
-                  <div
-                    class="px-6 py-4 border-b border-black/10 dark:border-white/10 bg-[#fafafa] dark:bg-[#111] flex items-center justify-between"
-                  >
-                    <h3
-                      class="text-[13px] font-semibold text-black dark:text-white font-sans"
-                    >
-                      {{
-                        t(
-                          "dashboard.assignments.recent_activity",
-                          "Recent Activity"
-                        )
-                      }}
-                    </h3>
-                  </div>
+                <div class="lg:col-span-2 relative rounded-2xl overflow-hidden">
+                    <div v-if="currentSchema" class="relative p-4 sm:p-6 rounded-2xl z-10 flex flex-col justify-between min-h-full w-full"
+                      :class="[
+                          currentSchema.isHighYield
+                            ? 'bg-amber-50 dark:bg-[#3d2a00] border-amber-300 dark:border-[#5c4000]'
+                            : 'bg-white dark:bg-[#0a0a0a] border-black/10 dark:border-white/10',
+                          !isProceeding ? 'border shadow-sm' : '',
+                        ]"
+                      >
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 flex-1 w-full">
+                          <img
+                            :src="currentSchema.image"
+                            class="w-24 h-24 rounded-lg border border-black/10 dark:border-white/10 object-cover shadow-sm bg-[#fafafa] dark:bg-[#111] shrink-0"
+                            :alt="t('dashboard.assignments.product_visual', 'Product Visual')"
+                          />
 
-                  <div
-                    class="block md:hidden divide-y divide-black/5 dark:divide-white/5"
-                  >
+                          <div class="flex-1 w-full grid grid-cols-2 gap-y-5 gap-x-4 text-[13px] pt-1">
+                            <div class="col-span-2">
+                              <p class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold">
+                                {{ t("dashboard.assignments.timestamp_id", "Timestamp ID") }}
+                              </p>
+                              <p class="font-mono text-black dark:text-white">
+                                {{ currentSchema.timestamp }}
+                              </p>
+                            </div>
+                            <div class="col-span-2 min-w-0">
+                              <p class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold">
+                                {{ t("dashboard.assignments.reference", "Reference") }}
+                              </p>
+                              <p class="font-mono text-black dark:text-white font-medium wrap-break-word whitespace-normal leading-relaxed">
+                                {{ currentSchema.reference }}
+                              </p>
+                            </div>
+
+                            <div>
+                              <p class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold">
+                                {{ t("dashboard.assignments.asset_value", "Asset Value") }}
+                              </p>
+                              <p class="font-sans text-black dark:text-white font-bold">
+                                {{ formatCurrency(currentSchema.value) }}
+                              </p>
+                            </div>
+                            <div>
+                              <p class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold">
+                                {{ t("dashboard.assignments.yield_rate", "Yield Rate") }}
+                              </p>
+                              <p class="font-sans text-black dark:text-white">
+                                {{ currentSchema.yieldRate }}%
+                              </p>
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                              <p class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] mb-1 font-semibold">
+                                {{ t("dashboard.assignments.yield", "Yield") }}
+                              </p>
+                              <p class="font-sans text-black dark:text-white font-medium">
+                                {{ formatCurrency(currentSchema.yieldImpact) }}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mt-6 pt-5 border-t border-black/5 dark:border-white/5 flex items-center justify-end w-full">
+                          <button
+                            @click="proceedToNext"
+                            :disabled="isGlobalLock || now_money < 0"
+                            :class="[
+                              (isGlobalLock || now_money < 0)
+                                ? 'opacity-50 grayscale cursor-not-allowed bg-black dark:bg-white text-white dark:text-black'
+                                : 'bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200'
+                            ]"
+                            class="w-full px-6 py-3 text-[13px] font-medium rounded-md transition-all duration-300 flex items-center justify-center gap-2 border border-transparent"
+                          >
+                            <span v-if="isProceeding" class="material-icons-round animate-spin text-[16px]">autorenew</span>
+                            {{ isProceeding ? t("dashboard.assignments.verifying", "Uploading to database...") : t("dashboard.assignments.proceed_btn", "Proceed to Upload") }}
+                          </button>
+                        </div>
+                    </div>
+
+                    <div v-else class="relative p-4 sm:p-6 rounded-2xl z-10 flex flex-col items-center justify-center min-h-56 w-full bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 border-dashed">
+                      <span class="text-[13px] text-[#888] dark:text-[#666]">
+                        {{ t("dashboard.assignments.idle", "Waiting for assignment") }}
+                      </span>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-3 bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6 w-full">
+                  <h3 class="text-[15px] font-semibold text-black dark:text-white mb-4">
+                    {{ t("dashboard.assignments.recent_activity", "Recent Activity") }}
+                  </h3>
+
+                  <div class="block md:hidden divide-y divide-black/5 dark:divide-white/5 border-t border-black/5 dark:border-white/5 mt-2">
                     <div
                       v-if="displayedActivity.length === 0"
-                      class="p-6 text-center text-[13px] text-[#666]"
-                    >
-                      {{
-                        t(
-                          "dashboard.assignments.no_activity",
-                          "No recent activity."
-                        )
-                      }}
+                      class="py-6 text-center text-[13px] text-[#666]">
+                      {{ t("dashboard.assignments.no_activity", "No recent activity.") }}
                     </div>
-                    <div
-                      v-for="tx in displayedActivity"
+                    <div v-for="tx in displayedActivity"
                       :key="tx.id"
-                      class="p-4 flex flex-col gap-3"
-                      :class="
-                        tx.isHighYield
-                          ? 'bg-amber-50 dark:bg-[#3d2a00]'
-                          : 'bg-transparent'
-                      "
-                    >
-                      <div class="flex items-start justify-between gap-3">
-                        <div class="flex flex-col gap-1">
-                          <span
-                            class="font-mono text-[10px] text-[#888] dark:text-[#777] leading-none"
-                            >{{ tx.timestamp }}</span
-                          >
-                          <span
-                            class="font-mono text-[11px] text-[#666] dark:text-[#a1a1a1] break-all whitespace-normal text-left leading-relaxed"
-                            >{{ tx.reference }}</span
-                          >
-                        </div>
-                        <span
-                          class="px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold rounded-sm border whitespace-nowrap shrink-0 mt-0.5"
-                          :class="{
-                            'border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10':
-                              tx.status === 'Success',
-                            'border-gray-200 text-gray-600 bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800':
-                              tx.status === 'Corrupted',
-                            'border-yellow-200 text-yellow-600 bg-yellow-50 dark:border-yellow-900/30 dark:text-yellow-400 dark:bg-yellow-900/10':
-                              tx.status === 'Pending',
-                          }"
-                        >
-                          {{
-                            tx.status === "Success"
-                              ? t(
-                                  "dashboard.assignments.status_success",
-                                  "Success"
-                                )
-                              : tx.status === "Pending"
-                              ? t(
-                                  "dashboard.assignments.status_pending",
-                                  "Pending"
-                                )
-                              : tx.status === "Corrupted"
-                              ? t(
-                                  "dashboard.assignments.status_corrupted",
-                                  "Corrupted"
-                                )
-                              : tx.status
-                          }}
-                        </span>
-                      </div>
-                      <div
-                        class="flex items-center justify-between text-[13px] font-sans"
-                      >
-                        <span class="text-black dark:text-white text-left"
-                          >{{ t("dashboard.assignments.asset", "Asset") }}:
-                          {{ formatCurrency(tx.value) }}</span
-                        >
-                        <div class="flex items-center gap-3">
-                          <span class="text-[#666] dark:text-[#a1a1a1]">{{
-                            tx.yieldRate === "-" ? "-" : tx.yieldRate + "%"
-                          }}</span>
-                          <span
-                            class="font-medium text-black dark:text-white"
-                            >{{ formatCurrency(tx.amount) }}</span
-                          >
-                        </div>
-                      </div>
-                      <button
-                        v-if="tx.statusCode === 0"
-                        type="button"
-                        :disabled="submittingRecordId === tx.txId"
-                        @click="submitOrderFromRecord(tx)"
-                        class="mt-2 w-full py-2 text-[12px] font-semibold rounded-md border border-[#0070f3] dark:border-[#3291ff] text-[#0070f3] dark:text-[#3291ff] bg-transparent hover:bg-[#0070f3]/10 dark:hover:bg-[#3291ff]/10 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5"
-                      >
-                        <span
-                          v-if="submittingRecordId === tx.txId"
-                          class="material-icons-round animate-spin text-[14px]"
-                          >autorenew</span
-                        >
-                        {{
-                          submittingRecordId === tx.txId
-                            ? t("dashboard.modal.processing", "Processing...")
-                            : t("dashboard.assignments.submit_order", "Submit")
-                        }}
-                      </button>
-                    </div>
-                  </div>
-
-                  <div class="hidden md:block overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                      <thead
-                        class="text-[11px] uppercase tracking-wider text-[#666] dark:text-[#a1a1a1] border-b border-black/10 dark:border-white/10 font-sans bg-[#fafafa]/50 dark:bg-[#111]/50"
-                      >
-                        <tr>
-                          <th class="px-6 py-3.5 font-semibold text-left">
-                            {{
-                              t(
-                                "dashboard.assignments.timestamp_id",
-                                "Timestamp ID"
-                              )
-                            }}
-                          </th>
-                          <th class="px-6 py-3.5 font-semibold text-left w-1/4">
-                            {{
-                              t("dashboard.assignments.reference", "Reference")
-                            }}
-                          </th>
-                          <th class="px-6 py-3.5 font-semibold text-left">
-                            {{
-                              t(
-                                "dashboard.assignments.asset_value",
-                                "Asset Value"
-                              )
-                            }}
-                          </th>
-                          <th class="px-6 py-3.5 font-semibold text-left">
-                            {{
-                              t(
-                                "dashboard.assignments.yield_rate",
-                                "Yield Rate"
-                              )
-                            }}
-                          </th>
-                          <th class="px-6 py-3.5 font-semibold text-left">
-                            {{ t("dashboard.assignments.yield", "Yield") }}
-                          </th>
-                          <th class="px-6 py-3.5 font-semibold text-left">
-                            {{ t("dashboard.payouts.th_status", "Status") }}
-                          </th>
-                          <th class="px-6 py-3.5 font-semibold text-left w-24">
-                            {{ t("dashboard.assignments.action", "Action") }}
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody
-                        class="divide-y divide-black/5 dark:divide-white/5 text-[13px]"
-                      >
-                        <tr v-if="displayedActivity.length === 0">
-                          <td
-                            colspan="7"
-                            class="px-6 py-6 text-center text-[#666] dark:text-[#a1a1a1]"
-                          >
-                            {{
-                              t(
-                                "dashboard.assignments.no_activity",
-                                "No recent activity."
-                              )
-                            }}
-                          </td>
-                        </tr>
-                        <tr
-                          v-for="tx in displayedActivity"
-                          :key="tx.id"
-                          :class="
-                            tx.isHighYield
-                              ? 'bg-amber-50 dark:bg-[#3d2a00]'
-                              : 'bg-transparent'
-                          "
-                        >
-                          <td
-                            class="px-6 py-4 text-[#888] dark:text-[#666] font-mono text-[11px] whitespace-nowrap text-left align-top"
-                          >
-                            {{ tx.timestamp }}
-                          </td>
-                          <td
-                            class="px-6 py-4 text-[#888] dark:text-[#666] font-mono text-[11px] break-all whitespace-normal min-w-30 max-w-62.5 text-left align-top leading-relaxed"
-                          >
-                            {{ tx.reference }}
-                          </td>
-                          <td
-                            class="px-6 py-4 text-left text-black dark:text-white font-sans align-top"
-                          >
-                            {{ formatCurrency(tx.value) }}
-                          </td>
-                          <td
-                            class="px-6 py-4 text-left text-black dark:text-white font-sans align-top"
-                          >
-                            {{
-                              tx.yieldRate === "-" ? "-" : tx.yieldRate + "%"
-                            }}
-                          </td>
-                          <td
-                            class="px-6 py-4 text-left text-black dark:text-white font-sans font-medium align-top"
-                          >
-                            {{ formatCurrency(tx.amount) }}
-                          </td>
-                          <td class="px-6 py-4 text-left align-top">
-                            <span
-                              class="px-2 py-1 text-[10px] uppercase tracking-wider font-sans font-semibold rounded-sm border whitespace-nowrap"
+                      class="py-4 flex flex-col gap-3"
+                      :class="tx.isHighYield ? 'bg-amber-50 dark:bg-[#3d2a00] border border-amber-300 dark:border-[#5c4000] px-3 -mx-3 rounded-md' : 'bg-transparent'">
+                    
+                      <div class="flex items-center justify-between gap-3">
+                        
+                        <div class="flex-1 min-w-0 flex flex-col items-start gap-1.5 text-left">
+                          <div class="flex items-center gap-2 flex-wrap">
+                            <span class="px-2 py-0.5 text-[10px] font-medium rounded-sm border inline-block text-center leading-tight"
                               :class="{
-                                'border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10':
-                                  tx.status === 'Success',
-                                'border-gray-200 text-gray-600 bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800':
-                                  tx.status === 'Corrupted',
-                                'border-yellow-200 text-yellow-600 bg-yellow-50 dark:border-yellow-900/30 dark:text-yellow-400 dark:bg-yellow-900/10':
-                                  tx.status === 'Pending',
-                              }"
-                            >
+                                'border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10': tx.status === 'Success',
+                                'border-gray-200 text-gray-600 bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800': tx.status === 'Corrupted',
+                                'border-yellow-200 text-yellow-600 bg-yellow-50 dark:border-yellow-900/30 dark:text-yellow-400 dark:bg-yellow-900/10': tx.status === 'Pending'
+                              }">
                               {{
                                 tx.status === "Success"
-                                  ? t(
-                                      "dashboard.assignments.status_success",
-                                      "Success"
-                                    )
+                                  ? t("dashboard.assignments.status_success", "Uploaded to cloud")
                                   : tx.status === "Pending"
-                                  ? t(
-                                      "dashboard.assignments.status_pending",
-                                      "Pending"
-                                    )
+                                  ? t("dashboard.assignments.status_pending", "Pending upload")
                                   : tx.status === "Corrupted"
-                                  ? t(
-                                      "dashboard.assignments.status_corrupted",
-                                      "Corrupted"
-                                    )
+                                  ? t("dashboard.assignments.status_corrupted", "Corrupted")
                                   : tx.status
                               }}
                             </span>
+                            <span class="font-mono text-[10px] text-[#888] dark:text-[#777] leading-none mt-0.5">
+                              {{ tx.timestamp }}
+                            </span>
+                          </div>
+
+                          <span class="font-mono text-[12px] text-gray-700 dark:text-gray-300 wrap-break-word whitespace-normal leading-relaxed mt-0.5 w-full">
+                            {{ tx.reference }}
+                          </span>
+                        </div>
+
+                        <div class="shrink-0 flex flex-col items-end text-right font-sans gap-0.5">
+                          <span class="text-[12px] text-[#666] dark:text-[#a1a1a1] font-medium leading-tight">
+                            {{ formatCurrency(tx.value) }}
+                          </span>
+                          <span class="text-[12px] text-[#666] dark:text-[#a1a1a1] font-medium leading-tight">
+                            {{ tx.yieldRate === "-" ? "-" : tx.yieldRate + "%" }}
+                          </span>
+                          <span class="text-[13px] font-medium leading-tight transition-colors"
+                            :class="{
+                              'text-emerald-600 dark:text-emerald-400': tx.status === 'Success',
+                              'text-yellow-600 dark:text-yellow-400': tx.status === 'Pending',
+                              'text-gray-500 dark:text-gray-400': tx.status === 'Corrupted',
+                              'text-black dark:text-white': !['Success', 'Pending', 'Corrupted'].includes(tx.status)
+                            }">
+                            {{ formatCurrency(tx.amount) }}
+                          </span>
+                        </div>
+
+                      </div> 
+
+                      <button
+                        v-if="tx.statusCode === 0"
+                        type="button"
+                        :disabled="isGlobalLock"
+                        @click="submitOrderFromRecord(tx)"
+                        :class="{
+                          'border-[#0070f3] dark:border-[#3291ff] text-[#0070f3] dark:text-[#3291ff] hover:bg-[#0070f3]/10 dark:hover:bg-[#3291ff]/10': !isGlobalLock,
+                          'border-gray-400 text-gray-400 opacity-50 grayscale cursor-not-allowed': isGlobalLock
+                        }"
+                        class="mt-1 w-full py-2 text-[12px] font-semibold rounded-md border bg-transparent transition-all duration-300 flex items-center justify-center gap-1.5"
+                      >
+                        <span v-if="submittingRecordId === tx.txId" class="material-icons-round animate-spin text-[14px]">autorenew</span>
+                        {{ submittingRecordId === tx.txId ? t("dashboard.modal.processing", "Processing...") : t("dashboard.assignments.submit_order", "Submit") }}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="hidden md:block overflow-x-auto mt-4">
+                    <table class="w-full min-w-125 text-left border-collapse">
+                    <thead class="border-b border-black/10 dark:border-white/10 text-[12px] text-[#666] dark:text-[#a1a1a1]">
+                      <tr>
+                        <th class="py-3 pr-4 font-medium whitespace-nowrap">{{ t("dashboard.assignments.timestamp_id", "Timestamp ID") }}</th>
+                        <th class="py-3 pr-4 font-medium whitespace-nowrap">{{ t("dashboard.assignments.reference", "Reference") }}</th>
+                        <th class="py-3 pr-4 font-medium whitespace-nowrap">{{ t("dashboard.assignments.asset_value", "Asset Value") }}</th>
+                        <th class="py-3 pr-4 font-medium whitespace-nowrap">{{ t("dashboard.assignments.yield_rate", "Yield Rate") }}</th>
+                        <th class="py-3 pr-4 font-medium whitespace-nowrap">{{ t("dashboard.assignments.yield", "Yield") }}</th>
+                        <th class="py-3 pr-4 font-medium whitespace-nowrap">{{ t("dashboard.payouts.th_status", "Status") }}</th>
+                        <th class="py-3 font-medium text-left whitespace-nowrap">{{ t("dashboard.assignments.action", "Action") }}</th>
+                      </tr>
+                    </thead>
+                      <tbody class="text-[13px]">
+                        <tr
+                          v-if="displayedActivity.length === 0"
+                          class="border-b border-black/5 dark:border-white/5"
+                        >
+                          <td colspan="7" class="py-8 text-center text-[#666]">
+                            {{ t("dashboard.assignments.no_activity", "No recent activity.") }}
                           </td>
-                          <td class="px-6 py-4 text-left align-top">
+                        </tr>
+                        
+                        <tr
+                          v-for="tx in displayedActivity"
+                          :key="tx.id"
+                          class="border-b border-black/5 dark:border-white/5"
+                          :class="tx.isHighYield ? 'bg-amber-50 dark:bg-[#3d2a00]' : ''">
+                          <td class="py-3 pr-4 text-[#888] dark:text-[#666] font-mono text-[11px] align-middle leading-relaxed">{{ tx.timestamp }}</td>
+                          
+                          <td class="py-3 pr-4 text-gray-700 dark:text-gray-300 font-mono text-[12px] wrap-break-word whitespace-normal align-middle leading-relaxed">{{ tx.reference }}</td>
+                          
+                          <td class="py-3 pr-4 text-[12px] font-medium align-middle leading-relaxed">{{ formatCurrency(tx.value) }}</td>
+                          <td class="py-3 pr-4 text-[12px] font-medium align-middle leading-relaxed">{{ tx.yieldRate === "-" ? "-" : tx.yieldRate + "%" }}</td>
+
+                          <td class="py-3 pr-4 text-[13px] font-medium align-middle leading-relaxed transition-colors"
+                            :class="{
+                              'text-emerald-600 dark:text-emerald-400': tx.status === 'Success',
+                              'text-yellow-600 dark:text-yellow-400': tx.status === 'Pending',
+                              'text-gray-500 dark:text-gray-400': tx.status === 'Corrupted',
+                            }">
+                            {{ formatCurrency(tx.amount) }}
+                          </td>
+                          
+                          <td class="py-3 pr-4 align-middle leading-relaxed">
+                            <span
+                              class="px-2 py-1 text-[10px] font-medium rounded-sm border inline-block text-center whitespace-normal wrap-break-word max-w-30"
+                              :class="{
+                                'border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10': tx.status === 'Success',
+                                'border-gray-200 text-gray-600 bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800': tx.status === 'Corrupted',
+                                'border-yellow-200 text-yellow-600 bg-yellow-50 dark:border-yellow-900/30 dark:text-yellow-400 dark:bg-yellow-900/10': tx.status === 'Pending'
+                              }"
+                            >
+                              {{ 
+                                tx.status === "Success" 
+                                  ? t("dashboard.assignments.status_success", "Uploaded to cloud") 
+                                  : tx.status === "Pending" 
+                                  ? t("dashboard.assignments.status_pending", "Pending upload") 
+                                  : tx.status === "Corrupted" 
+                                  ? t("dashboard.assignments.status_corrupted", "Corrupted") 
+                                  : tx.status 
+                              }}
+                            </span>
+                          </td>
+                          <td class="py-3 text-left align-middle">
                             <button
                               v-if="tx.statusCode === 0"
                               type="button"
-                              :disabled="submittingRecordId === tx.txId"
+                              :disabled="isGlobalLock"
                               @click="submitOrderFromRecord(tx)"
-                              class="px-3 py-1.5 text-[11px] font-semibold rounded border border-[#0070f3] dark:border-[#3291ff] text-[#0070f3] dark:text-[#3291ff] bg-transparent hover:bg-[#0070f3]/10 dark:hover:bg-[#3291ff]/10 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-1"
+                              :class="{
+                                'border-[#0070f3] dark:border-[#3291ff] text-[#0070f3] dark:text-[#3291ff] hover:bg-[#0070f3]/10 dark:hover:bg-[#3291ff]/10': !isGlobalLock,
+                                'border-gray-400 text-gray-400 opacity-50 grayscale cursor-not-allowed': isGlobalLock
+                              }"
+                              class="px-3 py-1 text-[11px] font-semibold rounded border bg-transparent transition-all duration-300 inline-flex items-center gap-1"
                             >
-                              <span
-                                v-if="submittingRecordId === tx.txId"
-                                class="material-icons-round animate-spin text-[12px]"
-                                >autorenew</span
-                              >
-                              {{
-                                submittingRecordId === tx.txId
-                                  ? t(
-                                      "dashboard.modal.processing",
-                                      "Processing..."
-                                    )
-                                  : t(
-                                      "dashboard.assignments.submit_order",
-                                      "Submit"
-                                    )
-                              }}
+                              <span v-if="submittingRecordId === tx.txId" class="material-icons-round animate-spin text-[12px]">autorenew</span>
+                              {{ submittingRecordId === tx.txId ? t("dashboard.modal.processing", "Processing...") : t("dashboard.assignments.submit_order", "Submit") }}
                             </button>
                           </td>
                         </tr>
@@ -4559,38 +4299,21 @@ const closePayoutModal = () => {
                     </table>
                   </div>
 
-                  <div
-                    v-if="recentActivity.length > 4"
-                    class="px-6 py-3 border-t border-black/5 dark:border-white/5 flex items-center justify-center bg-[#fafafa] dark:bg-[#0a0a0a]"
-                  >
-                    <button
-                      @click="showAllActivity = !showAllActivity"
-                      class="text-[13px] font-medium text-black dark:text-white hover:opacity-70 transition-opacity flex items-center gap-1.5"
-                    >
-                      {{
-                        showAllActivity
-                          ? t(
-                              "dashboard.assignments.collapse",
-                              "Collapse Ledger"
-                            )
-                          : t(
-                              "dashboard.assignments.view_all",
-                              "View All Activity"
-                            )
-                      }}
-                      <span class="material-icons-round text-[16px]">{{
-                        showAllActivity ? "expand_less" : "expand_more"
-                      }}</span>
+                  <div v-if="recentActivity.length > 4" class="w-full mt-6 pt-4 border-t border-black/5 dark:border-white/5 flex items-center justify-center">
+                    <button @click="showAllActivity = !showAllActivity" class="text-[13px] font-medium text-black dark:text-white inline-flex items-center gap-1.5 mx-auto">
+                      {{ showAllActivity ? t("dashboard.assignments.collapse", "Collapse") : t("dashboard.assignments.view_all", "View All") }}
+                      <span class="material-icons-round text-[16px]">{{ showAllActivity ? "expand_less" : "expand_more" }}</span>
                     </button>
                   </div>
+                  </div>
                 </div>
-              </div>
-            </template>
+                </div>     
+              </template>
 
             <template v-else-if="activeTab === 'payouts'">
               <div class="w-full space-y-6"> 
 
-                <div v-if="payoutBannerText" class="w-full bg-[#ffcc00] text-black px-5 py-3.5 rounded-md font-medium text-[13px] sm:text-[14px] leading-relaxed shadow-sm mb-6 text-left break-words whitespace-normal">
+                <div v-if="payoutBannerText" class="w-full bg-[#ffcc00] text-black px-5 py-3.5 rounded-md font-medium text-[13px] sm:text-[14px] leading-relaxed shadow-sm mb-6 text-left wrap-break-word whitespace-normal">
                   {{ payoutBannerText }}
                 </div>
 
@@ -4603,7 +4326,7 @@ const closePayoutModal = () => {
                   </p>
                 </div>
 
-          <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6">
+              <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6">
               <div class="flex items-center justify-between mb-5">
                 <h3 class="text-[15px] font-semibold text-black dark:text-white">
                   {{ t("dashboard.payouts.funds_breakdown", "Available Funds Breakdown") }}
@@ -4633,7 +4356,7 @@ const closePayoutModal = () => {
               </div>
             </div>
               
-              <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6">
+                <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6">
                 <h3 class="text-[15px] font-semibold text-black dark:text-white mb-5 flex items-center gap-2">
                   <span class="w-6 h-6 rounded-full bg-black text-white dark:bg-white dark:text-black flex items-center justify-center text-[12px]">1</span>
                   {{ t("dashboard.payouts.step1_title", "Send Funds To") }}
@@ -4642,7 +4365,7 @@ const closePayoutModal = () => {
                 <div class="space-y-5">
                   <div class="relative w-full" v-click-outside="() => (isCountryDropdownOpen = false)">
                     <div @click="isCountryDropdownOpen = !isCountryDropdownOpen" tabindex="0"
-                      class="peer w-full p-[14px_16px] text-[14px] min-h-[50px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] cursor-pointer flex items-center justify-between transition-all">
+                      class="peer w-full p-[14px_16px] text-[14px] min-h-12.5 rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] cursor-pointer flex items-center justify-between transition-all">
                       <span>{{ payoutRegions[withdrawalForm.country]?.label }}</span>
                       <span class="material-icons-round text-[#666] dark:text-[#a1a1a1] text-[18px] transition-transform duration-200" :class="{ 'rotate-180': isCountryDropdownOpen }">expand_more</span>
                     </div>
@@ -4682,8 +4405,8 @@ const closePayoutModal = () => {
                     </div>
 
                     <div class="relative w-full mt-4" v-click-outside="() => (isTokenDropdownOpen = false)">
-                      <div @click="!savedWallet.isSaved && (isTokenDropdownOpen = !isTokenDropdownOpen)" tabindex="0" class="peer w-full p-[10px_16px] min-h-[50px] rounded-md outline-none z-1 focus:border-2 focus:p-[9px_15px] flex items-center justify-between transition-[border-color,box-shadow] duration-200 ease-in-out" :class="savedWallet.isSaved ? 'opacity-70 cursor-not-allowed bg-[#f5f5f5] dark:bg-[#111] text-[#888] dark:text-[#666] border border-black/10 dark:border-white/10' : 'bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] cursor-pointer'">
-                        <div v-if="selectedTokenDetails" class="flex items-center gap-3" :class="savedWallet.isSaved ? 'opacity-80 grayscale-[20%]' : ''">
+                      <div @click="!savedWallet.isSaved && (isTokenDropdownOpen = !isTokenDropdownOpen)" tabindex="0" class="peer w-full p-[10px_16px] min-h-12.5 rounded-md outline-none z-1 focus:border-2 focus:p-[9px_15px] flex items-center justify-between transition-[border-color,box-shadow] duration-200 ease-in-out" :class="savedWallet.isSaved ? 'opacity-70 cursor-not-allowed bg-[#f5f5f5] dark:bg-[#111] text-[#888] dark:text-[#666] border border-black/10 dark:border-white/10' : 'bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] cursor-pointer'">
+                        <div v-if="selectedTokenDetails" class="flex items-center gap-3" :class="savedWallet.isSaved ? 'opacity-80 grayscale-20' : ''">
                           <img :src="selectedTokenDetails.icon" class="w-6 h-6 object-contain drop-shadow-sm" :alt="selectedTokenDetails.name" />
                           <div class="flex flex-col leading-none">
                             <span class="text-[14px] font-medium" :class="savedWallet.isSaved ? 'text-[#888] dark:text-[#666]' : ''">{{ selectedTokenDetails.name }}</span>
@@ -4693,7 +4416,7 @@ const closePayoutModal = () => {
                         <span v-else class="text-transparent">{{ t("dashboard.payouts.select_token", "Select Token") }}</span>
                         <span class="material-icons-round text-[#666] dark:text-[#a1a1a1] text-[18px] transition-transform duration-200" :class="{ 'rotate-180': isTokenDropdownOpen }">expand_more</span>
                       </div>
-                      <label :class="['absolute left-3 px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out', isTokenDropdownOpen || withdrawalForm.token ? 'top-0 -translate-y-1/2 scale-75 text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]' : 'top-1/2 -translate-y-1/2 scale-100 text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]', savedWallet.isSaved ? 'bg-gradient-to-b from-white to-[#f5f5f5] dark:from-[#0a0a0a] dark:to-[#111]' : 'bg-white dark:bg-[#0a0a0a]']">
+                      <label :class="['absolute left-3 px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out', isTokenDropdownOpen || withdrawalForm.token ? 'top-0 -translate-y-1/2 scale-75 text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]' : 'top-1/2 -translate-y-1/2 scale-100 text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]', savedWallet.isSaved ? 'bg-linear-to-b from-white to-[#f5f5f5] dark:from-[#0a0a0a] dark:to-[#111]' : 'bg-white dark:bg-[#0a0a0a]']">
                         {{ t("dashboard.payouts.token", "Token") }}
                       </label>
                       <transition name="slide-down">
@@ -4708,8 +4431,8 @@ const closePayoutModal = () => {
 
                     <div class="mt-4">
                       <div class="relative w-full">
-                        <input @keydown.space.prevent v-model="displayedDestination" type="text" placeholder=" " :readonly="savedWallet.isSaved" class="peer w-full p-[14px_16px] text-[14px] rounded-md outline-none z-1 focus:border-2 focus:p-[13px_15px] transition-[border-color,box-shadow] duration-200 ease-in-out" :class="[savedWallet.isSaved ? 'opacity-70 cursor-not-allowed bg-[#f5f5f5] dark:bg-[#111] text-[#888] dark:text-[#666] border border-black/10 dark:border-white/10' : 'bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20', withdrawalForm.destination && walletAddressError && !savedWallet.isSaved ? '!border-[#d32f2f] !text-[#d32f2f] focus:!border-[#d32f2f] placeholder-shown:!border-[#d32f2f]' : '']" />
-                        <label class="absolute left-3 top-0 -translate-y-1/2 scale-75 px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100" :class="[savedWallet.isSaved ? 'text-[#888] dark:text-[#666] bg-gradient-to-b from-white to-[#f5f5f5] dark:from-[#0a0a0a] dark:to-[#111]' : withdrawalForm.destination && walletAddressError ? 'text-[#d32f2f] peer-focus:text-[#d32f2f] peer-placeholder-shown:text-[#d32f2f] bg-white dark:bg-[#0a0a0a]' : 'text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff] bg-white dark:bg-[#0a0a0a]']">
+                        <input @keydown.space.prevent v-model="displayedDestination" type="text" placeholder=" " :readonly="savedWallet.isSaved" class="peer w-full p-[14px_16px] text-[14px] rounded-md outline-none z-1 focus:border-2 focus:p-[13px_15px] transition-[border-color,box-shadow] duration-200 ease-in-out" :class="[savedWallet.isSaved ? 'opacity-70 cursor-not-allowed bg-[#f5f5f5] dark:bg-[#111] text-[#888] dark:text-[#666] border border-black/10 dark:border-white/10' : 'bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20', withdrawalForm.destination && walletAddressError && !savedWallet.isSaved ? 'border-[#d32f2f]! text-[#d32f2f]! focus:border-[#d32f2f]! placeholder-shown:border-[#d32f2f]!' : '']" />
+                        <label class="absolute left-3 top-0 -translate-y-1/2 scale-75 px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100" :class="[savedWallet.isSaved ? 'text-[#666] dark:text-[#a1a1a1] bg-linear-to-b from-white to-[#f5f5f5] dark:from-[#0a0a0a] dark:to-[#111]' : withdrawalForm.destination && walletAddressError ? 'text-[#d32f2f] peer-focus:text-[#d32f2f] peer-placeholder-shown:text-[#d32f2f] bg-white dark:bg-[#0a0a0a]' : 'text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff] bg-white dark:bg-[#0a0a0a]']">
                           {{ t("dashboard.payouts.wallet_address", "Wallet Address") }}
                         </label>
                       </div>
@@ -4718,7 +4441,6 @@ const closePayoutModal = () => {
                         <span>{{ walletAddressError }}</span>
                       </div>
                     </div>
-
                   </div> 
                   
                   <template v-else-if="payoutRegions[withdrawalForm.country].type === 'bank'">
@@ -4737,8 +4459,8 @@ const closePayoutModal = () => {
 
                 <div class="mt-4">
                   <div class="relative w-full">
-                    <input v-model="withdrawalForm.accountName" type="text" placeholder=" " :readonly="savedWallet.isSaved && payoutRegions[withdrawalForm.country].type === 'crypto_only'" class="peer w-full p-[14px_16px] text-[14px] rounded-md outline-none z-1 focus:border-2 focus:p-[13px_15px] transition-[border-color,box-shadow] duration-200 ease-in-out" :class="[savedWallet.isSaved && payoutRegions[withdrawalForm.country].type === 'crypto_only' ? 'opacity-70 cursor-not-allowed bg-[#f5f5f5] dark:bg-[#111] text-[#888] dark:text-[#666] border border-black/10 dark:border-white/10' : 'bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20', showPayoutErrors && !withdrawalForm.accountName.trim() ? '!border-[#d32f2f] !text-[#d32f2f] focus:!border-[#d32f2f] placeholder-shown:!border-[#d32f2f]' : '']" />
-                    <label class="absolute left-3 top-0 -translate-y-1/2 scale-75 px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100" :class="[savedWallet.isSaved && payoutRegions[withdrawalForm.country].type === 'crypto_only' ? 'text-[#888] dark:text-[#666] bg-gradient-to-b from-white to-[#f5f5f5] dark:from-[#0a0a0a] dark:to-[#111]' : showPayoutErrors && !withdrawalForm.accountName.trim() ? 'text-[#d32f2f] peer-focus:text-[#d32f2f] peer-placeholder-shown:text-[#d32f2f] bg-white dark:bg-[#0a0a0a]' : 'text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff] bg-white dark:bg-[#0a0a0a]']">
+                    <input v-model="withdrawalForm.accountName" type="text" placeholder=" " :readonly="savedWallet.isSaved && payoutRegions[withdrawalForm.country].type === 'crypto_only'" class="peer w-full p-[14px_16px] text-[14px] rounded-md outline-none z-1 focus:border-2 focus:p-[13px_15px] transition-[border-color,box-shadow] duration-200 ease-in-out" :class="[savedWallet.isSaved && payoutRegions[withdrawalForm.country].type === 'crypto_only' ? 'opacity-70 cursor-not-allowed bg-[#f5f5f5] dark:bg-[#111] text-[#888] dark:text-[#666] border border-black/10 dark:border-white/10' : 'bg-transparent border border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20', showPayoutErrors && !withdrawalForm.accountName.trim() ? 'border-[#d32f2f]! text-[#d32f2f]! focus:border-[#d32f2f]! placeholder-shown:border-[#d32f2f]!' : '']" />
+                    <label class="absolute left-3 top-0 -translate-y-1/2 scale-75 px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100" :class="[savedWallet.isSaved && payoutRegions[withdrawalForm.country].type === 'crypto_only' ? 'text-[#666] dark:text-[#a1a1a1] bg-linear-to-b from-white to-[#f5f5f5] dark:from-[#0a0a0a] dark:to-[#111]' : showPayoutErrors && !withdrawalForm.accountName.trim() ? 'text-[#d32f2f] peer-focus:text-[#d32f2f] peer-placeholder-shown:text-[#d32f2f] bg-white dark:bg-[#0a0a0a]' : 'text-[#666] dark:text-[#a1a1a1] peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff] bg-white dark:bg-[#0a0a0a]']">
                       {{ t("dashboard.payouts.account_name", "Account Holder Name") }}
                     </label>
                   </div>
@@ -4752,12 +4474,10 @@ const closePayoutModal = () => {
                     <div class="pt-4 border-t border-black/5 dark:border-white/5">
                       <button v-if="!savedWallet.isSaved" @click="saveWalletAddress" :disabled="isSavingWallet || !withdrawalForm.token || !withdrawalForm.destination" class="w-full bg-[#f0f0f0] text-black dark:bg-[#222] dark:text-white px-4 py-3 rounded-md text-[13px] font-semibold border border-transparent disabled:opacity-50 hover:bg-[#e0e0e0] dark:hover:bg-[#333] transition-colors flex items-center justify-center gap-2">
                         <span v-if="isSavingWallet" class="material-icons-round animate-spin text-[16px]">autorenew</span>
-                        <span v-else class="material-icons-round text-[16px]">save</span>
                         {{ isSavingWallet ? t("dashboard.payouts.saving", "Saving...") : t("dashboard.payouts.save_address", "Save Address") }}
                       </button>
 
-                      <button v-else @click="editWalletAddress" class="w-full bg-transparent text-black dark:text-white border border-black/20 dark:border-white/20 px-4 py-3 rounded-md text-[13px] font-semibold hover:bg-[#fafafa] dark:hover:bg-[#111] flex items-center justify-center gap-2 transition-colors">
-                        <span class="material-icons-round text-[16px]">edit</span>
+                      <button v-else @click="editWalletAddress" class="w-full bg-transparent text-black dark:text-white border border-black/20 dark:border-white/20 px-4 py-3 rounded-md text-[13px] font-medium hover:bg-[#fafafa] dark:hover:bg-[#111] flex items-center justify-center gap-2 transition-colors">
                         {{ t("dashboard.payouts.edit_address", "Edit Address") }}
                       </button>
                     </div>
@@ -4765,20 +4485,20 @@ const closePayoutModal = () => {
                 </div>
               </div>
 
-                <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6"
-                  :class="!isDestinationReady ? 'opacity-50 grayscale-[30%] pointer-events-none' : 'opacity-100'">
+              <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6"
+                :class="!isDestinationReady ? 'pointer-events-none' : 'opacity-100'">
                 
-                <div class="flex items-center justify-between mb-5">
-                  <h3 class="text-[15px] font-semibold text-black dark:text-white flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-full flex items-center justify-center text-[12px]" :class="!isDestinationReady ? 'bg-gray-300 text-gray-600 dark:bg-gray-800 dark:text-gray-400' : 'bg-black text-white dark:bg-white dark:text-black'">2</span>
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2.5 mb-5">
+                  <h3 class="text-[15px] font-semibold text-black dark:text-white flex items-center gap-2 shrink-0 leading-snug wrap-break-word whitespace-normal">
+                    <span class="w-6 h-6 rounded-full flex items-center justify-center text-[12px] shrink-0" :class="!isDestinationReady ? 'bg-gray-300 text-gray-600 dark:bg-gray-800 dark:text-gray-400' : 'bg-black text-white dark:bg-white dark:text-black'">2</span>
                     {{ t("dashboard.payouts.step2_title", "Submit Payout") }}
                   </h3>
-                <span v-if="!isDestinationReady" class="text-[11px] text-[#0070f3] dark:text-[#3291ff] font-medium flex items-center gap-1">
-                  {{ t("dashboard.payouts.lock_hint", "Please save your address above to proceed.") }}
-                </span>
+                  <span v-if="!isDestinationReady" class="text-[12px] text-[#365ef8] font-medium max-w-full wrap-break-word whitespace-normal leading-normal self-start sm:self-auto text-left sm:text-right pointer-events-auto">
+                    {{ t("dashboard.payouts.lock_hint", "Please save your address above to proceed.") }}
+                  </span>
                 </div>
 
-                <div class="space-y-5">
+                <div class="space-y-5 transition-all duration-300" :class="!isDestinationReady ? 'opacity-50 grayscale-30' : ''">
                   <div class="relative w-full">
                     <input @keydown.space.prevent :value="withdrawalForm.amount" @input="handleAmountInput" type="text" inputmode="decimal" placeholder=" " class="peer w-full p-[14px_16px] text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20" />
                     <label class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#0a0a0a] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]">
@@ -4805,13 +4525,20 @@ const closePayoutModal = () => {
                 </div>
               </div>
 
-              <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-6">
+            <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-6">
                 <h3 class="text-[15px] font-semibold text-black dark:text-white mb-4">
                   {{ t("dashboard.payouts.history_title", "Recent Transactions") }}
                 </h3>
+                
                 <div class="block md:hidden divide-y divide-black/5 dark:divide-white/5 border-t border-black/5 dark:border-white/5 mt-2">
                   
-                  <div v-for="tx in payoutTransactions" :key="tx.id" class="py-4 flex items-center justify-between gap-3">
+                  <div 
+                    v-for="tx in payoutTransactions" 
+                    :key="tx.id" 
+                    class="py-4 flex items-center justify-between gap-3 transition-colors"
+                    :class="(tx.status === 'Success' || tx.status === 'Approved') ? 'cursor-pointer active:scale-[0.98] px-2 -mx-2 rounded-md' : ''"
+                    @click="(tx.status === 'Success' || tx.status === 'Approved') ? openReceipt(tx) : null"
+                  >
                     <div class="flex flex-col gap-1">
                       <span class="font-medium text-black dark:text-white text-[13px] leading-tight">
                         {{ t("dashboard.payouts.default_desc", "Payout") }}
@@ -4825,22 +4552,24 @@ const closePayoutModal = () => {
                       <span class="font-semibold text-black dark:text-white text-[14px]">
                         -{{ formatCurrency(tx.amount) }}
                       </span>
-                      <span v-if="tx.status === 'Success' || tx.status === 'Approved'" class="px-2 py-0.5 text-[10px] uppercase font-semibold rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10">
+                      <span v-if="tx.status === 'Success' || tx.status === 'Approved'" class="px-2 py-0.5 text-[10px] font-medium inline-block text-center whitespace-normal wrap-break-word max-w-25 rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10">
                         {{ t("dashboard.payouts.status_success", "Success") }}
                       </span>
-                      <span v-else-if="tx.status === 'Pending'" class="px-2 py-0.5 text-[10px] uppercase font-semibold rounded-sm border border-yellow-200 text-yellow-600 bg-yellow-50 dark:border-yellow-900/30 dark:text-yellow-400 dark:bg-yellow-900/10">
+                      <span v-else-if="tx.status === 'Pending'" class="px-2 py-0.5 text-[10px] font-medium inline-block text-center whitespace-normal wrap-break-word max-w-25 rounded-sm border border-yellow-200 text-yellow-600 bg-yellow-50 dark:border-yellow-900/30 dark:text-yellow-400 dark:bg-yellow-900/10">
                         {{ t("dashboard.payouts.status_pending", "Pending") }}
                       </span>
-                      <span v-else-if="tx.status === 'Declined' || tx.status === 'Rejected'" class="px-2 py-0.5 text-[10px] uppercase font-semibold rounded-sm border border-red-200 text-red-600 bg-red-50 dark:border-red-900/30 dark:text-red-400 dark:bg-red-900/10">
+                      <span v-else-if="tx.status === 'Declined' || tx.status === 'Rejected'" class="px-2 py-0.5 text-[10px] font-medium inline-block text-center whitespace-normal wrap-break-word max-w-25 rounded-sm border border-red-200 text-red-600 bg-red-50 dark:border-red-900/30 dark:text-red-400 dark:bg-red-900/10">
                         {{ t("dashboard.payouts.status_declined", "Declined") }}
                       </span>
-                    <span v-else class="px-2 py-0.5 text-[10px] uppercase font-semibold rounded-sm border border-gray-200 text-gray-600 bg-gray-50">
+                      <span v-else class="px-2 py-0.5 text-[10px] font-medium inline-block text-center whitespace-normal wrap-break-word max-w-25 rounded-sm border border-gray-200 text-gray-600 bg-gray-50">
                         {{ tx.status }}
                       </span>
                     </div>
                   </div>
 
-                  <div class="py-4 flex items-center justify-between gap-3">
+                    <div
+                      class="py-4 flex items-center justify-between gap-3 transition-colors cursor-pointer active:scale-[0.98] px-2 -mx-2 rounded-md"
+                      @click="openReceipt({ amount: 20, timestamp: welcomeBonusTimestamp, status: 'Success', description: 'Welcome Bonus' })">
                     <div class="flex flex-col gap-1">
                       <span class="font-medium text-black dark:text-white text-[13px] leading-tight">
                         {{ t("dashboard.payouts.welcome_bonus_desc", "Welcome Bonus") }}
@@ -4853,7 +4582,7 @@ const closePayoutModal = () => {
                       <span class="font-semibold text-black dark:text-white text-[14px]">
                         +{{ formatCurrency(20) }}
                       </span>
-                      <span class="px-2 py-0.5 text-[10px] uppercase font-semibold rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10">
+                      <span class="px-2 py-0.5 text-[10px] font-medium inline-block text-center whitespace-normal wrap-break-word max-w-25 rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10">
                         {{ t("dashboard.payouts.status_success", "Success") }}
                       </span>
                     </div>
@@ -4861,51 +4590,59 @@ const closePayoutModal = () => {
 
                 </div>
                 
-                <div class="hidden md:block border border-black/10 dark:border-white/10 rounded-md overflow-hidden overflow-x-auto mt-4">
+                <div class="hidden md:block overflow-x-auto mt-4">
                   <table class="w-full min-w-125 text-left border-collapse">
-                    <thead>
-                      <tr class="bg-[#fafafa] dark:bg-[#111] border-b border-black/10 dark:border-white/10 text-[12px] text-[#666] dark:text-[#a1a1a1]">
-                        <th class="py-2.5 px-4 font-medium">{{ t("dashboard.payouts.th_date", "Timestamp ID") }}</th>
-                        <th class="py-2.5 px-4 font-medium">{{ t("dashboard.payouts.th_method", "Description") }}</th>
-                        <th class="py-2.5 px-4 font-medium">{{ t("dashboard.payouts.th_amount", "Amount") }}</th>
-                        <th class="py-2.5 px-4 font-medium">{{ t("dashboard.payouts.th_status", "Status") }}</th>
+                    <thead class="border-b border-black/10 dark:border-white/10 text-[12px] text-[#666] dark:text-[#a1a1a1]">
+                      <tr>
+                        <th class="py-3 pr-4 font-medium">{{ t("dashboard.payouts.th_date", "Timestamp ID") }}</th>
+                        <th class="py-3 pr-4 font-medium">{{ t("dashboard.payouts.th_method", "Description") }}</th>
+                        <th class="py-3 pr-4 font-medium">{{ t("dashboard.payouts.th_amount", "Amount") }}</th>
+                        <th class="py-3 pr-4 font-medium">{{ t("dashboard.payouts.th_status", "Status") }}</th>
+                        <th class="py-3 font-medium w-12"></th>
                       </tr>
                     </thead>
                     <tbody class="text-[13px]">
-                      <tr v-for="tx in payoutTransactions" :key="tx.id" class="border-b border-black/5 dark:border-white/5 hover:bg-[#fafafa] dark:hover:bg-[#0a0a0a]">
-                        <td class="py-3 px-4 text-[#666] font-mono text-[11px]">{{ tx.timestamp }}</td>
-                        <td class="py-3 px-4 text-black dark:text-white">{{ t("dashboard.payouts.default_desc", "Payout") }}</td>
-                        <td class="py-3 px-4 font-medium">-{{ formatCurrency(tx.amount) }}</td>
-                        <td class="py-3 px-4">
-                          <span v-if="tx.status === 'Success' || tx.status === 'Approved'" class="px-2 py-1 text-[10px] uppercase font-semibold rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10">{{ t("dashboard.payouts.status_success", "Success") }}</span>
-                          <span v-else-if="tx.status === 'Pending'" class="px-2 py-1 text-[10px] uppercase font-semibold rounded-sm border border-yellow-200 text-yellow-600 bg-yellow-50 dark:border-yellow-900/30 dark:text-yellow-400 dark:bg-yellow-900/10">{{ t("dashboard.payouts.status_pending", "Pending") }}</span>
-                          <span v-else-if="tx.status === 'Declined' || tx.status === 'Rejected'" class="px-2 py-1 text-[10px] uppercase font-semibold rounded-sm border border-red-200 text-red-600 bg-red-50 dark:border-red-900/30 dark:text-red-400 dark:bg-red-900/10">{{ t("dashboard.payouts.status_declined", "Declined") }}</span>
-                      <span v-else class="px-2 py-1 text-[10px] uppercase font-semibold rounded-sm border border-gray-200 text-gray-600 bg-gray-50">{{ tx.status }}</span>
+                      <tr v-for="tx in payoutTransactions" :key="tx.id" class="border-b border-black/5 dark:border-white/5">
+                        <td class="py-3 pr-4 text-[#888] dark:text-[#666] font-mono text-[11px]">{{ tx.timestamp }}</td>
+                        <td class="py-3 pr-4 text-black dark:text-white">{{ t("dashboard.payouts.default_desc", "Payout") }}</td>
+                        <td class="py-3 pr-4 font-medium">-{{ formatCurrency(tx.amount) }}</td>
+                        <td class="py-3 pr-4">
+                          <span v-if="tx.status === 'Success' || tx.status === 'Approved'" class="px-2 py-1 text-[10px] font-medium inline-block text-center whitespace-normal wrap-break-word max-w-30 rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10">{{ t("dashboard.payouts.status_success", "Success") }}</span>
+                          <span v-else-if="tx.status === 'Pending'" class="px-2 py-1 text-[10px] font-medium inline-block text-center whitespace-normal wrap-break-word max-w-30 rounded-sm border border-yellow-200 text-yellow-600 bg-yellow-50 dark:border-yellow-900/30 dark:text-yellow-400 dark:bg-yellow-900/10">{{ t("dashboard.payouts.status_pending", "Pending") }}</span>
+                          <span v-else-if="tx.status === 'Declined' || tx.status === 'Rejected'" class="px-2 py-1 text-[10px] font-medium inline-block text-center whitespace-normal wrap-break-word max-w-30 rounded-sm border border-red-200 text-red-600 bg-red-50 dark:border-red-900/30 dark:text-red-400 dark:bg-red-900/10">{{ t("dashboard.payouts.status_declined", "Declined") }}</span>
+                          <span v-else class="px-2 py-1 text-[10px] font-medium inline-block text-center whitespace-normal wrap-break-word max-w-30 rounded-sm border border-gray-200 text-gray-600 bg-gray-50">{{ tx.status }}</span>
+                        </td>
+                        <td class="py-3 text-right">
+                          <button v-if="tx.status === 'Success' || tx.status === 'Approved'" @click="openReceipt(tx)" class="text-[#888] dark:text-[#666] hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full active:scale-90 active:opacity-70 transition-all duration-200 ease-out inline-flex items-center justify-center p-1.5">
+                            <span class="material-icons-round text-[20px]">description</span>
+                          </button>
                         </td>
                       </tr>
 
-                      <tr class="hover:bg-[#fafafa] dark:hover:bg-[#0a0a0a]">
-                        <td class="py-3 px-4 text-[#666] dark:text-[#a1a1a1] whitespace-nowrap font-mono text-[11px]">{{ welcomeBonusTimestamp }}</td>
-                        <td class="py-3 px-4 text-black dark:text-white">{{ t("dashboard.payouts.welcome_bonus_desc", "Welcome Bonus") }}</td>
-                        <td class="py-3 px-4 text-black dark:text-white font-medium">+{{ formatCurrency(20) }}</td>
-                        <td class="py-3 px-4"><span class="px-2 py-1 text-[10px] uppercase font-semibold rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10">{{ t("dashboard.payouts.status_success", "Success") }}</span></td>
+                      <tr>
+                        <td class="py-3 pr-4 text-[#888] dark:text-[#666] whitespace-nowrap font-mono text-[11px]">{{ welcomeBonusTimestamp }}</td>
+                        <td class="py-3 pr-4 text-black dark:text-white">{{ t("dashboard.payouts.welcome_bonus_desc", "Welcome Bonus") }}</td>
+                        <td class="py-3 pr-4 text-black dark:text-white font-medium">+{{ formatCurrency(20) }}</td>
+                        <td class="py-3 pr-4">
+                          <span class="px-2 py-1 text-[10px] font-medium inline-block text-center whitespace-normal wrap-break-word max-w-30 rounded-sm border border-emerald-200 text-emerald-600 bg-emerald-50 dark:border-emerald-900/30 dark:text-emerald-400 dark:bg-emerald-900/10">{{ t("dashboard.payouts.status_success", "Success") }}</span>
+                        </td>
+                        <td class="py-3 text-right">
+                        <button @click="openReceipt({ amount: 20, timestamp: welcomeBonusTimestamp, status: 'Success', description: 'Welcome Bonus' })" class="text-[#888] dark:text-[#666] hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-full active:scale-90 active:opacity-70 transition-all duration-200 ease-out inline-flex items-center justify-center p-1.5">
+                          <span class="material-icons-round text-[20px]">description</span>
+                          </button>
+                        </td>
                       </tr>
-
                     </tbody>
-                  
                   </table>
                 </div>
               </div>
-
             </div>
           </template>
 
-            <template v-else-if="['terms', 'privacy', 'cookies', 'legal', 'faq'].includes(activeTab as string)"
-            >
-              <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-lg p-8 w-full">
+            <template v-else-if="['terms', 'privacy', 'cookies', 'legal', 'faq'].includes(activeTab as string)">
+              <div class="bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-white/10 rounded-2xl p-4 sm:p-8 w-full">
                 <div
-                  class="prose dark:prose-invert max-w-none text-[14px] text-[#444] dark:text-[#ccc] leading-relaxed space-y-6"
-                >
+                  class="prose dark:prose-invert max-w-none text-[14px] text-[#444] dark:text-[#ccc] leading-relaxed space-y-6">
                   <template v-if="activeTab === 'terms'">
                     <h2
                       class="text-xl font-semibold text-black dark:text-white mb-4"
@@ -5020,95 +4757,108 @@ const closePayoutModal = () => {
         </Transition>
       </div>
 
-    </div> <div
-        v-if="showGiftModal"
-        class="fixed inset-0 z-[99] bg-black/80 flex flex-col items-center justify-start sm:justify-center p-4 overflow-y-auto"
-        @click.self="
-          showGiftModal = false;
-          showConfetti = false;
-        "
-      >
-        <div
-          class="relative w-full max-w-sm flex flex-col items-center justify-center animate-slide-up my-auto py-8"
-        >
+    </div>
+<div v-if="bonusPhase > 0" class="fixed inset-0 z-99999 flex flex-col items-center justify-center bg-white dark:bg-[#0a0b0c] md:bg-black/85 md:dark:bg-black/85 md:backdrop-blur-md transition-colors duration-500">
+  
+  <div class="premium-bonus-wrapper relative w-full h-full md:h-auto md:max-w-lg md:aspect-9/16 md:max-h-212.5 flex flex-col items-center justify-center bg-(--color-outer) md:rounded-3xl md:shadow-2xl overflow-hidden my-auto border border-transparent md:border-(--color-border) transition-colors duration-500 md:p-2.5"
+    :class="{ 'theme-dark': isDarkMode() }">
+    
+    <div v-show="bonusPhase === 1" class="absolute inset-0 w-full h-full flex items-center justify-center bg-(--color-inner)/60 backdrop-blur-xs z-30">
+      <canvas ref="lottieContainer" class="w-full h-full object-contain"></canvas>
+    </div>
 
-          <div
-            class="absolute w-64 h-64 bg-[#ffcc00] rounded-full blur-[80px] opacity-20 pointer-events-none"
-          ></div>
+    <transition enter-active-class="transition-all duration-700 ease-out" enter-from-class="opacity-0 scale-95 translate-y-4" enter-to-class="opacity-100 scale-100 translate-y-0">
+      <div v-if="bonusPhase === 2" class="relative z-10 flex flex-col items-center justify-between text-center px-6 sm:px-10 w-full h-full py-10 md:rounded-2xl bg-(--color-inner) border border-(--color-border) overflow-hidden box-border">
+        
+        <div class="absolute inset-x-0 top-1/3 h-96 bg-linear-to-b from-(--glow-outer) to-transparent opacity-40 blur-3xl pointer-events-none"></div>
 
-          <span
-            class="absolute top-4 left-16 text-[#ffdf73] text-lg animate-pulse"
-            >✦</span
-          >
-          <span
-            class="absolute top-12 right-12 text-[#ffdf73] text-sm animate-pulse delay-75"
-            >✦</span
-          >
-          <span
-            class="absolute bottom-24 left-10 text-[#ffdf73] text-xl animate-pulse delay-150"
-            >✦</span
-          >
-
-          <div class="relative z-10 flex flex-col items-center justify-center mb-6 mt-4">
-            <span
-              class="material-icons-round text-[140px] text-transparent bg-clip-text bg-gradient-to-b from-[#ffdf73] to-[#d4af37] drop-shadow-[0_0_25px_rgba(255,223,115,0.7)]"
-              style="line-height: 1"
-            >
-              card_giftcard
+        <div class="relative z-20 shrink-0">
+          <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-(--color-badge-bg) border border-(--color-badge-border) shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-(--ribbon-glow) animate-pulse"></span>
+            <span class="text-(--color-badge-text) text-xs font-extrabold uppercase tracking-widest">
+              {{ t("dashboard.modal.bonus_badge", "Special Bonus") }}
             </span>
+            <span class="w-2 h-2 rounded-full bg-(--ribbon-glow) animate-pulse"></span>
           </div>
-
-          <div
-            class="z-10 flex flex-col items-center text-center space-y-3 mb-8 px-4"
-          >
-            <p
-              class="text-[#ffdf73] font-bold text-2xl drop-shadow-[0_0_10px_rgba(255,223,115,0.8)]"
-            >
-              {{ t("dashboard.modal.funds_received") }}
-            </p>
-            <p
-              class="text-[#fceabb] font-semibold text-[14px] tracking-wide drop-shadow-md leading-relaxed"
-            >
-              {{
-                t("dashboard.modal.funds_received_msg", {
-                  amount: giftModalAmount,
-                })
-              }}
-            </p>
-          </div>
-
-          <button
-            @click="
-              showGiftModal = false;
-              showConfetti = false;
-            "
-            class="z-10 bg-[#ebd5b3] text-[#4a3300] px-14 py-2.5 rounded-md font-bold text-[15px] shadow-[0_4px_15px_rgba(0,0,0,0.5)] hover:bg-[#f5e4c6] transition-colors active:scale-95"
-          >
-            {{ t("auth.session_ok") }}
-          </button>
         </div>
+
+        <div class="relative flex flex-col items-center justify-center my-auto w-full py-8 shrink-0 select-none">
+          <div class="animate-rays"></div>
+          <div class="absolute w-56 h-56 rounded-full bg-(--glow-core) blur-2xl animate-core-glow pointer-events-none"></div>
+          <div class="absolute bottom-4 w-48 h-8 rounded-full bg-black/20 dark:bg-black/50 blur-md transform translate-y-6 pointer-events-none"></div>
+
+          <div class="relative z-20 animate-float-asset">
+            <svg class="w-48 h-48 drop-shadow-2xl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 50 L25 65 L40 70 L25 75 L20 90 L15 75 L0 70 L15 65 Z" fill="var(--ribbon-glow)" opacity="0.8"/>
+              <path d="M170 30 L173 40 L183 43 L173 46 L170 56 L167 46 L157 43 L167 40 Z" fill="var(--ribbon-glow)" opacity="0.9"/>
+              <circle cx="150" cy="140" r="4" fill="var(--box-highlight)" />
+              <circle cx="35" cy="130" r="6" fill="var(--ribbon-main)" opacity="0.6"/>
+              <rect x="40" y="90" width="120" height="85" rx="8" fill="var(--box-primary)" />
+              <path d="M40 90 H160 V105 H40 V90 Z" fill="var(--box-shadow)" opacity="0.3"/>
+              <rect x="85" y="90" width="30" height="85" fill="var(--ribbon-main)" />
+              <rect x="90" y="90" width="8" height="85" fill="var(--ribbon-glow)" opacity="0.4" />
+              <rect x="40" y="120" width="120" height="22" fill="var(--ribbon-main)" />
+              <rect x="40" y="123" width="120" height="4" fill="var(--ribbon-glow)" opacity="0.4" />
+              <rect x="85" y="120" width="30" height="22" fill="var(--box-shadow)" opacity="0.4" />
+              <rect x="32" y="65" width="136" height="30" rx="6" fill="var(--box-highlight)" />
+              <rect x="32" y="85" width="136" height="10" rx="3" fill="var(--box-shadow)" opacity="0.5" />
+              <rect x="85" y="65" width="30" height="30" fill="var(--ribbon-main)" />
+              <rect x="90" y="65" width="8" height="30" fill="var(--ribbon-glow)" opacity="0.5" />
+              <path d="M90 68 C60 30 25 50 50 72 C65 80 85 72 90 68 Z" fill="var(--ribbon-main)" />
+              <path d="M85 65 C62 38 38 52 55 68" stroke="var(--ribbon-glow)" stroke-width="4" stroke-linecap="round" />
+              <path d="M110 68 C140 30 175 50 150 72 C135 80 115 72 110 68 Z" fill="var(--ribbon-main)" />
+              <path d="M115 65 C138 38 162 52 145 68" stroke="var(--ribbon-glow)" stroke-width="4" stroke-linecap="round" />
+              <rect x="86" y="54" width="28" height="20" rx="6" fill="var(--ribbon-glow)" />
+              <rect x="90" y="56" width="20" height="16" rx="4" fill="var(--ribbon-main)" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="mb-auto space-y-3 w-full max-w-sm relative z-20">
+          <p class="text-xs sm:text-sm font-bold text-(--color-text-muted) uppercase tracking-widest">
+            {{ t("dashboard.modal.funds_received_pre", "Congratulations! You’ve received") }}
+          </p>
+
+          <div class="py-4 px-6 bg-(--color-panel) rounded-2xl border border-(--color-border) shadow-inner">
+            <p class="text-3xl sm:text-4xl font-extrabold text-(--color-text-main) leading-none font-mono tracking-tight transition-all">
+              {{ displayedBonusAmount }}
+            </p>
+          </div>
+
+          <p class="text-xs sm:text-sm text-(--color-text-muted) leading-relaxed px-2">
+            {{ t("dashboard.modal.funds_received_desc", "Please contact the support team to verify and claim your reward.") }}
+          </p>
+        </div>
+
+        <button 
+          @click="closeSpecialBonus"
+          class="w-full max-w-sm shrink-0 bg-(--color-btn-bg) text-(--color-btn-text) py-4 rounded-xl font-extrabold text-sm border border-(--color-btn-border) hover:opacity-90 transition-all duration-200 active:scale-[0.98] uppercase tracking-widest cursor-pointer shadow-xl relative z-20 mt-4">
+          {{ t("dashboard.modal.claim_btn", "OK") }}
+        </button>
       </div>
-      <Transition
+    </transition>
+    
+  </div>
+</div>
+
+    <Transition
             enter-active-class="transition duration-200 ease-out"
             enter-from-class="opacity-0"
             enter-to-class="opacity-100"
             leave-active-class="transition duration-150 ease-in"
             leave-from-class="opacity-100"
-            leave-to-class="opacity-0"
-          >
+            leave-to-class="opacity-0">
             <div
               v-if="payoutConfirmModal.show"
-              class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
-              @click.self="closePayoutModal"
-            >
+              class="fixed inset-0 z-100 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+              @click.self="closePayoutModal">
               <Transition
                 enter-active-class="transition duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
                 enter-from-class="opacity-0 scale-90 translate-y-4"
                 enter-to-class="opacity-100 scale-100 translate-y-0"
                 leave-active-class="transition duration-150 ease-in"
                 leave-from-class="opacity-100 scale-100 translate-y-0"
-                leave-to-class="opacity-0 scale-90 translate-y-4"
-              >
+                leave-to-class="opacity-0 scale-90 translate-y-4">
               <div v-if="payoutConfirmModal.show" class="bg-white dark:bg-[#111] border border-black/10 dark:border-white/10 rounded-lg w-full max-w-md overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
                   
                   <div class="px-6 py-5 border-b border-black/10 dark:border-white/10 flex items-center gap-3 shrink-0">
@@ -5139,13 +4889,13 @@ const closePayoutModal = () => {
                       </div>
                     <div class="flex items-center justify-between">
                       <span class="text-[#666] dark:text-[#a1a1a1]">{{ t('dashboard.payouts.account_name', 'Account Name') }}:</span>
-                      <span class="font-medium text-black dark:text-white text-right break-words max-w-[65%]">{{ payoutConfirmModal.accountName }}</span>
+                      <span class="font-medium text-black dark:text-white text-right wrap-break-word max-w-[65%]">{{ payoutConfirmModal.accountName }}</span>
                     </div>
                     <div class="flex items-center justify-between">
                       <span class="text-[#666] dark:text-[#a1a1a1]">{{ t('dashboard.payouts.method', 'Method/Token') }}:</span>
                       <div class="flex items-center gap-1.5 justify-end max-w-[65%]">
                         <img v-if="payoutConfirmModal.icon" :src="payoutConfirmModal.icon" class="w-4 h-4 object-contain shrink-0" />
-                        <span class="font-medium text-black dark:text-white text-right break-words">{{ payoutConfirmModal.method }}</span>
+                        <span class="font-medium text-black dark:text-white text-right wrap-break-word">{{ payoutConfirmModal.method }}</span>
                       </div>
                     </div>
                       <div class="flex items-center justify-between pt-3 border-t border-black/5 dark:border-white/5">
@@ -5158,16 +4908,14 @@ const closePayoutModal = () => {
                     <div class="px-6 py-4 border-t border-black/10 dark:border-white/10 bg-[#fafafa] dark:bg-[#0a0a0a] flex flex-col sm:flex-row items-center justify-end gap-3 shrink-0">
                     <button
                       @click="closePayoutModal"
-                      class="w-full sm:w-auto px-5 py-2.5 rounded-md text-[13px] font-medium border border-black/20 dark:border-white/20 text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                    >
+                      class="w-full sm:w-auto px-5 py-2.5 rounded-md text-[13px] font-medium border border-black/20 dark:border-white/20 text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
                       {{ t('app.cancel', 'Cancel') }}
                     </button>
                     
                     <button
                       @click="executePayout"
                       :disabled="payoutCountdown > 0 || isRequestingPayout"
-                      class="w-full sm:w-auto px-5 py-2.5 rounded-md text-[13px] font-medium bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-                    >
+                      class="w-full sm:w-auto px-5 py-2.5 rounded-md text-[13px] font-medium bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
                       <span v-if="isRequestingPayout" class="material-icons-round animate-spin text-[16px] mr-2">autorenew</span>
                       {{ t('dashboard.payouts.confirm_btn', 'I Agree & Submit') }}
                       <span v-if="payoutCountdown > 0" class="ml-1">({{ payoutCountdown }})</span>
@@ -5184,31 +4932,35 @@ const closePayoutModal = () => {
         :message="modalState.message"
         :is-confirm="modalState.isConfirm"
         @close="closeModal"
-        @confirm="handleModalConfirm"
-      />
+        @confirm="handleModalConfirm"/>
 
-      <ImagePopup v-model="showAlertPopup" :images="alertImages" />
+      <!-- <ImagePopup v-model="showAlertPopup" :images="alertImages" /> -->
+      <RewardsDialog v-model="showAlertPopup" @claim="readMessageFun" />
+
+      <ReceiptModal 
+        :show="activeReceipt.show" 
+        :amount="activeReceipt.amount" 
+        :date="activeReceipt.date" 
+        :description="activeReceipt.description"
+        @close="activeReceipt.show = false" />
       <Transition
       enter-active-class="transition duration-200 ease-out"
       enter-from-class="opacity-0"
       enter-to-class="opacity-100"
       leave-active-class="transition duration-150 ease-in"
       leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
-    >
+      leave-to-class="opacity-0">
       <div
         v-if="showSetupPassphraseModal"
-        class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
-        @click.self="handleCancelPassphraseSetup"
-      >
+        class="fixed inset-0 z-100 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+        @click.self="handleCancelPassphraseSetup">
         <Transition
           enter-active-class="transition duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
           enter-from-class="opacity-0 scale-90 translate-y-4"
           enter-to-class="opacity-100 scale-100 translate-y-0"
           leave-active-class="transition duration-150 ease-in"
           leave-from-class="opacity-100 scale-100 translate-y-0"
-          leave-to-class="opacity-0 scale-90 translate-y-4"
-        >
+          leave-to-class="opacity-0 scale-90 translate-y-4">
           <div v-if="showSetupPassphraseModal" class="bg-white dark:bg-[#111] border border-black/10 dark:border-white/10 rounded-lg w-full max-w-md overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
             
             <div class="px-6 py-5 border-b border-black/10 dark:border-white/10 flex items-start gap-3 shrink-0">
@@ -5236,24 +4988,21 @@ const closePayoutModal = () => {
                   :type="passwordVisible.phraseSetup ? 'text' : 'password'"
                   placeholder=" "
                   class="peer w-full p-[14px_16px] pr-12 text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] focus:pr-11.75 border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20"
-                  :class="{'border-red-500 text-red-500 focus:border-red-500': newPassphraseError && passphraseForm.passphrase}"
-                />
+                  :class="{'border-red-500 text-red-500 focus:border-red-500': newPassphraseError && passphraseForm.passphrase}"/>
                 <label
                   class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#111] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]"
-                  :class="{'text-red-500 peer-focus:text-red-500': newPassphraseError && passphraseForm.passphrase}"
-                >
+                  :class="{'text-red-500 peer-focus:text-red-500': newPassphraseError && passphraseForm.passphrase}">
                   {{ t("dashboard.overview.new_passphrase", "New Passphrase") }}
                 </label>
                 <button
                   @click="togglePasswordVisible('phraseSetup')"
                   type="button"
                   class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10"
-                  tabindex="-1"
-                >
+                  tabindex="-1">
                   <span class="material-icons-round text-[20px]">{{ passwordVisible.phraseSetup ? "visibility_off" : "visibility" }}</span>
                 </button>
               </div>
-              <div v-if="passphraseForm.passphrase && newPassphraseError" class="text-red-500 text-xs mt-[-12px] ml-1">
+              <div v-if="passphraseForm.passphrase && newPassphraseError" class="text-red-500 text-xs -mt-3 ml-1">
                 {{ newPassphraseError }}
               </div>
 
@@ -5264,24 +5013,21 @@ const closePayoutModal = () => {
                   :type="passwordVisible.phraseSetupConfirm ? 'text' : 'password'"
                   placeholder=" "
                   class="peer w-full p-[14px_16px] pr-12 text-[14px] rounded-md bg-transparent border outline-none z-1 focus:border-2 focus:p-[13px_15px] focus:pr-11.75 border-black/20 dark:border-white/20 text-black dark:text-white focus:border-[#0070f3] dark:focus:border-[#3291ff] placeholder-shown:border-black/20 dark:placeholder-shown:border-white/20"
-                  :class="{'border-red-500 text-red-500 focus:border-red-500': confirmPassphraseError && passphraseForm.confirmPassphrase}"
-                />
+                  :class="{'border-red-500 text-red-500 focus:border-red-500': confirmPassphraseError && passphraseForm.confirmPassphrase}"/>
                 <label
                   class="absolute left-3 top-0 -translate-y-1/2 scale-75 bg-white dark:bg-[#111] px-1 text-[14px] font-normal leading-none pointer-events-none z-2 origin-left transition-[top,transform,scale] duration-200 ease-in-out text-[#666] dark:text-[#a1a1a1] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-75 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:text-[#0070f3] dark:peer-focus:text-[#3291ff]"
-                  :class="{'text-red-500 peer-focus:text-red-500': confirmPassphraseError && passphraseForm.confirmPassphrase}"
-                >
+                  :class="{'text-red-500 peer-focus:text-red-500': confirmPassphraseError && passphraseForm.confirmPassphrase}">
                   {{ t("dashboard.overview.confirm_passphrase", "Confirm Passphrase") }}
                 </label>
                 <button
                   @click="togglePasswordVisible('phraseSetupConfirm')"
                   type="button"
                   class="absolute right-4 top-0 bottom-0 my-auto flex items-center justify-center text-[#999] hover:text-black dark:text-[#666] dark:hover:text-white transition-colors z-10"
-                  tabindex="-1"
-                >
+                  tabindex="-1">
                   <span class="material-icons-round text-[20px]">{{ passwordVisible.phraseSetupConfirm ? "visibility_off" : "visibility" }}</span>
                 </button>
               </div>
-              <div v-if="passphraseForm.confirmPassphrase && confirmPassphraseError" class="text-red-500 text-xs mt-[-12px] ml-1">
+              <div v-if="passphraseForm.confirmPassphrase && confirmPassphraseError" class="text-red-500 text-xs -mt-3 ml-1">
                 {{ confirmPassphraseError }}
               </div>
             </div>
@@ -5289,16 +5035,14 @@ const closePayoutModal = () => {
               <div class="px-6 py-4 border-t border-black/10 dark:border-white/10 bg-[#fafafa] dark:bg-[#0a0a0a] flex flex-col sm:flex-row items-center justify-end gap-3 shrink-0">
               <button
                 @click="handleCancelPassphraseSetup"
-                class="w-full sm:w-auto px-5 py-2.5 rounded-md text-[13px] font-medium border border-black/20 dark:border-white/20 text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-              >
+                class="w-full sm:w-auto px-5 py-2.5 rounded-md text-[13px] font-medium border border-black/20 dark:border-white/20 text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
                 {{ t('app.cancel', 'Cancel') }}
               </button>
               
               <button
                 @click="configurePassphrase"
                 :disabled="isConfiguringPassphrase || !isSetupValid"
-                class="w-full sm:w-auto px-5 py-2.5 rounded-md text-[13px] font-medium bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-              >
+                class="w-full sm:w-auto px-5 py-2.5 rounded-md text-[13px] font-medium bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
                 <span v-if="isConfiguringPassphrase" class="material-icons-round animate-spin text-[16px] mr-2">autorenew</span>
                 {{ isConfiguringPassphrase ? t("dashboard.modal.processing", "Processing...") : t("dashboard.overview.verify_btn", "Configure Key") }}
               </button>
@@ -5345,24 +5089,6 @@ const closePayoutModal = () => {
 .certificate-richtext :deep(ol) {
   margin: 0.5em 0;
   padding-left: 1.5em;
-}
-
-@keyframes rainbow-glow-spin {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-rainbow-glow-spin {
-  animation: rainbow-glow-spin 3s ease infinite;
 }
 
 .confetti {
@@ -5415,5 +5141,86 @@ const closePayoutModal = () => {
 .slide-down-leave-to {
   opacity: 0;
   transform: translateY(15px);
+}
+.premium-bonus-wrapper {
+  --color-outer: #f5eedc;
+  --color-inner: #fcfaf5;
+  --color-panel: #f5eedc;
+  --color-border: #e3d5b8;
+  --color-text-main: #000000;
+  --color-text-muted: #c4b18b;
+  --color-badge-bg: #ffffff;
+  --color-badge-text: #a88824;
+  --color-badge-border: #e3d5b8;
+  --color-btn-bg: #000000;
+  --color-btn-text: #ffffff;
+  --color-btn-border: transparent;
+  
+  --box-primary: #e6be35;
+  --box-highlight: #ffeb99;
+  --box-shadow: #d4af37;
+  --ribbon-main: #a88824;
+  --ribbon-glow: #f2cd4e;
+  --glow-core: rgba(242, 205, 78, 0.4);
+  --glow-outer: rgba(212, 175, 55, 0.22); 
+}
+
+.premium-bonus-wrapper.theme-dark {
+  --color-outer: #181a1e;
+  --color-inner: #121315;
+  --color-panel: #0a0b0c;
+  --color-border: #24262a;
+  --color-text-main: #ddcba3;
+  --color-text-muted: #c3ab83;
+  --color-badge-bg: #1a1c1f;
+  --color-badge-text: #ddcba3;
+  --color-badge-border: #643a15;
+  --color-btn-bg: #24262a;
+  --color-btn-text: #ddcba3;
+  --color-btn-border: #643a15;
+  
+  --box-primary: #946f48;
+  --box-highlight: #ddcba3;
+  --box-shadow: #653308;
+  --ribbon-main: #ad8a5d;
+  --ribbon-glow: #c3ab83;
+  --glow-core: rgba(173, 138, 93, 0.4);
+  --glow-outer: rgba(100, 58, 21, 0.5);
+}
+@keyframes rays-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes premium-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.02); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.15); }
+}
+
+.animate-rays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 360px;
+  height: 360px;
+  background: repeating-conic-gradient(from 0deg, var(--glow-outer) 0deg 12deg, transparent 12deg 24deg);
+  animation: rays-rotate 35s linear infinite;
+  border-radius: 50%;
+  mask-image: radial-gradient(circle, black 25%, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle, black 25%, transparent 70%);
+  pointer-events: none;
+}
+
+.animate-float-asset {
+  animation: premium-float 5s ease-in-out infinite;
+}
+
+.animate-core-glow {
+  animation: pulse-glow 3.5s ease-in-out infinite;
 }
 </style>
