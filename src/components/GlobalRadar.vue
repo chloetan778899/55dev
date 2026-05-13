@@ -2,12 +2,14 @@
 import { ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue';
 import createGlobe from 'cobe';
 
+const snapshotUrl = ref<string | null>(null);
+let idleTimeout: ReturnType<typeof setTimeout> | null = null;
+
 const props = defineProps({
   completedTasks: { type: Number, default: 0 },
   maxTasks: { type: Number, default: 40 },
   isMuted: { type: Boolean, default: false },
-  taskStatus: { type: String, default: 'Idle' },
-  isSpecialBonus: { type: Boolean, default: false }
+  taskStatus: { type: String, default: 'Idle' }
 });
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
@@ -16,6 +18,10 @@ const showTooltip = ref(false);
 
 const isDarkMode = ref(true);
 let themeObserver: MutationObserver | null = null;
+let visibilityObserver: IntersectionObserver | null = null;
+
+let isVisible = true;
+let isTabVisible = true; 
 let tooltipTimeout: ReturnType<typeof setTimeout> | null = null;
 
 let globe: any = null;
@@ -24,20 +30,20 @@ let currentTheta = 0;
 let targetPhi = 0;
 let targetTheta = 0;
 let currentDark = 1;
+let targetDarkNum = 1;
 let needsUpdate = true;
+
+let cachedIsMuted = props.isMuted; 
 
 const cycleCount = ref(0);
 const markers = ref<any[]>([]);
-const activeArcs = ref<any[]>([]);
-const maxArcs = 10; 
 
 const usCenterLat = 39.8283;
 const usCenterLng = -98.5795;
 let previousLocation: number[] | null = null; 
 
 const cachedGlobeData = {
-  markers: [] as any[],
-  arcs: [] as any[]
+  markers: [] as any[]
 };
 
 const globalCities = [
@@ -166,6 +172,14 @@ const globalCities = [
   { name: "Valletta, MT", lat: 35.8992, lng: 14.5141 }, { name: "Monaco, MC", lat: 43.7384, lng: 7.4246 }
 ];
 
+const handleVisibilityChange = () => {
+  isTabVisible = !document.hidden;
+  if (!isTabVisible) {
+    targetPhi = currentPhi;
+    targetTheta = currentTheta;
+  }
+};
+
 const setCameraToLocation = (lat: number, lng: number) => {
   const targetPhiNew = (Math.PI * 1.5) - ((lng * Math.PI) / 180);
   const targetThetaNew = (lat * Math.PI) / 180;
@@ -179,17 +193,29 @@ const setCameraToLocation = (lat: number, lng: number) => {
 };
 
 const updateCachedData = () => {
-  cachedGlobeData.markers = markers.value.map(m => ({ location: m.location, size: m.size }));
-  cachedGlobeData.arcs = activeArcs.value.map(a => ({ from: a.from, to: a.to, color: a.color })); 
-  
+  cachedGlobeData.markers = markers.value.map(m => ({ 
+    location: [...m.location], 
+    size: m.size 
+  }));
   needsUpdate = true;
 };
 
 const triggerAnimation = (newCount: number, oldCount: number) => {
+  if (idleTimeout) {
+    clearTimeout(idleTimeout);
+    idleTimeout = null;
+  }
+
+  if (!globe) {
+    snapshotUrl.value = null;
+    currentPhi = targetPhi;
+    currentTheta = targetTheta;
+    initGlobe();
+  }
+
   if (newCount < oldCount) {
     cycleCount.value++;
     markers.value = [];
-    activeArcs.value = [];
     showTooltip.value = false;
     previousLocation = null;
     updateCachedData();
@@ -200,31 +226,20 @@ const triggerAnimation = (newCount: number, oldCount: number) => {
   if (newCount === 0) return;
 
   let lastCity: any = null;
-  const startLocation = previousLocation || [usCenterLat, usCenterLng];
-
   for (let i = Math.max(1, oldCount + 1); i <= newCount; i++) {
     const seededIndex = (i * 137) % globalCities.length;
     const currentCity = globalCities[seededIndex];
     const destination = [currentCity.lat, currentCity.lng];
 
     markers.value.push({ location: [...destination], size: 0.05 });
-    if (markers.value.length > 50) markers.value.shift();
+    if (markers.value.length > 5) markers.value.shift();
 
     lastCity = currentCity;
   }
 
   if (lastCity) {
-    const finalDestination = [lastCity.lat, lastCity.lng];
-    
-    activeArcs.value = [{
-      from: [...startLocation], 
-      to: [...finalDestination],
-      color: [0, 0.44, 0.95]
-    }];
-
-    previousLocation = finalDestination;
+    previousLocation = [lastCity.lat, lastCity.lng];
     updateCachedData();
-
     setCameraToLocation(lastCity.lat, lastCity.lng);
 
     if (tooltipTimeout) clearTimeout(tooltipTimeout);
@@ -234,7 +249,15 @@ const triggerAnimation = (newCount: number, oldCount: number) => {
       activeCityName.value = lastCity.name;
       await nextTick();
       showTooltip.value = true;
-    }, 1200); 
+    }, 1200);
+
+    idleTimeout = setTimeout(() => {
+      if (canvasRef.value && globe) {
+        snapshotUrl.value = canvasRef.value.toDataURL('image/png');
+        globe.destroy();
+        globe = null;
+      }
+    }, 3200);
   }
 };
 
@@ -242,45 +265,58 @@ const initGlobe = () => {
   if (globe) globe.destroy();
   if (!canvasRef.value) return;
 
-  const baseDpr = window.devicePixelRatio || 1;
-  const dpr = Math.max(baseDpr, 2);
+  const renderSize = 400; 
+  const dpr = 1;
 
-  const rect = canvasRef.value.getBoundingClientRect();
-
-  const themeMarkerColor: [number, number, number] = props.isSpecialBonus ? [1, 0.8, 0.1] : [0, 0.44, 0.95];
-  const themeArcColor: [number, number, number] = props.isSpecialBonus ? [1, 0.8, 0.1] : [0, 0.44, 0.95];
-  const themeGlowColor: [number, number, number] = props.isSpecialBonus ? [1, 0.9, 0.4] : [0.9, 0.9, 0.9];
+  const themeMarkerColor: [number, number, number] = [0, 0.44, 0.95];
+  const themeGlowColor: [number, number, number] = [0.9, 0.9, 0.9];
 
   globe = createGlobe(canvasRef.value, {
     devicePixelRatio: dpr,
-    width: rect.width * dpr,
-    height: rect.height * dpr,
+    width: renderSize,
+    height: renderSize,
+    context: { preserveDrawingBuffer: true },
     phi: currentPhi,
     theta: currentTheta,
     dark: currentDark,
     diffuse: 1.2,
-    mapSamples: 12000,
+    mapSamples: 8000,
     mapBrightness: 5,
     baseColor: [0.95, 0.95, 0.95], 
     markerColor: themeMarkerColor,
     glowColor: themeGlowColor,
     markers: cachedGlobeData.markers,
-    arcs: cachedGlobeData.arcs,
-    arcColor: themeArcColor,
-    arcWidth: 1.2,
-    arcHeight: 0.2,
     markerElevation: 0.02,
+    arcs: [],
     onRender: (state: Record<string, any>) => {
-      currentPhi += (targetPhi - currentPhi) * 0.05;
-      currentTheta += (targetTheta - currentTheta) * 0.05;
+      if (!isVisible || !isTabVisible) return;
 
-      if (props.isMuted) {
-        currentPhi += 0.0015;
+      const diffPhi = targetPhi - currentPhi;
+      const diffTheta = targetTheta - currentTheta;
+      const diffDark = targetDarkNum - currentDark;
+
+      const isMoving = Math.abs(diffPhi) > 0.001 || 
+                       Math.abs(diffTheta) > 0.001 || 
+                       Math.abs(diffDark) > 0.001 || 
+                       needsUpdate || 
+                       cachedIsMuted;
+
+      if (!isMoving) {
+        currentPhi = targetPhi;
+        currentTheta = targetTheta;
+        currentDark = targetDarkNum;
+        return;
+      }
+
+      currentPhi += diffPhi * 0.05;
+      currentTheta += diffTheta * 0.05;
+
+      if (cachedIsMuted) {
+        currentPhi += 0.0005;
         targetPhi = currentPhi;
       }
-      
-      const targetDark = isDarkMode.value ? 1 : 0;
-      currentDark += (targetDark - currentDark) * 0.05;
+          
+      currentDark += diffDark * 0.05;
 
       state.phi = currentPhi;
       state.theta = currentTheta;
@@ -288,89 +324,127 @@ const initGlobe = () => {
 
       if (needsUpdate) {
         state.markers = cachedGlobeData.markers;
-        state.arcs = cachedGlobeData.arcs;
         needsUpdate = false;
       }
     }
   } as any);
 };
 
-watch(() => props.completedTasks, (newVal, oldVal) => {
-  triggerAnimation(newVal, oldVal);
+watch(() => props.isMuted, (newVal) => {
+  cachedIsMuted = newVal;
 });
 
-watch(() => props.isSpecialBonus, () => {
-  initGlobe();
+watch(() => props.completedTasks, (newVal, oldVal) => {
+  triggerAnimation(newVal, oldVal);
 });
 
 onMounted(() => {
   if (!canvasRef.value) return;
 
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+
   isDarkMode.value = document.documentElement.classList.contains('dark');
   currentDark = isDarkMode.value ? 1 : 0;
+  targetDarkNum = currentDark;
 
   themeObserver = new MutationObserver(() => {
     isDarkMode.value = document.documentElement.classList.contains('dark');
+    targetDarkNum = isDarkMode.value ? 1 : 0;
   });
   themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
   initGlobe();
-
   setCameraToLocation(usCenterLat, usCenterLng);
   if (props.completedTasks > 0) triggerAnimation(props.completedTasks, 0);
+
+  visibilityObserver = new IntersectionObserver((entries) => {
+    isVisible = entries[0].isIntersecting;
+    if (isVisible) {
+      targetPhi = currentPhi;
+      targetTheta = currentTheta;
+    }
+  });
+
+  if (canvasRef.value) {
+    visibilityObserver.observe(canvasRef.value);
+  }
 });
 
 onBeforeUnmount(() => {
-  if (globe) globe.destroy();
-  if (themeObserver) themeObserver.disconnect();
-  if (tooltipTimeout) clearTimeout(tooltipTimeout);
+  document.removeEventListener('visibilitychange', handleVisibilityChange);
+  
+  if (globe) {
+    globe.destroy();
+    globe = null; 
+  }
+
+  if (themeObserver) {
+    themeObserver.disconnect();
+    themeObserver = null;
+  }
+  if (visibilityObserver) {
+    visibilityObserver.disconnect();
+    visibilityObserver = null;
+  }
+
+  if (tooltipTimeout) {
+    clearTimeout(tooltipTimeout);
+    tooltipTimeout = null;
+  }
+
+  if (idleTimeout) {
+    clearTimeout(idleTimeout);
+    idleTimeout = null;
+  }
+
   canvasRef.value = null;
 });
+
 </script>
 
 <template>
-  <div class="relative w-full max-w-[410px] h-[410px] mx-auto flex items-center justify-center overflow-visible">    
-    <transition name="fade">
-      <div 
-        v-if="isSpecialBonus"
-        class="absolute inset-0 rounded-full blur-[60px] animate-pulse z-[-1]"
-        style="background: radial-gradient(circle, rgba(255, 204, 0, 0.4) 0%, rgba(255, 204, 0, 0) 70%); pointer-events: none;"
-      ></div>
-    </transition>
+  <div class="relative w-full max-w-102.5 h-102.5 mx-auto flex items-center justify-center overflow-visible">    
     
+    <img 
+      v-if="snapshotUrl" 
+      :src="snapshotUrl" 
+      class="absolute inset-0 w-full h-full object-contain pointer-events-none transition-opacity duration-300"
+      :class="isMuted ? 'opacity-50' : 'opacity-100'"
+      alt=""
+    />
+
     <canvas 
       ref="canvasRef" 
-      class="w-full h-full object-contain transition-opacity duration-700 ease-in-out pointer-events-none"
-      :class="isMuted ? 'opacity-50' : 'opacity-100'"
+      class="w-full h-full object-contain transition-opacity duration-300 ease-in-out pointer-events-none"
+      :class="[isMuted ? 'opacity-50' : 'opacity-100', snapshotUrl ? 'opacity-0' : 'opacity-100']"
       style="pointer-events: none;"
     ></canvas>
 
     <Transition name="pop">
-          <div v-if="showTooltip && !isMuted && activeCityName" 
-              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[calc(50%+45px)] bg-black/80 text-white backdrop-blur-md border border-white/10 px-3 py-2 rounded-xl shadow-[0_0_20px_rgba(0,112,243,0.3)] z-10 flex flex-col items-center justify-center min-w-[110px]">
-            
-            <div class="flex items-center gap-1.5 mb-1 bg-white/10 px-2 py-0.5 rounded-full">
-              <span class="relative flex h-1.5 w-1.5">
-                <span v-if="taskStatus === 'Pending' || taskStatus === 'Syncing'" class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" :class="taskStatus === 'Syncing' ? 'bg-[#0070f3]' : 'bg-yellow-400'"></span>
-                <span class="relative inline-flex rounded-full h-1.5 w-1.5" :class="taskStatus === 'Success' ? 'bg-emerald-400' : (taskStatus === 'Pending' ? 'bg-yellow-400' : (taskStatus === 'Syncing' ? 'bg-[#0070f3]' : 'bg-gray-400'))"></span>
-              </span>
-              <span class="text-[9px] uppercase font-bold text-gray-200 tracking-wider whitespace-nowrap">
-                {{ 
-                  taskStatus === 'Success' ? 'Cloud Synced' : 
-                  taskStatus === 'Pending' ? 'Pending Sync' : 
-                  taskStatus === 'Syncing' ? 'Connecting...' : 
-                  'System Idle' 
-                }}
-              </span>
-            </div>
+      <div v-if="showTooltip && !isMuted && activeCityName" 
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[calc(50%+45px)] bg-black/80 text-white backdrop-blur-md border border-white/10 px-3 py-2 rounded-xl shadow-[0_0_20px_rgba(0,112,243,0.3)] z-10 flex flex-col items-center justify-center min-w-27.5">
+        
+        <div class="flex items-center gap-1.5 mb-1 bg-white/10 px-2 py-0.5 rounded-full">
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5" :class="taskStatus === 'Success' ? 'bg-emerald-400' : (taskStatus === 'Pending' ? 'bg-yellow-400' : (taskStatus === 'Syncing' ? 'bg-[#0070f3]' : 'bg-gray-400'))"></span>
+          </span>
+          <span class="text-[9px] uppercase font-bold text-gray-200 tracking-wider whitespace-nowrap">
+            {{ 
+              taskStatus === 'Success' ? 'Cloud Synced' : 
+              taskStatus === 'Pending' ? 'Pending Sync' : 
+              taskStatus === 'Syncing' ? 'Connecting...' : 
+              'System Idle' 
+            }}
+          </span>
+        </div>
 
-            <div class="flex items-center font-sans text-[11px] font-semibold tracking-wider whitespace-nowrap">
-              <span class="material-icons-round text-[10px] text-[#0070f3] mr-1">location_on</span>
-              {{ activeCityName }}
-            </div>
-            
-          </div>
-        </Transition>
+        <div class="flex items-center font-sans text-[11px] font-semibold tracking-wider whitespace-nowrap">
+          <span class="material-icons-round text-[10px] text-[#0070f3] mr-1">location_on</span>
+          {{ activeCityName }}
+        </div>
+        
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -385,6 +459,4 @@ onBeforeUnmount(() => {
   opacity: 0;
   transform: translate(-50%, calc(-50% - 15px)) scale(0.8);
 }
-.fade-enter-active, .fade-leave-active { transition: opacity 1s ease; }
-.fade-enter-from, .fade-leave-to { opacity: 0; }
 </style>
