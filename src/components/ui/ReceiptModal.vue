@@ -1,5 +1,6 @@
 <script setup lang="ts">
-defineProps<{
+import { computed } from 'vue';
+const props = defineProps<{
   show: boolean;
   amount: number | string;
   date: string;
@@ -7,6 +8,13 @@ defineProps<{
 }>();
 
 defineEmits(['close']);
+
+const displayDescription = computed(() => {
+  if (!props.description || props.description === 'Payout') {
+    return 'Cycle Payout';
+  }
+  return props.description;
+});
 
 const formatMoney = (val: number | string) => {
   const num = Number(val) || 0;
@@ -53,7 +61,7 @@ const formatMoney = (val: number | string) => {
           </button>
 
           <div class="flex flex-col items-center justify-center mb-8 w-full border-b border-zinc-100 pb-6">
-            <img src="/images/logodark.png" alt="Company Logo" class="h-10 w-auto object-contain">
+            <img src="/images/logo.png" alt="Company Logo" class="h-16 w-auto object-contain">
           </div>
 
           <div class="text-center mb-8">
@@ -73,7 +81,7 @@ const formatMoney = (val: number | string) => {
             </div>
             <div class="flex justify-between items-start gap-4">
               <span class="text-zinc-500 font-medium whitespace-nowrap">Description</span>
-              <span class="font-semibold text-zinc-800 text-right wrap-break-word">{{ description || 'Cycle Payout' }}</span>
+              <span class="font-semibold text-zinc-800 text-right wrap-break-word">{{ displayDescription }}</span>
             </div>
             
             <div class="flex justify-between items-start gap-4">
