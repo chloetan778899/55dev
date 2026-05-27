@@ -703,7 +703,7 @@ const confirmPassphraseError = computed(() => {
 
 const isSetupValid = computed(() => {
   return (
-    passphraseForm.value.passphrase.length >= 0 &&
+    passphraseForm.value.passphrase.length > 0 &&
     passphraseForm.value.passphrase === passphraseForm.value.confirmPassphrase
   );
 });
@@ -711,7 +711,7 @@ const isSetupValid = computed(() => {
 const isUpdateValid = computed(() => {
   return (
     passphraseForm.value.currentPassphrase.length > 0 &&
-    passphraseForm.value.passphrase.length >= 0 &&
+    passphraseForm.value.passphrase.length > 0 &&
     passphraseForm.value.passphrase === passphraseForm.value.confirmPassphrase
   );
 });
@@ -874,16 +874,26 @@ const displayYieldRate = computed(() => {
   return currentSchema.value?.yieldRate ?? "-";
 });
 
+const formatterCache = new Map<string, Intl.NumberFormat>();
+
 /** 将数字格式化为货币显示（两位小数、千分位） */
 const formatCurrency = (value: number | string) => {
   if (value === "-") return "-";
 
   const intlLocale = String(locale.value).replace("_", "-");
 
-  const formattedNumber = new Intl.NumberFormat(intlLocale, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(Number(value));
+// Fetch the existing formatter from the cache map, or instantiate a new one if missing
+  let formatter = formatterCache.get(intlLocale);
+  if (!formatter) {
+    formatter = new Intl.NumberFormat(intlLocale, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    formatterCache.set(intlLocale, formatter);
+  }
+
+  // Reuse the cached instance to format the value instantly
+  const formattedNumber = formatter.format(Number(value));
 
   return t("dashboard.currency_format", { amount: formattedNumber });
 };
@@ -1068,6 +1078,8 @@ const fetchTaskRecords = async () => {
           statusCode,
           liandan_status: Number(item.liandan_status) ?? 0,
           isHighYield: (item.liandan_status as number) >= 1,
+          formattedValueText: formatCurrency(price),
+          formattedAmountText: formatCurrency(income)
         };
       }
     );
@@ -1203,14 +1215,24 @@ const retrieveAssignment = async (
       data?: Record<string, unknown>;
       message?: string;
     };
+	
     if (res.status !== 1 || !res.data) {
-      openModal(
-        getBackendMsg(res) ||
-          t("dashboard.assignments.sync_error", "The cycle has been completed.")
-      );
+      console.log(55555, res.status, res);
+    
+      const backendMsg = getBackendMsg(res);
+      console.log('111backendMsg:', backendMsg);
+    
+      const msg =
+        backendMsg ||
+        t("dashboard.assignments.sync_error", "The cycle has been completed.");
+    
+      console.log('final msg:', msg);
+    
+      openModal(msg);
       return;
     }
 
+	
     const d = res.data as any;
 
       if (Number(d?.prize_info?.is_message) === 1) {
@@ -1271,6 +1293,7 @@ const retrieveAssignment = async (
     lockedInCurrent.value = currentSchema.value.value;
     await fetchTaskRecords();
   } catch (error: unknown) {
+	  console.log('进了catch');
     openModal(
       t(
         "dashboard.modal.general_error",
@@ -2481,7 +2504,7 @@ const isGlobalLock = computed(() => {
 
 <template>
   <div
-    class="h-screen bg-[#fafafa] dark:bg-[#000000] flex w-full overflow-hidden text-[#171717] dark:text-[#ededed] font-sans relative">
+    class="h-[100dvh] overscroll-none bg-[#fafafa] dark:bg-[#000000] flex w-full overflow-hidden text-[#171717] dark:text-[#ededed] font-sans relative">
       <div v-if="showConfetti" class="fixed inset-0 pointer-events-none z-100000 overflow-hidden flex justify-center">
       <div v-for="i in 60" :key="i" class="confetti" :style="getConfettiStyle()"></div>
     </div>
@@ -2492,8 +2515,8 @@ const isGlobalLock = computed(() => {
     <aside :class="isSidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed lg:static top-0 left-0 h-full w-62.5 bg-white dark:bg-[#000000] border-r border-black/10 dark:border-white/10 z-50 transition-transform duration-300 ease-in-out lg:translate-x-0 flex flex-col shrink-0 box-border">
       <div class="h-16 shrink-0 flex items-center justify-between px-6 border-b border-black/10 dark:border-white/10 box-border">
         <div class="block cursor-pointer relative z-10 hover:opacity-80">
-          <img src="/images/logodark.png" :alt="t('dashboard.nav.logo_alt', 'Logo')" class="h-7 w-auto block dark:hidden"/>
-          <img src="/images/logolight.png" :alt="t('dashboard.nav.logo_alt', 'Logo')" class="h-7 w-auto hidden dark:block"/>
+          <img src="/images/logodark.png" :alt="t('dashboard.nav.logo_alt', 'Logo')" class="h-9 w-auto block dark:hidden"/>
+          <img src="/images/logolight.png" :alt="t('dashboard.nav.logo_alt', 'Logo')" class="h-9 w-auto hidden dark:block"/>
         </div>
         <button @click="toggleSidebar" class="lg:hidden text-gray-500 hover:text-black dark:hover:text-white">
           <span class="material-icons-round text-xl">close</span>
@@ -2603,7 +2626,7 @@ const isGlobalLock = computed(() => {
     </aside>
 
     <main class="flex-1 flex flex-col min-w-0 h-full overflow-hidden relative">
-        <header class="z-30 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-black/10 dark:border-white/10 px-4 md:px-8 h-12 md:h-16 shrink-0 flex items-center justify-between box-border">
+        <header class="z-30 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-black/10 dark:border-white/10 px-4 md:px-8 h-12 md:h-16 shrink-0 flex items-center justify-between box-border touch-action-none">
         <div class="flex items-center gap-4">
           <button @click="toggleSidebar" class="lg:hidden text-black dark:text-white flex items-center justify-center h-8 w-8 hover:opacity-70 transition-opacity">
             <span class="material-icons-round text-xl leading-none">menu</span>
@@ -4179,7 +4202,7 @@ const isGlobalLock = computed(() => {
 
                         <div class="shrink-0 flex flex-col items-end text-right font-sans gap-0.5">
                           <span class="text-[12px] text-[#666] dark:text-[#a1a1a1] font-medium leading-tight">
-                            {{ formatCurrency(tx.value) }}
+                            {{ tx.formattedValueText }}
                           </span>
                           <span class="text-[12px] text-[#666] dark:text-[#a1a1a1] font-medium leading-tight">
                             {{ tx.yieldRate === "-" ? "-" : tx.yieldRate + "%" }}
@@ -4191,7 +4214,7 @@ const isGlobalLock = computed(() => {
                               'text-gray-500 dark:text-gray-400': tx.status === 'Corrupted',
                               'text-black dark:text-white': !['Success', 'Pending', 'Corrupted'].includes(tx.status)
                             }">
-                            {{ formatCurrency(tx.amount) }}
+                            {{ tx.formattedAmountText }}
                           </span>
                         </div>
 
@@ -4246,7 +4269,7 @@ const isGlobalLock = computed(() => {
                           
                           <td class="py-3 pr-4 text-gray-700 dark:text-gray-300 font-mono text-[12px] wrap-break-word whitespace-normal align-middle leading-relaxed">{{ tx.reference }}</td>
                           
-                          <td class="py-3 pr-4 text-[12px] font-medium align-middle leading-relaxed">{{ formatCurrency(tx.value) }}</td>
+                          <td class="py-3 pr-4 text-[12px] font-medium align-middle leading-relaxed">{{ tx.formattedValueText }}</td>
                           <td class="py-3 pr-4 text-[12px] font-medium align-middle leading-relaxed">{{ tx.yieldRate === "-" ? "-" : tx.yieldRate + "%" }}</td>
 
                           <td class="py-3 pr-4 text-[13px] font-medium align-middle leading-relaxed transition-colors"
@@ -4255,7 +4278,7 @@ const isGlobalLock = computed(() => {
                               'text-yellow-600 dark:text-yellow-400': tx.status === 'Pending',
                               'text-gray-500 dark:text-gray-400': tx.status === 'Corrupted',
                             }">
-                            {{ formatCurrency(tx.amount) }}
+                            {{ tx.formattedAmountText }}
                           </td>
                           
                           <td class="py-3 pr-4 align-middle leading-relaxed">
